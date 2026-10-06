@@ -1,0 +1,748 @@
+	<!DOCTYPE html>
+	<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<title>CARL AHLBOM - HOME</title>
+
+		<meta name="description" content="Website of Front-end developer / Digital artist Carl Ahlbom">
+		<meta name="keywords"
+			content="Web, Front-end, Design, Webdesign, Web development, Graphic, Fractals, Gym, Fishing, Chess, Beer =)">
+		<meta name="author" content="Carl Ahlbom">
+		<meta name="theme-color" content="#ffffff">
+		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+		<!-- Kuvakkeet ja Manifesti -->
+		<link rel="manifest" href="manifest.webmanifest">
+		<link rel="icon" href="favicon.ico">
+		<link rel="icon" href="icon.svg" type="image/svg+xml">
+		<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+		<!-- ============ FONTS ============  -->
+		<!-- Laita tämä sinne head-osion sisälle ennen tyylitiedostoja -->
+		<link rel="preload" href="fonts/poppins/Poppins-Regular.woff2" as="font" type="font/woff2" crossorigin>
+
+
+
+		<!-- ============ STYLEZ ============  -->
+		<link rel="stylesheet" href="css/animations.css">
+		<link rel="stylesheet" href="css/main.css">
+	</head>
+
+	<body>
+		<!-- Koristeelliset tähdet piilotettu ruudunlukijoilta -->
+		<div class="star_wrapper" aria-hidden="true">
+			<div class="star middle_star"></div>
+			<div class="star"></div>
+			<div class="star"></div>
+			<div class="star"></div>
+		</div>
+
+		<!--********************* HOME (TOP) *********************-->
+		<section id="home" class="hero_section">
+			<div class="hero_info_box">
+				<h1>i am <span class="boldest">nothing special</span></h1>
+
+				<p>..And I am also a front-end developer/ digital artist who loves
+					Nina, html, sass, wordpress, and a touch of Vanilla JS..
+				</p>
+
+				<!-- Lisätty selkeämpi kuvaus ruudunlukijoille (aria-label) -->
+				<a href="#about" class="basic_button btn_hero" aria-label="Read more about Carl">read more</a>
+			</div>
+		</section>
+		<!-- CLOSING HOME SECTION -->
+
+		<!--********************* NAVIGATION STUFF *********************-->
+
+		<nav class="sticky">
+			<div class="navbar">
+				<ul class="navigation_list">
+					<li>
+						<a href="#home" class="active menu-item-1">home</a>
+					</li>
+					<li>
+						<a href="#about" class="menu-item-2">about</a>
+					</li>
+					<li>
+						<a href="#gallery" class="menu-item-3">gallery</a>
+					</li>
+					<li>
+						<a href="#web" class="menu-item-4">web</a>
+					</li>
+					<li>
+						<a href="#contact" class="menu-item-5">contact</a>
+					</li>
+				</ul>
+
+				<!-- UUSI PAINIKE TÄHÄN: Sijoitettu navbar-laatikon sisälle, listan perään -->
+				<button id="theme-toggle" class="theme_btn" aria-label="Toggle dark/light mode">🌓</button>
+
+			</div>
+		</nav>
+
+		<!--********************* END OF NAVIGATION *********************-->
+
+
+		<!--======= POST HERO WRAPPER - I.O.W. JUST ANOTHER EXTRA SWEET THINGY =) =======-->
+		<main class="post_hero_wrapper">
+
+			<section class="full_block" id="about">
+				<!--********************* ABOUT MAIN *********************-->
+
+				<div class="content_block">
+
+					<!-- YLÄOSA: Otsikko ja ingressi leviävät koko leveydelle -->
+					<div class="column">
+						<h2>a few words <span class="primary_color">about</span> me</h2>
+						<p class="date">23 November, 2017</p>
+						<p class="ingress">Heello there! I am Carl Ahlbom, but my friend calls me Calle. I’m a webdesigner/
+							front-end developer skilled in HTML, SCSS and CMS integration. I create clean, professional and
+							functional websites. I also have a background in graphic design for screen and print - and I
+							don’t mind photography either.</p>
+					</div>
+
+					<!-- ALAOSA: Flexbox jakaa sisällön kahteen sarakkeeseen -->
+					<div class="flex between">
+						<!-- Vasen sarake: Kuva -->
+						<div class="half_block small">
+							<figure class="meitzi">
+								<img src="images/meitsi_bw_square.jpg" alt="Front end developer Carl Ahlbom">
+								<figcaption>Yes - it's me!</figcaption>
+							</figure>
+						</div>
+
+						<!-- Oikea sarake: Tekstit ja taidot -->
+						<div class="half_block big">
+							<p>I am based in Helsinki, Finland and I have a bachelors degree in digital multimedia. Before
+								graduating from Arcada - University of Applied Sciences, I studied graphic design/ web &
+								media art in a few other schools and took several different courses on these subjects. For
+								now I work as a freelancer, and earlier I worked at a little digital agency. I have also
+								worked as a teacher in basics of web development.</p>
+
+							<p>I’m constantly learning web technologies and other design related topics, currently playing
+								around with Javascript and JQuery. I am skilled in many areas of design and development. But
+								I still have everything to learn... </p>
+
+
+						</div><!-- /half_block big -->
+
+					</div><!-- /flex between  -->
+
+				</div><!-- /content_block -->
+
+			</section><!-- /about -->
+
+			<!-- ⚠️ HUOM: <main>-tagi EI sulkeudu vielä tässä, vaan vasta sivun aivan lopussa! -->
+
+
+
+			<!--********************* ENDING ABOUT ME *********************-->
+
+			<!--********************* ABOUT THIS SITE *********************-->
+			<section id="about_this_site" class="full_block bg_darker">
+
+				<div class="content_block flex between">
+
+					<!-- Vasen sarake: Tekstit -->
+					<div class="half_block big">
+						<h3 class="white">a few words <span class="primary_color">about</span> this site</h3>
+						<p class="white">
+							Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
+							nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi
+							enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis
+							nisl ut aliquip ex ea commodo consequat...
+						</p>
+						<p class="white">
+							Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
+							nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi
+							enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis
+							nisl ut aliquip ex ea commodo consequat...
+						</p>
+						<p class="white">
+							Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
+							nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi
+							enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis
+							nisl ut aliquip ex ea commodo consequat...
+						</p>
+					</div>
+
+					<!-- Oikea sarake: Kuva (Muutettu figureksi) -->
+					<div class="half_block small">
+						<figure id="about_site_image">
+							<img src="images/updated.png" alt="Esikatselukuva päivitetystä Carl Ahlbom -verkkosivustosta">
+						</figure>
+					</div>
+
+				</div><!-- /content_block -->
+
+			</section>
+			<!--********************* ENDING ABOUT THIS SITE *********************-->
+
+			<!--********************* TOOLS: ICON BOXES *********************-->
+			<section id="icons_full_block" class="full_block">
+				<div class="content_block">
+					<h3 class="white">a few web <span class="primary_color">tools</span> I use</h3>
+					<div class="icons_wrapper flex between wrap">
+
+						<!-- 1. HTML5 -->
+						<a class="icon_twin_container flex evenly reveal_me_1" href="https://w3.org" target="_blank"
+							rel="noopener">
+							<!-- Lukitaan oikea kuva taustalle inline-tyylillä -->
+							<div class="icon_image_container"
+								style="background-image: url('images/icons_sprites_patterns/icons/icon_html_5.png');">
+								<img src="images/icons_sprites_patterns/icons/icon_html_5.png" alt="HTML5"
+									class="icon_logo">
+							</div>
+							<div class="icon_text_container">
+								<p class="small white">Like most of the sites out there, this site is also HTML5 -the
+									latest version of
+									HTML, which is the contents you
+									see here.
+									The text, images, video
+									and audio etc. are all HTML5 elements here. Hand coded - basic stuff.
+								</p>
+							</div>
+						</a>
+
+						<!-- 2. CSS3 -->
+						<a class="icon_twin_container flex evenly reveal_me_2" href="https://w3.org" target="_blank"
+							rel="noopener">
+							<div class="icon_image_container"
+								style="background-image: url('images/icons_sprites_patterns/icons/icon_css_3.png');">
+								<img src="images/icons_sprites_patterns/icons/icon_css_3.png" alt="CSS3" class="icon_logo">
+							</div>
+							<div class="icon_text_container">
+								<p class="small white">Cascading Style Sheets v.3. I really like writing responsive CSS.
+									Without styling
+									the
+									internet would be as crappy
+									as the tv show sex and the city or such. But things gets even more interesting
+									with some nice
+									preprocessors..</p>
+							</div>
+						</a>
+
+						<!-- 3. SASS -->
+						<a class="icon_twin_container flex evenly reveal_me_3" href="http://sass-lang.com" target="_blank"
+							rel="noopener">
+							<div class="icon_image_container"
+								style="background-image: url('images/icons_sprites_patterns/icons/icon_sass_2.png');">
+								<img src="images/icons_sprites_patterns/icons/icon_sass_2.png" alt="SASS" class="icon_logo">
+							</div>
+							<div class="icon_text_container">
+								<p class="small white">Styles on steroids. This CSS preprocessor is the bomb! SASS
+									really makes styling
+									more
+									efficient and fun. Sass reduces repetition of CSS and therefore saves
+									time. Now I just have to master it and become a sassy guru.</p>
+							</div>
+						</a>
+
+						<!-- 4. WORDPRESS -->
+						<a class="icon_twin_container flex evenly reveal_me_4" href="https://wordpress.org" target="_blank"
+							rel="noopener">
+							<div class="icon_image_container"
+								style="background-image: url('images/icons_sprites_patterns/icons/icon_wordpress.png');">
+								<img src="images/icons_sprites_patterns/icons/icon_wordpress.png" alt="WordPress"
+									class="icon_logo">
+							</div>
+							<div class="icon_text_container">
+								<p class="small white">Something like a third of the web uses WordPress (I've heard). I
+									really like this
+									publishing
+									platform and I have used it
+									in several projects. I chose not to use WP here though - don't know if I chose
+									wisely -
+									time will tell.</p>
+							</div>
+						</a>
+
+						<!-- 5. EMMET -->
+						<a class="icon_twin_container flex evenly reveal_me_5" href="https://emmet.io" target="_blank"
+							rel="noopener">
+							<div class="icon_image_container"
+								style="background-image: url('images/icons_sprites_patterns/icons/icon_emmet.png');">
+								<img src="images/icons_sprites_patterns/icons/icon_emmet.png" alt="Emmet" class="icon_logo">
+							</div>
+							<div class="icon_text_container">
+								<p class="small white">Emmet is awesome! Emmet is developed and optimised for
+									web-developers whose
+									workflow depends on HTML/XML and CSS,
+									but can be used with programming languages too. Faster coding - cleaner syntax.
+								</p>
+							</div>
+						</a>
+
+						<!-- 6. JQUERY -->
+						<a class="icon_twin_container flex evenly reveal_me_6" href="https://jquery.com" target="_blank"
+							rel="noopener">
+							<div class="icon_image_container"
+								style="background-image: url('images/icons_sprites_patterns/icons/icon_jquery.png');">
+								<img src="images/icons_sprites_patterns/icons/icon_jquery.png" alt="jQuery"
+									class="icon_logo">
+							</div>
+							<div class="icon_text_container">
+								<p class="small white">The possbilities of this free JavaScript library...</p>
+							</div>
+						</a>
+
+					</div><!-- /icons_wrapper -->
+				</div><!-- /content_block -->
+			</section>
+
+			<!--********************* ENDING ABOUT SECTION MAIN: INCLUDING ICONS FULL *********************-->
+
+			<!--********************* STARTING GALLERY *********************-->
+
+			<section id="gallery" class="full_block">
+
+				<div class="content_block white">
+					<h2>gallery</h2>
+					<p class="date">Somewhere in time</p>
+					<p class="ingress">Yeaah buddyy, here we go! So here we have it. The place to be in order to
+						view my
+						random images/ videos etc.
+					</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis fermentum lorem eget augue
+						rhoncus
+						eleifend.
+						Curabitur scelerisque nunc enim. Morbi tincidunt, lacus vel scelerisque consequat, lorem
+						diam
+						tempor elit, sed viverra nulla dolor ut nunc. In hac habitasse platea dictumst.
+						Mauris scelerisque porttitor ex quis aliquam. Cras eu ullamcorper mi. Sed sit amet malesuada
+						nibh. Donec id interdum metus, ut semper sapien.
+						Duis nibh ex, pulvinar vel aliquam vitae, ultricies a dolor. In diam urna, sollicitudin
+						gravida
+						consectetur eu, sagittis volutpat ligula.
+						Praesent a metus finibus, ultrices ligula et, pellentesque risus. Aenean turpis metus,
+						volutpat
+						nec libero at, malesuada blandit sapien.
+					</p>
+				</div>
+					<!-- ENDING GALLERY INTRO WRAPPER -->
+
+
+					<!-- STARTING GALLERY CATEGORIES -->
+
+			
+					<div class="content_block page shadow bg_white" id="categories_wrap">
+						<div class="gallery_categories_section fractals">
+					
+							<!-- ARTICLE LONGER, PARTLY HIDDEN, ACCORIDIONZ -->
+					
+							<article class="hidden_post">
+								<h3 class="fractal_title">fractals</h3>
+					
+								<!-- 🚀 INTRO-LAATIKKO HÄIVYTYKSELLÄ -->
+								<div class="article-intro">
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis fermentum lorem eget augue
+										rhoncus eleifend. Curabitur scelerisque nunc enim. Morbi tincidunt,
+										lacus vel scelerisque consequat, lorem diam tempor elit, sed viverra nulla dolor ut
+										nunc. In hac habitasse platea dictumst.Morbi tincidunt, lacus vel scelerisque consequat, lorem diam tempor elit, sed viverra nulla dolor ut nunc.
+										Morbi tincidunt, lacus vel scelerisque consequat, lorem diam tempor elit, sed viverra nulla dolor ut nunc.
+										Morbi tincidunt, lacus vel scelerisque consequat, lorem diam tempor elit, sed viverra nulla dolor ut nuncyyyyyy.
+											Morbi tincidunt, lacus vel scelerisque consequat, lorem diam tempor elit, sed viverra nulla dolor ut nuncyyyyyy. 
+												Morbi tincidunt, lacus vel scelerisque consequat, lorem diam tempor elit, sed viverra nulla dolor ut nuncyyyyyy. 
+									</p>
+								</div>
+					
+								<!-- TUTTU PIILOLAATIKKO (Gallerian tyyleillä) -->
+								<div class="gallery-extra-rows article-body">
+									<div>
+										<p>Tämä teksti on aluksi piilossa. Kun käyttäjä klikkaa "Read More", tämä osio rullaa nätisti auki
+											täsmälleen samalla 0.5s haitariefektillä!</p>
+										<p>Ja tähän vielä viimeiset loppusanat artikkelista.</p>
+										<p>A user interface is like a joke.
+If you have to explain it,
+it’s not that good.” A user interface is like a joke.
+If you have to explain it,
+it’s not that good.” A user interface is like a joke.
+If you have to explain it,
+it’s not that good.” A user interface is like a joke.
+If you have to explain it,
+it’s not that good.” A user interface is like a joke.
+If you have to explain it,
+it’s not that good.” A user interface is like a joke.
+If you have to explain it,
+it’s not that good.” A user interface is like a joke.
+If you have to explain it,
+it’s not that good.” </p><p>A user interface is like a joke.
+If you have to explain it,
+it’s not that good.” A user interface is like a joke.
+If you have to explain it,
+it’s not that good.” A user interface is like a joke.
+If you have to explain it,
+it’s not that good.” A user interface is like a joke.
+If you have to explain it,
+it’s not that good.” A user interface is like a joke.
+If you have to explain it,
+it’s not that good.” A user interface is like a joke.
+If you have to explain it,
+it’s not that good.” A user interface is like a joke.
+If you have to explain it,
+it’s not that good.” </p>
+									</div>
+								</div>
+					
+								<button class="basic_button toggle-article-btn">Read More</button>
+							</article>
+
+
+
+							<!-- 🚀 SEXY GRID -->
+							<div class="gallery-grid">
+								<!-- 1. NÄMÄ 7 KUVAA NÄKYVÄT AINA OLETUKSENA (Ei tasoluokkia) -->
+								<a href="images/gallery/fractals/medusa.webp" class="lightbox-trigger" title="Testikuva 1"
+									rel="fractals"><img src="images/gallery/fractals/medusa.webp" alt="Medusa Artwork"
+										loading="lazy"></a>
+								<a href="images/gallery/fractals/medusa.webp" class="lightbox-trigger" title="Testikuva 2"
+									rel="fractals"><img src="images/gallery/fractals/medusa.webp" alt="Medusa Artwork"
+										loading="lazy"></a>
+								<a href="images/gallery/fractals/medusa.webp" class="lightbox-trigger" title="Testikuva 3"
+									rel="fractals"><img src="images/gallery/fractals/medusa.webp" alt="Medusa Artwork"
+										loading="lazy"></a>
+								<a href="images/gallery/fractals/medusa.webp" class="lightbox-trigger" title="Testikuva 4"
+									rel="fractals"><img src="images/gallery/fractals/medusa.webp" alt="Medusa Artwork"
+										loading="lazy"></a>
+								<a href="images/gallery/fractals/medusa.webp" class="lightbox-trigger" title="Testikuva 5"
+									rel="fractals"><img src="images/gallery/fractals/medusa.webp" alt="Medusa Artwork"
+										loading="lazy"></a>
+								<a href="images/gallery/fractals/medusa.webp" class="lightbox-trigger" title="Testikuva 6"
+									rel="fractals"><img src="images/gallery/fractals/medusa.webp" alt="Medusa Artwork"
+										loading="lazy"></a>
+								<a href="images/gallery/fractals/medusa.webp" class="lightbox-trigger" title="Testikuva 7"
+									rel="fractals"><img src="images/gallery/fractals/medusa.webp" alt="Medusa Artwork"
+										loading="lazy"></a>
+
+								<!-- 2. TASON 1 LISÄKUVAT (🚀 LISÄTTY LUOKKA level-1 JOKAISEEN) -->
+								<a href="images/gallery/fractals/medusa.webp" class="lightbox-trigger level-1"
+									title="Testikuva 8" rel="fractals"><img src="images/gallery/fractals/medusa.webp"
+										alt="Medusa Artwork" loading="lazy"></a>
+								<a href="images/gallery/fractals/medusa.webp" class="lightbox-trigger level-1"
+									title="Testikuva 9" rel="fractals"><img src="images/gallery/fractals/medusa.webp"
+										alt="Medusa Artwork" loading="lazy"></a>
+								<a href="images/gallery/fractals/medusa.webp" class="lightbox-trigger level-1"
+									title="Testikuva 10" rel="fractals"><img src="images/gallery/fractals/medusa.webp"
+										alt="Medusa Artwork" loading="lazy"></a>
+								<a href="images/gallery/fractals/medusa.webp" class="lightbox-trigger level-1"
+									title="Testikuva 11" rel="fractals"><img src="images/gallery/fractals/medusa.webp"
+										alt="Medusa Artwork" loading="lazy"></a>
+								<a href="images/gallery/fractals/medusa.webp" class="lightbox-trigger level-1"
+									title="Testikuva 12" rel="fractals"><img src="images/gallery/fractals/medusa.webp"
+										alt="Medusa Artwork" loading="lazy"></a>
+								<a href="images/gallery/fractals/medusa.webp" class="lightbox-trigger level-1"
+									title="Testikuva 13" rel="fractals"><img src="images/gallery/fractals/medusa.webp"
+										alt="Medusa Artwork" loading="lazy"></a>
+								<a href="images/gallery/fractals/medusa.webp" class="lightbox-trigger level-1"
+									title="Testikuva 14" rel="fractals"><img src="images/gallery/fractals/medusa.webp"
+										alt="Medusa Artwork" loading="lazy"></a>
+
+								<!-- 3. TASON 2 LISÄKUVAT (🚀 LISÄTTY LUOKKA level-2 JOKAISEEN) -->
+								<a href="images/gallery/fractals/medusa.webp" class="lightbox-trigger level-2"
+									title="Testikuva 15" rel="fractals"><img src="images/gallery/fractals/medusa.webp"
+										alt="Medusa Artwork" loading="lazy"></a>
+								<a href="images/gallery/fractals/medusa.webp" class="lightbox-trigger level-2"
+									title="Testikuva 16" rel="fractals"><img src="images/gallery/fractals/medusa.webp"
+										alt="Medusa Artwork" loading="lazy"></a>
+								<a href="images/gallery/fractals/medusa.webp" class="lightbox-trigger level-2"
+									title="Testikuva 17" rel="fractals"><img src="images/gallery/fractals/medusa.webp"
+										alt="Medusa Artwork" loading="lazy"></a>
+								<a href="images/gallery/fractals/medusa.webp" class="lightbox-trigger level-2"
+									title="Testikuva 18" rel="fractals"><img src="images/gallery/fractals/medusa.webp"
+										alt="Medusa Artwork" loading="lazy"></a>
+								<a href="images/gallery/fractals/medusa.webp" class="lightbox-trigger level-2"
+									title="Testikuva 19" rel="fractals"><img src="images/gallery/fractals/medusa.webp"
+										alt="Medusa Artwork" loading="lazy"></a>
+								<a href="images/gallery/fractals/medusa.webp" class="lightbox-trigger level-2"
+									title="Testikuva 20" rel="fractals"><img src="images/gallery/fractals/medusa.webp"
+										alt="Medusa Artwork" loading="lazy"></a>
+								<a href="images/gallery/fractals/medusa.webp" class="lightbox-trigger level-2"
+									title="Testikuva 21" rel="fractals"><img src="images/gallery/fractals/medusa.webp"
+										alt="Medusa Artwork" loading="lazy"></a>
+							</div><!-- ============== ENDING SEXY GRID ============== -->
+
+							<!-- Painikkeet nätisti omassa suojalaatikossaan gridin alla -->
+							<div class="gallery_actions">
+								<button id="btn-show-level-1" class="basic_button">Show More</button>
+								<button id="btn-show-level-2" class="basic_button is-hidden">Show Even More</button>
+							</div>
+
+						</div><!-- ENDING GALLERY WRAPPER FRACTALS-->
+
+
+						<hr>
+
+						<div class="gallery_categories_section photography">
+							<h3 class="photography_title">photography</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis fermentum lorem eget augue
+								rhoncus eleifend. Curabitur scelerisque nunc enim. Morbi tincidunt,
+								lacus vel scelerisque consequat, lorem diam tempor elit, sed viverra nulla dolor ut
+								nunc. In
+								hac habitasse platea dictumst. Mauris scelerisque porttitor ex quis aliquam.
+								Cras eu ullamcorper mi. Sed sit amet malesuada nibh. Donec id interdum metus, ut semper
+								sapien. Duis nibh ex, pulvinar vel aliquam vitae, ultricies a dolor. In diam urna,
+								sollicitudin gravida
+								consectetur eu, sagittis volutpat ligula. Praesent a metus finibus, ultrices ligula et,
+								pellentesque risus. Aenean turpis metus, volutpat nec libero at, malesuada blandit
+								sapien.
+							</p>
+
+
+
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis fermentum lorem eget augue
+								rhoncus eleifend. Curabitur scelerisque nunc enim. Morbi tincidunt,
+								lacus vel scelerisque consequat, lorem diam tempor elit, sed viverra nulla dolor ut
+								nunc.
+							</p>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis fermentum lorem eget augue
+								rhoncus eleifend. Curabitur scelerisque nunc enim. Morbi tincidunt,
+								lacus vel scelerisque consequat, lorem diam tempor elit, sed viverra nulla dolor ut
+								nunc.
+							</p>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis fermentum lorem eget augue
+								rhoncus eleifend. Curabitur scelerisque nunc enim. Morbi tincidunt,
+								lacus vel scelerisque consequat, lorem diam tempor elit, sed viverra nulla dolor ut
+								nunc.
+							</p>
+						</div><!-- ENDING GALLERY SECTION PHOTOGRAPHY-->
+						<hr>
+
+						<div class="gallery_categories_section landfill">
+							<h3 class="landfill_title">landfill</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis fermentum lorem eget augue
+								rhoncus eleifend. Curabitur scelerisque nunc enim. Morbi tincidunt,
+								lacus vel scelerisque consequat, lorem diam tempor elit, sed viverra nulla dolor ut
+								nunc. In
+								hac habitasse platea dictumst. Mauris scelerisque porttitor ex quis aliquam.
+								Cras eu ullamcorper mi. Sed sit amet malesuada nibh. Donec id interdum metus, ut semper
+								sapien. Duis nibh ex, pulvinar vel aliquam vitae, ultricies a dolor. In diam urna,
+								sollicitudin gravida
+								consectetur eu, sagittis volutpat ligula. Praesent a metus finibus, ultrices ligula et,
+								pellentesque risus. Aenean turpis metus, volutpat nec libero at, malesuada blandit
+								sapien.
+							</p>
+
+
+						</div><!-- ENDING GALLERY SECTION LANDFILL-->
+					
+				
+				</div><!-- ENDING GALLERY CATEGORIES CONTAINER BLOCK -->
+			</section><!--======== ENDING GALLERY SECTION ========-->
+
+
+
+
+
+			<!--========*** QUOTE: STARTING WEB SECTION ***========-->
+			<blockquote id="web_section_quote" class="full_block">
+				<p class="quote mega text_shadow white">
+					“A user interface is like a joke.<br>
+					If you have to explain it,<br>
+					it&rsquo;s not that good.”
+				</p>
+			</blockquote>
+			<!--========*** ENDING QUOTE ***========-->
+
+			<!-- ****************************************** -->
+
+			<!--======= STARTING WEB SECTION -=======-->
+
+			<section id="web" class="full_block">
+
+				<div class="content_block page bg_white rounded_top shadow">
+
+					<h2>web</h2>
+					<p class="date">18 March, 1892</p>
+					<p class="ingress">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. älä mäkä sälä nuni mupse
+						Error quaerat hic facilis porro, provident praesentium illo!
+					</p>
+
+					<!-- LAITERIVISTÖ JA INFOLAATIKKO MODERNISSA KÄÄRIJÄSSÄ -->
+					<div class="hardware-showcase-container">
+
+						<!-- LAITTEET (Joustava rivi) -->
+						<div class="hardware-device-row">
+
+							<div class="macbook_wrapper reveal_me_1">
+								<img src="images/icons_sprites_patterns/web/displays/macbook.png" alt="desktop"
+									class="macbook_image" loading="lazy">
+								<div class="macbook_screen">
+									<!-- Vinkki: Laita tähän taustakuvaksi (.webp) ruutukaappaus tekemästäsi sivusta! -->
+								</div>
+							</div>
+
+							<div class="imac_wrapper reveal_me_2">
+								<img src="images/icons_sprites_patterns/web/displays/imac.png" alt="desktop"
+									class="imac_image" loading="lazy">
+								<div class="imac_screen"></div>
+							</div>
+
+							<div class="ipad_wrapper reveal_me_3">
+								<img src="images/icons_sprites_patterns/web/displays/ipady.png" alt="pad" class="ipad_image"
+									loading="lazy">
+								<div class="ipad_screen"></div>
+							</div>
+
+							<div class="iphone_wrapper reveal_me_4">
+								<img src="images/icons_sprites_patterns/web/displays/iphone.png" alt="phone"
+									class="iphone_image" loading="lazy">
+								<div class="iphone_screen"></div>
+							</div>
+
+						</div><!-- ENDING HARDWARE DEVICE ROW -->
+
+						<!-- INFO/ESITTELYTEKSTI ELEMENTTIEN ALLA/VIERESSÄ -->
+						<div class="hardware_info_wrapper">
+							<p class="white medium text_center">
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+								älä mäkä sälä nuni mupse Error quaerat hic facilis porro.
+							</p>
+						</div>
+
+					</div><!-- ENDING HARDWARE SHOWCASE CONTAINER -->
+
+					<p class="ingress">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+
+					<p class="ingress">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+				</div>
+
+			</section>
+			<!-- ENDING WEB SECTION -->
+
+			<!--================= STARTING CONTACT SECTIONEZ =================-->
+
+			<section id="contact" class="full_block">
+
+				<div class="content_block page bg_white rounded_top shadow">
+
+					<h2>contact</h2>
+					<p class="ingress">
+						Got a project in mind, want to talk about digital art, or just grab a beer?
+						Drop me a message and I'll get back to you!
+					</p>
+
+					<!-- 🚀 SUORAVIIVAINEN LOMAKE – Korvaa "sinun.sahkoposti@domain.com" omallasi! -->
+					<form action="calle.ahlbom@gmail.com" method="POST" class="contact_form">
+
+						<!-- Tyylikäs kiitos-sivu lähetyksen jälkeen (FormSubmit hoitaa) -->
+						<input type="hidden" name="_next" value="https://carlahlbom.fi">
+
+						<!-- Estää automaattiset roskapostibotit taustalla -->
+						<input type="text" name="_gotcha" style="display:none">
+
+						<div class="form_group">
+							<label for="form_name">Name</label>
+							<input type="text" id="form_name" name="name" required placeholder="Calle Ahlbom">
+						</div>
+
+						<div class="form_group">
+							<label for="form_email">Email Address</label>
+							<input type="email" id="form_email" name="email" required placeholder="carl@example.com">
+						</div>
+
+						<div class="form_group">
+							<label for="form_message">Message</label>
+							<textarea id="form_message" name="message" required
+								placeholder="Hey Calle, let's build something cool..."></textarea>
+						</div>
+
+						<button type="submit" class="basic_button submit_btn">Send Message</button>
+					</form>
+				</div><!-- /content_block -->
+			</section>
+			<!--======== ENDING CONTACT SECTION ========-->
+
+
+
+			<!-- =========== FOOTER===========  -->
+
+			<footer class="main_footer">
+				<div class="content_block flex between center">
+					<div class="footer_left">
+						<p>&copy; 2026 Carl Ahlbom. Hand-coded with passion.</p>
+					</div>
+					<ul class="footer_links">
+						<li><a href="mailto:calle.eahlbom@gmail.com">calle.eahlbom@gmail.com</a></li>
+						<li><a href="tel:+358443833485">+35844&nbsp;383&nbsp;3485</a></li>
+					</ul>
+				</div>
+			</footer>
+
+			<!-- =========== FOOTER===========  -->
+
+
+		</main><!-- ENDING POST HERO WRAPPER-->
+		<!--ELI BILLET -->
+
+
+		<dialog id="global-lightbox">
+			<div class="lightbox-content">
+				<button id="close-lightbox-btn" class="lightbox-nav-btn close" aria-label="close">✕</button>
+
+				<!-- Selausnuolet ryhmille -->
+				<button id="prev-lightbox-btn" class="lightbox-nav-btn prev" aria-label="Previous">‹</button>
+				<button id="next-lightbox-btn" class="lightbox-nav-btn next" aria-label="Next">›</button>
+
+				<img id="lightbox-img" src="" alt="Suurennettu galleriakuva">
+				<p id="lightbox-caption"></p>
+			</div>
+		</dialog>
+
+
+		<!-- SCRIPTS -->
+		<script src="js/main.js"></script>
+
+		<!-- REVEAL ELEMENTS -->
+
+		<script src="js/scrollreveal.js"></script>
+
+		<!-- 2. Ajetaan omat paljastukset heti perään -->
+		<script>
+			window.sr = ScrollReveal();
+			sr.reveal('.reveal_me');
+			sr.reveal('.reveal_me_1', { delay: 100 });
+			sr.reveal('.reveal_me_2', { delay: 200 });
+			sr.reveal('.reveal_me_3', { delay: 300 });
+			sr.reveal('.reveal_me_4', { delay: 400 });
+			sr.reveal('.reveal_me_5', { delay: 500 });
+			sr.reveal('.reveal_me_6', { delay: 600 });
+		</script>
+
+
+		<!-- remove hover on touch devices -->
+		<script>function watchForHover() {
+				// lastTouchTime is used for ignoring emulated mousemove events
+				// that are fired after touchstart events. Since they're
+				// indistinguishable from real events, we use the fact that they're
+				// fired a few milliseconds after touchstart to filter them.
+				let lastTouchTime = 0
+
+				function enableHover() {
+					if (new Date() - lastTouchTime < 500) return
+					document.body.classList.add('hasHover')
+				}
+
+				function disableHover() {
+					document.body.classList.remove('hasHover')
+				}
+
+				function updateLastTouchTime() {
+					lastTouchTime = new Date()
+				}
+
+				document.addEventListener('touchstart', updateLastTouchTime, true)
+				document.addEventListener('touchstart', disableHover, true)
+				document.addEventListener('mousemove', enableHover, true)
+
+				enableHover()
+			}
+			watchForHover()
+		</script>
+	</body>
+
+	</html>

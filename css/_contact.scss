@@ -1,0 +1,123 @@
+/* ==========================================================================
+   CONTACT SECTION & FORM FIELDS
+   ========================================================================== */
+#contact {
+  padding-bottom: 80px; 
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  min-height: calc(100vh - 44px); 
+
+  .contact_form {
+    max-width: 600px;
+    margin: 40px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .form_group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      label {
+        font-family: $primary_font_stack;
+        font-weight: 500;
+        font-size: 1.1rem;
+        color: var(--text-color);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: color 0.3s ease;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      textarea {
+        font-family: $primary_font_stack;
+        font-size: 1.1rem;
+        padding: 14px;
+        border: 2px solid rgba(127, 127, 127, 0.3);
+        border-radius: 6px;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        outline: none;
+        box-sizing: border-box;
+        width: 100%;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+
+        &::placeholder { color: #aaa; }
+        &:focus {
+          border-color: var(--theme-color);
+          box-shadow: 0 0 8px rgba(209, 157, 129, 0.3); 
+        }
+      }
+      textarea { min-height: 150px; resize: vertical; }
+    }
+    .submit_btn { align-self: flex-start; margin-top: 10px; cursor: pointer; }
+  }
+}
+
+/* ==========================================================================
+   MAIN FOOTERZ (Se upea aito Applemateriaali sumennuksella)
+   ========================================================================== */
+.main_footer {
+  width: 100%;
+  padding: 50px 0;
+  background: linear-gradient(180deg, rgba(20, 20, 20, 0.8) 0%, rgba(0, 0, 0, 0.95) 100%) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #8e9296 !important;
+  font-family: $primary_font_stack;
+  font-size: 0.9rem;
+
+  p { 
+    margin: 0; 
+  }
+
+  .footer_links {
+    display: flex; 
+    gap: 20px; 
+    list-style: none; 
+    margin: 0; 
+    padding: 0;
+    
+    a {
+      &, &:link, &:visited {
+        color: var(--theme-color) !important;
+        text-transform: uppercase;
+        font-weight: 500;
+        letter-spacing: 1px;
+        position: relative;
+        padding-bottom: 4px;
+        text-shadow: none !important; // Poistaa mahdollisen herotekstivarjon
+      }
+      
+      &::after {
+        content: ""; 
+        position: absolute; 
+        bottom: 0; 
+        left: 0; 
+        width: 0; 
+        height: 2px;
+        background-color: #fff; 
+        transition: width 0.2s ease;
+      }
+      
+      body.hasHover &:hover {
+        color: #fff !important;
+        &::after { 
+          width: 100%; 
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .content_block.flex {
+      flex-direction: column;
+      text-align: center;
+      gap: 20px;
+    }
+  }
+}

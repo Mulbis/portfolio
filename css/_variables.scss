@@ -1,0 +1,76 @@
+/* ==========================================================================
+   GLOBAL VARIABLES & CONFIGURATION
+   ========================================================================== */
+
+$primary_font_stack: 'Poppins', sans-serif;
+$quote_font: "Times New Roman", Times, Baskerville, Georgia, serif;
+
+// Brändivärit (The "Yeah Buddy" -osasto)
+$primary_theme_color: #d19d81;
+$secondary_theme_color: #b88367;
+$primary_theme2_color: #81b5d1;
+$secondary_theme2_color: #679bb8;
+
+// Perusvärit leipätekstille ja taustoille
+$dark_color: #121212;
+$darker_color: rgb(18, 18, 18);
+$light_color: #ededed;
+
+// Mitat
+$hero_height: 36vh;
+$content_block_width: 96%;
+$content_block_max_width: 1280px;
+
+/* ==========================================================================
+   DYNAMIC THEME VARIABLES (Light & Dark Mode)
+   ========================================================================== */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #{$dark_color};
+  --nav-bg: rgba(255, 255, 255, 0.95);
+  --theme-color: #{$primary_theme_color};
+}
+
+[data-theme="dark"] {
+  --bg-color: #{$darker_color};
+  --text-color: #{$light_color};
+  --nav-bg: rgba(18, 18, 18, 0.95);
+  --theme-color: #{$secondary_theme_color};
+}
+
+/* ==========================================================================
+   FONTS & MIXINS
+   ========================================================================== */
+@font-face {
+  font-family: 'Poppins';
+  src: url('../fonts/poppins/Poppins-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../fonts/poppins/Poppins-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../fonts/poppins/Poppins-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@mixin black_box {
+  background: #171718;
+  border: 1px solid #242424;
+  border-radius: 8px;
+}
+
+@mixin rounded {
+  border-radius: 8px;
+}

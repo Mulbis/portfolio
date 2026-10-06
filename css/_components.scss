@@ -1,0 +1,224 @@
+/* ==========================================================================
+   BUTTONS (Senior-versio)
+   ========================================================================== */
+.basic_button {
+  &, &:link, &:visited {
+    display: inline-block;
+    background-color: $secondary_theme_color;
+    color: #fff;
+    padding: 8px 18px; 
+    font-size: 0.85rem; 
+    margin: 6px 0;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none; 
+    border-radius: 4px;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    box-shadow: 0 8px 15px -10px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    animation: text-focus-in .5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  }
+
+  &:hover, &:active {
+    background-color: $primary_theme_color;
+    transform: translateY(-1px); 
+    box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.6);
+  }
+
+  &.btn_hero {
+    &, &:link, &:visited {
+      padding: 10px 18px 8px;
+      font-size: 0.95rem;
+      animation: text-focus-in 2s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+    }
+  }
+}
+
+.is-hidden { display: none !important; }
+
+/* ==========================================================================
+   NAVIGATION MENU
+   ========================================================================== */
+nav.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(62, 62, 62, 1) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 1px 7px 21px 2px rgba(0,0,0,0.75);
+}
+
+.sticky-pin { position: fixed; top: 0; z-index: 2; }
+
+.navbar {
+  width: 100%; max-width: $content_block_max_width; margin: 0 auto; padding: 0 18px; height: 44px;
+  display: flex; align-items: stretch; justify-content: space-between; 
+}
+
+ul.navigation_list {
+  display: flex; justify-content: center; flex-grow: 1; list-style: none; height: 100%; 
+  li {
+    display: flex; align-items: stretch;
+    a {
+      display: flex; flex-direction: column; justify-content: flex-end; padding: 0 20px 4px; height: 100%; 
+      color: var(--theme-color); text-transform: uppercase; text-decoration: none; font-size: .9rem;
+      box-shadow: 0 0px 0 var(--theme-color);
+      transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+
+      &:hover { color: #fff; background-color: rgba(255, 255, 255, 0.05); transform: translateY(-2px); }
+      &.active {
+        color: #fff; background-color: rgba(255, 255, 255, 0.08); font-weight: 600; box-shadow: 0 2px 0 var(--theme-color); 
+        &:hover { transform: translateY(0); }
+      }
+    }
+  }
+}
+
+.theme_btn {
+  align-self: center; background: transparent; border: none; cursor: pointer; font-size: 1.3rem; padding: 6px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; transition: transform 0.2s ease, background-color 0.2s ease;
+  &:hover { transform: scale(1.15) rotate(15deg); background-color: rgba(255, 255, 255, 0.1); }
+  &:active { transform: scale(0.95); }
+}
+
+.list_wrapper { padding: 20px 0 0 0; display: inline-block; margin-bottom: 24px; }
+ul.basic_list { list-style: none; li { font-size: 140%; font-weight: 420; padding: 0 0 5px 10px; } }
+ul.basic_list li:before { content: "*"; position: absolute; margin-left: -10px; font-size: 110%; margin-top: 2px; }
+
+/* ==========================================================================
+   ABOUT THIS SITE & EXCLUSIVES
+   ========================================================================== */
+#about_this_site {
+  width: 100%;
+  .content_block.flex {
+    display: flex; justify-content: space-between; align-items: center; gap: 40px;
+    @media (max-width: 768px) { flex-direction: column; align-items: flex-start; gap: 30px; }
+  }
+  .half_block.big { flex: 1; p { margin-bottom: 16px; line-height: 1.6; &:last-child { margin-bottom: 0; } } }
+  .half_block.small { flex: 0 0 360px; box-sizing: border-box; }
+  #about_site_image { margin: 0; width: 100%; img { display: block; max-width: 100%; height: auto; border-radius: 8px; } }
+}
+
+#icons_full_block { position: relative; background: #000 url(../images/bg_images/cyani_2.jpg) no-repeat center top fixed; background-size: cover; }
+a.icon_twin_container {
+  &:link, &:visited { @include black_box; flex: 0 0 32%; align-items: center; box-sizing: border-box; padding: 26px 20px 48px; position: relative; overflow: hidden; transition: background 0.3s ease; }
+  &:hover, &:active { background: #252628; background: linear-gradient(45deg, rgba(37, 38, 40, 1) 0%, rgba(89, 95, 99, 1) 100%); }
+}
+.icons_wrapper { gap: 20px 0; }
+.icon_image_container {
+  flex-basis: 22%; box-sizing: border-box; position: relative; display: flex; justify-content: center; align-items: center; min-height: 60px;
+  background-size: contain; background-repeat: no-repeat; background-position: center;
+  .icon_logo { width: 100%; display: block; height: auto; position: relative; z-index: 2; opacity: 1; transform: scale(1); transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.45s ease; }
+}
+a.icon_twin_container:hover .icon_logo { transform: scale(2.6); opacity: 0; }
+.icon_text_container {
+  flex-basis: 64%; box-sizing: border-box; position: relative;
+  p {
+    margin: 0;
+    &::after { content: "Visit official site"; color: $primary_theme_color; text-transform: uppercase; font-size: 80%; font-weight: 700; display: block; position: absolute; bottom: -25px; left: 0; border-bottom: 1px solid transparent; transition: border-color 0.3s ease; }
+  }
+}
+a.icon_twin_container:hover .icon_text_container p::after { border-bottom: 1px solid $primary_theme_color; }
+
+/* ==========================================================================
+   GALLERY (The "Sexy Grid" Architecture)
+   ========================================================================== */
+.full_block#gallery {
+  background-image: url(../images/bg_images/joulu.svg); background-color: #000; background-repeat: no-repeat; background-position: bottom center; background-size: cover; background-attachment: fixed; transition: background-image 0.3s ease;
+  @at-root [data-theme="dark"] & { background-image: url(../images/bg_images/web_site_collage_2.jpg); background-color: var(--bg-color); }
+  .content_block#categories_wrap { margin-top: 1.1rem; }
+}
+
+.gallery_categories_section h3 {
+  display: inline-block;
+  &::after { content: ""; display: inline-block; width: 50px; height: 40px; vertical-align: middle; background-repeat: no-repeat; background-size: contain; background-position: center; margin-left: 12px; transition: filter 0.3s ease; }
+  @at-root [data-theme="dark"] &::after { filter: invert(1) opacity(1); }
+  &.fractal_title::after { background-image: url("../images/icons_sprites_patterns/icons/mandelbrot_set.svg"); margin-top: -3px; }
+  &.photography_title::after { background-image: url("../images/icons_sprites_patterns/icons/camera_filled.svg"); margin-bottom: 2px; }
+  &.landfill_title::after { background-image: url("../images/icons_sprites_patterns/icons/display.svg"); margin-bottom: 13px; }
+}
+
+.gallery-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 2px; margin: 25px 0; background: #000;
+  .lightbox-trigger {
+    display: block; overflow: visible; position: relative; transition: transform 0.2s ease-in-out;
+    img { display: block; width: 100%; height: 90px; object-fit: cover; transition: filter 0.2s ease, box-shadow 0.2s ease; filter: brightness(0.83); box-shadow: 1px 1px 20px 8px rgba(0, 0, 0, 0); }
+    body.hasHover &:hover { transform: scale(1.5); z-index: 10; img { filter: brightness(1.1); box-shadow: 1px 1px 20px 8px rgba(0, 0, 0, 0.75); } }
+  }
+  .lightbox-trigger.level-1, .lightbox-trigger.level-2 { display: none; }
+  .lightbox-trigger.is-visible { display: block !important; img { animation: text-focus-in .5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both; } }
+
+  @for $i from 1 through 7 { .lightbox-trigger:not(.level-1):not(.level-2):nth-of-type(#{$i}) img { animation-delay: #{($i - 1) * 0.08}s; } }
+  @for $i from 1 through 7 { .lightbox-trigger.level-1.is-visible:nth-of-type(#{$i}) img { animation-delay: #{($i - 1) * 0.08}s; } }
+  @for $i from 1 through 11 { .lightbox-trigger.level-2.is-visible:nth-of-type(#{$i}) img { animation-delay: #{($i - 1) * 0.08}s; } }
+}
+
+.gallery_actions { display: flex; justify-content: center; align-items: center; gap: 15px; margin: 30px 0; width: 100%; }
+
+/* ==========================================================================
+   GLOBAL LIGHTBOX (<dialog>)
+   ========================================================================== */
+dialog#global-lightbox {
+  display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; padding: 0; border: none; background: transparent; overflow: visible;
+  &[open] { display: flex; align-items: center; justify-content: center; }
+  &::backdrop { background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); }
+  .lightbox-content {
+    position: relative; margin: auto; display: flex; flex-direction: column; align-items: center; max-width: 80vw;
+    img { display: block; max-width: 100%; max-height: 80vh; object-fit: contain; border-radius: 4px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
+    #lightbox-caption { color: #fff; margin-top: 15px; font-family: 'Montserrat', sans-serif; font-size: 1.1rem; text-align: center; }
+  }
+  .lightbox-nav-btn {
+    position: absolute; background: rgba(255, 255, 255, 0.1); color: #fff; border: none; font-size: 2rem; width: 50px; height: 50px; border-radius: 50%;
+    cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, transform 0.2s; z-index: 1000;
+    &:hover { background: rgba(255, 255, 255, 0.25); transform: scale(1.05); }
+    &.close { top: -60px; right: 0; font-size: 1.5rem; }
+&.prev { left: -70px; top: 50%; transform: translateY(-50%); &:hover { transform: translateY(-50%) scale(1.05); } }
+&.next { right: -70px; top: 50%; transform: translateY(-50%); &:hover { transform: translateY(-50%) scale(1.05); } }
+}
+}
+@media (max-width: 768px) {
+dialog#global-lightbox {
+.lightbox-content { max-width: 95vw; }
+.lightbox-nav-btn { font-size: 1.5rem; width: 40px; height: 40px; &.close { top: 10px; right: 10px; } &.prev { left: 10px; } &.next { right: 10px; } }
+}
+}
+/* ==========================================================================
+ACCORDION READ MORE (Haitari-artikkeli kiinni oletuksena)
+========================================================================== */
+.hidden_post {
+position: relative;
+margin-bottom: 40px;
+.article-intro {
+position: relative;
+overflow: hidden;
+&::after {
+content: "";
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 160px;
+background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, var(--bg-color) 100%);
+transition: opacity 0.3s ease-in-out;
+pointer-events: none;
+opacity: 1;
+z-index: 2;
+}
+}
+&.has-opened {
+.article-intro::after {
+opacity: 0 !important;
+visibility: hidden;
+}
+}
+}
+.article-body {
+display: grid !important;
+grid-template-rows: 0fr;
+overflow: hidden;
+opacity: 0;
+transition: grid-template-rows 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
+& > div { min-height: 0; }
+&.is-open { grid-template-rows: 1fr; opacity: 1; }
+}
