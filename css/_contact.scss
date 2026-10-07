@@ -1,12 +1,16 @@
 /* ==========================================================================
-   CONTACT SECTION & FORM FIELDS
+   CONTACT SECTION & FORM FIELDS (Hienosäädetty iMac M4 -näytölle!)
    ========================================================================== */
 #contact {
-  padding-bottom: 80px; 
+  padding-bottom: 100px; 
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
-  min-height: calc(100vh - 44px); 
+  
+  // 🚀 TÄMÄ PAKOTTAA LISÄÄ TILAA SIVUN POHJAAN:
+  /*min-height: calc(100vh + 60px);*/
+  scroll-margin-top: 100px !important; // Varmistaa, että linkki asettuu täydellisesti heti eka klikkauksella
+  border: 2px solid lime;
 
   .contact_form {
     max-width: 600px;
@@ -58,7 +62,7 @@
 }
 
 /* ==========================================================================
-   MAIN FOOTERZ (Se upea aito Applemateriaali sumennuksella)
+   MAIN FOOTERZ 
    ========================================================================== */
 .main_footer {
   width: 100%;
@@ -90,7 +94,7 @@
         letter-spacing: 1px;
         position: relative;
         padding-bottom: 4px;
-        text-shadow: none !important; // Poistaa mahdollisen herotekstivarjon
+        text-shadow: none !important;
       }
       
       &::after {

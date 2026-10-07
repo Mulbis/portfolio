@@ -31,9 +31,11 @@ body {
 }
 
 // Estetään osioita jäämästä navigaation alle piiloon klikatessa
-#about, #gallery, #web {
-  scroll-margin-top: 40px; 
+// Estetään osioita jäämästä navigaation alle piiloon klikatessa
+#about, #gallery, #web, #contact {
+  scroll-margin-top: 44px; /* Navbarin korkeus */
 }
+
 
 #home {
   scroll-margin-top: 0;

@@ -9,7 +9,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative; 
+  position: relative;
+  z-index: 1;
 }
 
 .hero_info_box {
@@ -20,9 +21,12 @@
   flex-direction: column;
   align-items: center; 
   text-align: center;
+  z-index: 100;
   
   h1 { 
-    margin-bottom: 1rem; 
+   
+  animation: text-focus-in 1.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   }
 }
 
@@ -40,13 +44,35 @@
 }
 
 /* DECORATIVE SHOOTING STARS */
+
+.relative_star_wrapper{
+
+  position: relative;
+  background: #000;
+width: $hero_height;
+width: 100%;
+}
+
 .star_wrapper {
   position: absolute;
-  top: 0; left: 0; width: 100%; height: $hero_height; overflow: hidden;
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: $hero_height; // Vaihdettu $hero_height -> 100%, jotta täyttää varmasti koko heron
+  overflow: hidden;
+  z-index: 10; // 🚀 TÄMÄ NOSTAA TÄHDET TAUSTAKUVAN YLÄPUOLELLE!
+  pointer-events: none; // Estää tähtien häiritsemästä linkkien klikkaamista
+
 }
 
 .star {
-  position: absolute; width: 5px; height: 5px; left: 40vw; top: -10px; background: #fff; border-radius: 50%;
+  position: absolute; 
+  width: 5px; 
+  height: 5px; 
+  left: 40vw; 
+  top: -10px; 
+  background: #fff; 
+  border-radius: 50%;
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), 0 0 0 8px rgba(255, 255, 255, 0.1), 0 0 20px rgba(255, 255, 255, 0.1);
   transform: rotate(45deg) translate3d(0, 0, 0);
   animation: shootingstars 10s linear infinite;
@@ -54,13 +80,48 @@
 }
 
 .star::before {
-  content: ""; position: absolute; top: 2px; left: -300px; width: 300px; height: 1px; display: block;
+  content: ""; 
+  position: absolute; 
+  top: 2px; 
+  left: -300px; 
+  width: 300px; 
+  height: 1px; 
+  display: block;
   background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .3) 100%);
-  z-index: 99999; backface-visibility: hidden;
 }
 
-.star:nth-child(2) { left: 10%; animation-delay: 6s; }
-.star:nth-child(3) { left: 78vw; animation-delay: 8s; }
+// Yksittäisten tähtien dynaamiset sijainnit calc()-funktiolla
+.star:nth-child(1) { 
+  top: calc(0% - 20px); 
+  left: calc(35vw + 50px); 
+  animation: shootingstars 6s linear infinite;
+  animation-delay: 1.5s; // Lentää heti alussa
+}
+
+.star:nth-child(2) { 
+  top: calc(0% - 20px); 
+  left: calc(5vw + 50px); 
+  animation: shootingstars 16s linear infinite; // Hidas ja eeppinen
+  animation-delay: 4s; 
+ 
+}
+
+.star:nth-child(3) { 
+  top: calc(0% - 200px);
+  left: calc(60vw + 50px); 
+  animation: shootingstars 10s linear infinite; 
+  animation-delay: 16s; 
+}
+
+.star:nth-child(4) { 
+  top: calc(0% - 20px); 
+  left: calc(80vw + 50px); 
+  animation: shootingstars 24s linear infinite; 
+  animation-delay: 6s; 
+
+}
+
+
 
 /* ==========================================================================
    WEB & HARDWARE SHOWCASE STYLES

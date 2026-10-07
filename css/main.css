@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* ==========================================================================
    MAIN STYLESHEET COMPILER
    ========================================================================== */
@@ -76,8 +77,8 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-#about, #gallery, #web {
-  scroll-margin-top: 40px;
+#about, #gallery, #web, #contact {
+  scroll-margin-top: 44px; /* Navbarin korkeus */
 }
 
 #home {
@@ -1031,6 +1032,7 @@ ACCORDION READ MORE (Haitari-artikkeli kiinni oletuksena)
   align-items: center;
   justify-content: center;
   position: relative;
+  z-index: 1;
 }
 
 .hero_info_box {
@@ -1041,9 +1043,11 @@ ACCORDION READ MORE (Haitari-artikkeli kiinni oletuksena)
   flex-direction: column;
   align-items: center;
   text-align: center;
+  z-index: 100;
 }
 .hero_info_box h1 {
-  margin-bottom: 1rem;
+  animation: text-focus-in 1.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 .hero_info_box p {
@@ -1060,6 +1064,13 @@ ACCORDION READ MORE (Haitari-artikkeli kiinni oletuksena)
 }
 
 /* DECORATIVE SHOOTING STARS */
+.relative_star_wrapper {
+  position: relative;
+  background: #000;
+  width: 36vh;
+  width: 100%;
+}
+
 .star_wrapper {
   position: absolute;
   top: 0;
@@ -1067,6 +1078,8 @@ ACCORDION READ MORE (Haitari-artikkeli kiinni oletuksena)
   width: 100%;
   height: 36vh;
   overflow: hidden;
+  z-index: 10;
+  pointer-events: none;
 }
 
 .star {
@@ -1092,18 +1105,34 @@ ACCORDION READ MORE (Haitari-artikkeli kiinni oletuksena)
   height: 1px;
   display: block;
   background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.3) 100%);
-  z-index: 99999;
-  backface-visibility: hidden;
+}
+
+.star:nth-child(1) {
+  top: calc(0% - 20px);
+  left: calc(35vw + 50px);
+  animation: shootingstars 6s linear infinite;
+  animation-delay: 1.5s;
 }
 
 .star:nth-child(2) {
-  left: 10%;
-  animation-delay: 6s;
+  top: calc(0% - 20px);
+  left: calc(5vw + 50px);
+  animation: shootingstars 16s linear infinite;
+  animation-delay: 4s;
 }
 
 .star:nth-child(3) {
-  left: 78vw;
-  animation-delay: 8s;
+  top: calc(0% - 200px);
+  left: calc(60vw + 50px);
+  animation: shootingstars 10s linear infinite;
+  animation-delay: 16s;
+}
+
+.star:nth-child(4) {
+  top: calc(0% - 20px);
+  left: calc(80vw + 50px);
+  animation: shootingstars 24s linear infinite;
+  animation-delay: 6s;
 }
 
 /* ==========================================================================
@@ -1366,14 +1395,16 @@ ACCORDION READ MORE (Haitari-artikkeli kiinni oletuksena)
   }
 }
 /* ==========================================================================
-   CONTACT SECTION & FORM FIELDS
+   CONTACT SECTION & FORM FIELDS (Hienosäädetty iMac M4 -näytölle!)
    ========================================================================== */
 #contact {
-  padding-bottom: 80px;
+  padding-bottom: 100px;
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
-  min-height: calc(100vh - 44px);
+  /*min-height: calc(100vh + 60px);*/
+  scroll-margin-top: 100px !important;
+  border: 2px solid lime;
 }
 #contact .contact_form {
   max-width: 600px;
@@ -1433,7 +1464,7 @@ ACCORDION READ MORE (Haitari-artikkeli kiinni oletuksena)
 }
 
 /* ==========================================================================
-   MAIN FOOTERZ (Se upea aito Applemateriaali sumennuksella)
+   MAIN FOOTERZ 
    ========================================================================== */
 .main_footer {
   width: 100%;
