@@ -1,7 +1,7 @@
 /* ==========================================================================
    HERO / HOME MAIN VIEW & ANIMATIONS
    ========================================================================== */
-#home.hero_section  {
+#home.hero_section {
   width: 100%;
   min-height: $hero_height;
   background: url(../images/hero/lappare.jpg) no-repeat center center;
@@ -19,14 +19,14 @@
   background: transparent;
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
   text-align: center;
   z-index: 100;
-  
-  h1 { 
-   
-  animation: text-focus-in 1.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+
+  h1 {
+
+    animation: text-focus-in 1.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   }
 }
 
@@ -45,19 +45,19 @@
 
 /* DECORATIVE SHOOTING STARS */
 
-.relative_star_wrapper{
+.relative_star_wrapper {
 
   position: relative;
   background: #000;
-width: $hero_height;
-width: 100%;
+  width: $hero_height;
+  width: 100%;
 }
 
 .star_wrapper {
   position: absolute;
-  top: 0; 
-  left: 0; 
-  width: 100%; 
+  top: 0;
+  left: 0;
+  width: 100%;
   height: $hero_height; // Vaihdettu $hero_height -> 100%, jotta täyttää varmasti koko heron
   overflow: hidden;
   z-index: 10; // 🚀 TÄMÄ NOSTAA TÄHDET TAUSTAKUVAN YLÄPUOLELLE!
@@ -66,12 +66,12 @@ width: 100%;
 }
 
 .star {
-  position: absolute; 
-  width: 5px; 
-  height: 5px; 
-  left: 40vw; 
-  top: -10px; 
-  background: #fff; 
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  left: 40vw;
+  top: -10px;
+  background: #fff;
   border-radius: 50%;
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), 0 0 0 8px rgba(255, 255, 255, 0.1), 0 0 20px rgba(255, 255, 255, 0.1);
   transform: rotate(45deg) translate3d(0, 0, 0);
@@ -80,44 +80,50 @@ width: 100%;
 }
 
 .star::before {
-  content: ""; 
-  position: absolute; 
-  top: 2px; 
-  left: -300px; 
-  width: 300px; 
-  height: 1px; 
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: -300px;
+  width: 300px;
+  height: 1px;
   display: block;
   background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .3) 100%);
 }
 
 // Yksittäisten tähtien dynaamiset sijainnit calc()-funktiolla
-.star:nth-child(1) { 
-  top: calc(0% - 20px); 
-  left: calc(35vw + 50px); 
-  animation: shootingstars 6s linear infinite;
-  animation-delay: 1.5s; // Lentää heti alussa
+.star:nth-child(1) {
+  top: calc(0% - 20px);
+  left: calc(35vw + 50px);
+  animation: shootingstars_eka 12s linear infinite;
+  animation-delay: 2s; // Lentää heti alussa
+
 }
 
-.star:nth-child(2) { 
-  top: calc(0% - 20px); 
-  left: calc(5vw + 50px); 
-  animation: shootingstars 16s linear infinite; // Hidas ja eeppinen
-  animation-delay: 4s; 
- 
+.star:nth-child(2) {
+  top: calc(0% - 20px);
+  left: calc(5vw + 50px);
+  animation: shootingstars 14s linear infinite; // Hidas ja eeppinen
+  animation-delay: 4s;
+
+
+
 }
 
-.star:nth-child(3) { 
-  top: calc(0% - 200px);
-  left: calc(60vw + 50px); 
-  animation: shootingstars 10s linear infinite; 
-  animation-delay: 16s; 
+.star:nth-child(3) {
+  top: calc(0% - 120px);
+  left: calc(60vw + 50px);
+  animation: shootingstars 16s linear infinite;
+  animation-delay: 8s;
+
+
 }
 
-.star:nth-child(4) { 
-  top: calc(0% - 20px); 
-  left: calc(80vw + 50px); 
-  animation: shootingstars 24s linear infinite; 
-  animation-delay: 6s; 
+.star:nth-child(4) {
+  top: calc(0% - 20px);
+  left: calc(80vw + 50px);
+  animation: shootingstars 24s linear infinite;
+  animation-delay: 6s;
+
 
 }
 
@@ -127,158 +133,323 @@ width: 100%;
    WEB & HARDWARE SHOWCASE STYLES
    ========================================================================== */
 #web_section_quote {
-  text-align: center; 
-  width: 100%; 
+  text-align: center;
+  width: 100%;
   background: #000 url(../images/bg_images/web_site_collage_4.jpg) no-repeat center center fixed;
-  background-size: cover; 
+  background-size: cover;
   box-shadow: inset 0px 0px 47px 20px rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.quote_block { 
-  background: rgba(0, 0, 0, 0.2); 
-  padding: 76px 4%; 
+.quote_block {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 76px 4%;
   width: 100%;
-  text-align: center; 
+  text-align: center;
 }
 
-.full_block#web { 
-  position: relative; 
-  background-image: url(../images/bg_images/my_asterisk.svg); 
-  background-repeat: no-repeat; 
-  background-size: 50%; 
-  background-position: -10% 50%; 
-  background-attachment: fixed; 
+.full_block#web {
+  position: relative;
+  background-image: url(../images/bg_images/my_asterisk.svg);
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position: -10% 50%;
+  background-attachment: fixed;
 }
 
 .hardware-showcase-container {
-  display: flex; 
-  flex-direction: column; 
-  padding: 30px; 
-  background: #FFF; 
-  border-radius: 12px; 
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); 
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  background: #FFF;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   margin: 30px 0;
-  width: 100%; 
-  align-items: center; 
-  
+  width: 100%;
+  align-items: center;
+
   .hardware-device-row {
-    display: flex; 
-    flex-wrap: wrap; 
-    align-items: flex-end; 
-    justify-content: center; 
-    gap: 25px; 
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 25px;
     width: 100%;
   }
-  
-  .hardware_info_wrapper { 
-    width: 100%; 
-    padding: 15px; 
+
+  .hardware_info_wrapper {
+    width: 100%;
+    padding: 15px;
     text-align: center;
   }
-  
-  &.is-visible { 
-    .macbook_screen::before, 
-    .imac_screen::before, 
-    .ipad_screen::before, 
-    .iphone_screen::before { 
-      animation-play-state: running; 
-    } 
+
+  &.is-visible {
+
+    .macbook_screen::before,
+    .imac_screen::before,
+    .ipad_screen::before,
+    .iphone_screen::before {
+      animation-play-state: running;
+    }
   }
 }
 
-.macbook_wrapper, .imac_wrapper, .ipad_wrapper, .iphone_wrapper {
-  position: relative; 
-  display: inline-block; 
-  
-  img { 
-    position: relative; 
-    display: block; 
-    z-index: 2; 
+.macbook_wrapper,
+.imac_wrapper,
+.ipad_wrapper,
+.iphone_wrapper {
+  position: relative;
+  display: inline-block;
+
+  img {
+    position: relative;
+    display: block;
+    z-index: 2;
     max-width: 100%;
     height: auto;
-    pointer-events: none; 
-  } 
+    pointer-events: none;
+  }
 }
 
-.macbook_screen, .imac_screen, .ipad_screen, .iphone_screen {
-  position: absolute; 
-  top: 2%; 
-  left: 10%; 
-  display: flex; 
-  width: 79%; 
-  height: 80%; 
-  overflow: hidden; 
-  z-index: 1; 
+.macbook_screen,
+.imac_screen,
+.ipad_screen,
+.iphone_screen {
+  position: absolute;
+  top: 2%;
+  left: 10%;
+  display: flex;
+  width: 79%;
+  height: 80%;
+  overflow: hidden;
+  z-index: 1;
   background: #000;
-  
+
   &::before {
-    content: ""; 
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    height: 100%; 
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
     width: calc(100% * 7);
     background-image: url(../images/icons_sprites_patterns/web/sprites/imac_macbook_panorama_3360_x_265.webp);
-    background-size: 100% 100%; 
-    image-rendering: -webkit-optimize-contrast; 
+    background-size: 100% 100%;
+    image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
-    transform: translate3d(0, 0, 0); 
-    -webkit-transform: translate3d(0, 0, 0); 
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
     will-change: transform;
-    -webkit-backface-visibility: hidden; 
-    backface-visibility: hidden; 
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
     animation: slideAndHoldMacbook 12s linear infinite paused;
   }
 }
 
-.imac_screen { top: 4%; left: 3%; width: 96%; height: 54%; }
-.ipad_screen, .iphone_screen { top: 1%; left: 12%; width: 78%; height: 80%; &::before { background-image: url(../images/icons_sprites_patterns/web/sprites/ipad_iphone_panorama_3360_x_265.webp); } }
-.iphone_screen { top: 8%; left: 6%; width: 90%; height: 76%; }
+.imac_screen {
+  top: 4%;
+  left: 3%;
+  width: 96%;
+  height: 54%;
+}
+
+.ipad_screen,
+.iphone_screen {
+  top: 1%;
+  left: 12%;
+  width: 78%;
+  height: 80%;
+
+  &::before {
+    background-image: url(../images/icons_sprites_patterns/web/sprites/ipad_iphone_panorama_3360_x_265.webp);
+  }
+}
+
+.iphone_screen {
+  top: 8%;
+  left: 6%;
+  width: 90%;
+  height: 76%;
+}
 
 /* ==========================================================================
    ANIMATION KEYFRAMES
    ========================================================================== */
 @keyframes shootingstars {
-  0% { opacity: 1; transform: rotate(45deg) translate3d(0, 0, 0); }
-  20%, 100% { opacity: 0; transform: rotate(45deg) translate3d(1000px, 0, 0); }
+  0% {
+    opacity: 1;
+    transform: rotate(45deg) translate3d(0, 0, 0);
+  }
+
+  20%,
+  100% {
+    opacity: 0;
+    transform: rotate(45deg) translate3d(1000px, 0, 0);
+  }
+}
+
+@keyframes shootingstars_eka {
+  0% {
+    opacity: 1;
+    transform: rotate(45deg) translate3d(0, 0, 0);
+  }
+
+  20%,
+  100% {
+    opacity: 0;
+    transform: rotate(45deg) translate3d(2000px, 0, 0);
+  }
 }
 
 @-webkit-keyframes text-focus-in {
-  0% { -webkit-filter: blur(12px); filter: blur(12px); opacity: 0; }
-  100% { -webkit-filter: blur(0px); filter: blur(0px); opacity: 1; }
+  0% {
+    -webkit-filter: blur(12px);
+    filter: blur(12px);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+    opacity: 1;
+  }
 }
+
 @keyframes text-focus-in {
-  0% { -webkit-filter: blur(12px); filter: blur(12px); opacity: 0; }
-  100% { -webkit-filter: blur(0px); filter: blur(0px); opacity: 1; }
+  0% {
+    -webkit-filter: blur(12px);
+    filter: blur(12px);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+    opacity: 1;
+  }
 }
 
 @-webkit-keyframes slide-out-fwd-center {
-  0% { -webkit-transform: translateZ(1); transform: translateZ(1); opacity: 0; width: 0; }
-  50% { -webkit-transform: translateZ(500px); transform: translateZ(500px); opacity: 1; }
-  99% { -webkit-transform: translateZ(1000px); transform: translateZ(1000px); opacity: 0; width: 400px; }
-  100% { display: none; }
+  0% {
+    -webkit-transform: translateZ(1);
+    transform: translateZ(1);
+    opacity: 0;
+    width: 0;
+  }
+
+  50% {
+    -webkit-transform: translateZ(500px);
+    transform: translateZ(500px);
+    opacity: 1;
+  }
+
+  99% {
+    -webkit-transform: translateZ(1000px);
+    transform: translateZ(1000px);
+    opacity: 0;
+    width: 400px;
+  }
+
+  100% {
+    display: none;
+  }
 }
+
 @keyframes slide-out-fwd-center {
-  0% { -webkit-transform: translateZ(1); transform: translateZ(1); opacity: 0; width: 0; }
-  50% { -webkit-transform: translateZ(500px); transform: translateZ(500px); opacity: 1; }
-  99% { -webkit-transform: translateZ(1000px); transform: translateZ(1000px); opacity: 0; width: 400px; }
-  100% { width: 0; }
+  0% {
+    -webkit-transform: translateZ(1);
+    transform: translateZ(1);
+    opacity: 0;
+    width: 0;
+  }
+
+  50% {
+    -webkit-transform: translateZ(500px);
+    transform: translateZ(500px);
+    opacity: 1;
+  }
+
+  99% {
+    -webkit-transform: translateZ(1000px);
+    transform: translateZ(1000px);
+    opacity: 0;
+    width: 400px;
+  }
+
+  100% {
+    width: 0;
+  }
 }
 
 @keyframes slideAndHoldMacbook {
-  0%, 12% { transform: translate3d(0, 0, 0); }
-  14.28%, 26.28% { transform: translate3d(-14.2857%, 0, 0); }
-  28.57%, 40.57% { transform: translate3d(-28.5714%, 0, 0); }
-  42.85%, 54.85% { transform: translate3d(-42.8571%, 0, 0); }
-  57.14%, 69.14% { transform: translate3d(-57.1428%, 0, 0); }
-  71.42%, 83.42% { transform: translate3d(-71.4285%, 0, 0); }
-  85.71%, 99.99% { transform: translate3d(-85.7142%, 0, 0); }
-  100% { transform: translate3d(-85.7142%, 0, 0); }
+
+  0%,
+  12% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  14.28%,
+  26.28% {
+    transform: translate3d(-14.2857%, 0, 0);
+  }
+
+  28.57%,
+  40.57% {
+    transform: translate3d(-28.5714%, 0, 0);
+  }
+
+  42.85%,
+  54.85% {
+    transform: translate3d(-42.8571%, 0, 0);
+  }
+
+  57.14%,
+  69.14% {
+    transform: translate3d(-57.1428%, 0, 0);
+  }
+
+  71.42%,
+  83.42% {
+    transform: translate3d(-71.4285%, 0, 0);
+  }
+
+  85.71%,
+  99.99% {
+    transform: translate3d(-85.7142%, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(-85.7142%, 0, 0);
+  }
 }
 
-@keyframes scrollImac { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-2160px, 0, 0); } }
-@keyframes scrollIpad { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-732px, 0, 0); } }
-@keyframes scrollIphone { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-402px, 0, 0); } }
+@keyframes scrollImac {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(-2160px, 0, 0);
+  }
+}
+
+@keyframes scrollIpad {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(-732px, 0, 0);
+  }
+}
+
+@keyframes scrollIphone {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(-402px, 0, 0);
+  }
+}

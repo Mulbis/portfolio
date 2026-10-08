@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
      1. NAVIGAATION AKTIIVISEN OSION SEURANTA (Klikkaus-esto)
      ========================================================================= */
   const navLinks = document.querySelectorAll(".navigation_list a");
-  const sections = document.querySelectorAll("section[id]");
 
   navLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
@@ -50,17 +49,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
       updateLightboxContent(currentSrc, currentTitle);
       
-      lightbox.showModal();
-      updateNavButtons();
+      if (lightbox) {
+        lightbox.showModal();
+        updateNavButtons();
+      }
     });
   });
 
   function updateLightboxContent(src, title) {
-    lightboxImg.setAttribute("src", src);
-    lightboxCaption.textContent = title;
+    if (lightboxImg) lightboxImg.setAttribute("src", src);
+    if (lightboxCaption) lightboxCaption.textContent = title;
   }
 
   function updateNavButtons() {
+    if (!prevBtn || !nextBtn) return;
     if (currentGroupItems.length <= 1) {
       prevBtn.style.display = "none";
       nextBtn.style.display = "none";
@@ -84,18 +86,20 @@ document.addEventListener("DOMContentLoaded", () => {
     updateLightboxContent(nextItem.getAttribute("href"), nextItem.getAttribute("title") || "");
   }
 
-  nextBtn.addEventListener("click", showNext);
-  prevBtn.addEventListener("click", showPrev);
-  closeBtn.addEventListener("click", () => lightbox.close());
+  if (nextBtn) nextBtn.addEventListener("click", showNext);
+  if (prevBtn) prevBtn.addEventListener("click", showPrev);
+  if (closeBtn && lightbox) closeBtn.addEventListener("click", () => lightbox.close());
 
-  lightbox.addEventListener("click", (e) => {
-    if (e.target === lightbox) {
-      lightbox.close();
-    }
-  });
+  if (lightbox) {
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) {
+        lightbox.close();
+      }
+    });
+  }
 
   document.addEventListener("keydown", (e) => {
-    if (!lightbox.open) return;
+    if (!lightbox || !lightbox.open) return;
     
     if (e.key === "ArrowRight") {
       showNext();
@@ -117,11 +121,11 @@ document.addEventListener("DOMContentLoaded", () => {
       threshold: 0.15 
     };
 
-    const observer = new IntersectionObserver((entries, observer) => {
+    const observer = new IntersectionObserver((entries, observerInstance) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible'); 
-          observer.unobserve(entry.target); 
+          observerInstance.unobserve(entry.target); 
         }
       });
     }, observerOptions);
@@ -131,16 +135,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* ==========================================================================
-     4. NAVIGAATION SCROLLSPY (Tarkka dynaamisen ajon seuranta)
+     4. NAVIGAATION SCROLLSPY JA ANKKURILINKIT
      ========================================================================= */
   const navBar = document.querySelector('.sticky');
-  const scrollLinks = document.querySelectorAll('.navigation_list a[href^="#"]:not([href="#"])');
+  const scrollLinks = document.querySelectorAll('a[href^="#"]:not([href="#"])');
   
-  if (navBar && scrollLinks.length > 0) {
+  if (scrollLinks.length > 0) {
     let isClickScrolling = false;
 
     const updateScrollspy = () => {
-      if (isClickScrolling) return;
+      if (isClickScrolling || !navBar) return;
 
       const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
       const windowHeight = window.innerHeight;
@@ -156,18 +160,20 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         scrollLinks.forEach(link => {
           const id = link.getAttribute('href');
-          const section = document.querySelector(id);
-          
-          if (section) {
-            const sectionTop = section.offsetTop - (navHeight + 15);
-            if (currentScroll >= sectionTop) {
-              activeSectionId = id.substring(1);
+          if (id && id.startsWith('#')) {
+            const section = document.querySelector(id);
+            if (section) {
+              const sectionTop = section.offsetTop - (navHeight + 15);
+              if (currentScroll >= sectionTop) {
+                activeSectionId = id.substring(1);
+              }
             }
           }
         });
       }
 
-      scrollLinks.forEach(link => {
+      const navMenuLinks = document.querySelectorAll('.navigation_list a[href^="#"]');
+      navMenuLinks.forEach(link => {
         const href = link.getAttribute('href');
         link.classList.toggle('active', href === `#${activeSectionId}`);
       });
@@ -176,22 +182,21 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener('scroll', updateScrollspy, { passive: true });
     updateScrollspy();
 
-    // 🚀 DYNAAMINEN REITIÄ KORJAAVA LIIKENNEOPASTAJA:
+    // Reittiä korjaava opastaja kaikille ankkurilinkeille (mukaan lukien Hero)
     scrollLinks.forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault(); 
         isClickScrolling = true;
         
-        scrollLinks.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
+        const navMenuLinks = document.querySelectorAll('.navigation_list a[href^="#"]');
+        navMenuLinks.forEach(l => l.classList.remove('active'));
 
         const targetId = link.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
+        const targetSection = targetId ? document.querySelector(targetId) : null;
         
         if (targetSection) {
-          const navHeight = navBar.offsetHeight;
+          const navHeight = navBar ? navBar.offsetHeight : 0;
 
-          // Funktio, joka laskee ja ajaa skrollauksen aina uusimpaan dynaamiseen pisteeseen
           const performScroll = () => {
             const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - navHeight;
             window.scrollTo({
@@ -200,11 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
           };
 
-          // Ajetaan eka skrollausliike heti
           performScroll();
-
-          // KORJAUSAJO: Ajetaan pieni reittipäivitys matkan aikana (250ms ja 500ms kohdalla),
-          // jolloin koodi huomaa jos laiterivistön animaatio venytti sivua ja korjaa maalin lennosta perille asti!
           setTimeout(performScroll, 250);
           setTimeout(performScroll, 500);
         }
@@ -216,6 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+
 
   /* ==========================================================================
      5. DARK MODE / LIGHT MODE TOGGLE
@@ -240,6 +242,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
 
   /* ==========================================================================
      6. MONITASOINEN GALLERIAN "SHOW MORE"
@@ -268,6 +271,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+
   /* ==========================================================================
      7. ARTIKKELIN "READ MORE" FUNKTIO
      ========================================================================== */
@@ -283,12 +287,13 @@ document.addEventListener("DOMContentLoaded", () => {
         
         if (content.classList.contains('is-open')) {
           btn.textContent = 'Read Less';
-if (postParent) postParent.classList.add('has-opened');
-} else {
-btn.textContent = 'Read More';
-if (postParent) postParent.classList.remove('has-opened');
-}
-}
-});
-});
+          if (postParent) postParent.classList.add('has-opened');
+        } else {
+          btn.textContent = 'Read More';
+          if (postParent) postParent.classList.remove('has-opened');
+        }
+      }
+    });
+  });
+
 });

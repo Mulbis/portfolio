@@ -1,0 +1,10 @@
+# Macin järjestelmätiedostot
+.DS_Store
+
+# Sass-käännöksen välimuisti ja map-tiedostot
+.sass-cache/
+*.css.map
+
+# Editori- ja ympäristökohtaiset kansiot (jos käytössä)
+.vscode/
+.idea/
