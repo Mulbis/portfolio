@@ -336,6 +336,12 @@ hr + * {
   border-bottom-right-radius: 8px;
 }
 
+body[style*="overflow: hidden"] {
+  height: 100vh;
+  overflow: hidden !important;
+  -webkit-overflow-scrolling: auto;
+}
+
 /* ==========================================================================
    LAYOUT CONTAINERS & FLEXBOX UTILITIES
    ========================================================================== */

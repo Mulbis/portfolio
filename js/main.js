@@ -52,6 +52,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (lightbox) {
         lightbox.showModal();
         updateNavButtons();
+        
+        // KORJATTU: Lukitaan taustasivun rullaus lennosta, kun lightbox avataan
+        document.body.style.overflow = 'hidden';
       }
     });
   });
@@ -86,75 +89,47 @@ document.addEventListener("DOMContentLoaded", () => {
     updateLightboxContent(nextItem.getAttribute("href"), nextItem.getAttribute("title") || "");
   }
 
-    // Teidän olemassa olevat nappien kuuntelijat:
   if (nextBtn) nextBtn.addEventListener("click", showNext);
   if (prevBtn) prevBtn.addEventListener("click", showPrev);
-
-  // MUUTETTU: Sulkunapin kuuntelija vapauttaa nyt myös taustan rullauksen
+  
+  // KORJATTU: Sulkunappi vapauttaa taustan rullauksen
   if (closeBtn && lightbox) {
     closeBtn.addEventListener("click", () => {
       lightbox.close();
-      // Vapautetaan taustan rullaus ja kosketus, kun lightbox suljetaan!
       document.body.style.overflow = '';
-      document.body.style.touchAction = '';
     });
   }
 
-  // MUUTETTU: Klikkaus lightboxin ulkopuolelle sulkee ja vapauttaa taustan
+  // KORJATTU: Klikkaus lightboxin ulkopuolelle vapauttaa taustan rullauksen
   if (lightbox) {
     lightbox.addEventListener("click", (e) => {
       if (e.target === lightbox) {
         lightbox.close();
         document.body.style.overflow = '';
-        document.body.style.touchAction = '';
       }
     });
-  }
 
-  // MUUTETTU: Myös ESC-näppäin tai taustakuuntelu dialogin sulkeutumiselle (varmistus)
-  if (lightbox) {
+    // Varmistus: Jos dialog suljetaan esim. ESC-näppäimellä tai puhelimen back-eleellä
     lightbox.addEventListener("close", () => {
       document.body.style.overflow = '';
-      document.body.style.touchAction = '';
     });
   }
 
-  // Etsi teidän ylempää se kohta, jossa lightbox AVATAAN klikkauksella (triggers.forEach):
-  // Päivitä se sisältämään nämä kaksi riviä heti kun `.showModal()` kutsutaan:
-  triggers.forEach((trigger) => {
-    trigger.addEventListener("click", (e) => {
-      e.preventDefault();
-
-      const groupName = trigger.getAttribute("rel");
-      const currentSrc = trigger.getAttribute("href");
-      const currentTitle = trigger.getAttribute("title") || "";
-
-      if (groupName) {
-        currentGroupItems = Array.from(document.querySelectorAll(`.lightbox-trigger[rel="${groupName}"]`));
-        currentIndex = currentGroupItems.indexOf(trigger);
-      } else {
-        currentGroupItems = [trigger];
-        currentIndex = 0;
-      }
-
-      updateLightboxContent(currentSrc, currentTitle);
-      
-      if (lightbox) {
-        lightbox.showModal();
-        updateNavButtons();
-        
-        // TÄMÄ ON SE LÖYTÄMÄSI RATKAISU: Lukitaan koko body lennosta!
-        document.body.style.overflow = 'hidden';
-        document.body.style.touchAction = 'none'; // Estää raahaamisen mobiilissa
-      }
-    });
+  document.addEventListener("keydown", (e) => {
+    if (!lightbox || !lightbox.open) return;
+    
+    if (e.key === "ArrowRight") {
+      showNext();
+    } else if (e.key === "ArrowLeft") {
+      showPrev();
+    }
   });
 
-  // Pidetään teidän toimiva pidempi pyhkäisy täysin ennallaan sen alla:
+  /* LISÄTTY: Mobiilipyhkäisy (Touch Swipe) – Palautettu toimiva pidempi pyhkäisy */
   if (lightbox) {
     let kosketusAlkuX = 0;
     let kosketusLoppuX = 0;
-    const pyhkaisyRaja = 65; 
+    const pyhkaisyRaja = 65; // Teidän kerran toimivaksi toteama hyvä pidempi pyhkäisy matka!
 
     lightbox.addEventListener('touchstart', (e) => {
       kosketusAlkuX = e.changedTouches.clientX;
@@ -162,19 +137,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     lightbox.addEventListener('touchend', (e) => {
       kosketusLoppuX = e.changedTouches.clientX;
+      
       const etaisyys = kosketusLoppuX - kosketusAlkuX;
 
       if (Math.abs(etaisyys) > pyhkaisyRaja) {
         if (etaisyys < 0) {
-          showNext();
+          showNext(); // Pyhkäisy vasemmalle -> Seuraava kuva
         } else {
-          showPrev();
+          showPrev(); // Pyhkäisy oikealle -> Edellinen kuva
         }
       }
     }, { passive: true });
   }
-
-
 
 
   /* ==========================================================================
@@ -315,15 +289,13 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ==========================================================================
      6. MONITASOINEN GALLERIAN "SHOW MORE"
      ========================================================================== */
-  const btn1 = document.getElementById('btn-show-level-1');
-  const btn2 = document.getElementById('btn-show-level-2');
-  
-  const level1Items = document.querySelectorAll('.lightbox-trigger.level-1');
-  const level2Items = document.querySelectorAll('.lightbox-trigger.level-2');
-
-  if (btn1) {
-    btn1.addEventListener('click', () => {
-      level1Items.forEach(item => item.classList.add('is-visible'));
+const btn1 = document.getElementById('btn-show-level-1');
+const btn2 = document.getElementById('btn-show-level-2');
+const level1Items = document.querySelectorAll('.lightbox-trigger.level-1');
+const level2Items = document.querySelectorAll('.lightbox-trigger.level-2');
+if (btn1) {
+btn1.addEventListener('click', () => {
+level1Items.forEach(item => item.classList.add('is-visible'));
 btn1.classList.add('is-hidden');
 if (btn2) {
 btn2.classList.remove('is-hidden');
