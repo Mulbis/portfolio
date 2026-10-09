@@ -108,23 +108,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /* LISÄTTY: Mobiilipyhkäisy (Touch Swipe) suoraan lightboxiin */
+  /* LISÄTTY: Mobiilipyhkäisy (Touch Swipe) – Optimoitu ja herkempi versio */
   if (lightbox) {
     let kosketusAlkuX = 0;
     let kosketusLoppuX = 0;
-    const pyhkaisyRaja = 50; // Minimipikselit, jotta pyhkäisy lasketaan
+    
+    // MUUTETTU: Tiputettu raja arvoon 30px (paljon herkempi ja lyhyempi pyhkäisy riittää!)
+    const pyhkaisyRaja = 30; 
 
     lightbox.addEventListener('touchstart', (e) => {
-      kosketusAlkuX = e.changedTouches[0].screenX; // Otetaan talteen mistä sormi osui ruutuun
+      kosketusAlkuX = e.changedTouches.screenX;
     }, { passive: true });
 
     lightbox.addEventListener('touchend', (e) => {
-      kosketusLoppuX = e.changedTouches[0].screenX; // Otetaan talteen mistä sormi nousi ruudusta
+      kosketusLoppuX = e.changedTouches.screenX;
       
       const etaisyys = kosketusLoppuX - kosketusAlkuX;
 
-      // Tarkistetaan ylittääkö pyhkäisy minimirajan, jotta hipaisut ei vaihda kuvaa
       if (Math.abs(etaisyys) > pyhkaisyRaja) {
+        // TÄMÄ HOITAA LUKITUKSEN: Estää taustasivun liikkumisen sivusuunnassa pyhkäisyn aikana!
+        if (e.cancelable) e.preventDefault(); 
+        
         if (etaisyys < 0) {
           // Sormi liikkui oikealta vasemmalle -> Seuraava kuva
           showNext();
@@ -133,8 +137,9 @@ document.addEventListener("DOMContentLoaded", () => {
           showPrev();
         }
       }
-    }, { passive: true });
+    }); // Huom: poistettu { passive: true } touchendista, jotta preventDefault() saa toimia!
   }
+
 
 
   /* ==========================================================================
