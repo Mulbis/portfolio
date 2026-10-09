@@ -528,6 +528,7 @@ dialog#global-lightbox {
     // Täytetään dialogin tila, jotta kuva keskittyy täydellisesti
     width: 100%;
     height: 100%;
+    z-index: 1000;
 
     img {
       display: block;
