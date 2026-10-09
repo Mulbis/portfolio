@@ -86,58 +86,94 @@ document.addEventListener("DOMContentLoaded", () => {
     updateLightboxContent(nextItem.getAttribute("href"), nextItem.getAttribute("title") || "");
   }
 
+    // Teidän olemassa olevat nappien kuuntelijat:
   if (nextBtn) nextBtn.addEventListener("click", showNext);
   if (prevBtn) prevBtn.addEventListener("click", showPrev);
-  if (closeBtn && lightbox) closeBtn.addEventListener("click", () => lightbox.close());
 
+  // MUUTETTU: Sulkunapin kuuntelija vapauttaa nyt myös taustan rullauksen
+  if (closeBtn && lightbox) {
+    closeBtn.addEventListener("click", () => {
+      lightbox.close();
+      // Vapautetaan taustan rullaus ja kosketus, kun lightbox suljetaan!
+      document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+    });
+  }
+
+  // MUUTETTU: Klikkaus lightboxin ulkopuolelle sulkee ja vapauttaa taustan
   if (lightbox) {
     lightbox.addEventListener("click", (e) => {
       if (e.target === lightbox) {
         lightbox.close();
+        document.body.style.overflow = '';
+        document.body.style.touchAction = '';
       }
     });
   }
 
-  document.addEventListener("keydown", (e) => {
-    if (!lightbox || !lightbox.open) return;
-    
-    if (e.key === "ArrowRight") {
-      showNext();
-    } else if (e.key === "ArrowLeft") {
-      showPrev();
-    }
+  // MUUTETTU: Myös ESC-näppäin tai taustakuuntelu dialogin sulkeutumiselle (varmistus)
+  if (lightbox) {
+    lightbox.addEventListener("close", () => {
+      document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+    });
+  }
+
+  // Etsi teidän ylempää se kohta, jossa lightbox AVATAAN klikkauksella (triggers.forEach):
+  // Päivitä se sisältämään nämä kaksi riviä heti kun `.showModal()` kutsutaan:
+  triggers.forEach((trigger) => {
+    trigger.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      const groupName = trigger.getAttribute("rel");
+      const currentSrc = trigger.getAttribute("href");
+      const currentTitle = trigger.getAttribute("title") || "";
+
+      if (groupName) {
+        currentGroupItems = Array.from(document.querySelectorAll(`.lightbox-trigger[rel="${groupName}"]`));
+        currentIndex = currentGroupItems.indexOf(trigger);
+      } else {
+        currentGroupItems = [trigger];
+        currentIndex = 0;
+      }
+
+      updateLightboxContent(currentSrc, currentTitle);
+      
+      if (lightbox) {
+        lightbox.showModal();
+        updateNavButtons();
+        
+        // TÄMÄ ON SE LÖYTÄMÄSI RATKAISU: Lukitaan koko body lennosta!
+        document.body.style.overflow = 'hidden';
+        document.body.style.touchAction = 'none'; // Estää raahaamisen mobiilissa
+      }
+    });
   });
 
-  /* LISÄTTY: Mobiilipyhkäisy (Touch Swipe) – Palautettu toimiva pidempi pyhkäisy */
+  // Pidetään teidän toimiva pidempi pyhkäisy täysin ennallaan sen alla:
   if (lightbox) {
     let kosketusAlkuX = 0;
     let kosketusLoppuX = 0;
-    
-    // Palautetaan raja sinne, missä se teillä jo kerran toimi (esim. 60-70px)
     const pyhkaisyRaja = 65; 
 
     lightbox.addEventListener('touchstart', (e) => {
-      // clientX mittaa selaimen todellisia pikseleitä ilman laiteskaalaushäiriöitä
-      kosketusAlkuX = e.changedTouches[0].clientX;
+      kosketusAlkuX = e.changedTouches.clientX;
     }, { passive: true });
 
     lightbox.addEventListener('touchend', (e) => {
-      kosketusLoppuX = e.changedTouches[0].clientX;
-      
+      kosketusLoppuX = e.changedTouches.clientX;
       const etaisyys = kosketusLoppuX - kosketusAlkuX;
 
-      // Tarkistetaan ylittyykö se teidän aiemmin toimivaksi toteama pidempi matka
       if (Math.abs(etaisyys) > pyhkaisyRaja) {
         if (etaisyys < 0) {
-          // Pyhkäisy vasemmalle -> Seuraava kuva
           showNext();
         } else {
-          // Pyhkäisy oikealle -> Edellinen kuva
           showPrev();
         }
       }
     }, { passive: true });
   }
+
 
 
 
