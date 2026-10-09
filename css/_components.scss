@@ -511,6 +511,11 @@ dialog#global-lightbox {
     display: flex;
     align-items: center;
     justify-content: center;
+
+/* Mulbis stuff */
+overscroll-behavior: contain; 
+overflow-y: auto;
+
   }
 
   &::backdrop {
@@ -528,7 +533,6 @@ dialog#global-lightbox {
     // Täytetään dialogin tila, jotta kuva keskittyy täydellisesti
     width: 100%;
     height: 100%;
-    z-index: 1000;
 
     img {
       display: block;
