@@ -482,12 +482,13 @@ dialog#global-lightbox {
       max-width: 80vw;
       max-height: 80vh;
       object-fit: contain;
-      border-radius: 4px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border:1px solid #efefef;
+
     }
 
      #lightbox-caption {
-       color: #fff;
+       color: #000;
        margin-top: 15px;
        font-family: inherit, sans-serif;
        font-size: 1.1rem;
@@ -495,15 +496,19 @@ dialog#global-lightbox {
        text-transform: uppercase;
        line-height: 1.1;
   
-       &::before {
+      /* &::before {
          content: "– ";
-         /* Ajatusviiva + välilyönti ennen tekstiä */
+         Ajatusviiva + välilyönti ennen tekstiä 
        }
   
        &::after {
          content: " –";
-         /* Välilyönti + ajatusviiva tekstin jälkeen */
+         Välilyönti + ajatusviiva tekstin jälkeen
        }
+
+       */
+
+       
   
      }
      }
