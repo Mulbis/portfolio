@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-  /* ==========================================================================
+    /* ==========================================================================
      2. GLOBAALI NATIIVI LIGHTBOX-GALLERIA (<dialog>)
      ========================================================================= */
   const lightbox = document.getElementById("global-lightbox");
@@ -28,12 +28,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentGroupItems = [];
   let currentIndex = 0;
 
-  // Kuunnellaan gallerian linkkien klikkauksia
   const triggers = document.querySelectorAll(".lightbox-trigger");
 
   triggers.forEach((trigger) => {
     trigger.addEventListener("click", (e) => {
-      e.preventDefault(); // Estetään selaimen oletushypyt
+      e.preventDefault();
 
       const groupName = trigger.getAttribute("rel");
       const currentSrc = trigger.getAttribute("href");
@@ -53,8 +52,8 @@ document.addEventListener("DOMContentLoaded", () => {
         lightbox.showModal();
         updateNavButtons();
         
-        // KORJATTU: Lukitaan taustasivun rullaus lennosta, kun lightbox avataan
-        document.body.style.overflow = 'hidden';
+        // KORJATTU: Lisätään siisti luokka bodille rullauksen estoa varten
+        document.body.classList.add("lightbox-open");
       }
     });
   });
@@ -92,26 +91,24 @@ document.addEventListener("DOMContentLoaded", () => {
   if (nextBtn) nextBtn.addEventListener("click", showNext);
   if (prevBtn) prevBtn.addEventListener("click", showPrev);
   
-  // KORJATTU: Sulkunappi vapauttaa taustan rullauksen
+  // KORJATTU: Poistetaan luokka kun lightbox suljetaan
   if (closeBtn && lightbox) {
     closeBtn.addEventListener("click", () => {
       lightbox.close();
-      document.body.style.overflow = '';
+      document.body.classList.remove("lightbox-open");
     });
   }
 
-  // KORJATTU: Klikkaus lightboxin ulkopuolelle vapauttaa taustan rullauksen
   if (lightbox) {
     lightbox.addEventListener("click", (e) => {
       if (e.target === lightbox) {
         lightbox.close();
-        document.body.style.overflow = '';
+        document.body.classList.remove("lightbox-open");
       }
     });
 
-    // Varmistus: Jos dialog suljetaan esim. ESC-näppäimellä tai puhelimen back-eleellä
     lightbox.addEventListener("close", () => {
-      document.body.style.overflow = '';
+      document.body.classList.remove("lightbox-open");
     });
   }
 
@@ -125,26 +122,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /* LISÄTTY: Mobiilipyhkäisy (Touch Swipe) – Palautettu toimiva pidempi pyhkäisy */
+  /* KORJATTU: Käytetään herkkää screenX-perustilaa, joka toimii kaikissa selaimissa */
   if (lightbox) {
     let kosketusAlkuX = 0;
     let kosketusLoppuX = 0;
-    const pyhkaisyRaja = 65; // Teidän kerran toimivaksi toteama hyvä pidempi pyhkäisy matka!
+    const pyhkaisyRaja = 40; // Täydellinen herkkyys sormelle
 
     lightbox.addEventListener('touchstart', (e) => {
-      kosketusAlkuX = e.changedTouches.clientX;
+      kosketusAlkuX = e.changedTouches[0].screenX; // Poimitaan täsmällisesti ensimmäinen sormi
     }, { passive: true });
 
     lightbox.addEventListener('touchend', (e) => {
-      kosketusLoppuX = e.changedTouches.clientX;
+      kosketusLoppuX = e.changedTouches[0].screenX;
       
       const etaisyys = kosketusLoppuX - kosketusAlkuX;
 
       if (Math.abs(etaisyys) > pyhkaisyRaja) {
         if (etaisyys < 0) {
-          showNext(); // Pyhkäisy vasemmalle -> Seuraava kuva
+          showNext();
         } else {
-          showPrev(); // Pyhkäisy oikealle -> Edellinen kuva
+          showPrev();
         }
       }
     }, { passive: true });

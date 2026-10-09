@@ -494,26 +494,36 @@ background: #000;
    GLOBAL LIGHTBOX (<dialog>)
    ========================================================================== */
 
+/* ==========================================================================
+   POMMINVARMA TAUSTALUKITUS CSS:LLÄ
+   ========================================================================== */
+body.lightbox-open {
+  overflow: hidden !important;
+  touch-action: none; /* Estää taustasivun raahaamisen Safarissa kokonaan! */
+}
+
+/* ==========================================================================
+   GLOBAL LIGHTBOX (<dialog>) - KORJATTU SELAIMILLE
+   ========================================================================== */
 dialog#global-lightbox {
   margin: auto;
   padding: 0;
   border: none;
   background: transparent;
-  overflow: visible;
   
-  // PAKOTETAAN dialog-ikkuna aina saman kokoiseksi (90% ruudusta)
+  // PAKOTETAAN dialog pysymään vakaana
   width: 90vw;
   height: 90vh;
   max-width: 90vw;
   max-height: 90vh;
+  
+  // KORJATTU SAFARI-BUGI: Estää Safaria leikkaamasta reunoilla olevia nappeja piiloon!
+  overflow: visible !important; 
 
   &[open] {
     display: flex;
     align-items: center;
     justify-content: center;
-
-
-
   }
 
   &::backdrop {
@@ -528,13 +538,11 @@ dialog#global-lightbox {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    // Täytetään dialogin tila, jotta kuva keskittyy täydellisesti
     width: 100%;
     height: 100%;
 
     img {
       display: block;
-      // Kuva saa vapaasti skaalautua, mutta jättää napeille tilaa sivuille (esim. max-width: 80%)
       max-width: 80%;
       max-height: 80%;
       object-fit: contain;
@@ -550,7 +558,6 @@ dialog#global-lightbox {
       text-align: center;
       text-transform: uppercase;
       line-height: 1.1;
-
     }
   }
 
@@ -575,34 +582,30 @@ dialog#global-lightbox {
       transform: scale(1.05);
     }
 
+    // KORJATTU (X)-NAPIN SIJAINTI MOBIILILLE: 
+    // Siirretty hieman alemmas (10px sisäänpäin), jotta se mahtuu satavarmasti Safarin raameihin!
     &.close {
-      top: 0;
-      right: 0;
+      top: 10px;
+      right: 10px;
       font-size: 1.5rem;
     }
 
-    // Nyt kun dialog on aina 90vw leveä, 0px tarkoittaa täsmälleen tuon ison laatikon reunoja!
     &.prev {
       left: 0; 
       top: 50%;
       transform: translateY(-50%);
-
-      &:hover {
-        transform: translateY(-50%) scale(1.05);
-      }
+      &:hover { transform: translateY(-50%) scale(1.05); }
     }
 
     &.next {
       right: 0; 
       top: 50%;
       transform: translateY(-50%);
-
-      &:hover {
-        transform: translateY(-50%) scale(1.05);
-      }
+      &:hover { transform: translateY(-50%) scale(1.05); }
     }
   }
 }
+
 
 
 @media (max-width: 768px) {

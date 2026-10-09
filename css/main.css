@@ -336,12 +336,6 @@ hr + * {
   border-bottom-right-radius: 8px;
 }
 
-body[style*="overflow: hidden"] {
-  height: 100vh;
-  overflow: hidden !important;
-  -webkit-overflow-scrolling: auto;
-}
-
 /* ==========================================================================
    LAYOUT CONTAINERS & FLEXBOX UTILITIES
    ========================================================================== */
@@ -987,16 +981,27 @@ body.hasHover .gallery-grid .lightbox-trigger.is-visible:hover img {
 /* ==========================================================================
    GLOBAL LIGHTBOX (<dialog>)
    ========================================================================== */
+/* ==========================================================================
+   POMMINVARMA TAUSTALUKITUS CSS:LLÄ
+   ========================================================================== */
+body.lightbox-open {
+  overflow: hidden !important;
+  touch-action: none; /* Estää taustasivun raahaamisen Safarissa kokonaan! */
+}
+
+/* ==========================================================================
+   GLOBAL LIGHTBOX (<dialog>) - KORJATTU SELAIMILLE
+   ========================================================================== */
 dialog#global-lightbox {
   margin: auto;
   padding: 0;
   border: none;
   background: transparent;
-  overflow: visible;
   width: 90vw;
   height: 90vh;
   max-width: 90vw;
   max-height: 90vh;
+  overflow: visible !important;
 }
 dialog#global-lightbox[open] {
   display: flex;
@@ -1055,8 +1060,8 @@ dialog#global-lightbox .lightbox-nav-btn:hover {
   transform: scale(1.05);
 }
 dialog#global-lightbox .lightbox-nav-btn.close {
-  top: 0;
-  right: 0;
+  top: 10px;
+  right: 10px;
   font-size: 1.5rem;
 }
 dialog#global-lightbox .lightbox-nav-btn.prev {
