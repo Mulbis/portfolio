@@ -108,34 +108,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /* LISÄTTY: Mobiilipyhkäisy (Touch Swipe) suoraan lightboxiin */
-  if (lightbox) {
-    let kosketusAlkuX = 0;
-    let kosketusLoppuX = 0;
-    const pyhkaisyRaja = 50; // Minimipikselit, jotta pyhkäisy lasketaan
-
-    lightbox.addEventListener('touchstart', (e) => {
-      kosketusAlkuX = e.changedTouches[0].screenX; // Otetaan talteen mistä sormi osui ruutuun
-    }, { passive: true });
-
-    lightbox.addEventListener('touchend', (e) => {
-      kosketusLoppuX = e.changedTouches[0].screenX; // Otetaan talteen mistä sormi nousi ruudusta
-      
-      const etaisyys = kosketusLoppuX - kosketusAlkuX;
-
-      // Tarkistetaan ylittääkö pyhkäisy minimirajan, jotta hipaisut ei vaihda kuvaa
-      if (Math.abs(etaisyys) > pyhkaisyRaja) {
-        if (etaisyys < 0) {
-          // Sormi liikkui oikealta vasemmalle -> Seuraava kuva
-          showNext();
-        } else {
-          // Sormi liikkui vasemmalta oikealle -> Edellinen kuva
-          showPrev();
-        }
-      }
-    }, { passive: true });
-  }
-
 
   /* ==========================================================================
      3. LAITERIVISTÖN INTERSECTION OBSERVER (Animaatiot livenä)
@@ -284,36 +256,44 @@ document.addEventListener("DOMContentLoaded", () => {
   if (btn1) {
     btn1.addEventListener('click', () => {
       level1Items.forEach(item => item.classList.add('is-visible'));
-btn1.classList.add('is-hidden');
-if (btn2) {
-btn2.classList.remove('is-hidden');
-}
-});
-}
-if (btn2) {
-btn2.addEventListener('click', () => {
-level2Items.forEach(item => item.classList.add('is-visible'));
-btn2.classList.add('is-hidden');
-});
-}
-/* ==========================================================================
-7. ARTIKKELIN "READ MORE" FUNKTIO
-========================================================================== */
-const articleButtons = document.querySelectorAll('.toggle-article-btn');
-articleButtons.forEach(btn => {
-btn.addEventListener('click', () => {
-const content = btn.previousElementSibling;
-const postParent = btn.closest('.hidden_post');
-if (content && content.classList.contains('article-body')) {
-content.classList.toggle('is-open');
-if (content.classList.contains('is-open')) {
-btn.textContent = 'Read Less';
-if (postParent) postParent.classList.add('has-opened');
-} else {
-btn.textContent = 'Read More';
-if (postParent) postParent.classList.remove('has-opened');
-}
-}
-});
-});
+      btn1.classList.add('is-hidden'); 
+      
+      if (btn2) {
+        btn2.classList.remove('is-hidden'); 
+      }
+    });
+  }
+
+  if (btn2) {
+    btn2.addEventListener('click', () => {
+      level2Items.forEach(item => item.classList.add('is-visible'));
+      btn2.classList.add('is-hidden'); 
+    });
+  }
+
+
+  /* ==========================================================================
+     7. ARTIKKELIN "READ MORE" FUNKTIO
+     ========================================================================== */
+  const articleButtons = document.querySelectorAll('.toggle-article-btn');
+
+  articleButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const content = btn.previousElementSibling;
+      const postParent = btn.closest('.hidden_post');
+      
+      if (content && content.classList.contains('article-body')) {
+        content.classList.toggle('is-open');
+        
+        if (content.classList.contains('is-open')) {
+          btn.textContent = 'Read Less';
+          if (postParent) postParent.classList.add('has-opened');
+        } else {
+          btn.textContent = 'Read More';
+          if (postParent) postParent.classList.remove('has-opened');
+        }
+      }
+    });
+  });
+
 });

@@ -69,14 +69,14 @@
   position: absolute;
   width: 5px;
   height: 5px;
-  left: 40vw;
+  left: 36vw;
   top: -10px;
   background: #fff;
   border-radius: 50%;
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), 0 0 0 8px rgba(255, 255, 255, 0.1), 0 0 20px rgba(255, 255, 255, 0.1);
   transform: rotate(45deg) translate3d(0, 0, 0);
-  animation: shootingstars 10s linear infinite;
-  animation-delay: 1s;
+  animation: shootingstars 12s linear infinite;
+  animation-delay: 1.5s;
 }
 
 .star::before {
@@ -91,41 +91,58 @@
 }
 
 // Yksittäisten tähtien dynaamiset sijainnit calc()-funktiolla
+
+
 .star:nth-child(1) {
+  left: 5vw;
+  animation: shootingstars 24s linear infinite;
+  animation-delay: 4s;
+
+}
+
+
+.star:nth-child(2) {
+
+  left: 85vw;
+  animation: shootingstars 26s linear infinite;
+  animation-delay: 8s;
+}
+
+
+.star:nth-child(3) {
+
+  left: 60vw;
+  animation: shootingstars 12s linear infinite;
+  animation-delay: 10s;
+}
+
+
+
+/*
+.star:nth-child(2) {
+  top: calc(0% - 20px);
+  left: calc(10vw + 50px);
+  animation: shootingstars_eka 12s linear infinite;
+  animation-delay: 2s; // Lentää heti alussa
+}
+
+.star:nth-child(3) {
   top: calc(0% - 20px);
   left: calc(35vw + 50px);
   animation: shootingstars_eka 12s linear infinite;
   animation-delay: 2s; // Lentää heti alussa
-
-}
-
-.star:nth-child(2) {
-  top: calc(0% - 20px);
-  left: calc(5vw + 50px);
-  animation: shootingstars 14s linear infinite; // Hidas ja eeppinen
-  animation-delay: 4s;
-
-
-
-}
-
-.star:nth-child(3) {
-  top: calc(0% - 120px);
-  left: calc(60vw + 50px);
-  animation: shootingstars 16s linear infinite;
-  animation-delay: 8s;
 
 
 }
 
 .star:nth-child(4) {
   top: calc(0% - 20px);
-  left: calc(80vw + 50px);
-  animation: shootingstars 24s linear infinite;
-  animation-delay: 6s;
-
-
+  left: calc(35vw + 50px);
+  animation: shootingstars_eka 12s linear infinite;
+  animation-delay: 2s; // Lentää heti alussa
 }
+
+*/
 
 
 
@@ -281,25 +298,13 @@
     opacity: 1;
     transform: rotate(45deg) translate3d(0, 0, 0);
   }
+  
+  
+  20%, 100% {
 
-  20%,
-  100% {
-    opacity: 0;
-    transform: rotate(45deg) translate3d(1000px, 0, 0);
-  }
-}
-
-@keyframes shootingstars_eka {
-  0% {
-    opacity: 1;
-    transform: rotate(45deg) translate3d(0, 0, 0);
-  }
-
-  20%,
-  100% {
-    opacity: 0;
     transform: rotate(45deg) translate3d(2000px, 0, 0);
-  }
+    opacity: 0;
+}
 }
 
 @-webkit-keyframes text-focus-in {

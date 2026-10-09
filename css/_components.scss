@@ -305,98 +305,127 @@ a.icon_twin_container:hover .icon_text_container p::after {
 }
 
 /* ==========================================================================
-   GALLERY (The "Sexy Grid" Architecture)
+   GALLERY (The Optimized "Sexy Grid" Architecture)
    ========================================================================== */
 .full_block#gallery {
-  background-image: url(../images/bg_images/joulu.svg);
-  background-color: #000;
-  background-repeat: no-repeat;
-  background-position: bottom center;
-  background-size: cover;
-  background-attachment: fixed;
-  transition: background-image 0.3s ease;
+background: #000;
 
-  @at-root [data-theme="dark"] & {
-    background-image: url(../images/bg_images/web_site_collage_2.jpg);
-    background-color: var(--bg-color);
-  }
-
+  /* TÄMÄ ON SE TEIDÄN ISO KÄÄRE: */
   .content_block#categories_wrap {
-    margin-top: 1.1rem;
+ border:1px solid red;
+
+    /* TÄMÄ ON SE SATEENTEKIJÄ: */
+    .gallery_categories {
+ 
+   & + .gallery_categories {
+        margin-top: 140px;
+        border: 2px solid lime
+      }
+
+      h3 {
+        display: inline-block;
+
+        &::after {
+          content: "";
+          display: inline-block;
+          width: 50px;
+          height: 40px;
+          vertical-align: middle;
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-position: center;
+          margin-left: 12px;
+          transition: filter 0.3s ease;
+        }
+
+        @at-root [data-theme="dark"] &::after {
+          filter: invert(1) opacity(1);
+        }
+
+        &.fractal_title::after {
+          background-image: url("../images/icons_sprites_patterns/icons/mandelbrot_set.svg");
+          margin-top: -3px;
+        }
+
+        &.photography_title::after {
+          background-image: url("../images/icons_sprites_patterns/icons/camera_filled.svg");
+          margin-bottom: 2px;
+        }
+
+        &.landfill_title::after {
+          background-image: url("../images/icons_sprites_patterns/icons/display.svg");
+          margin-bottom: 13px;
+        }
+      }
+    }
   }
 }
 
-.gallery_categories_section h3 {
-  display: inline-block;
 
-  &::after {
-    content: "";
-    display: inline-block;
-    width: 50px;
-    height: 40px;
-    vertical-align: middle;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    margin-left: 12px;
-    transition: filter 0.3s ease;
-  }
-
-  @at-root [data-theme="dark"] &::after {
-    filter: invert(1) opacity(1);
-  }
-
-  &.fractal_title::after {
-    background-image: url("../images/icons_sprites_patterns/icons/mandelbrot_set.svg");
-    margin-top: -3px;
-  }
-
-  &.photography_title::after {
-    background-image: url("../images/icons_sprites_patterns/icons/camera_filled.svg");
-    margin-bottom: 2px;
-  }
-
-  &.landfill_title::after {
-    background-image: url("../images/icons_sprites_patterns/icons/display.svg");
-    margin-bottom: 13px;
-  }
-}
-
+/* ==========================================================================
+   THE SEXY GALLERY GRID  =)
+   ========================================================================== */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 2px;
   margin: 25px 0;
-  background: #000;
 
   .lightbox-trigger {
     display: block;
     overflow: visible;
-    position: relative;
-    /* Lisätty transition myös säiliölle skaalautumista varten */
+    position: relative; 
     transition: transform 0.2s ease-in-out;
+
+    /* KUSTOMOITU TITLE-TEKSTI MUSTALLA TAUSTALLA */
+    &::after {
+      content: attr(title); 
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.85); 
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase; 
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 20; 
+
+      background: rgba(0, 0, 0, 0.75); 
+      padding: 6px 14px;              
+      border-radius: 4px;             
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); 
+    }
 
     img {
       display: block;
       width: 100%;
-      height: 90px;
+      height: 140px;
       object-fit: cover;
-      /* Lisätty transform ja filter transition-listaan pehmeää liikettä varten */
       transition: filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-      /* KORJATTU: Pilkut poistettu arvojen välistä */
-      filter: brightness(0.83) grayscale(1);
-      /* box-shadow: 1px 1px 20px 8px rgba(0, 0, 0, 0); */
+      border-radius: 8px;
+
+      /* KORJATTU: Ylimääräinen pilkku poistettu arvon 0.7 perästä! */
+      filter: brightness(0.7) grayscale(1); 
     }
 
-    /* KORJATTU: Hover-tila kun body.hasHover on käytössä */
+    /* Hover-tila kun body.hasHover on käytössä */
     body.hasHover &:hover {
-      transform: scale(1.3);
+      transform: scale(1.1);
       z-index: 10;
 
+      &::after {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1); 
+      }
+
       img {
-        /* KORJATTU: Pilkut poistettu, grayscale palaa väreihin (0) */
-        filter: brightness(1.1) grayscale(0);
-        /* box-shadow: 1px 1px 20px 8px rgba(0, 0, 0, 0.75); */
+        /* KUVA HERÄÄ ELOON: Kirkastuu ja värit pamahtavat esiin */
+        filter: brightness(1.1) grayscale(0); 
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
       }
     }
   }
@@ -410,27 +439,45 @@ a.icon_twin_container:hover .icon_text_container p::after {
     display: block !important;
 
     img {
+      // Ajetaan se hieno sisääntulo-animaatio
       animation: text-focus-in .5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+      
+      // Käytetään !importantia, jotta tämä voittaa animaation lopputilan (low-key perustila)
+      filter: brightness(0.7) grayscale(1) !important; 
+      border-radius: 8px;
+    }
+
+    // PAKOTETAAN hover-tila toimimaan myös näille lennosta ladatuille kuville!
+    body.hasHover &:hover {
+      img {
+        // Kun hiiri on päällä, ylikirjoitetaan perustila ja tuodaan värit esiin!
+        filter: brightness(1.1) grayscale(0) !important;
+      }
     }
   }
 
-  @for $i from 1 through 7 {
+
+    /* 1. Aaltonen animaatio ensimmäisille 16 kuvalle, jotka näkyvät heti */
+  @for $i from 1 through 16 {
     .lightbox-trigger:not(.level-1):not(.level-2):nth-of-type(#{$i}) img {
-      animation-delay: #{($i - 1) * 0.08}s;
+      animation-delay: #{($i - 1) * 0.06}s; // Tiputettu viivettä hieman (0.06s), jotta 16 kuvaa latautuu nopeammin!
     }
   }
 
-  @for $i from 1 through 7 {
+  /* 2. Aaltonen animaatio level-1 kuville (View More) */
+  @for $i from 1 through 16 {
     .lightbox-trigger.level-1.is-visible:nth-of-type(#{$i}) img {
-      animation-delay: #{($i - 1) * 0.08}s;
+      animation-delay: #{($i - 1) * 0.06}s;
     }
   }
 
-  @for $i from 1 through 11 {
+  /* 3. Aaltonen animaatio level-2 kuville (View Even More) */
+  @for $i from 1 through 16 {
     .lightbox-trigger.level-2.is-visible:nth-of-type(#{$i}) img {
-      animation-delay: #{($i - 1) * 0.08}s;
+      animation-delay: #{($i - 1) * 0.06}s;
     }
   }
+
 }
 
 .gallery_actions {
@@ -442,20 +489,23 @@ a.icon_twin_container:hover .icon_text_container p::after {
   width: 100%;
 }
 
+
 /* ==========================================================================
    GLOBAL LIGHTBOX (<dialog>)
    ========================================================================== */
 
 dialog#global-lightbox {
-  /* Annettaan selaimen hoitaa keskitys ja koko */
   margin: auto;
   padding: 0;
   border: none;
   background: transparent;
   overflow: visible;
+  
+  // PAKOTETAAN dialog-ikkuna aina saman kokoiseksi (90% ruudusta)
+  width: 90vw;
+  height: 90vh;
   max-width: 90vw;
   max-height: 90vh;
-
 
   &[open] {
     display: flex;
@@ -475,45 +525,31 @@ dialog#global-lightbox {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    max-width: 100%;
+    // Täytetään dialogin tila, jotta kuva keskittyy täydellisesti
+    width: 100%;
+    height: 100%;
 
     img {
       display: block;
-      max-width: 80vw;
-      max-height: 80vh;
+      // Kuva saa vapaasti skaalautua, mutta jättää napeille tilaa sivuille (esim. max-width: 80%)
+      max-width: 80%;
+      max-height: 80%;
       object-fit: contain;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      border:1px solid #efefef;
-
+      border: 1px solid #666;
     }
 
-     #lightbox-caption {
-       color: #000;
-       margin-top: 15px;
-       font-family: inherit, sans-serif;
-       font-size: 1.1rem;
-       text-align: center;
-       text-transform: uppercase;
-       line-height: 1.1;
-  
-      /* &::before {
-         content: "– ";
-         Ajatusviiva + välilyönti ennen tekstiä 
-       }
-  
-       &::after {
-         content: " –";
-         Välilyönti + ajatusviiva tekstin jälkeen
-       }
+    #lightbox-caption {
+      color: #efefef;
+      margin-top: 15px;
+      font-family: inherit, sans-serif;
+      font-size: 1.1rem;
+      text-align: center;
+      text-transform: uppercase;
+      line-height: 1.1;
 
-       */
-
-       
-  
-     }
-     }
-
-
+    }
+  }
 
   .lightbox-nav-btn {
     position: absolute;
@@ -537,13 +573,14 @@ dialog#global-lightbox {
     }
 
     &.close {
-      top: -60px;
+      top: 0;
       right: 0;
       font-size: 1.5rem;
     }
 
+    // Nyt kun dialog on aina 90vw leveä, 0px tarkoittaa täsmälleen tuon ison laatikon reunoja!
     &.prev {
-      left: -70px;
+      left: 0; 
       top: 50%;
       transform: translateY(-50%);
 
@@ -553,7 +590,7 @@ dialog#global-lightbox {
     }
 
     &.next {
-      right: -70px;
+      right: 0; 
       top: 50%;
       transform: translateY(-50%);
 
@@ -563,6 +600,7 @@ dialog#global-lightbox {
     }
   }
 }
+
 
 @media (max-width: 768px) {
   dialog#global-lightbox {
