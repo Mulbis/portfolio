@@ -987,9 +987,6 @@ dialog#global-lightbox {
   border: none;
   background: transparent;
   overflow: visible;
-  /* Mulbis stuff */
-  overscroll-behavior: contain;
-  overflow-y: auto;
   width: 90vw;
   height: 90vh;
   max-width: 90vw;

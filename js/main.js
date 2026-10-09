@@ -108,47 +108,35 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /* LISÄTTY: Mobiilipyhkäisy (Touch Swipe) – Se pomminvarma touchmove-versio */
+  /* LISÄTTY: Mobiilipyhkäisy (Touch Swipe) – Palautettu toimiva pidempi pyhkäisy */
   if (lightbox) {
     let kosketusAlkuX = 0;
-    let kosketusAlkuY = 0;
-    let pyhkaisySuoritettu = false;
-    const pyhkaisyRaja = 40; // Erittäin mukava ja herkkä välimuoto sormelle
+    let kosketusLoppuX = 0;
+    
+    // Palautetaan raja sinne, missä se teillä jo kerran toimi (esim. 60-70px)
+    const pyhkaisyRaja = 65; 
 
-    // 1. Otetaan talteen mistä kohdasta sormi osui ruutuun (X ja Y)
     lightbox.addEventListener('touchstart', (e) => {
-      kosketusAlkuX = e.touches[0].clientX;
-      kosketusAlkuY = e.touches[0].clientY;
-      pyhkaisySuoritettu = false; // Nollataan tilanne uutta pyhkäisyä varten
+      // clientX mittaa selaimen todellisia pikseleitä ilman laiteskaalaushäiriöitä
+      kosketusAlkuX = e.changedTouches[0].clientX;
     }, { passive: true });
 
-    // 2. TÄMÄ HOITAA LUKITUKSEN LENNOSSA: Estetään taustan heiluminen heti kun sormi liikkuu
-    lightbox.addEventListener('touchmove', (e) => {
-      if (pyhkaisySuoritettu) return;
-
-      const nykyinenX = e.touches[0].clientX;
-      const nykyinenY = e.touches[0].clientY;
+    lightbox.addEventListener('touchend', (e) => {
+      kosketusLoppuX = e.changedTouches[0].clientX;
       
-      const etaisyysX = nykyinenX - kosketusAlkuX;
-      const etaisyysY = nykyinenY - kosketusAlkuY;
+      const etaisyys = kosketusLoppuX - kosketusAlkuX;
 
-      // Jos sormi liikkuu enemmän sivusuunnassa (X) kuin pystysuunnassa (Y),
-      // lukitaan selaimen oma sivuttaisliike TÄYSIN!
-      if (Math.abs(etaisyysX) > Math.経済 && Math.abs(etaisyysX) > Math.abs(etaisyysY)) {
-        if (e.cancelable) e.preventDefault(); // Lukitus päälle lennosta!
-        
-        // Vaihdetaan kuva heti lennossa, kun raja ylittyy! Ei odoteta touchendia.
-        if (Math.abs(etaisyysX) > pyhkaisyRaja) {
-          pyhkaisySuoritettu = true; // Estetään useat hypyt yhdellä pyhkäisyllä
-          
-          if (etaisyysX < 0) {
-            showNext(); // Sormi liikkui vasemmalle -> Seuraava kuva
-          } else {
-            showPrev(); // Sormi liikkui oikealle -> Edellinen kuva
-          }
+      // Tarkistetaan ylittyykö se teidän aiemmin toimivaksi toteama pidempi matka
+      if (Math.abs(etaisyys) > pyhkaisyRaja) {
+        if (etaisyys < 0) {
+          // Pyhkäisy vasemmalle -> Seuraava kuva
+          showNext();
+        } else {
+          // Pyhkäisy oikealle -> Edellinen kuva
+          showPrev();
         }
       }
-    }, { passive: false }); // TÄRKEÄÄ: false vaaditaan, jotta preventDefault() saa toimia lennosta!
+    }, { passive: true });
   }
 
 
