@@ -116,6 +116,33 @@ h4 {
   }
 }
 
+
+/* ==========================================================================
+   GLOBAL LINKS (Peruslinkkien tyylit)
+   ========================================================================== */
+a {
+
+  // 1. TÄMÄ HOITAA PERUSTILAN (Sekä klikkaamattomat linkit, vieraillut että yleisen tilan)
+  &,
+  &:link,
+  &:visited {
+    color: $primary_theme_color; // Teidän oma teemaväri oletuksena
+    text-decoration: none; // Korjattu kirjoitusvirhe: poistetaan ruma alleviivaus
+    transition: color 0.2s ease; // Tekee hover-värivaihdosta pehmeän ja tyylikkään!
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.3);
+  }
+
+  // 2. HOVER- JA AKTIIVINEN TILA (Kun hiiri on päällä tai linkkiä painetaan)
+  &:hover,
+  &:active {
+    color: $secondary_theme_color; // Vaihdetaan väri toiseen teemaväriin lennosta
+    box-shadow: 10px 10px 80px #000;
+    transform: scale(102%);
+
+  }
+}
+
+
 p {
   margin-top: 0;
   margin-bottom: 1.1rem;

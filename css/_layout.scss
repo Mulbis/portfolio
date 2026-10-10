@@ -59,27 +59,8 @@
   }
 }
 
+/* Small blocks inside - lets say Flex */
 
-
-
-.half_block{
-
-&.col_small{
-
-flex:0 0 24%;
-min-width:0
-
-}
-
-&.col_big{
-
-
-flex:0 0 74%;
-min-width: 0;
-}
-
-
-}
 
 
 

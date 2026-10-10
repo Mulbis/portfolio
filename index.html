@@ -40,6 +40,7 @@
 			<div class="star"></div>
 			<div class="star"></div>
 			<div class="star"></div>
+			<div class="star"></div>
 		</div>
 
 		<div class="hero_info_box">
@@ -50,7 +51,7 @@
 			</p>
 
 			<!-- Lisätty selkeämpi kuvaus ruudunlukijoille (aria-label) -->
-			<a href="#about" class="basic_button btn_hero" aria-label="Read more about Carl">read more</a>
+			<a href="#about_me" class="basic_button btn_hero" aria-label="Read more about Carl">read more</a>
 		</div>
 	</section>
 	<!-- CLOSING HOME SECTION -->
@@ -64,7 +65,7 @@
 					<a href="#home" class="active menu-item-1">home</a>
 				</li>
 				<li>
-					<a href="#about" class="menu-item-2">about</a>
+					<a href="#about_me" class="menu-item-2">about</a>
 				</li>
 				<li>
 					<a href="#gallery" class="menu-item-3">gallery</a>
@@ -84,63 +85,76 @@
 	</nav><!--********************* END OF NAVIGATION *********************-->
 
 	<!--======= POST HERO WRAPPER - I.O.W. JUST ANOTHER EXTRA SWEET THINGY =) =======-->
-	<main class="post_hero_wrapper" id="about">
-<!-- ==========================================================================
+	<main class="post_hero_wrapper">
+		<!-- ==========================================================================
      OSIO 1: ABOUT ME (Kuvat ja tekstit täydellisessä linjassa)
      ========================================================================== -->
-<section id="about_me" class="full_block">
-	<div class="content_block">
+		<section id="about_me" class="full_block">
+			<div class="content_block">
 
-		<!-- YLÄOSA: Otsikko ja ingressi leviävät koko leveydelle -->
-		<div>
-			<h2>a few words <span class="primary_color">about</span> me</h2>
-			<p class="date">23 November, 2017</p>
-			<p class="ingress">Heello there! I am Carl Ahlbom, but my friend calls me Calle. I’m a webdesigner/ front-end developer skilled in HTML, SCSS and CMS integration. I create clean, professional and functional websites. I also have a background in graphic design for screen and print - and I don’t mind photography either. </p>
-		</div>
+				<!-- YLÄOSA: Otsikko ja ingressi leviävät koko leveydelle -->
+				<div>
+					<h2>a few words <span class="primary_color">about</span> me</h2>
+					<p class="date">23 November, 2017</p>
+					<p class="ingress">Heello there! I am Carl Ahlbom, but my friend calls me Calle. I’m a webdesigner/
+						front-end developer skilled in HTML, SCSS and CMS integration. I create clean, professional and
+						functional websites. I also have a background in graphic design for screen and print - and I
+						don’t mind photography either. </p>
+				</div>
 
-		<!-- ALAOSA: Sarakkeet samassa linjassa kuin yläpuolella oleva teksti -->
-		<div class="flex between">
-			<div class="half_block col_small">
-				<figure class="meitzi">
-					<img src="images/meitsi_bw_square.jpg" alt="Carl Ahlbom">
-					<figcaption>Yes - it's me!</figcaption>
-				</figure>
+				<!-- ALAOSA: Sarakkeet samassa linjassa kuin yläpuolella oleva teksti -->
+				<div class="flex between">
+					<div class="half_block col_small">
+						<figure class="meitzi">
+							<img src="images/meitsi_bw_square.jpg" alt="Carl Ahlbom">
+							<figcaption>Yes - it's me!</figcaption>
+						</figure>
+					</div>
+
+					<div class="half_block col_big">
+						<p> I am based in Helsinki, Finland and I have a bachelors degree in digital multimedia. Before
+							graduating from
+							<a href="https://www.arcada.fi/en" target="_blank" rel="noopener noreferrer">Arcada -
+								University of Applied Sciences,</a>
+							- University of Applied Sciences, I studied graphic design/ web & media art in a few other
+							schools and took several different courses on these subjects. For now I work as a
+							freelancer, and earlier I worked at a little digital agency. I have also worked as a teacher
+							in basics of web development.
+
+							I’m constantly learning web technologies and other design related topics, currently playing
+							around with Javascript and JQuery. I am skilled in many areas of design and development. But
+							I still have everything to learn...
+						</p>
+					</div>
+				</div>
+
 			</div>
+		</section>
 
-			<div class="half_block col_big">
-				<p> I am based in Helsinki, Finland and I have a bachelors degree in digital multimedia. Before graduating from <a href="https://www.arcada.fi/en" target="_blank" rel="noopener noreferrer">Arcada</a> - University of Applied Sciences, I studied graphic design/ web & media art in a few other schools and took several different courses on these subjects. For now I work as a freelancer, and earlier I worked at a little digital agency. I have also worked as a teacher in basics of web development.
-
-I’m constantly learning web technologies and other design related topics, currently playing around with Javascript and JQuery. I am skilled in many areas of design and development. But I still have everything to learn... </p>
-			</div>
-		</div>
-
-	</div>
-</section>
-
-<!-- ==========================================================================
+		<!-- ==========================================================================
      OSIO 2: ABOUT THIS SITE (Seuraa nyt TÄSMÄLLEEN samaa kaavaa ja linjaa!)
      ========================================================================== -->
-<section id="about_this_site" class="full_block bg_darker">
-	<div class="content_block">
+		<section id="about_this_site" class="full_block bg_darker">
+			<div class="content_block">
 
-		<!-- ALAOSA: Flex jakaa sisällön (col_big on nyt ekana, col_small tokana) -->
-		<!-- Koska tämä on .content_blockin sisällä, sen ulkoreunat ovat täydellisesti linjassa ylemmän osion kanssa! -->
-		<div class="flex between">
-			<div class="half_block col_big">
-				<h3 class="white">a few words <span class="primary_color">about</span> this site</h3>
-				<p class="white">Lorem ipsum dolor sit amet...</p>
-				<p class="white">Lorem ipsum dolor sit amet...</p>
+				<!-- ALAOSA: Flex jakaa sisällön (col_big on nyt ekana, col_small tokana) -->
+				<!-- Koska tämä on .content_blockin sisällä, sen ulkoreunat ovat täydellisesti linjassa ylemmän osion kanssa! -->
+				<div class="flex between">
+					<div class="half_block col_big">
+						<h3 class="white">a few words <span class="primary_color">about</span> this site</h3>
+						<p class="white">Lorem ipsum dolor sit amet...</p>
+						<p class="white">Lorem ipsum dolor sit amet...</p>
+					</div>
+
+					<div class="half_block col_small">
+						<figure id="about_site_image">
+							<img src="images/updated.png" alt="Esikatselukuva">
+						</figure>
+					</div>
+				</div>
+
 			</div>
-
-			<div class="half_block col_small">
-				<figure id="about_site_image">
-					<img src="images/updated.png" alt="Esikatselukuva">
-				</figure>
-			</div>
-		</div>
-
-	</div>
-</section>
+		</section>
 
 
 		<!--********************* TOOLS: CARD BOXES *********************-->
@@ -358,7 +372,7 @@ I’m constantly learning web technologies and other design related topics, curr
 
 						<button class="basic_button toggle-article-btn">Read More</button>
 					</article>
-<hr>
+					<hr>
 
 					<!-- 🚀 SEXY GRID -->
 
@@ -485,9 +499,9 @@ I’m constantly learning web technologies and other design related topics, curr
 
 
 						<!-- 2. TASON 1 LISÄKUVAT (🚀 LISÄTTY LUOKKA level-1 JOKAISEEN) -->
-						<a href="images/gallery/fractals/21_Sandcaves.webp" class="lightbox-trigger level-1" title="Sandcaves"
-							rel="fractals"><img src="images/gallery/fractals/thumbs/21_Sandcaves.webp" alt="Sandcaves"
-								loading="lazy">
+						<a href="images/gallery/fractals/21_Sandcaves.webp" class="lightbox-trigger level-1"
+							title="Sandcaves" rel="fractals"><img src="images/gallery/fractals/thumbs/21_Sandcaves.webp"
+								alt="Sandcaves" loading="lazy">
 						</a>
 
 
@@ -538,7 +552,7 @@ I’m constantly learning web technologies and other design related topics, curr
 						nunc.
 					</p>
 				</div><!-- ENDING GALLERY SECTION PHOTOGRAPHY-->
-			<div class="gallery_categories landfill page bg_white">
+				<div class="gallery_categories landfill page bg_white">
 					<h3 class="landfill_title">landfill</h3>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis fermentum lorem eget augue
 						rhoncus eleifend. Curabitur scelerisque nunc enim. Morbi tincidunt,

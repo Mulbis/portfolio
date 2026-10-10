@@ -53,96 +53,87 @@
   width: 100%;
 }
 
+/* ==========================================================================
+   SHOOTING STARS (Täydellisesti rytmitetty ja suojattu)
+   ========================================================================== */
 .star_wrapper {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: $hero_height; // Vaihdettu $hero_height -> 100%, jotta täyttää varmasti koko heron
-  overflow: hidden;
-  z-index: 10; // 🚀 TÄMÄ NOSTAA TÄHDET TAUSTAKUVAN YLÄPUOLELLE!
-  pointer-events: none; // Estää tähtien häiritsemästä linkkien klikkaamista
-
+  height: 100%; 
+  
+  // TÄMÄ TAPPAA SEN ÄRSYTTÄVÄN HORISONTAALISEN SCROLLBARIN POMMINVARMANTI!
+  overflow: hidden !important; 
+  
+  z-index: 10;   
+  pointer-events: none; 
 }
 
 .star {
   position: absolute;
-  width: 5px;
-  height: 5px;
-  left: 36vw;
-  top: -10px;
+  width: 4px; // Tehdään tähdistä hieman siistimpiä ja pistemäisempiä
+  height: 4px;
   background: #fff;
   border-radius: 50%;
-  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), 0 0 0 8px rgba(255, 255, 255, 0.1), 0 0 20px rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 0 0 4px rgba(255, 255, 255, 0.05), 
+    0 0 0 8px rgba(255, 255, 255, 0.05), 
+    0 0 20px rgba(255, 255, 255, 0.1);
   transform: rotate(45deg) translate3d(0, 0, 0);
-  animation: shootingstars 12s linear infinite;
-  animation-delay: 1.5s;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: -200px; // Lyhennetään häntää hieman mobiiliystävällisemmäksi
+    width: 200px;
+    height: 1px;
+    display: block;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .3) 100%);
+  }
+
+  // 🌠 TÄHTI 1: Lähtee heti alussa ja lentää HELKKARIN NOPEASTI (kesto vain 6s!)
+  &:nth-child(1) {
+    left: 36vw;   // Aloittaa keskivaiheilta, jotta ehtii lentää komeasti ruudun yli viistoon
+    top: -20px;
+    animation: shootingstars 14s linear infinite;
+    animation-delay: 1.3s; // Pamahtaa matkaan melkein heti kun sivu latautuu!
+  }
+
+  // 🌠 TÄHTI 2: Lähtee 3-4s myöhemmin, ruudun VASURISTA ja liikkuu TOSI HITAASTI (kesto 18s!)
+  &:nth-child(2) {
+    left: 10vw;   // Ruudun vasen reuna
+    top: -30px;
+    animation: shootingstars 32s linear infinite;
+    animation-delay: 4s; // Odottaa sen toivomasi 4 sekuntia ennen kuin lipuu matkaan
+  }
+
+  // 🌠 TÄHTI 3: Lähtee myös hitaasti (kesto 15s) ruudun OIKEASTA laidasta!
+  &:nth-child(3) {
+    left: 68vw;   // Ruudun oikea reuna
+    top: -340px;
+    animation: shootingstars 32s linear infinite;
+    animation-delay: 7s; // Lähtee omalla vuorollaan taivaalle
+  }
+
+&:nth-child(4) {
+    left: 50vw;   // Ruudun oikea reuna
+    top: -340px;
+    animation: shootingstars 42s linear infinite;
+    animation-delay: 14s; // Lähtee omalla vuorollaan taivaalle
 }
 
-.star::before {
-  content: "";
-  position: absolute;
-  top: 2px;
-  left: -300px;
-  width: 300px;
-  height: 1px;
-  display: block;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .3) 100%);
+
+&:nth-child(5) {
+    left: 2vw;   // Ruudun oikea reuna
+    top: 10px;
+    animation: shootingstars 60s linear infinite;
+    animation-delay: 11s; // Lähtee omalla vuorollaan taivaalle
 }
-
-// Yksittäisten tähtien dynaamiset sijainnit calc()-funktiolla
-
-
-.star:nth-child(1) {
-  left: 5vw;
-  animation: shootingstars 24s linear infinite;
-  animation-delay: 4s;
-
-}
-
-
-.star:nth-child(2) {
-
-  left: 85vw;
-  animation: shootingstars 26s linear infinite;
-  animation-delay: 8s;
-}
-
-
-.star:nth-child(3) {
-
-  left: 60vw;
-  animation: shootingstars 12s linear infinite;
-  animation-delay: 10s;
-}
-
-
-
-/*
-.star:nth-child(2) {
-  top: calc(0% - 20px);
-  left: calc(10vw + 50px);
-  animation: shootingstars_eka 12s linear infinite;
-  animation-delay: 2s; // Lentää heti alussa
-}
-
-.star:nth-child(3) {
-  top: calc(0% - 20px);
-  left: calc(35vw + 50px);
-  animation: shootingstars_eka 12s linear infinite;
-  animation-delay: 2s; // Lentää heti alussa
 
 
 }
-
-.star:nth-child(4) {
-  top: calc(0% - 20px);
-  left: calc(35vw + 50px);
-  animation: shootingstars_eka 12s linear infinite;
-  animation-delay: 2s; // Lentää heti alussa
-}
-
-*/
 
 
 
@@ -296,16 +287,26 @@
 @keyframes shootingstars {
   0% {
     opacity: 1;
+    // Aloitetaan lennon alku nollasta
     transform: rotate(45deg) translate3d(0, 0, 0);
   }
   
-  
-  20%, 100% {
-
-    transform: rotate(45deg) translate3d(2000px, 0, 0);
+  // 15% - 20% kohdalla tähti on lentänyt pitkälle ja katoaa
+  20% {
     opacity: 0;
+    // Nostetaan matka 1000px -> 1800px, jotta se lentää pomminvarmasti 
+    // koko näytön yli ja ulos ruudulta ennen kuin se katoaa!
+    transform: rotate(45deg) translate3d(1800px, 0, 0);
+  }
+
+  // Pidetään se täysin näkymättömänä loppuaika ennen uutta kierrosta
+  100% {
+    opacity: 0;
+    transform: rotate(45deg) translate3d(1800px, 0, 0);
+  }
 }
-}
+
+
 
 @-webkit-keyframes text-focus-in {
   0% {

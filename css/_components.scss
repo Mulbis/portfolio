@@ -166,19 +166,84 @@ ul.basic_list li:before {
   margin-top: 2px;
 }
 
+
+
 /* ==========================================================================
-   ABOUT THIS ME + ABOUT THIS SITE OTHER COOL STUFF
+   ABOUT-OSIOIDEN RESPONSIVISUUS (Erotettu ja turvattu arkkitehtuuri)
+   ========================================================================== */
+#about_me, 
+#about_this_site {
+  
+  .flex.between {
+
+    @media screen and (max-width: $breakpoint-tablet) {
+      flex-direction: column !important;
+      align-items: center;
+      text-align: center;
+      gap: 25px; 
+    }
+
+    /* Pieni sarake (Kuva / Avatar) */
+    .half_block.col_small {
+      flex: 0 0 24%;
+     border:1px solid lime;
+
+      @media screen and (max-width: $breakpoint-tablet) {
+        flex-basis: 100% !important;
+        max-width: 320px; 
+        width: 100%;
+        
+      }
+    }
+
+    /* Iso sarake (Tekstit ja taidot) */
+    .half_block.col_big {
+      flex: 0 0 74%;
+      border:1px solid coral;
+     
+
+      @media screen and (max-width: $breakpoint-tablet) {
+        flex-basis: 100% !important;
+        width: 100%;
+      }
+    }
+  }
+}
+
+/* ==========================================================================
+   KUVIEN UNIikit TYYLIT (Nyt ne eivät voi enää ikinä tapella keskenään!)
    ========================================================================== */
 
+// 1. OSIO: Meitzi-avatar (Palauttaa sen upean 50% pyöristyksen takaisin!)
+.meitzi {
+  text-align: center;
+  margin: 0 !important;
+  padding: 0;
+  
+  img {
+    border-radius: 50% !important; // 🚀 PAKOTETAAN pyöristys takaisin paikoilleen!
+    display: block;
+    max-width: 240px;
+    width: 100%;
+    margin: 12px auto;
+  }
+}
 
+// 2. OSIO: About site -esikatselukuva (Tämä korjaa sen leikkautumisen oikealta!)
+#about_site_image {
+  display: block;
+  margin: 0 !important; // Nollataan selaimen omat oletusmarginaalit
+  padding: 0;
+  width: 100%;
+  max-width: 381px;
 
-
-
-
-
-
-
-
+  img {
+    display: block;
+    width: 100% !important; // 🚀 TÄMÄ ON SE SATEENTEKIJÄ: Pakottaa kuvan pysymään sarakkeen sisällä!
+    height: auto !important;
+    border-radius: 8px !important; // Siisti, loiva kulmapyöristys tälle kuvalle
+  }
+}
 
 
 

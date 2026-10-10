@@ -162,6 +162,21 @@ h4 {
   }
 }
 
+/* ==========================================================================
+   GLOBAL LINKS (Peruslinkkien tyylit)
+   ========================================================================== */
+a, a:link, a:visited {
+  color: #d19d81;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.3);
+}
+a:hover, a:active {
+  color: #b88367;
+  box-shadow: 10px 10px 80px #000;
+  transform: scale(102%);
+}
+
 p {
   margin-top: 0;
   margin-bottom: 1.1rem;
@@ -472,15 +487,7 @@ hr + * {
   }
 }
 
-.half_block.col_small {
-  flex: 0 0 24%;
-  min-width: 0;
-}
-.half_block.col_big {
-  flex: 0 0 74%;
-  min-width: 0;
-}
-
+/* Small blocks inside - lets say Flex */
 .full_image_container {
   width: 100%;
 }
@@ -655,8 +662,81 @@ ul.basic_list li:before {
 }
 
 /* ==========================================================================
-   ABOUT THIS ME + ABOUT THIS SITE OTHER COOL STUFF
+   ABOUT-OSIOIDEN RESPONSIVISUUS (Erotettu ja turvattu arkkitehtuuri)
    ========================================================================== */
+@media screen and (max-width: 768px) {
+  #about_me .flex.between,
+  #about_this_site .flex.between {
+    flex-direction: column !important;
+    align-items: center;
+    text-align: center;
+    gap: 25px;
+  }
+}
+#about_me .flex.between,
+#about_this_site .flex.between {
+  /* Pieni sarake (Kuva / Avatar) */
+}
+#about_me .flex.between .half_block.col_small,
+#about_this_site .flex.between .half_block.col_small {
+  flex: 0 0 24%;
+  border: 1px solid lime;
+}
+@media screen and (max-width: 768px) {
+  #about_me .flex.between .half_block.col_small,
+  #about_this_site .flex.between .half_block.col_small {
+    flex-basis: 100% !important;
+    max-width: 320px;
+    width: 100%;
+  }
+}
+#about_me .flex.between,
+#about_this_site .flex.between {
+  /* Iso sarake (Tekstit ja taidot) */
+}
+#about_me .flex.between .half_block.col_big,
+#about_this_site .flex.between .half_block.col_big {
+  flex: 0 0 74%;
+  border: 1px solid coral;
+}
+@media screen and (max-width: 768px) {
+  #about_me .flex.between .half_block.col_big,
+  #about_this_site .flex.between .half_block.col_big {
+    flex-basis: 100% !important;
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   KUVIEN UNIikit TYYLIT (Nyt ne eivät voi enää ikinä tapella keskenään!)
+   ========================================================================== */
+.meitzi {
+  text-align: center;
+  margin: 0 !important;
+  padding: 0;
+}
+.meitzi img {
+  border-radius: 50% !important;
+  display: block;
+  max-width: 240px;
+  width: 100%;
+  margin: 12px auto;
+}
+
+#about_site_image {
+  display: block;
+  margin: 0 !important;
+  padding: 0;
+  width: 100%;
+  max-width: 381px;
+}
+#about_site_image img {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  border-radius: 8px !important;
+}
+
 /* ==========================================================================
    KORTIT / CARDS TWIN CONTAINER (KORJATTU JA RESUKSI OPTIMOITU)
    ========================================================================== */
@@ -1273,85 +1353,70 @@ ACCORDION READ MORE
   width: 100%;
 }
 
+/* ==========================================================================
+   SHOOTING STARS (Täydellisesti rytmitetty ja suojattu)
+   ========================================================================== */
 .star_wrapper {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 36vh;
-  overflow: hidden;
+  height: 100%;
+  overflow: hidden !important;
   z-index: 10;
   pointer-events: none;
 }
 
 .star {
   position: absolute;
-  width: 5px;
-  height: 5px;
-  left: 36vw;
-  top: -10px;
+  width: 4px;
+  height: 4px;
   background: #fff;
   border-radius: 50%;
-  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), 0 0 0 8px rgba(255, 255, 255, 0.1), 0 0 20px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.05), 0 0 0 8px rgba(255, 255, 255, 0.05), 0 0 20px rgba(255, 255, 255, 0.1);
   transform: rotate(45deg) translate3d(0, 0, 0);
-  animation: shootingstars 12s linear infinite;
-  animation-delay: 1.5s;
 }
-
 .star::before {
   content: "";
   position: absolute;
   top: 2px;
-  left: -300px;
-  width: 300px;
+  left: -200px;
+  width: 200px;
   height: 1px;
   display: block;
   background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.3) 100%);
 }
-
 .star:nth-child(1) {
-  left: 5vw;
-  animation: shootingstars 24s linear infinite;
+  left: 36vw;
+  top: -20px;
+  animation: shootingstars 14s linear infinite;
+  animation-delay: 1.3s;
+}
+.star:nth-child(2) {
+  left: 10vw;
+  top: -30px;
+  animation: shootingstars 32s linear infinite;
   animation-delay: 4s;
 }
-
-.star:nth-child(2) {
-  left: 85vw;
-  animation: shootingstars 26s linear infinite;
-  animation-delay: 8s;
-}
-
 .star:nth-child(3) {
-  left: 60vw;
-  animation: shootingstars 12s linear infinite;
-  animation-delay: 10s;
+  left: 68vw;
+  top: -340px;
+  animation: shootingstars 32s linear infinite;
+  animation-delay: 7s;
 }
-
-/*
-.star:nth-child(2) {
-  top: calc(0% - 20px);
-  left: calc(10vw + 50px);
-  animation: shootingstars_eka 12s linear infinite;
-  animation-delay: 2s; // Lentää heti alussa
-}
-
-.star:nth-child(3) {
-  top: calc(0% - 20px);
-  left: calc(35vw + 50px);
-  animation: shootingstars_eka 12s linear infinite;
-  animation-delay: 2s; // Lentää heti alussa
-
-
-}
-
 .star:nth-child(4) {
-  top: calc(0% - 20px);
-  left: calc(35vw + 50px);
-  animation: shootingstars_eka 12s linear infinite;
-  animation-delay: 2s; // Lentää heti alussa
+  left: 50vw;
+  top: -340px;
+  animation: shootingstars 42s linear infinite;
+  animation-delay: 14s;
+}
+.star:nth-child(5) {
+  left: 2vw;
+  top: 10px;
+  animation: shootingstars 60s linear infinite;
+  animation-delay: 11s;
 }
 
-*/
 /* ==========================================================================
    WEB & HARDWARE SHOWCASE STYLES
    ========================================================================== */
@@ -1502,9 +1567,13 @@ ACCORDION READ MORE
     opacity: 1;
     transform: rotate(45deg) translate3d(0, 0, 0);
   }
-  20%, 100% {
-    transform: rotate(45deg) translate3d(2000px, 0, 0);
+  20% {
     opacity: 0;
+    transform: rotate(45deg) translate3d(1800px, 0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(45deg) translate3d(1800px, 0, 0);
   }
 }
 @-webkit-keyframes text-focus-in {
