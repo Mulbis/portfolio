@@ -1,6 +1,9 @@
 /* ==========================================================================
    GLOBAL VARIABLES & CONFIGURATION
    ========================================================================== */
+$breakpoint-desktop-mini: 960px; /* Calle is great and you know it! */
+$breakpoint-tablet: 768px;
+$breakpoint-mobile: 480px;
 
 $primary_font_stack: 'Poppins', sans-serif;
 $quote_font: "Times New Roman", Times, Baskerville, Georgia, serif;

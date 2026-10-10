@@ -1,6 +1,8 @@
-
 /* ==========================================================================
-   LAYOUT CONTAINERS & FLEXBOX UTILITIES
+   LAYOUT CONTAINERS & FLEXBOX UTILITIES (With Inline Mobile Optimization)
+   ========================================================================== */
+/* ==========================================================================
+   LAYOUT CONTAINERS & FLEXBOX UTILITIES (KORJATTU GLOBAALI APU)
    ========================================================================== */
 .flex {
   display: flex;
@@ -10,13 +12,26 @@
   &.between { justify-content: space-between; }
   &.around  { justify-content: space-around; }
   &.evenly  { justify-content: space-evenly; }
+
+  /* 🚀 TÄMÄ KORJAA TILANTEEN: */
+  // Kun mennään puhelinleveyteen, muutetaan JOKAINEN globaali .flex-container
+  // pystysuoraksi jonoksi. Tämä pakottaa teidän col_big ja col_small -sarakkeet
+  // allekkain automaattisesti, ilman että HTML-koodiin tarvitsee koskea!
+  @media screen and (max-width: $breakpoint-mobile) {
+    flex-direction: column !important;
+  }
 }
 
 .full_block {
   width: 100%;
-  padding: 66px 0;
+  padding: 66px 0; // Iso pystyrako desktopilla
   position: relative;
   box-sizing: border-box;
+
+  /* UPOTETTU MOBIILI-KYSELY: */
+  @media screen and (max-width: $breakpoint-mobile) {
+    padding: 40px 0; // Tiivistetään osioiden välit puhelimella, säästää peukaloa rullaamiselta!
+  }
 }
 
 .content_block {
@@ -26,26 +41,48 @@
   position: relative;
   margin: 0 auto;
   box-sizing: border-box;
+  
+  /* UPOTETTU MOBIILI-KYSELY: */
+  @media screen and (max-width: $breakpoint-mobile) {
+    width: 100%; // Varmistetaan, että blocki käyttää puhelimessa täydet 100% leveydestä
+  }
 }
 
 .page {
   padding: 60px 2.5%;
   box-sizing: border-box;
   @include rounded;
+
+  /* UPOTETTU MOBIILI-KYSELY: */
+  @media screen and (max-width: $breakpoint-mobile) {
+    padding: 30px 16px; // KULTAINEN STANDARDI: 16px sivupadding antaa sisällölle max-tilan, ja 30px tiivistää pystyvälin!
+  }
 }
 
-// 🚀 PALAUTETTU: Sarakkeiden senior-luokat, jotka pitävät huolen leveyksistä!
-.half_block {
-  box-sizing: border-box;
-  
-  &.small { 
-    flex-basis: 24%; 
-  }
-  
-  &.big { 
-    flex-basis: 74%; 
-  }
+
+
+
+.half_block{
+
+&.col_small{
+
+flex:0 0 24%;
+min-width:0
+
 }
+
+&.col_big{
+
+
+flex:0 0 74%;
+min-width: 0;
+}
+
+
+}
+
+
+
 
 .full_image_container  { width: 100%; }
 .basic_image_container { width: 100%; max-width: 340px; }

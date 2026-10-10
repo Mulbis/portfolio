@@ -17,9 +17,9 @@
 
 	<!-- Kuvakkeet ja Manifesti -->
 	<link rel="manifest" href="manifest.webmanifest">
-	<link rel="icon" href="favicon.ico">
-	<link rel="icon" href="icon.svg" type="image/svg+xml">
-	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<link rel="card" href="favcard.ico">
+	<link rel="card" href="card.svg" type="image/svg+xml">
+	<link rel="apple-touch-card" href="apple-touch-card.png">
 
 	<!-- ============ FONTS ============  -->
 	<!-- Laita tämä sinne head-osion sisälle ennen tyylitiedostoja -->
@@ -81,122 +81,84 @@
 			<button id="theme-toggle" class="theme_btn" aria-label="Toggle dark/light mode">🌓</button>
 
 		</div>
-	</nav>
-
-	<!--********************* END OF NAVIGATION *********************-->
-
+	</nav><!--********************* END OF NAVIGATION *********************-->
 
 	<!--======= POST HERO WRAPPER - I.O.W. JUST ANOTHER EXTRA SWEET THINGY =) =======-->
-	<main class="post_hero_wrapper">
+	<main class="post_hero_wrapper" id="about">
+<!-- ==========================================================================
+     OSIO 1: ABOUT ME (Kuvat ja tekstit täydellisessä linjassa)
+     ========================================================================== -->
+<section id="about_me" class="full_block">
+	<div class="content_block">
 
-		<section class="full_block" id="about">
-			<!--********************* ABOUT MAIN *********************-->
+		<!-- YLÄOSA: Otsikko ja ingressi leviävät koko leveydelle -->
+		<div>
+			<h2>a few words <span class="primary_color">about</span> me</h2>
+			<p class="date">23 November, 2017</p>
+			<p class="ingress">Heello there! I am Carl Ahlbom, but my friend calls me Calle. I’m a webdesigner/ front-end developer skilled in HTML, SCSS and CMS integration. I create clean, professional and functional websites. I also have a background in graphic design for screen and print - and I don’t mind photography either. </p>
+		</div>
 
-			<div class="content_block">
+		<!-- ALAOSA: Sarakkeet samassa linjassa kuin yläpuolella oleva teksti -->
+		<div class="flex between">
+			<div class="half_block col_small">
+				<figure class="meitzi">
+					<img src="images/meitsi_bw_square.jpg" alt="Carl Ahlbom">
+					<figcaption>Yes - it's me!</figcaption>
+				</figure>
+			</div>
 
-				<!-- YLÄOSA: Otsikko ja ingressi leviävät koko leveydelle -->
-				<div class="column">
-					<h2>a few words <span class="primary_color">about</span> me</h2>
-					<p class="date">23 November, 2017</p>
-					<p class="ingress">Heello there! I am Carl Ahlbom, but my friend calls me Calle. I’m a webdesigner/
-						front-end developer skilled in HTML, SCSS and CMS integration. I create clean, professional and
-						functional websites. I also have a background in graphic design for screen and print - and I
-						don’t mind photography either.</p>
-				</div>
+			<div class="half_block col_big">
+				<p> I am based in Helsinki, Finland and I have a bachelors degree in digital multimedia. Before graduating from <a href="https://www.arcada.fi/en" target="_blank" rel="noopener noreferrer">Arcada</a> - University of Applied Sciences, I studied graphic design/ web & media art in a few other schools and took several different courses on these subjects. For now I work as a freelancer, and earlier I worked at a little digital agency. I have also worked as a teacher in basics of web development.
 
-				<!-- ALAOSA: Flexbox jakaa sisällön kahteen sarakkeeseen -->
-				<div class="flex between">
-					<!-- Vasen sarake: Kuva -->
-					<div class="half_block small">
-						<figure class="meitzi">
-							<img src="images/meitsi_bw_square.jpg" alt="Front end developer Carl Ahlbom">
-							<figcaption>Yes - it's me!</figcaption>
-						</figure>
-					</div>
+I’m constantly learning web technologies and other design related topics, currently playing around with Javascript and JQuery. I am skilled in many areas of design and development. But I still have everything to learn... </p>
+			</div>
+		</div>
 
-					<!-- Oikea sarake: Tekstit ja taidot -->
-					<div class="half_block big">
-						<p>I am based in Helsinki, Finland and I have a bachelors degree in digital multimedia. Before
-							graduating from Arcada - University of Applied Sciences, I studied graphic design/ web &
-							media art in a few other schools and took several different courses on these subjects. For
-							now I work as a freelancer, and earlier I worked at a little digital agency. I have also
-							worked as a teacher in basics of web development.</p>
+	</div>
+</section>
 
-						<p>I’m constantly learning web technologies and other design related topics, currently playing
-							around with Javascript and JQuery. I am skilled in many areas of design and development. But
-							I still have everything to learn... </p>
+<!-- ==========================================================================
+     OSIO 2: ABOUT THIS SITE (Seuraa nyt TÄSMÄLLEEN samaa kaavaa ja linjaa!)
+     ========================================================================== -->
+<section id="about_this_site" class="full_block bg_darker">
+	<div class="content_block">
 
+		<!-- ALAOSA: Flex jakaa sisällön (col_big on nyt ekana, col_small tokana) -->
+		<!-- Koska tämä on .content_blockin sisällä, sen ulkoreunat ovat täydellisesti linjassa ylemmän osion kanssa! -->
+		<div class="flex between">
+			<div class="half_block col_big">
+				<h3 class="white">a few words <span class="primary_color">about</span> this site</h3>
+				<p class="white">Lorem ipsum dolor sit amet...</p>
+				<p class="white">Lorem ipsum dolor sit amet...</p>
+			</div>
 
-					</div><!-- /half_block big -->
+			<div class="half_block col_small">
+				<figure id="about_site_image">
+					<img src="images/updated.png" alt="Esikatselukuva">
+				</figure>
+			</div>
+		</div>
 
-				</div><!-- /flex between  -->
-
-			</div><!-- /content_block -->
-
-		</section><!-- /about -->
-
-		<!-- ⚠️ HUOM: <main>-tagi EI sulkeudu vielä tässä, vaan vasta sivun aivan lopussa! -->
-
+	</div>
+</section>
 
 
-		<!--********************* ENDING ABOUT ME *********************-->
-
-		<!--********************* ABOUT THIS SITE *********************-->
-		<section id="about_this_site" class="full_block bg_darker">
-
-			<div class="content_block flex between">
-
-				<!-- Vasen sarake: Tekstit -->
-				<div class="half_block big">
-					<h3 class="white">a few words <span class="primary_color">about</span> this site</h3>
-					<p class="white">
-						Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-						nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi
-						enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis
-						nisl ut aliquip ex ea commodo consequat...
-					</p>
-					<p class="white">
-						Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-						nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi
-						enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis
-						nisl ut aliquip ex ea commodo consequat...
-					</p>
-					<p class="white">
-						Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-						nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi
-						enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis
-						nisl ut aliquip ex ea commodo consequat...
-					</p>
-				</div>
-
-				<!-- Oikea sarake: Kuva (Muutettu figureksi) -->
-				<div class="half_block small">
-					<figure id="about_site_image">
-						<img src="images/updated.png" alt="Esikatselukuva päivitetystä Carl Ahlbom -verkkosivustosta">
-					</figure>
-				</div>
-
-			</div><!-- /content_block -->
-
-		</section>
-		<!--********************* ENDING ABOUT THIS SITE *********************-->
-
-		<!--********************* TOOLS: ICON BOXES *********************-->
-		<section id="icons_full_block" class="full_block">
+		<!--********************* TOOLS: CARD BOXES *********************-->
+		<section id="cards_full_block" class="full_block">
 			<div class="content_block">
 				<h3 class="white">a few web <span class="primary_color">tools</span> I use</h3>
-				<div class="icons_wrapper flex between wrap">
+				<div class="cards_wrapper flex between wrap">
 
 					<!-- 1. HTML5 -->
-					<a class="icon_twin_container flex evenly reveal_me_1" href="https://w3.org" target="_blank"
+					<a class="card_twin_container flex evenly reveal_me_1" href="https://w3.org" target="_blank"
 						rel="noopener">
 						<!-- Lukitaan oikea kuva taustalle inline-tyylillä -->
-						<div class="icon_image_container"
-							style="background-image: url('images/icons_sprites_patterns/icons/icon_html_5.png');">
+						<div class="card_image_container"
+							style="background-image: url('images/icons_sprites_patterns/cards/card_html_5.png');">
 							<img src="images/icons_sprites_patterns/icons/icon_html_5.png" alt="HTML5"
-								class="icon_logo">
+								class="card_logo">
 						</div>
-						<div class="icon_text_container">
+						<div class="card_text_container">
 							<p class="small white">Like most of the sites out there, this site is also HTML5 -the
 								latest version of
 								HTML, which is the contents you
@@ -208,13 +170,13 @@
 					</a>
 
 					<!-- 2. CSS3 -->
-					<a class="icon_twin_container flex evenly reveal_me_2" href="https://w3.org" target="_blank"
+					<a class="card_twin_container flex evenly reveal_me_2" href="https://w3.org" target="_blank"
 						rel="noopener">
-						<div class="icon_image_container"
-							style="background-image: url('images/icons_sprites_patterns/icons/icon_css_3.png');">
-							<img src="images/icons_sprites_patterns/icons/icon_css_3.png" alt="CSS3" class="icon_logo">
+						<div class="card_image_container"
+							style="background-image: url('images/icons_sprites_patterns/cards/icon_css_3.png');">
+							<img src="images/icons_sprites_patterns/icons/icon_css_3.png" alt="CSS3" class="card_logo">
 						</div>
-						<div class="icon_text_container">
+						<div class="card_text_container">
 							<p class="small white">Cascading Style Sheets v.3. I really like writing responsive CSS.
 								Without styling
 								the
@@ -226,13 +188,13 @@
 					</a>
 
 					<!-- 3. SASS -->
-					<a class="icon_twin_container flex evenly reveal_me_3" href="http://sass-lang.com" target="_blank"
+					<a class="card_twin_container flex evenly reveal_me_3" href="http://sass-lang.com" target="_blank"
 						rel="noopener">
-						<div class="icon_image_container"
+						<div class="card_image_container"
 							style="background-image: url('images/icons_sprites_patterns/icons/icon_sass_2.png');">
-							<img src="images/icons_sprites_patterns/icons/icon_sass_2.png" alt="SASS" class="icon_logo">
+							<img src="images/icons_sprites_patterns/icons/icon_sass_2.png" alt="SASS" class="card_logo">
 						</div>
-						<div class="icon_text_container">
+						<div class="card_text_container">
 							<p class="small white">Styles on steroids. This CSS preprocessor is the bomb! SASS
 								really makes styling
 								more
@@ -242,14 +204,14 @@
 					</a>
 
 					<!-- 4. WORDPRESS -->
-					<a class="icon_twin_container flex evenly reveal_me_4" href="https://wordpress.org" target="_blank"
+					<a class="card_twin_container flex evenly reveal_me_4" href="https://wordpress.org" target="_blank"
 						rel="noopener">
-						<div class="icon_image_container"
+						<div class="card_image_container"
 							style="background-image: url('images/icons_sprites_patterns/icons/icon_wordpress.png');">
 							<img src="images/icons_sprites_patterns/icons/icon_wordpress.png" alt="WordPress"
-								class="icon_logo">
+								class="card_logo">
 						</div>
-						<div class="icon_text_container">
+						<div class="card_text_container">
 							<p class="small white">Something like a third of the web uses WordPress (I've heard). I
 								really like this
 								publishing
@@ -261,13 +223,13 @@
 					</a>
 
 					<!-- 5. EMMET -->
-					<a class="icon_twin_container flex evenly reveal_me_5" href="https://emmet.io" target="_blank"
+					<a class="card_twin_container flex evenly reveal_me_5" href="https://emmet.io" target="_blank"
 						rel="noopener">
-						<div class="icon_image_container"
+						<div class="card_image_container"
 							style="background-image: url('images/icons_sprites_patterns/icons/icon_emmet.png');">
-							<img src="images/icons_sprites_patterns/icons/icon_emmet.png" alt="Emmet" class="icon_logo">
+							<img src="images/icons_sprites_patterns/icons/icon_emmet.png" alt="Emmet" class="card_logo">
 						</div>
-						<div class="icon_text_container">
+						<div class="card_text_container">
 							<p class="small white">Emmet is awesome! Emmet is developed and optimised for
 								web-developers whose
 								workflow depends on HTML/XML and CSS,
@@ -277,23 +239,23 @@
 					</a>
 
 					<!-- 6. JQUERY -->
-					<a class="icon_twin_container flex evenly reveal_me_6" href="https://jquery.com" target="_blank"
+					<a class="card_twin_container flex evenly reveal_me_6" href="https://jquery.com" target="_blank"
 						rel="noopener">
-						<div class="icon_image_container"
+						<div class="card_image_container"
 							style="background-image: url('images/icons_sprites_patterns/icons/icon_jquery.png');">
 							<img src="images/icons_sprites_patterns/icons/icon_jquery.png" alt="jQuery"
-								class="icon_logo">
+								class="card_logo">
 						</div>
-						<div class="icon_text_container">
+						<div class="card_text_container">
 							<p class="small white">The possbilities of this free JavaScript library...</p>
 						</div>
 					</a>
 
-				</div><!-- /icons_wrapper -->
+				</div><!-- /cards_wrapper -->
 			</div><!-- /content_block -->
 		</section>
 
-		<!--********************* ENDING ABOUT SECTION MAIN: INCLUDING ICONS FULL *********************-->
+		<!--********************* ENDING ABOUT SECTION MAIN: INCLUDING CARDS FULL *********************-->
 
 		<!--********************* STARTING GALLERY *********************-->
 
@@ -632,7 +594,7 @@
 					<div class="hardware-device-row">
 
 						<div class="macbook_wrapper reveal_me_1">
-							<img src="images/icons_sprites_patterns/web/displays/macbook.png" alt="desktop"
+							<img src="images/cards_sprites_patterns/web/displays/macbook.png" alt="desktop"
 								class="macbook_image" loading="lazy">
 							<div class="macbook_screen">
 								<!-- Vinkki: Laita tähän taustakuvaksi (.webp) ruutukaappaus tekemästäsi sivusta! -->
@@ -640,19 +602,19 @@
 						</div>
 
 						<div class="imac_wrapper reveal_me_2">
-							<img src="images/icons_sprites_patterns/web/displays/imac.png" alt="desktop"
+							<img src="images/cards_sprites_patterns/web/displays/imac.png" alt="desktop"
 								class="imac_image" loading="lazy">
 							<div class="imac_screen"></div>
 						</div>
 
 						<div class="ipad_wrapper reveal_me_3">
-							<img src="images/icons_sprites_patterns/web/displays/ipady.png" alt="pad" class="ipad_image"
+							<img src="images/cards_sprites_patterns/web/displays/ipady.png" alt="pad" class="ipad_image"
 								loading="lazy">
 							<div class="ipad_screen"></div>
 						</div>
 
 						<div class="iphone_wrapper reveal_me_4">
-							<img src="images/icons_sprites_patterns/web/displays/iphone.png" alt="phone"
+							<img src="images/cards_sprites_patterns/web/displays/iphone.png" alt="phone"
 								class="iphone_image" loading="lazy">
 							<div class="iphone_screen"></div>
 						</div>

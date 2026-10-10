@@ -2,6 +2,7 @@
 /* ==========================================================================
    GLOBAL VARIABLES & CONFIGURATION
    ========================================================================== */
+/* Calle is great and you know it! */
 /* ==========================================================================
    DYNAMIC THEME VARIABLES (Light & Dark Mode)
    ========================================================================== */
@@ -87,7 +88,7 @@ body {
 }
 
 /* ==========================================================================
-   TYPOGRAPHY
+   TYPOGRAPHY (With Inline Mobile Optimization)
    ========================================================================== */
 h1 {
   font-size: 4.55rem;
@@ -96,6 +97,13 @@ h1 {
   text-transform: uppercase;
   color: #fff;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  /* UPOTETTU MOBIILI-KYSELY: */
+}
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+  }
 }
 
 h2 {
@@ -113,6 +121,15 @@ h2::after {
   height: 2px;
   background: linear-gradient(to right, #b88367 0%, rgba(209, 157, 129, 0) 40%);
 }
+h2 {
+  /* UPOTETTU MOBIILI-KYSELY: */
+}
+@media screen and (max-width: 480px) {
+  h2 {
+    font-size: 2rem;
+    margin-top: 0;
+  }
+}
 
 h3 {
   font-size: 2.4rem;
@@ -121,6 +138,13 @@ h3 {
   margin-top: -4px;
   margin-bottom: 15px;
   line-height: 1.1;
+  /* UPOTETTU MOBIILI-KYSELY: */
+}
+@media screen and (max-width: 480px) {
+  h3 {
+    font-size: 1.5rem;
+    margin-top: 0;
+  }
 }
 
 h4 {
@@ -129,11 +153,26 @@ h4 {
   text-transform: uppercase;
   margin-top: 2rem;
   margin-bottom: 0.6rem;
+  /* UPOTETTU MOBIILI-KYSELY: */
+}
+@media screen and (max-width: 480px) {
+  h4 {
+    font-size: 1.15rem;
+    margin-top: 1.5rem;
+  }
 }
 
 p {
   margin-top: 0;
   margin-bottom: 1.1rem;
+  line-height: 1.6;
+  /* UPOTETTU MOBIILI-KYSELY: */
+}
+@media screen and (max-width: 480px) {
+  p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
 }
 
 .ingress {
@@ -141,18 +180,33 @@ p {
   font-weight: 500;
   line-height: 1.5;
   color: inherit;
+  /* UPOTETTU MOBIILI-KYSELY: */
+}
+@media screen and (max-width: 480px) {
+  .ingress {
+    font-size: 1.1rem;
+  }
 }
 
 p.date {
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: #d19d81;
-  margin-bottom: 1.3rem;
   line-height: 0.1;
   padding-bottom: 1rem;
+  margin-top: -3px;
 }
 p.date::before {
   content: "Edited ";
+}
+p.date {
+  /* UPOTETTU MOBIILI-KYSELY: */
+}
+@media screen and (max-width: 480px) {
+  p.date {
+    line-height: 1;
+    padding-bottom: 0.5rem;
+  }
 }
 
 .quote {
@@ -163,6 +217,12 @@ p.date::before {
   font-size: 5.25rem;
   font-weight: 700;
   line-height: 1.2;
+  /* UPOTETTU MOBIILI-KYSELY: */
+}
+@media screen and (max-width: 480px) {
+  .quote.mega {
+    font-size: 2.8rem;
+  }
 }
 .quote.text_shadow {
   text-shadow: 0 2px 10px rgb(0, 0, 0);
@@ -337,7 +397,10 @@ hr + * {
 }
 
 /* ==========================================================================
-   LAYOUT CONTAINERS & FLEXBOX UTILITIES
+   LAYOUT CONTAINERS & FLEXBOX UTILITIES (With Inline Mobile Optimization)
+   ========================================================================== */
+/* ==========================================================================
+   LAYOUT CONTAINERS & FLEXBOX UTILITIES (KORJATTU GLOBAALI APU)
    ========================================================================== */
 .flex {
   display: flex;
@@ -360,12 +423,26 @@ hr + * {
 .flex.evenly {
   justify-content: space-evenly;
 }
+.flex {
+  /* 🚀 TÄMÄ KORJAA TILANTEEN: */
+}
+@media screen and (max-width: 480px) {
+  .flex {
+    flex-direction: column !important;
+  }
+}
 
 .full_block {
   width: 100%;
   padding: 66px 0;
   position: relative;
   box-sizing: border-box;
+  /* UPOTETTU MOBIILI-KYSELY: */
+}
+@media screen and (max-width: 480px) {
+  .full_block {
+    padding: 40px 0;
+  }
 }
 
 .content_block {
@@ -375,22 +452,33 @@ hr + * {
   position: relative;
   margin: 0 auto;
   box-sizing: border-box;
+  /* UPOTETTU MOBIILI-KYSELY: */
+}
+@media screen and (max-width: 480px) {
+  .content_block {
+    width: 100%;
+  }
 }
 
 .page {
   padding: 60px 2.5%;
   box-sizing: border-box;
   border-radius: 8px;
+  /* UPOTETTU MOBIILI-KYSELY: */
+}
+@media screen and (max-width: 480px) {
+  .page {
+    padding: 30px 16px;
+  }
 }
 
-.half_block {
-  box-sizing: border-box;
+.half_block.col_small {
+  flex: 0 0 24%;
+  min-width: 0;
 }
-.half_block.small {
-  flex-basis: 24%;
-}
-.half_block.big {
-  flex-basis: 74%;
+.half_block.col_big {
+  flex: 0 0 74%;
+  min-width: 0;
 }
 
 .full_image_container {
@@ -567,77 +655,69 @@ ul.basic_list li:before {
 }
 
 /* ==========================================================================
-   ABOUT THIS SITE & EXCLUSIVES
+   ABOUT THIS ME + ABOUT THIS SITE OTHER COOL STUFF
    ========================================================================== */
-#about_this_site {
-  width: 100%;
-}
-#about_this_site .content_block.flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 40px;
-}
-@media (max-width: 768px) {
-  #about_this_site .content_block.flex {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 30px;
-  }
-}
-#about_this_site .half_block.big {
-  flex: 1;
-}
-#about_this_site .half_block.big p {
-  margin-bottom: 16px;
-  line-height: 1.6;
-}
-#about_this_site .half_block.big p:last-child {
-  margin-bottom: 0;
-}
-#about_this_site .half_block.small {
-  flex: 0 0 360px;
-  box-sizing: border-box;
-}
-#about_this_site #about_site_image {
-  margin: 0;
-  width: 100%;
-}
-#about_this_site #about_site_image img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-
-#icons_full_block {
+/* ==========================================================================
+   KORTIT / CARDS TWIN CONTAINER (KORJATTU JA RESUKSI OPTIMOITU)
+   ========================================================================== */
+#cards_full_block {
   position: relative;
   background: #000 url(../images/bg_images/cyani_2.jpg) no-repeat center top fixed;
   background-size: cover;
 }
 
-a.icon_twin_container:link, a.icon_twin_container:visited {
+.cards_wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+  /* Kun ruutu kapenee tabletiksi (alle 768px), siirrytään 2 rinnakkain asetteluun */
+}
+@media (max-width: 768px) {
+  .cards_wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.cards_wrapper {
+  /* Kun mennään puhelimelle (alle 480px), laatikot pamahtavat nätisti 1 per rivi */
+}
+@media (max-width: 480px) {
+  .cards_wrapper {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}
+
+a.card_twin_container:link, a.card_twin_container:visited {
   background: #171718;
   border: 1px solid #242424;
   border-radius: 8px;
-  flex: 0 0 32%;
+  width: 100%;
+  display: flex;
   align-items: center;
   box-sizing: border-box;
   padding: 26px 20px 48px;
   position: relative;
   overflow: hidden;
   transition: background 0.3s ease;
+  /* Hienosäädetään vain paddingeja ruudun koon mukaan */
 }
-a.icon_twin_container:hover, a.icon_twin_container:active {
+@media (max-width: 768px) {
+  a.card_twin_container:link, a.card_twin_container:visited {
+    padding: 20px 15px 35px;
+  }
+}
+@media (max-width: 480px) {
+  a.card_twin_container:link, a.card_twin_container:visited {
+    padding: 16px 16px 24px;
+  }
+}
+a.card_twin_container:hover, a.card_twin_container:active {
   background: #252628;
   background: linear-gradient(45deg, rgb(37, 38, 40) 0%, rgb(89, 95, 99) 100%);
 }
 
-.icons_wrapper {
-  gap: 20px 0;
-}
-
-.icon_image_container {
+.card_image_container {
   flex-basis: 22%;
   box-sizing: border-box;
   position: relative;
@@ -649,7 +729,7 @@ a.icon_twin_container:hover, a.icon_twin_container:active {
   background-repeat: no-repeat;
   background-position: center;
 }
-.icon_image_container .icon_logo {
+.card_image_container .card_logo {
   width: 100%;
   display: block;
   height: auto;
@@ -660,20 +740,20 @@ a.icon_twin_container:hover, a.icon_twin_container:active {
   transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.45s ease;
 }
 
-a.icon_twin_container:hover .icon_logo {
+a.card_twin_container:hover .card_logo {
   transform: scale(2.6);
   opacity: 0;
 }
 
-.icon_text_container {
+.card_text_container {
   flex-basis: 64%;
   box-sizing: border-box;
   position: relative;
 }
-.icon_text_container p {
+.card_text_container p {
   margin: 0;
 }
-.icon_text_container p::after {
+.card_text_container p::after {
   content: "Visit official site";
   color: #d19d81;
   text-transform: uppercase;
@@ -687,7 +767,7 @@ a.icon_twin_container:hover .icon_logo {
   transition: border-color 0.3s ease;
 }
 
-a.icon_twin_container:hover .icon_text_container p::after {
+a.card_twin_container:hover .card_text_container p::after {
   border-bottom: 1px solid #d19d81;
 }
 
@@ -695,21 +775,21 @@ a.icon_twin_container:hover .icon_text_container p::after {
    GALLERY (The Optimized "Sexy Grid" Architecture)
    ========================================================================== */
 .full_block#gallery {
-  background: #000;
-  /* TÄMÄ ON SE TEIDÄN ISO KÄÄRE: */
+  background: #000000;
+  background: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgb(28, 38, 48) 100%);
 }
-.full_block#gallery .content_block#categories_wrap {
-  border: 1px solid red;
-  /* TÄMÄ ON SE SATEENTEKIJÄ: */
+.full_block#gallery .gallery_categories + .gallery_categories {
+  margin-top: 40px;
 }
-.full_block#gallery .content_block#categories_wrap .gallery_categories + .gallery_categories {
-  margin-top: 140px;
-  border: 2px solid lime;
+@media screen and (max-width: 480px) {
+  .full_block#gallery .gallery_categories + .gallery_categories {
+    margin-top: 20px;
+  }
 }
-.full_block#gallery .content_block#categories_wrap .gallery_categories h3 {
+.full_block#gallery .gallery_categories h3 {
   display: inline-block;
 }
-.full_block#gallery .content_block#categories_wrap .gallery_categories h3::after {
+.full_block#gallery .gallery_categories h3::after {
   content: "";
   display: inline-block;
   width: 50px;
@@ -721,20 +801,20 @@ a.icon_twin_container:hover .icon_text_container p::after {
   margin-left: 12px;
   transition: filter 0.3s ease;
 }
-[data-theme=dark] .full_block#gallery .content_block#categories_wrap .gallery_categories h3::after {
+[data-theme=dark] .full_block#gallery .gallery_categories h3::after {
   filter: invert(1) opacity(1);
 }
 
-.full_block#gallery .content_block#categories_wrap .gallery_categories h3.fractal_title::after {
-  background-image: url("../images/icons_sprites_patterns/icons/mandelbrot_set.svg");
+.full_block#gallery .gallery_categories h3.fractal_title::after {
+  background-image: url("../images/cards_sprites_patterns/cards/mandelbrot_set.svg");
   margin-top: -3px;
 }
-.full_block#gallery .content_block#categories_wrap .gallery_categories h3.photography_title::after {
-  background-image: url("../images/icons_sprites_patterns/icons/camera_filled.svg");
+.full_block#gallery .gallery_categories h3.photography_title::after {
+  background-image: url("../images/cards_sprites_patterns/cards/camera_filled.svg");
   margin-bottom: 2px;
 }
-.full_block#gallery .content_block#categories_wrap .gallery_categories h3.landfill_title::after {
-  background-image: url("../images/icons_sprites_patterns/icons/display.svg");
+.full_block#gallery .gallery_categories h3.landfill_title::after {
+  background-image: url("../images/cards_sprites_patterns/cards/display.svg");
   margin-bottom: 13px;
 }
 
@@ -747,12 +827,24 @@ a.icon_twin_container:hover .icon_text_container p::after {
   gap: 2px;
   margin: 25px 0;
 }
+@media screen and (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 4px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    margin: 15px 0;
+  }
+}
 .gallery-grid .lightbox-trigger {
   display: block;
   overflow: visible;
   position: relative;
   transition: transform 0.2s ease-in-out;
-  /* KUSTOMOITU TITLE-TEKSTI MUSTALLA TAUSTALLA */
 }
 .gallery-grid .lightbox-trigger::after {
   content: attr(title);
@@ -781,11 +873,13 @@ a.icon_twin_container:hover .icon_text_container p::after {
   object-fit: cover;
   transition: filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   border-radius: 8px;
-  /* KORJATTU: Ylimääräinen pilkku poistettu arvon 0.7 perästä! */
   filter: brightness(0.7) grayscale(1);
 }
-.gallery-grid .lightbox-trigger {
-  /* Hover-tila kun body.hasHover on käytössä */
+@media screen and (max-width: 480px) {
+  .gallery-grid .lightbox-trigger img {
+    filter: brightness(0.9) grayscale(0) !important;
+    height: 110px;
+  }
 }
 body.hasHover .gallery-grid .lightbox-trigger:hover {
   transform: scale(1.1);
@@ -796,7 +890,6 @@ body.hasHover .gallery-grid .lightbox-trigger:hover::after {
   transform: translate(-50%, -50%) scale(1);
 }
 body.hasHover .gallery-grid .lightbox-trigger:hover img {
-  /* KUVA HERÄÄ ELOON: Kirkastuu ja värit pamahtavat esiin */
   filter: brightness(1.1) grayscale(0);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 }
@@ -814,9 +907,6 @@ body.hasHover .gallery-grid .lightbox-trigger:hover img {
 }
 body.hasHover .gallery-grid .lightbox-trigger.is-visible:hover img {
   filter: brightness(1.1) grayscale(0) !important;
-}
-.gallery-grid {
-  /* 1. Aaltonen animaatio ensimmäisille 16 kuvalle, jotka näkyvät heti */
 }
 .gallery-grid .lightbox-trigger:not(.level-1):not(.level-2):nth-of-type(1) img {
   animation-delay: 0s;
@@ -866,9 +956,6 @@ body.hasHover .gallery-grid .lightbox-trigger.is-visible:hover img {
 .gallery-grid .lightbox-trigger:not(.level-1):not(.level-2):nth-of-type(16) img {
   animation-delay: 0.9s;
 }
-.gallery-grid {
-  /* 2. Aaltonen animaatio level-1 kuville (View More) */
-}
 .gallery-grid .lightbox-trigger.level-1.is-visible:nth-of-type(1) img {
   animation-delay: 0s;
 }
@@ -916,9 +1003,6 @@ body.hasHover .gallery-grid .lightbox-trigger.is-visible:hover img {
 }
 .gallery-grid .lightbox-trigger.level-1.is-visible:nth-of-type(16) img {
   animation-delay: 0.9s;
-}
-.gallery-grid {
-  /* 3. Aaltonen animaatio level-2 kuville (View Even More) */
 }
 .gallery-grid .lightbox-trigger.level-2.is-visible:nth-of-type(1) img {
   animation-delay: 0s;
@@ -974,24 +1058,17 @@ body.hasHover .gallery-grid .lightbox-trigger.is-visible:hover img {
   justify-content: center;
   align-items: center;
   gap: 15px;
-  margin: 30px 0;
   width: 100%;
 }
 
 /* ==========================================================================
-   GLOBAL LIGHTBOX (<dialog>)
-   ========================================================================== */
-/* ==========================================================================
-   POMMINVARMA TAUSTALUKITUS CSS:LLÄ
-   ========================================================================== */
+GLOBAL LIGHTBOX ()
+========================================================================== */
 body.lightbox-open {
   overflow: hidden !important;
-  touch-action: none; /* Estää taustasivun raahaamisen Safarissa kokonaan! */
+  touch-action: none;
 }
 
-/* ==========================================================================
-   GLOBAL LIGHTBOX (<dialog>) - KORJATTU SELAIMILLE
-   ========================================================================== */
 dialog#global-lightbox {
   margin: auto;
   padding: 0;
@@ -1102,7 +1179,7 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   }
 }
 /* ==========================================================================
-ACCORDION READ MORE (Haitari-artikkeli kiinni oletuksena)
+ACCORDION READ MORE
 ========================================================================== */
 .hidden_post {
   position: relative;
@@ -1648,6 +1725,7 @@ ACCORDION READ MORE (Haitari-artikkeli kiinni oletuksena)
   position: relative;
   padding-bottom: 4px;
   text-shadow: none !important;
+  text-decoration: none;
 }
 .main_footer .footer_links a::after {
   content: "";

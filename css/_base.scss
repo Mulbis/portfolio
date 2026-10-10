@@ -47,7 +47,7 @@ body {
 }
 
 /* ==========================================================================
-   TYPOGRAPHY
+   TYPOGRAPHY (With Inline Mobile Optimization)
    ========================================================================== */
 h1 {
   font-size: 4.55rem;
@@ -56,6 +56,12 @@ h1 {
   text-transform: uppercase;
   color: #fff;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+
+  /* UPOTETTU MOBIILI-KYSELY: */
+  @media screen and (max-width: $breakpoint-mobile) {
+    font-size: 2.5rem; // Puolitetaan jätti-otsikko puhelimelle
+    letter-spacing: 1px;
+  }
 }
 
 h2 {
@@ -73,6 +79,12 @@ h2 {
     height: 2px;
     background: linear-gradient(to right, $secondary_theme_color 0%, rgba(209, 157, 129, 0) 40%);
   }
+
+  /* UPOTETTU MOBIILI-KYSELY: */
+  @media screen and (max-width: $breakpoint-mobile) {
+    font-size: 2rem; // Sopusuhtainen koko mobiiliin
+    margin-top: 0;
+  }
 }
 
 h3 {
@@ -82,6 +94,12 @@ h3 {
   margin-top: -4px;
   margin-bottom: 15px;
   line-height: 1.1;
+
+  /* UPOTETTU MOBIILI-KYSELY: */
+  @media screen and (max-width: $breakpoint-mobile) {
+    font-size: 1.5rem; // Estetään sanojen katkeaminen
+    margin-top: 0;
+  }
 }
 
 h4 {
@@ -90,11 +108,24 @@ h4 {
   text-transform: uppercase;
   margin-top: 2rem;
   margin-bottom: 0.6rem;
+
+  /* UPOTETTU MOBIILI-KYSELY: */
+  @media screen and (max-width: $breakpoint-mobile) {
+    font-size: 1.15rem;
+    margin-top: 1.5rem;
+  }
 }
 
 p {
   margin-top: 0;
   margin-bottom: 1.1rem;
+  line-height: 1.6;
+
+  /* UPOTETTU MOBIILI-KYSELY: */
+  @media screen and (max-width: $breakpoint-mobile) {
+    font-size: 0.95rem; // Pidetään luettavana (n. 15px)
+    line-height: 1.5;
+  }
 }
 
 .ingress {
@@ -102,18 +133,29 @@ p {
   font-weight: 500;
   line-height: 1.5;
   color: inherit;
+
+  /* UPOTETTU MOBIILI-KYSELY: */
+  @media screen and (max-width: $breakpoint-mobile) {
+    font-size: 1.1rem; // Tiputetaan aavistus, ettei jyrää liikaa puhelimessa
+  }
 }
 
 p.date {
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: $primary_theme_color;
-  margin-bottom: 1.3rem;
   line-height: 0.1;
   padding-bottom: 1rem;
+  margin-top: -3px;
 
   &::before {
     content: "Edited ";
+  }
+
+  /* UPOTETTU MOBIILI-KYSELY: */
+  @media screen and (max-width: $breakpoint-mobile) {
+    line-height: 1; // Safarille ja Chromelle vakaampi line-height mobiilissa
+    padding-bottom: 0.5rem;
   }
 }
 
@@ -125,6 +167,11 @@ p.date {
     font-size: 5.25rem;
     font-weight: 700;
     line-height: 1.2;
+
+    /* UPOTETTU MOBIILI-KYSELY: */
+    @media screen and (max-width: $breakpoint-mobile) {
+      font-size: 2.8rem; // Älyttömän suuri 5.25rem loikkaa muuten ruudulta ulos
+    }
   }
 
   &.text_shadow {
@@ -140,6 +187,7 @@ figcaption,
   padding: 10px 0;
   color: inherit;
 }
+
 
 /* ==========================================================================
    UTILITY CLASSES (Aputyylit)
