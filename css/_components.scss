@@ -248,39 +248,37 @@ ul.basic_list li:before {
 
 
 /* ==========================================================================
-   KORTIT / CARDS TWIN CONTAINER (KORJATTU JA RESUKSI OPTIMOITU)
+   CARDS / LINKKIKORTIT (Päivitetty Senior-arkkitehtuuri)
    ========================================================================== */
-#cards_full_block {
+#cards_full_block { // Päivitetty: icons -> cards
   position: relative;
   background: #000 url(../images/bg_images/cyani_2.jpg) no-repeat center top fixed;
   background-size: cover;
 }
 
-.cards_wrapper {
+.cards_wrapper { // Päivitetty: icons -> cards
   display: grid;
-  grid-template-columns: repeat(3, 1fr); // Aina oletuksena 3 täysin tasalevyistä saraketta desktopilla
-  gap: 20px; 
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   width: 100%;
   
-  /* Kun ruutu kapenee tabletiksi (alle 768px), siirrytään 2 rinnakkain asetteluun */
-  @media (max-width: $breakpoint-tablet) {
+  @media (max-width: $breakpoint-desktop-mini) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  /* Kun mennään puhelimelle (alle 480px), laatikot pamahtavat nätisti 1 per rivi */
   @media (max-width: $breakpoint-mobile) {
     grid-template-columns: 1fr;
     gap: 15px;
   }
 }
 
-a.card_twin_container {
+a.card_twin_container { // Päivitetty: icon -> card
 
   &:link,
   &:visited {
     @include black_box;
-    width: 100%; // Ottaa automaattisesti grid-sarakkeen täyden leveyden
-    display: flex; 
+    width: 100%;
+    display: flex;
     align-items: center;
     box-sizing: border-box;
     padding: 26px 20px 48px;
@@ -288,7 +286,6 @@ a.card_twin_container {
     overflow: hidden;
     transition: background 0.3s ease;
 
-    /* Hienosäädetään vain paddingeja ruudun koon mukaan */
     @media (max-width: $breakpoint-tablet) {
       padding: 20px 15px 35px;
     }
@@ -298,14 +295,15 @@ a.card_twin_container {
     }
   }
 
-  &:hover,
+  // HOVER VAIN TIETOKONEELLE (Tappaa mobiili-hoverin kerralla!)
+  body.hasHover &:hover,
   &:active {
     background: #252628;
     background: linear-gradient(45deg, rgba(37, 38, 40, 1) 0%, rgba(89, 95, 99, 1) 100%);
   }
 }
 
-.card_image_container {
+.card_image_container { // Päivitetty: icon -> card
   flex-basis: 22%;
   box-sizing: border-box;
   position: relative;
@@ -317,7 +315,12 @@ a.card_twin_container {
   background-repeat: no-repeat;
   background-position: center;
 
-  .card_logo {
+  @media (max-width: $breakpoint-mobile) {
+    flex-basis: 25%; // Varmistetaan etteivät kuvakkeet mene päin skuttaa mobiilissa!
+    min-height: 50px;
+  }
+
+  .card_logo { // Päivitetty: icon -> card
     width: 100%;
     display: block;
     height: auto;
@@ -325,19 +328,30 @@ a.card_twin_container {
     z-index: 2;
     opacity: 1;
     transform: scale(1);
+    
+    // GHOSTING-SUOJAUS: Pakotetaan näytönohjain ajamaan skaalaus omalla tasollaan
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform, opacity;
+    
     transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.45s ease;
   }
 }
 
-a.card_twin_container:hover .card_logo {
+// HOVER-ANIMAATIO AKTIVOIDUVA VAIN TIETOKONEELLE (Ghosting-vapaa skaalaus!)
+body.hasHover a.card_twin_container:hover .card_logo {
   transform: scale(2.6);
   opacity: 0;
 }
 
-.card_text_container {
+.card_text_container { // Päivitetty: icon -> card
   flex-basis: 64%;
   box-sizing: border-box;
   position: relative;
+
+  @media (max-width: $breakpoint-mobile) {
+    flex-basis: 70%;
+  }
 
   p {
     margin: 0;
@@ -358,7 +372,8 @@ a.card_twin_container:hover .card_logo {
   }
 }
 
-a.card_twin_container:hover .card_text_container p::after {
+// LINKKIVIIVA AKTIVOIDUVA VAIN TIETOKONEELLE:
+body.hasHover a.card_twin_container:hover .card_text_container p::after {
   border-bottom: 1px solid $primary_theme_color;
 }
 

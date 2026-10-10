@@ -738,7 +738,7 @@ ul.basic_list li:before {
 }
 
 /* ==========================================================================
-   KORTIT / CARDS TWIN CONTAINER (KORJATTU JA RESUKSI OPTIMOITU)
+   CARDS / LINKKIKORTIT (Päivitetty Senior-arkkitehtuuri)
    ========================================================================== */
 #cards_full_block {
   position: relative;
@@ -751,15 +751,11 @@ ul.basic_list li:before {
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   width: 100%;
-  /* Kun ruutu kapenee tabletiksi (alle 768px), siirrytään 2 rinnakkain asetteluun */
 }
-@media (max-width: 768px) {
+@media (max-width: 960px) {
   .cards_wrapper {
     grid-template-columns: repeat(2, 1fr);
   }
-}
-.cards_wrapper {
-  /* Kun mennään puhelimelle (alle 480px), laatikot pamahtavat nätisti 1 per rivi */
 }
 @media (max-width: 480px) {
   .cards_wrapper {
@@ -780,7 +776,6 @@ a.card_twin_container:link, a.card_twin_container:visited {
   position: relative;
   overflow: hidden;
   transition: background 0.3s ease;
-  /* Hienosäädetään vain paddingeja ruudun koon mukaan */
 }
 @media (max-width: 768px) {
   a.card_twin_container:link, a.card_twin_container:visited {
@@ -792,7 +787,7 @@ a.card_twin_container:link, a.card_twin_container:visited {
     padding: 16px 16px 24px;
   }
 }
-a.card_twin_container:hover, a.card_twin_container:active {
+body.hasHover a.card_twin_container:hover, a.card_twin_container:active {
   background: #252628;
   background: linear-gradient(45deg, rgb(37, 38, 40) 0%, rgb(89, 95, 99) 100%);
 }
@@ -809,6 +804,12 @@ a.card_twin_container:hover, a.card_twin_container:active {
   background-repeat: no-repeat;
   background-position: center;
 }
+@media (max-width: 480px) {
+  .card_image_container {
+    flex-basis: 25%;
+    min-height: 50px;
+  }
+}
 .card_image_container .card_logo {
   width: 100%;
   display: block;
@@ -817,10 +818,13 @@ a.card_twin_container:hover, a.card_twin_container:active {
   z-index: 2;
   opacity: 1;
   transform: scale(1);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform, opacity;
   transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.45s ease;
 }
 
-a.card_twin_container:hover .card_logo {
+body.hasHover a.card_twin_container:hover .card_logo {
   transform: scale(2.6);
   opacity: 0;
 }
@@ -829,6 +833,11 @@ a.card_twin_container:hover .card_logo {
   flex-basis: 64%;
   box-sizing: border-box;
   position: relative;
+}
+@media (max-width: 480px) {
+  .card_text_container {
+    flex-basis: 70%;
+  }
 }
 .card_text_container p {
   margin: 0;
@@ -847,7 +856,7 @@ a.card_twin_container:hover .card_logo {
   transition: border-color 0.3s ease;
 }
 
-a.card_twin_container:hover .card_text_container p::after {
+body.hasHover a.card_twin_container:hover .card_text_container p::after {
   border-bottom: 1px solid #d19d81;
 }
 
