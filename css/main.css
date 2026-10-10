@@ -738,7 +738,7 @@ ul.basic_list li:before {
 }
 
 /* ==========================================================================
-   CARDS / LINKKIKORTIT (Päivitetty Senior-arkkitehtuuri)
+   KORTIT / CARDS TWIN CONTAINER (KORJATTU JA RESUKSI OPTIMOITU)
    ========================================================================== */
 #cards_full_block {
   position: relative;
@@ -751,11 +751,15 @@ ul.basic_list li:before {
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   width: 100%;
+  /* Kun ruutu kapenee tabletiksi (alle 768px), siirrytään 2 rinnakkain asetteluun */
 }
-@media (max-width: 960px) {
+@media (max-width: 768px) {
   .cards_wrapper {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+.cards_wrapper {
+  /* Kun mennään puhelimelle (alle 480px), laatikot pamahtavat nätisti 1 per rivi */
 }
 @media (max-width: 480px) {
   .cards_wrapper {
@@ -776,20 +780,40 @@ a.card_twin_container:link, a.card_twin_container:visited {
   position: relative;
   overflow: hidden;
   transition: background 0.3s ease;
+  /* Hienosäädetään vain paddingeja ruudun koon mukaan */
 }
 @media (max-width: 768px) {
   a.card_twin_container:link, a.card_twin_container:visited {
     padding: 20px 15px 35px;
   }
 }
+a.card_twin_container:link, a.card_twin_container:visited {
+  /* KÄÄNNETÄÄN KORTIN SISÄLTÖ ALLEKKAIN PUHELIMELLA: */
+}
 @media (max-width: 480px) {
   a.card_twin_container:link, a.card_twin_container:visited {
-    padding: 16px 16px 24px;
+    flex-direction: column !important;
+    align-items: center;
+    text-align: center;
+    padding: 24px 16px 32px;
   }
 }
-body.hasHover a.card_twin_container:hover, a.card_twin_container:active {
+a.card_twin_container:hover, a.card_twin_container:active {
   background: #252628;
   background: linear-gradient(45deg, rgb(37, 38, 40) 0%, rgb(89, 95, 99) 100%);
+}
+a.card_twin_container {
+  /* 🚀 PUHDAS MOBIILI RESET & VÄLÄHDYS-ESTO */
+}
+@media screen and (max-width: 480px) {
+  a.card_twin_container {
+    -webkit-tap-highlight-color: transparent;
+  }
+  a.card_twin_container, a.card_twin_container:link, a.card_twin_container:visited, a.card_twin_container:hover, a.card_twin_container:active {
+    background: #121314 !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
 }
 
 .card_image_container {
@@ -803,11 +827,14 @@ body.hasHover a.card_twin_container:hover, a.card_twin_container:active {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  /* Hienosäätö mobiiliin, kun laatikko kääntyy allekkain */
 }
 @media (max-width: 480px) {
   .card_image_container {
-    flex-basis: 25%;
-    min-height: 50px;
+    flex-basis: auto !important;
+    width: 60px;
+    min-height: auto;
+    margin-bottom: 16px;
   }
 }
 .card_image_container .card_logo {
@@ -836,7 +863,11 @@ body.hasHover a.card_twin_container:hover .card_logo {
 }
 @media (max-width: 480px) {
   .card_text_container {
-    flex-basis: 70%;
+    flex-basis: auto !important;
+    width: 100%;
+  }
+  .card_text_container p {
+    padding-bottom: 20px;
   }
 }
 .card_text_container p {
@@ -854,6 +885,14 @@ body.hasHover a.card_twin_container:hover .card_logo {
   left: 0;
   border-bottom: 1px solid transparent;
   transition: border-color 0.3s ease;
+}
+@media (max-width: 480px) {
+  .card_text_container p::after {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -5px;
+    white-space: nowrap;
+  }
 }
 
 body.hasHover a.card_twin_container:hover .card_text_container p::after {
