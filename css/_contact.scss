@@ -64,14 +64,17 @@
 /* ==========================================================================
    MAIN FOOTERZ 
    ========================================================================== */
+/* ==========================================================================
+   MAIN FOOTERZ 
+   ========================================================================== */
 .main_footer {
   width: 100%;
   padding: 50px 0;
-  background: linear-gradient(180deg, rgba(20, 20, 20, 0.8) 0%, rgba(0, 0, 0, 0.95) 100%) !important;
-  backdrop-filter: blur(10px) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
-  color: #8e9296 !important;
+  background: linear-gradient(180deg, rgba(20, 20, 20, 0.8) 0%, rgba(0, 0, 0, 0.95) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #8e9296;
   font-family: $primary_font_stack;
   font-size: 0.9rem;
 
@@ -79,6 +82,16 @@
     margin: 0; 
   }
 
+  // 🚀 Upotettu ja mixinillä optimoitu osio
+  .content_block.flex {
+    @include respond-to($breakpoint-tablet) {
+      flex-direction: column;
+      text-align: center;
+      gap: 20px;
+    }
+  } // <-- TÄMÄ SULKEE VAIN .content_block.flex -osion, kuten pitääkin!
+
+  // 🚀 Nestattu siististi .main_footerin sisään, tuplarivit poistettu
   .footer_links {
     display: flex; 
     gap: 20px; 
@@ -88,13 +101,13 @@
     
     a {
       &, &:link, &:visited {
-        color: var(--theme-color) !important;
+        color: var(--theme-color);
         text-transform: uppercase;
         font-weight: 500;
         letter-spacing: 1px;
         position: relative;
         padding-bottom: 4px;
-        text-shadow: none !important;
+        text-shadow: none;
         text-decoration: none;
       }
       
@@ -110,19 +123,11 @@
       }
       
       body.hasHover &:hover {
-        color: #fff !important;
+        color: #fff;
         &::after { 
           width: 100%; 
         }
       }
     }
   }
-
-  @media (max-width: 768px) {
-    .content_block.flex {
-      flex-direction: column;
-      text-align: center;
-      gap: 20px;
-    }
-  }
-}
+} // <-- TÄMÄ SULKEE KOKO .main_footerin aivan loppuun!

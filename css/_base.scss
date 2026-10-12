@@ -7,11 +7,12 @@
   outline: none;
   border: 0;
   box-sizing: border-box;
+}
 
-  &::selection {
-    color: $primary_theme_color;
-    background: $dark_color;
-  }
+// Kevyt ja tehokas globaali tekstinvalinnan väri
+::selection {
+  color: $primary_theme_color;
+  background: $dark_color;
 }
 
 html {
@@ -28,23 +29,16 @@ body {
   color: var(--text-color);
   line-height: 1.6;
   transition: background-color 0.3s ease, color 0.3s ease;
-
 }
 
-// Estetään osioita jäämästä navigaation alle piiloon klikatessa
-// Estetään osioita jäämästä navigaation alle piiloon klikatessa
+// Estetään osioita jäämästä kiinteän navigaation alle piiloon ankkurilinkkiä klikatessa
 #about,
 #gallery,
 #web,
 #contact {
-  scroll-margin-top: 44px;
-  /* Navbarin korkeus */
+  scroll-margin-top: 44px; /* Navbarin korkeus */
 }
 
-
-#home {
-  scroll-margin-top: 0;
-}
 
 /* ==========================================================================
    TYPOGRAPHY (With Inline Mobile Optimization)
@@ -65,7 +59,7 @@ h1 {
 }
 
 h2 {
-  font-size: 3.3rem;
+  font-size: 3.7rem;
   font-weight: 700;
   text-transform: uppercase;
   margin-top: -6px;
@@ -88,7 +82,7 @@ h2 {
 }
 
 h3 {
-  font-size: 2.4rem;
+  font-size: 2.7rem;
   font-weight: 600;
   text-transform: uppercase;
   margin-top: -4px;
@@ -116,31 +110,31 @@ h4 {
   }
 }
 
-
 /* ==========================================================================
    GLOBAL LINKS (Peruslinkkien tyylit)
    ========================================================================== */
-a {
 
-  // 1. TÄMÄ HOITAA PERUSTILAN (Sekä klikkaamattomat linkit, vieraillut että yleisen tilan)
+a {
   &,
   &:link,
   &:visited {
-    color: $primary_theme_color; // Teidän oma teemaväri oletuksena
-    text-decoration: none; // Korjattu kirjoitusvirhe: poistetaan ruma alleviivaus
-    transition: color 0.2s ease; // Tekee hover-värivaihdosta pehmeän ja tyylikkään!
+    display: inline-block; // Antaa elementille vakaan pohjan transform-efektiä varten
+    color: $primary_theme_color;
+    text-decoration: none; 
+    transition: color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease; // Pehmennetään myös skaalaus ja varjo
     -webkit-text-stroke: 1px rgba(0, 0, 0, 0.3);
+    will-change: transform; // Kertoo selaimelle etukäteen, että tätä tullaan skaalaamaan (estää blurraantumisen)
   }
 
-  // 2. HOVER- JA AKTIIVINEN TILA (Kun hiiri on päällä tai linkkiä painetaan)
   &:hover,
   &:active {
-    color: $secondary_theme_color; // Vaihdetaan väri toiseen teemaväriin lennosta
-    box-shadow: 10px 10px 80px #000;
-    transform: scale(102%);
-
+    color: $secondary_theme_color;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); // Kevyen tyylikäs varjo, 10px raskaat varjot voivat peittää tekstirivejä alle
+    transform: scale(1.02); // Sinun haluamasi 102% efekti (Sass-muodossa 1.02)
   }
 }
+
+
 
 
 p {
@@ -219,35 +213,27 @@ figcaption,
 /* ==========================================================================
    UTILITY CLASSES (Aputyylit)
    ========================================================================== */
-.subheading {
-  font-weight: 500;
-  font-size: 1.3rem;
-  margin-bottom: 12px;
-}
 
-.medium {
-  font-size: 1.25rem;
-}
 
-.small {
+
+
+.small_text {
   font-size: 0.8rem;
-  line-height: 1.4;
+  line-height: 1.2rem;
 }
 
-.smaller {
-  font-size: 0.7rem;
-}
 
-.normal {
+
+.normal_text {
   text-transform: none;
   font-weight: 400;
 }
 
-.bold {
+.bold_text {
   font-weight: 500;
 }
 
-.boldest {
+.boldest_text {
   font-weight: 700;
 }
 
@@ -266,6 +252,11 @@ figcaption,
 
 .text_center {
   text-align: center;
+}
+
+.text_justify{
+
+  text-align: justify;
 }
 
 .left {
@@ -332,9 +323,11 @@ figcaption,
 }
 
 .bg_darker {
-  background-color: $darker_color !important;
+
   color: $light_color;
   scrollbar-color: #605f5f #1a1c26;
+background: #121212;
+background: radial-gradient(circle, rgba(0, 0, 0, 1) 0%, rgba(36, 33, 33, 1) 100%);
 }
 
 hr {

@@ -43,15 +43,6 @@
   margin-bottom: 2rem;
 }
 
-/* DECORATIVE SHOOTING STARS */
-
-.relative_star_wrapper {
-
-  position: relative;
-  background: #000;
-  width: $hero_height;
-  width: 100%;
-}
 
 /* ==========================================================================
    SHOOTING STARS (Täydellisesti rytmitetty ja suojattu)
@@ -127,20 +118,20 @@
 
 &:nth-child(5) {
     left: 2vw;   // Ruudun oikea reuna
-    top: 10px;
+    top: -10px;
     animation: shootingstars 60s linear infinite;
     animation-delay: 11s; // Lähtee omalla vuorollaan taivaalle
 }
 
-
 }
-
-
 
 /* ==========================================================================
    WEB & HARDWARE SHOWCASE STYLES
    ========================================================================== */
-#web_section_quote {
+
+
+/* QUOTE SECTION BEFORE ACTUAL WEBBIE */
+   #web_section_quote {
   text-align: center;
   width: 100%;
   background: #000 url(../images/bg_images/web_site_collage_4.jpg) no-repeat center center fixed;
@@ -154,29 +145,66 @@
 .quote_block {
   background: rgba(0, 0, 0, 0.2);
   padding: 76px 4%;
-  width: 100%;
   text-align: center;
 }
 
+
+/* STARTING ACTUAL ACTUAL WEBBIE */
+
 .full_block#web {
-  position: relative;
-  background-image: url(../images/bg_images/my_asterisk.svg);
-  background-repeat: no-repeat;
-  background-size: 50%;
-  background-position: -10% 50%;
-  background-attachment: fixed;
+
+  background: #000 url(../images/bg_images/web_site_collage_4.jpg) no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+
+
+  &.full_block#web::before {
+
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, .9);
+    filter: contrast(2);
+  }
+
 }
+
+/* NICE EXTRA FULL WIDTH WRAPPERSON AROUND HARDARE */ 
+#hardware_full.full_block{
+  padding: 0;
+  
+
+}
+
 
 .hardware-showcase-container {
   display: flex;
   flex-direction: column;
-  padding: 30px;
-  background: #FFF;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  margin: 30px 0;
-  width: 100%;
-  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+  padding: 20px 0 10px;
+  color: #fff;
+
+
+
+
+  
+  /*
+  box-shadow: -1px -9px 115px 0px rgba(0,0,0,0.58) inset;
+-webkit-box-shadow: -1px -9px 115px 0px rgba(0,0,0,0.58) inset;
+-moz-box-shadow: -1px -9px 115px 0px rgba(0,0,0,0.58) inset;
+padding: 40px 0 20px;
+*/
+
+
+
+  @include respond-to($breakpoint-mobile) {
+    padding: 15px; // Puolitetaan sisäreunuksen tila, jolloin laitteille jää enemmän tilaa loistaa puhelimessa!
+    margin: 15px 0;
+  }
 
   .hardware-device-row {
     display: flex;
@@ -189,7 +217,6 @@
 
   .hardware_info_wrapper {
     width: 100%;
-    padding: 15px;
     text-align: center;
   }
 

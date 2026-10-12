@@ -39,24 +39,37 @@ document.addEventListener("DOMContentLoaded", () => {
       const currentTitle = trigger.getAttribute("title") || "";
 
       if (groupName) {
-        currentGroupItems = Array.from(document.querySelectorAll(`.lightbox-trigger[rel="${groupName}"]`));
+        // 🚀 KORJATTU: Haetaan kaikki ryhmän kuvat, mutta suodatetaan mukaan VAIN ne, jotka ovat okei ja näkyvissä!
+        const allInGroup = Array.from(document.querySelectorAll(`.lightbox-trigger[rel="${groupName}"]`));
+        
+        currentGroupItems = allInGroup.filter(item => {
+          const isLevel1 = item.classList.contains('level-1');
+          const isLevel2 = item.classList.contains('level-2');
+          const isVisible = item.classList.contains('is-visible');
+          
+          // Jos kuva ei ole taso 1 tai 2, se on oletuksena näkyvissä. Jos se on taso, sen täytyy olla .is-visible
+          return (!isLevel1 && !isLevel2) || isVisible;
+        });
+
         currentIndex = currentGroupItems.indexOf(trigger);
       } else {
         currentGroupItems = [trigger];
         currentIndex = 0;
-      }
+      } // <-- Muista tämä sulku!
 
+      // 🔽 TÄSTÄ JATKUU SE AVUKSEN LOGIIKKA, JOKA AVAA IKKUNAN RUUDULLE 🔽
       updateLightboxContent(currentSrc, currentTitle);
       
       if (lightbox) {
         lightbox.showModal();
         updateNavButtons();
         
-        // KORJATTU: Lisätään siisti luokka bodille rullauksen estoa varten
+        // Lisätään siisti luokka bodille rullauksen estoa varten puhelimella
         document.body.classList.add("lightbox-open");
       }
     });
   });
+
 
   function updateLightboxContent(src, title) {
     if (lightboxImg) lightboxImg.setAttribute("src", src);
@@ -218,8 +231,20 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     };
 
-    window.addEventListener('scroll', updateScrollspy, { passive: true });
-    updateScrollspy();
+        // 🚀 KORJATTU: Luodaan kevyt lukko muistiin, joka estää turhat tuplalaskennat
+    let scrollTimeout;
+
+    window.addEventListener('scroll', () => {
+      if (!scrollTimeout) {
+        scrollTimeout = requestAnimationFrame(() => {
+          updateScrollspy(); // Ajetaan raskas laskenta vain kerran ruudunpäivityksen aikana
+          scrollTimeout = null; // Vapautetaan lukko seuraavaa ruutua varten
+        });
+      }
+    }, { passive: true });
+
+    updateScrollspy(); // Ajetaan kerran heti latauksessa, jotta oikea linkki aktivoituu heti
+
 
     // Reittiä korjaava opastaja kaikille ankkurilinkeille (mukaan lukien Hero)
     scrollLinks.forEach(link => {
@@ -305,24 +330,32 @@ level2Items.forEach(item => item.classList.add('is-visible'));
 btn2.classList.add('is-hidden');
 });
 }
-/* ==========================================================================
-7. ARTIKKELIN "READ MORE" FUNKTIO
-========================================================================== */
-const articleButtons = document.querySelectorAll('.toggle-article-btn');
-articleButtons.forEach(btn => {
-btn.addEventListener('click', () => {
-const content = btn.previousElementSibling;
-const postParent = btn.closest('.hidden_post');
-if (content && content.classList.contains('article-body')) {
-content.classList.toggle('is-open');
-if (content.classList.contains('is-open')) {
-btn.textContent = 'Read Less';
-if (postParent) postParent.classList.add('has-opened');
-} else {
-btn.textContent = 'Read More';
-if (postParent) postParent.classList.remove('has-opened');
-}
-}
-});
-});
+  /* ==========================================================================
+     7. ARTIKKELIN "READ MORE" FUNKTIO (Synkronoidun pehmeä 0.5s haitari)
+     ========================================================================== */
+  const articleButtons = document.querySelectorAll('.toggle-article-btn');
+  
+  articleButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const content = btn.previousElementSibling;
+      const postParent = btn.closest(".hidden_post");
+      
+      if (content && content.classList.contains("article-body")) {
+        content.classList.toggle("is-open");
+        
+        if (content.classList.contains("is-open")) {
+          btn.textContent = "Read Less";
+          if (postParent) postParent.classList.add("has-opened");
+        } else {
+          // 🚀 KORJATTU: Viivästetään tekstin vaihtumista takaisin, kunnes haitari on rullannut melkein kiinni!
+          setTimeout(() => {
+            btn.textContent = "Read More";
+          }, 550); // 350ms on täydellinen ajoitus 0.5s animaation kanssa
+          
+          if (postParent) postParent.classList.remove("has-opened");
+        }
+      }
+    });
+  });
+
 });

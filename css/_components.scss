@@ -1,14 +1,12 @@
 /* ==========================================================================
-   BUTTONS (Senior-versio)
+   BUTTONS (Senior-versio - Optimoitu ja suojattu globaaleilta linkeiltä)
    ========================================================================== */
-.basic_button {
 
-  &,
-  &:link,
-  &:visited {
+.basic_button {
+  &, &:link, &:visited {
     display: inline-block;
     background-color: $secondary_theme_color;
-    color: #fff;
+    color: #fff !important; 
     padding: 8px 18px;
     font-size: 0.85rem;
     margin: 6px 0;
@@ -23,28 +21,30 @@
     animation: text-focus-in .5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
   }
 
-  &:hover,
+  // 🚀 AKTIVOITUU VAIN TIETOKONEELLA (Mobiilissa painike ei jää jumiin värin tai siirtymän osalta!)
+  @media (hover: hover) {
+    &:hover {
+      background-color: $primary_theme_color;
+      color: #fff !important;
+      transform: translateY(-1px);
+      box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.6);
+    }
+  }
+
+  // Aktiivinen tila painettaessa toimii edelleen kaikilla laitteilla salamannopeasti
   &:active {
     background-color: $primary_theme_color;
-    transform: translateY(-1px);
-    box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.6);
+    color: #fff !important;
   }
 
   &.btn_hero {
-
-    &,
-    &:link,
-    &:visited {
-      padding: 10px 18px 8px;
-      font-size: 0.95rem;
-      animation: text-focus-in 2s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
-    }
+    padding: 10px 18px 8px;
+    font-size: 0.95rem;
+    animation: text-focus-in 2s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
   }
 }
 
-.is-hidden {
-  display: none !important;
-}
+
 
 /* ==========================================================================
    NAVIGATION MENU
@@ -98,6 +98,8 @@ ul.navigation_list {
       font-size: .9rem;
       box-shadow: 0 0px 0 var(--theme-color);
       transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+      font-weight: 500;
+
 
       &:hover {
         color: #fff;
@@ -167,48 +169,47 @@ ul.basic_list li:before {
 }
 
 
-
 /* ==========================================================================
    ABOUT-OSIOIDEN RESPONSIVISUUS (Erotettu ja turvattu arkkitehtuuri)
    ========================================================================== */
+
+
 #about_me, 
 #about_this_site {
   
   .flex.between {
 
-    @media screen and (max-width: $breakpoint-tablet) {
+    @media screen and (max-width: $breakpoint-oldschool) {
       flex-direction: column !important;
       align-items: center;
       text-align: center;
       gap: 25px; 
     }
 
-    /* Pieni sarake (Kuva / Avatar) */
-    .half_block.col_small {
-      flex: 0 0 24%;
-     border:1px solid lime;
 
-      @media screen and (max-width: $breakpoint-tablet) {
-        flex-basis: 100% !important;
-        max-width: 320px; 
-        width: 100%;
-        
-      }
+
+        /* Pieni sarake (Kuva / Avatar) */
+    .half_block.col_small {
+      display: flex;
+      flex: 0 0 24%;
+      flex-direction: column;
+      justify-content: center;
+    
+    
     }
 
     /* Iso sarake (Tekstit ja taidot) */
     .half_block.col_big {
+      display: flex;
       flex: 0 0 74%;
-      border:1px solid coral;
-     
+      flex-direction: column;
+      justify-content: center;
 
-      @media screen and (max-width: $breakpoint-tablet) {
-        flex-basis: 100% !important;
-        width: 100%;
-      }
+    }
+
+
     }
   }
-}
 
 /* ==========================================================================
    KUVIEN UNIikit TYYLIT (Nyt ne eivät voi enää ikinä tapella keskenään!)
@@ -245,8 +246,6 @@ ul.basic_list li:before {
   }
 }
 
-
-
 /* ==========================================================================
    KORTIT / CARDS TWIN CONTAINER (KORJATTU JA RESUKSI OPTIMOITU)
    ========================================================================== */
@@ -274,55 +273,40 @@ ul.basic_list li:before {
   }
 }
 
+/* ==========================================================================
+   KORTIT / CARDS TWIN CONTAINER (Kuvat ja Zoom-efekti korjattu!)
+   ========================================================================== */
 a.card_twin_container {
+  @include black_box;
+  width: 100%;
+  display: flex; 
+  align-items: stretch; // 🚀 Muutetaan stretchiksi, jolloin sarakkeet ovat aina tasan saman korkuisia!
+  box-sizing: border-box;
+  padding: 26px 20px 26px; // Palautetaan normaali pohjapadding
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s ease;
 
-  &:link,
-  &:visited {
-    @include black_box;
-    width: 100%; // Ottaa automaattisesti grid-sarakkeen täyden leveyden
-    display: flex; 
+  @media (hover: hover) {
+    &:hover {
+      background: #252628;
+      background: linear-gradient(45deg, rgba(37, 38, 40, 1) 0%, rgba(89, 95, 99, 1) 100%);
+    }
+  }
+
+  @include respond-to($breakpoint-tablet) {
+    padding: 20px 15px;
+  }
+
+  @include respond-to($breakpoint-mobile) {
+    flex-direction: column !important;
     align-items: center;
-    box-sizing: border-box;
-    padding: 26px 20px 48px;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.3s ease;
+    text-align: center;
+    padding: 24px 16px 32px;
+    -webkit-tap-highlight-color: transparent;
 
-    /* Hienosäädetään vain paddingeja ruudun koon mukaan */
-    @media (max-width: $breakpoint-tablet) {
-      padding: 20px 15px 35px;
-    }
-
-    /* KÄÄNNETÄÄN KORTIN SISÄLTÖ ALLEKKAIN PUHELIMELLA: */
-    // Tämä estää kuvia puskemasta tekstien päälle kapeilla ruuduilla!
-    @media (max-width: $breakpoint-mobile) {
-      flex-direction: column !important;
-      align-items: center;
-      text-align: center;
-      padding: 24px 16px 32px;
-    }
-  }
-
-  // Tämä hoitaa tietokoneen hover- ja aktiivitilat
-  &:hover,
-  &:active {
-    background: #252628;
-    background: linear-gradient(45deg, rgba(37, 38, 40, 1) 0%, rgba(89, 95, 99, 1) 100%);
-  }
-
-  /* 🚀 PUHDAS MOBIILI RESET & VÄLÄHDYS-ESTO */
-  @media screen and (max-width: $breakpoint-mobile) {
-    -webkit-tap-highlight-color: transparent; // Tapetaan se selaimen oma ruma harmaa välähdys
-
-    // Jyrätään kaikki tilat pysymään täysin vakaina ja tasaisina puhelimessa
-    &,
-    &:link,
-    &:visited,
-    &:hover,
-    &:active {
-      background: #121314 !important; // Pakotetaan kiinteä tumma tausta, ei välähdyksiä!
-      transform: none !important;
-      box-shadow: none !important;
+    &, &:link, &:visited, &:hover, &:active {
+      background: #121314 !important;
     }
   }
 }
@@ -339,14 +323,6 @@ a.card_twin_container {
   background-repeat: no-repeat;
   background-position: center;
 
-  /* Hienosäätö mobiiliin, kun laatikko kääntyy allekkain */
-  @media (max-width: $breakpoint-mobile) {
-    flex-basis: auto !important;
-    width: 60px;
-    min-height: auto;
-    margin-bottom: 16px; // Siisti väli logon ja sen alle tulevan tekstin väliin
-  }
-
   .card_logo {
     width: 100%;
     display: block;
@@ -355,64 +331,72 @@ a.card_twin_container {
     z-index: 2;
     opacity: 1;
     transform: scale(1);
-    
-    // Suojaus ghostingia vastaan skaalauksessa
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     will-change: transform, opacity;
-    
     transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.45s ease;
+  }
+
+  @include respond-to($breakpoint-mobile) {
+    flex-basis: auto !important;
+    width: 60px;
+    min-height: auto;
+    margin-bottom: 16px;
   }
 }
 
-// 🚀 ANIMAATIO VAIN KUN BODYLLA ON HIIRI (Estää mobiilisotkut)
+// 🌠 PALAUTETTU SINUN ALKUPERÄINEN UPEA ZOOM-EFEKTI:
 body.hasHover a.card_twin_container:hover .card_logo {
   transform: scale(2.6);
   opacity: 0;
 }
 
+/* ==========================================================================
+   TEKSTIKONTTI (Linkki ankkuroitu täydellisesti pohjaan ilman bugia)
+   ========================================================================== */
 .card_text_container {
   flex-basis: 64%;
   box-sizing: border-box;
   position: relative;
-
-  @media (max-width: $breakpoint-mobile) {
-    flex-basis: auto !important;
-    width: 100%;
-    
-    p {
-      padding-bottom: 20px; // Jätetään alalaitaan tilaa "Visit official site" -tekstille
-    }
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; // 🚀 Pakottaa tekstin ylös ja linkin aina aivan alas samalle suoralle viivalle!
+  padding-bottom: 25px; // Tehdään siisti tila sille linkille tekstikontin sisään
 
   p {
     margin: 0;
-
+    
+    // 🚀 Siirretty linkki takaisin p-tagiin, jotta hiiri osuu siihen nätisti ilman ghostingia
     &::after {
       content: "Visit official site";
       color: $primary_theme_color;
       text-transform: uppercase;
       font-size: 80%;
       font-weight: 700;
-      display: block;
       position: absolute;
-      bottom: -25px;
+      bottom: 0; // Ankkuroitu täydellisesti tekstikontin alareunaan samalle viivalle!
       left: 0;
       border-bottom: 1px solid transparent;
       transition: border-color 0.3s ease;
 
-      // Keskitetään linkkiteksti ja viiva puhelimella, kun kortti on pystysuuntainen
-      @media (max-width: $breakpoint-mobile) {
+      @include respond-to($breakpoint-mobile) {
         left: 50%;
         transform: translateX(-50%);
-        bottom: -5px;
-        white-space: nowrap;
       }
+    }
+  }
+
+  @include respond-to($breakpoint-mobile) {
+    flex-basis: auto !important;
+    width: 100%;
+    
+    p {
+      padding-bottom: 20px;
     }
   }
 }
 
-// 🚀 LINKKIVIIVA VAIN KUN BODYLLA ON HIIRI
+// Alaviivan ilmestyminen hoverissa toimii taas puhtaasti ilman esteitä
 body.hasHover a.card_twin_container:hover .card_text_container p::after {
   border-bottom: 1px solid $primary_theme_color;
 }
@@ -424,9 +408,11 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
   background: #000000;
   background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(28, 38, 48, 1) 100%);
 
-  #categories_wrap {
-    // Tyhjä, mutta säilytetty jos tarvitsette
-  }
+  
+
+.gallery_categories{
+  margin-top: 20px;
+}
 
   .gallery_categories {
     & + .gallery_categories {
@@ -458,17 +444,17 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
       }
 
       &.fractal_title::after {
-        background-image: url("../images/cards_sprites_patterns/cards/mandelbrot_set.svg");
+        background-image: url("../images/icons_sprites_patterns/icons/mandelbrot_set.svg");
         margin-top: -3px;
       }
 
       &.photography_title::after {
-        background-image: url("../images/cards_sprites_patterns/cards/camera_filled.svg");
+        background-image: url("../images/icons_sprites_patterns/icons/camera_filled.svg");
         margin-bottom: 2px;
       }
 
       &.landfill_title::after {
-        background-image: url("../images/cards_sprites_patterns/cards/display.svg");
+        background-image: url("../images/icons_sprites_patterns/icons/display.svg");
         margin-bottom: 13px;
       }
     } 
@@ -494,33 +480,34 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
     gap: 6px; 
     margin: 15px 0;
   }
+.lightbox-trigger {
+  display: block;
+  overflow: visible;
+  position: relative;
+  transition: transform 0.2s ease-in-out;
 
-  .lightbox-trigger {
-    display: block;
-    overflow: visible;
-    position: relative; 
-transition: transform 0.2s ease-in-out;
-&::after {
-content: attr(title);
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%) scale(0.85);
-color: #fff;
-font-weight: 600;
-font-size: 0.8rem;
-letter-spacing: 2px;
-text-transform: uppercase;
-white-space: nowrap;
-opacity: 0;
-transition: opacity 0.2s ease, transform 0.2s ease;
-z-index: 20;
-background: rgba(0, 0, 0, 0.75);
-padding: 6px 14px;
-border-radius: 4px;
-box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-}
-img {
+  &::after {
+    content: attr(title);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.85);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 20;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 6px 14px;
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  }
+
+  img {
 display: block;
 width: 100%;
 height: 140px;
@@ -563,22 +550,17 @@ filter: brightness(1.1) grayscale(0) !important;
 }
 }
 }
+
+
 @for $i from 1 through 16 {
-.lightbox-trigger:not(.level-1):not(.level-2):nth-of-type(#{$i}) img {
-animation-delay: #{($i - 1) * 0.06}s;
+    .lightbox-trigger:not(.level-1):not(.level-2):nth-of-type(#{$i}) img,
+    .lightbox-trigger.level-1.is-visible:nth-of-type(#{$i}) img,
+    .lightbox-trigger.level-2.is-visible:nth-of-type(#{$i}) img {
+      animation-delay: #{($i - 1) * 0.06}s;
+    }
+  }
 }
-}
-@for $i from 1 through 16 {
-.lightbox-trigger.level-1.is-visible:nth-of-type(#{$i}) img {
-animation-delay: #{($i - 1) * 0.06}s;
-}
-}
-@for $i from 1 through 16 {
-.lightbox-trigger.level-2.is-visible:nth-of-type(#{$i}) img {
-animation-delay: #{($i - 1) * 0.06}s;
-}
-}
-}
+
 .gallery_actions {
 display: flex;
 justify-content: center;
@@ -586,6 +568,14 @@ align-items: center;
 gap: 15px;
 width: 100%;
 }
+
+
+/* TÄRKEÄ! : NAPPI PYSYY PIILOLSSA KUNNES EI ENÄÄ PYSY */
+
+.is-hidden {
+  display: none !important;
+}
+
 /* ==========================================================================
 GLOBAL LIGHTBOX ()
 ========================================================================== */
@@ -734,7 +724,7 @@ display: grid !important;
 grid-template-rows: 0fr;
 overflow: hidden;
 opacity: 0;
-transition: grid-template-rows 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
+transition: grid-template-rows 1s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
 & > div {
 min-height: 0;
 }

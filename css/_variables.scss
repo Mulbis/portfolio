@@ -1,6 +1,7 @@
 /* ==========================================================================
    GLOBAL VARIABLES & CONFIGURATION
    ========================================================================== */
+$breakpoint-oldschool: 1024px;
 $breakpoint-desktop-mini: 960px; /* Calle is great and you know it! */
 $breakpoint-tablet: 768px;
 $breakpoint-mobile: 480px;
@@ -20,7 +21,7 @@ $darker_color: rgb(18, 18, 18);
 $light_color: #ededed;
 
 // Mitat
-$hero_height: 36vh;
+$hero_height: 46vh;
 $content_block_width: 96%;
 $content_block_max_width: 1280px;
 
@@ -42,14 +43,14 @@ $content_block_max_width: 1280px;
 }
 
 /* ==========================================================================
-   FONTS & MIXINS
+   FONTS & LOCAL CONFIGURATION (Suorituskykyoptimoitu paikallinen lataus)
    ========================================================================== */
 @font-face {
   font-family: 'Poppins';
   src: url('../fonts/poppins/Poppins-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: swap; // Kertoo selaimelle, että tekstin voi näyttää heti oletusfontilla ennen kuin Poppins latautuu
 }
 
 @font-face {
@@ -68,6 +69,7 @@ $content_block_max_width: 1280px;
   font-display: swap;
 }
 
+
 @mixin black_box {
   background: #171718;
   border: 1px solid #242424;
@@ -77,3 +79,27 @@ $content_block_max_width: 1280px;
 @mixin rounded {
   border-radius: 8px;
 }
+
+
+
+
+/* ==========================================================================
+   MIXINS & FONTS (Senior-tason inline-mediakyselyt ja aputyylit)
+   ========================================================================== */
+// 🌠 TÄMÄ HELPOTTAA INLINE-MEDIACYSELYIDEN KIRJOITTAMISTA:
+@mixin respond-to($breakpoint) {
+  @media screen and (max-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin black_box {
+  background: #171718;
+  border: 1px solid #242424;
+  border-radius: 8px;
+}
+
+@mixin rounded {
+  border-radius: 8px;
+}
+

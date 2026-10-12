@@ -42,10 +42,10 @@
   margin: 0 auto;
   box-sizing: border-box;
   
-  /* UPOTETTU MOBIILI-KYSELY: */
+  /* UPOTETTU MOBIILI-KYSELY: 
   @media screen and (max-width: $breakpoint-mobile) {
     width: 100%; // Varmistetaan, että blocki käyttää puhelimessa täydet 100% leveydestä
-  }
+  }*/
 }
 
 .page {
@@ -61,9 +61,21 @@
 
 /* Small blocks inside - lets say Flex */
 
+.half_block {
 
+flex: 0 0 50%;
 
+}
 
+.col_big{
+
+flex: 0 0 74%; 
+}
+
+.col_small{
+
+flex: 0 0 24%; 
+}
 
 .full_image_container  { width: 100%; }
 .basic_image_container { width: 100%; max-width: 340px; }
@@ -75,14 +87,3 @@
   height: auto;
 }
 
-// 🚀 PALAUTETTU: Sinun meitzi-avatarisi pyöristykset ja asettelut!
-.meitzi {
-  text-align: center;
-  
-  img {
-    border-radius: 50%;
-    display: block;
-    max-width: 240px;
-    margin: 12px auto;
-  }
-}
