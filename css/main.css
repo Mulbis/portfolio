@@ -628,23 +628,26 @@ ul.navigation_list li a.active:hover {
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 10px;
+  padding: 0;
   z-index: 1001;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   width: 38px;
   height: 30px;
+  margin-top: 4px;
 }
 .hamburger_btn .hamburger_line {
   display: block;
   width: 100%;
   height: 3px;
-  background-color: var(--text-color, #fff);
+  background-color: #d19d81;
   border-radius: 4px;
+  margin: 1px 0 3px;
   transition: all 0.35s cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
 .hamburger_btn.is-active .hamburger_line:nth-child(1) {
-  transform: translateY(10px) rotate(45deg);
+  transform: translateY(7px) rotate(45deg);
   background-color: #d19d81;
 }
 .hamburger_btn.is-active .hamburger_line:nth-child(2) {
@@ -652,7 +655,7 @@ ul.navigation_list li a.active:hover {
   transform: translateX(-20px);
 }
 .hamburger_btn.is-active .hamburger_line:nth-child(3) {
-  transform: translateY(-13px) rotate(-45deg);
+  transform: translateY(-7px) rotate(-45deg);
   background-color: #d19d81;
 }
 @media screen and (max-width: 768px) {
@@ -704,7 +707,7 @@ ul.navigation_list li a.active:hover {
   }
 }
 
-/* DARK THEME MODE THINGY */
+/* DARK MODE JUTTUI (?) */
 .theme_btn {
   align-self: center;
   background: transparent;
@@ -724,29 +727,6 @@ ul.navigation_list li a.active:hover {
 }
 .theme_btn:active {
   transform: scale(0.95);
-}
-
-.list_wrapper {
-  padding: 20px 0 0 0;
-  display: inline-block;
-  margin-bottom: 24px;
-}
-
-ul.basic_list {
-  list-style: none;
-}
-ul.basic_list li {
-  font-size: 140%;
-  font-weight: 420;
-  padding: 0 0 5px 10px;
-}
-
-ul.basic_list li:before {
-  content: "*";
-  position: absolute;
-  margin-left: -10px;
-  font-size: 110%;
-  margin-top: 2px;
 }
 
 /* ==========================================================================
@@ -975,8 +955,8 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
    GALLERY (The Optimized "Sexy Grid" Architecture)
    ========================================================================== */
 .full_block#gallery {
-  background: #000000;
-  background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(28, 38, 48) 100%);
+  background: #212836;
+  background: linear-gradient(180deg, rgb(33, 40, 54) 0%, rgb(255, 255, 255) 100%);
 }
 .full_block#gallery .gallery_categories {
   margin-top: 20px;
