@@ -340,7 +340,7 @@ btn2.classList.add('is-hidden');
       const content = btn.previousElementSibling;
       const postParent = btn.closest(".hidden_post");
       
-      if (content && content.classList.contains("article-body")) {
+     if (content && content.classList.contains("article-body")) {
         content.classList.toggle("is-open");
         
         if (content.classList.contains("is-open")) {
@@ -357,5 +357,31 @@ btn2.classList.add('is-hidden');
       }
     });
   });
+
+  /* =========================================
+     8. THE ATTACK OF THE SEXY HAMBURGER MENU
+     ========================================= */
+
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const mobileNavList = document.getElementById('main-nav-list');
+  const mobileNavLinks = document.querySelectorAll('.navigation_list a');
+
+  if (mobileMenuToggle && mobileNavList) {
+    // Avaa / sulje valikko napista
+    mobileMenuToggle.addEventListener('click', () => {
+      const isOpen = mobileNavList.classList.toggle('is-open');
+      mobileMenuToggle.classList.toggle('is-active');
+      mobileMenuToggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Sulje valikko automaattisesti kun mitä tahansa linkkiä klikataan
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNavList.classList.remove('is-open');
+        mobileMenuToggle.classList.remove('is-active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
 
 });

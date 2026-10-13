@@ -29,6 +29,7 @@ body {
   color: var(--text-color);
   line-height: 1.6;
   transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
 }
 
 // Estetään osioita jäämästä kiinteän navigaation alle piiloon ankkurilinkkiä klikatessa
@@ -44,7 +45,7 @@ body {
    TYPOGRAPHY (With Inline Mobile Optimization)
    ========================================================================== */
 h1 {
-  font-size: 4.55rem;
+  font-size: 5.55rem;
   font-weight: 500;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -189,15 +190,25 @@ p.date {
     font-weight: 700;
     line-height: 1.2;
 
+
+
+        /* UPOTETTU MOBIILI-KYSELY: */
+    @media screen and (max-width: $breakpoint-desktop-mini) {
+      font-size: 3.8rem; // Älyttömän suuri 5.25rem loikkaa muuten ruudulta ulos
+    }
+
+
+
     /* UPOTETTU MOBIILI-KYSELY: */
-    @media screen and (max-width: $breakpoint-mobile) {
-      font-size: 2.8rem; // Älyttömän suuri 5.25rem loikkaa muuten ruudulta ulos
+    @media screen and (max-width: $breakpoint-tablet) {
+      font-size: 3.4  rem; // Älyttömän suuri 5.25rem loikkaa muuten ruudulta ulos
     }
   }
 
   &.text_shadow {
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 1);
+    text-shadow: 0 5px 2px rgb(0, 0, 0);
   }
+  
 }
 
 figcaption,

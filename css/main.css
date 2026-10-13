@@ -77,6 +77,7 @@ body {
   color: var(--text-color);
   line-height: 1.6;
   transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
 }
 
 #about,
@@ -90,7 +91,7 @@ body {
    TYPOGRAPHY (With Inline Mobile Optimization)
    ========================================================================== */
 h1 {
-  font-size: 4.55rem;
+  font-size: 5.55rem;
   font-weight: 500;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -235,13 +236,21 @@ p.date {
   line-height: 1.2;
   /* UPOTETTU MOBIILI-KYSELY: */
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 960px) {
   .quote.mega {
-    font-size: 2.8rem;
+    font-size: 3.8rem;
+  }
+}
+.quote.mega {
+  /* UPOTETTU MOBIILI-KYSELY: */
+}
+@media screen and (max-width: 768px) {
+  .quote.mega {
+    font-size: 3.4 rem;
   }
 }
 .quote.text_shadow {
-  text-shadow: 0 2px 10px rgb(0, 0, 0);
+  text-shadow: 0 5px 2px rgb(0, 0, 0);
 }
 
 figcaption,
@@ -513,9 +522,8 @@ hr + * {
   display: inline-block;
   background-color: #b88367;
   color: #fff !important;
-  padding: 8px 18px;
+  padding: 6px 12px;
   font-size: 0.85rem;
-  margin: 6px 0;
   font-weight: 500;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -539,7 +547,6 @@ hr + * {
   color: #fff !important;
 }
 .basic_button.btn_hero {
-  padding: 10px 18px 8px;
   font-size: 0.95rem;
   animation: text-focus-in 2s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
 }
@@ -613,6 +620,91 @@ ul.navigation_list li a.active:hover {
   transform: translateY(0);
 }
 
+/* ==========================================================================
+   SEXY HAMBURGER & MOBILE NAV
+   ========================================================================== */
+.hamburger_btn {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1001;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 38px;
+  height: 30px;
+}
+.hamburger_btn .hamburger_line {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: var(--text-color, #fff);
+  border-radius: 4px;
+  transition: all 0.35s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+}
+.hamburger_btn.is-active .hamburger_line:nth-child(1) {
+  transform: translateY(10px) rotate(45deg);
+  background-color: #d19d81;
+}
+.hamburger_btn.is-active .hamburger_line:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+.hamburger_btn.is-active .hamburger_line:nth-child(3) {
+  transform: translateY(-13px) rotate(-45deg);
+  background-color: #d19d81;
+}
+@media screen and (max-width: 768px) {
+  .hamburger_btn {
+    display: flex;
+  }
+}
+
+/* 2. Navigaatiolistan mobiilimuunnos */
+@media screen and (max-width: 768px) {
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .navbar .navigation_list {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(18, 18, 18, 0.92);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    visibility: hidden;
+    transition: right 0.45s cubic-bezier(0.77, 0, 0.175, 1), visibility 0.45s ease;
+    z-index: 1000;
+  }
+  .navbar .navigation_list.is-open {
+    right: 0;
+    visibility: visible;
+  }
+  .navbar .navigation_list li a {
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #fff;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  .navbar .navigation_list li a:hover, .navbar .navigation_list li a.active {
+    color: #d19d81;
+    transform: scale(1.1);
+  }
+}
+
+/* DARK THEME MODE THINGY */
 .theme_btn {
   align-self: center;
   background: transparent;
@@ -736,17 +828,17 @@ ul.basic_list li:before {
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   width: 100%;
-  /* Kun ruutu kapenee tabletiksi (alle 768px), siirrytään 2 rinnakkain asetteluun */
+  /* Kun ruutu kapenee tabletiksi (alle 960px), siirrytään 2 rinnakkain asetteluun */
 }
-@media (max-width: 768px) {
+@media (max-width: 960px) {
   .cards_wrapper {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 .cards_wrapper {
-  /* Kun mennään puhelimelle (alle 480px), laatikot pamahtavat nätisti 1 per rivi */
+  /* Kun mennään puhelimelle (alle 640px), laatikot pamahtavat nätisti 1 per rivi */
 }
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   .cards_wrapper {
     grid-template-columns: 1fr;
     gap: 15px;
@@ -775,7 +867,7 @@ a.card_twin_container {
     background: linear-gradient(45deg, rgb(37, 38, 40) 0%, rgb(89, 95, 99) 100%);
   }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 960px) {
   a.card_twin_container {
     padding: 20px 15px;
   }
@@ -884,7 +976,7 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
    ========================================================================== */
 .full_block#gallery {
   background: #000000;
-  background: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgb(28, 38, 48) 100%);
+  background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(28, 38, 48) 100%);
 }
 .full_block#gallery .gallery_categories {
   margin-top: 20px;
@@ -1296,17 +1388,34 @@ ACCORDION READ MORE
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
   z-index: 100;
+  justify-content: space-evenly;
+  overflow: visible;
+  text-align: center;
 }
 .hero_info_box h1 {
   animation: text-focus-in 1.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  font-weight: 700;
+  line-height: 1.1;
 }
-
+@media screen and (max-width: 1200px) {
+  .hero_info_box h1 {
+    font-size: 4.9rem;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .hero_info_box h1 {
+    font-size: 4rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  .hero_info_box h1 {
+    font-size: 3.4rem;
+  }
+}
 .hero_info_box p {
   color: #fff;
-  overflow: hidden;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   animation: text-focus-in 1.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
@@ -1314,9 +1423,27 @@ ACCORDION READ MORE
   max-width: 70%;
   background: transparent;
   text-align: center;
-  margin-bottom: 2rem;
+  padding: 12px 0 8px;
+  /* Kun tullaan alle 1024px (old school) */
+}
+@media screen and (max-width: 1024px) {
+  .hero_info_box p {
+    letter-spacing: normal;
+    max-width: 80%;
+  }
+}
+.hero_info_box p {
+  /* Kun tullaan tablet-kokoon (768px) */
+}
+@media screen and (max-width: 768px) {
+  .hero_info_box p {
+    line-height: normal;
+    font-size: 1.2rem;
+    max-width: 90%;
+  }
 }
 
+/* HERO INFO BOX */
 /* ==========================================================================
    SHOOTING STARS (Täydellisesti rytmitetty ja suojattu)
    ========================================================================== */

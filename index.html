@@ -22,7 +22,7 @@
 	<link rel="apple-touch-card" href="apple-touch-card.png">
 
 	<!-- ============ FONTS ============  -->
-	<!-- Laita tämä sinne head-osion sisälle ennen tyylitiedostoja -->
+
 	<link rel="preload" href="fonts/poppins/Poppins-Regular.woff2" as="font" type="font/woff2" crossorigin>
 
 	<!-- ============ STYLEZ ============  -->
@@ -58,31 +58,30 @@
 
 	<!--********************* NAVIGATION STUFF *********************-->
 
-	<nav class="sticky">
-		<div class="navbar">
-			<ul class="navigation_list">
-				<li>
-					<a href="#home" class="active menu-item-1">home</a>
-				</li>
-				<li>
-					<a href="#about_me" class="menu-item-2">about</a>
-				</li>
-				<li>
-					<a href="#gallery" class="menu-item-3">gallery</a>
-				</li>
-				<li>
-					<a href="#web" class="menu-item-4">web</a>
-				</li>
-				<li>
-					<a href="#contact" class="menu-item-5">contact</a>
-				</li>
-			</ul>
+<nav class="sticky">
+  <div class="navbar">
+    
+    <!-- SEXY HAMBURGER BUTTON (ilmestyy vasta mobiilissa) -->
+    <button id="mobile-menu-toggle" class="hamburger_btn" aria-label="Toggle navigation" aria-expanded="false">
+      <span class="hamburger_line"></span>
+      <span class="hamburger_line"></span>
+      <span class="hamburger_line"></span>
+    </button>
 
-			<!-- UUSI PAINIKE TÄHÄN: Sijoitettu navbar-laatikon sisälle, listan perään -->
-			<button id="theme-toggle" class="theme_btn" aria-label="Toggle dark/light mode">🌓</button>
+    <!-- NAVIGATION LIST -->
+    <ul class="navigation_list" id="main-nav-list">
+      <li><a href="#home" class="active menu-item-1">home</a></li>
+      <li><a href="#about_me" class="menu-item-2">about</a></li>
+      <li><a href="#gallery" class="menu-item-3">gallery</a></li>
+      <li><a href="#web" class="menu-item-4">web</a></li>
+      <li><a href="#contact" class="menu-item-5">contact</a></li>
+    </ul>
 
-		</div>
-	</nav><!--********************* END OF NAVIGATION *********************-->
+    <!-- DARK / LIGHT MODE BUTTON -->
+    <button id="theme-toggle" class="theme_btn" aria-label="Toggle dark/light mode">🌓</button>
+
+  </div>
+</nav><!--********************* END OF NAVIGATION *********************-->
 
 	<!--======= POST HERO WRAPPER - I.O.W. JUST ANOTHER EXTRA SWEET THINGY =) =======-->
 	<main class="post_hero_wrapper">

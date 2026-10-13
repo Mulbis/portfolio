@@ -20,28 +20,68 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
   z-index: 100;
+  justify-content: space-evenly;
+  overflow: visible;
+  text-align: center;
 
   h1 {
-
     animation: text-focus-in 1.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-  }
-}
+    font-weight: 700;
+    line-height: 1.1;
 
-.hero_info_box p {
-  color: #fff;
-  overflow: hidden;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  animation: text-focus-in 1.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-  max-width: 70%;
-  background: transparent;
-  text-align: center;
-  margin-bottom: 2rem;
-}
+
+
+   // Kun tullaan alle 1200px (new school, jossa otsikko alkaa breikata)
+    @include respond-to($breakpoint-newschool) {
+   font-size: 4.9rem;
+    }
+
+
+    // Kun tullaan alle 1024px (old school, jossa otsikko alkaa breikata)
+    @include respond-to($breakpoint-oldschool) {
+      font-size: 4rem;
+    }
+
+    // Kun tullaan tablet-kokoon (768px)
+    @include respond-to($breakpoint-tablet) {
+      font-size: 3.4rem;
+    }
+  }
+
+
+  p {
+    color: #fff;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    animation: text-focus-in 1.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    max-width: 70%;
+    background: transparent;
+    text-align: center;
+    padding: 12px 0 8px;
+
+ 
+    /* Kun tullaan alle 1024px (old school) */
+    @include respond-to($breakpoint-oldschool) {
+ 
+ 
+      letter-spacing: normal;
+      max-width: 80%;
+    }
+
+
+        /* Kun tullaan tablet-kokoon (768px) */
+        @include respond-to($breakpoint-tablet) {
+          line-height: normal;
+          font-size: 1.2rem;
+          max-width: 90%;
+    }
+  }
+
+
+} /* HERO INFO BOX */
 
 
 /* ==========================================================================
