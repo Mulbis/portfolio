@@ -315,20 +315,21 @@ const btn1 = document.getElementById('btn-show-level-1');
 const btn2 = document.getElementById('btn-show-level-2');
 const level1Items = document.querySelectorAll('.lightbox-trigger.level-1');
 const level2Items = document.querySelectorAll('.lightbox-trigger.level-2');
+
 if (btn1) {
-btn1.addEventListener('click', () => {
-level1Items.forEach(item => item.classList.add('is-visible'));
-btn1.classList.add('is-hidden');
-if (btn2) {
-btn2.classList.remove('is-hidden');
+  btn1.addEventListener('click', () => {
+    level1Items.forEach(item => item.classList.add('is-visible', 'is-revealed')); // <-- Tänne
+    btn1.classList.add('is-hidden');
+    if (btn2) {
+      btn2.classList.remove('is-hidden');
+    }
+  });
 }
-});
-}
 if (btn2) {
-btn2.addEventListener('click', () => {
-level2Items.forEach(item => item.classList.add('is-visible'));
-btn2.classList.add('is-hidden');
-});
+  btn2.addEventListener('click', () => {
+    level2Items.forEach(item => item.classList.add('is-visible', 'is-revealed')); // <-- Ja tänne
+    btn2.classList.add('is-hidden');
+  });
 }
   /* ==========================================================================
      7. ARTIKKELIN "READ MORE" FUNKTIO (Synkronoidun pehmeä 0.5s haitari)

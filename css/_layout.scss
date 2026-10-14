@@ -29,8 +29,9 @@
   box-sizing: border-box;
 
   /* UPOTETTU MOBIILI-KYSELY: */
-  @media screen and (max-width: $breakpoint-mobile) {
-    padding: 40px 0; // Tiivistetään osioiden välit puhelimella, säästää peukaloa rullaamiselta!
+  @media screen and (max-width:$breakpoint-tablet) {
+    padding: 20px 0; // Tiivistetään osioiden välit puhelimella, säästää peukaloa rullaamiselta!
+
   }
 }
 
@@ -42,10 +43,12 @@
   margin: 0 auto;
   box-sizing: border-box;
   
-  /* UPOTETTU MOBIILI-KYSELY: 
-  @media screen and (max-width: $breakpoint-mobile) {
-    width: 100%; // Varmistetaan, että blocki käyttää puhelimessa täydet 100% leveydestä
-  }*/
+@media screen and (max-width:$breakpoint-tablet){
+
+  width: 100%;
+  padding: 20px 2%;
+
+}
 }
 
 .page {
@@ -54,8 +57,8 @@
   @include rounded;
 
   /* UPOTETTU MOBIILI-KYSELY: */
-  @media screen and (max-width: $breakpoint-mobile) {
-    padding: 30px 16px; // KULTAINEN STANDARDI: 16px sivupadding antaa sisällölle max-tilan, ja 30px tiivistää pystyvälin!
+  @media screen and (max-width: $breakpoint-tablet) {
+    padding:30px 2%;
   }
 }
 

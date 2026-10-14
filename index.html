@@ -935,6 +935,39 @@
 		}
 		watchForHover()
 	</script>
+
+<!-- SOME SEXY AND SMART NAVIGATION FOR MOBILITY -->
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const targetId = this.getAttribute('href');
+    if (targetId === '#') return;
+    
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      e.preventDefault();
+      
+      const navHeight = window.innerWidth <= 960 ? 44 : 0; 
+      
+      // Lasketaan absoluuttinen sijainti suoraan dokumentin katosta, ei viewportista!
+      let elementPosition = 0;
+      let obj = targetElement;
+      while (obj) {
+        elementPosition += (obj.offsetTop || 0);
+        obj = obj.offsetParent;
+      }
+      
+      const offsetPosition = elementPosition - navHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+</script>
+
 </body>
 
 </html>

@@ -20,7 +20,6 @@
     animation: text-focus-in .5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
   }
 
-  // 🚀 AKTIVOITUU VAIN TIETOKONEELLA (Mobiilissa painike ei jää jumiin värin tai siirtymän osalta!)
   @media (hover: hover) {
     &:hover {
       background-color: $primary_theme_color;
@@ -30,7 +29,6 @@
     }
   }
 
-  // Aktiivinen tila painettaessa toimii edelleen kaikilla laitteilla salamannopeasti
   &:active {
     background-color: $primary_theme_color;
     color: #fff !important;
@@ -39,6 +37,17 @@
   &.btn_hero {
     font-size: 0.95rem;
     animation: text-focus-in 2s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+    
+    // Tässä se on ihan oikeassa paikassa: suoraan btn_hero-luokan sisällä media queryssä!
+    @media screen and (max-width: $breakpoint-mobile) {
+      display: block;
+      width: 40%;
+      text-align: center;
+      padding: 8px 14px;
+      font-size: 1rem;
+      letter-spacing: 3px;
+      margin-top: 10px;
+    }
   }
 }
 
@@ -54,20 +63,40 @@ nav.sticky {
   background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(62, 62, 62, 1) 100%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 1px 7px 21px 2px rgba(0, 0, 0, 0.75);
+
+  @media screen and (max-width: $breakpoint-tablet) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+
+    &.nav-hidden {
+      transform: translateY(-100%);
+    }
+  }
 }
 
-.sticky-pin {
-  position: fixed;
-  top: 0;
-  z-index: 2;
+.navbar {
+  width: 100%;
+  height: 44px;
+  max-width: $content_block_max_width;
+  margin: 0 auto;
+  padding: 0 18px;
+  // height: 44px; -> Voidaan poistaa täältä, koska ulompi nav.sticky hoitaa nyt kokonaiskorkeuden!
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
 }
+
 
 .navbar {
   width: 100%;
   max-width: $content_block_max_width;
   margin: 0 auto;
   padding: 0 18px;
-  height: 44px;
+
   display: flex;
   align-items: stretch;
   justify-content: space-between;
@@ -263,10 +292,10 @@ ul.navigation_list {
   
   .flex.between {
 
-    @media screen and (max-width: $breakpoint-oldschool) {
+    @media screen and (max-width: $breakpoint-tablet) {
       flex-direction: column !important;
       align-items: center;
-      text-align: center;
+      justify-content: center;
       gap: 25px; 
     }
 
@@ -495,17 +524,16 @@ background: linear-gradient(180deg, rgba(33, 40, 54, 1) 0%, rgba(255, 255, 255, 
 background: url(../images/gallery/fractals/47_Blue_rue.webp) no-repeat center center fixed;
 background-size: cover;
 
-  
 
 .gallery_categories{
-  margin-top: 20px;
+  margin-top: 0;
 }
 
   .gallery_categories {
     & + .gallery_categories {
-      margin-top: 40px;
+      margin-top: 20px;
 
-      @media screen and (max-width: $breakpoint-mobile) {
+      @media screen and (max-width: $breakpoint-tablet) {
         margin-top: 20px; 
       } 
     }
@@ -548,6 +576,7 @@ background-size: cover;
   } 
 } 
 
+
 /* ==========================================================================
    THE SEXY GALLERY GRID  =)
    ========================================================================== */
@@ -567,79 +596,110 @@ background-size: cover;
     gap: 6px; 
     margin: 15px 0;
   }
-.lightbox-trigger {
-  display: block;
-  overflow: visible;
-  position: relative;
-  transition: transform 0.2s ease-in-out;
 
-  &::after {
-    content: attr(title);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.85);
-    color: #fff;
-    font-weight: 600;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    white-space: nowrap;
-    opacity: 0;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-    z-index: 20;
-    background: rgba(0, 0, 0, 0.75);
-    padding: 6px 14px;
-    border-radius: 4px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  // Oletuksena piilotetut tasot
+  .lightbox-trigger.level-1,
+  .lightbox-trigger.level-2 {
+    display: none;
   }
 
-  img {
-display: block;
-width: 100%;
-height: 140px;
-object-fit: cover;
-transition: filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-border-radius: 8px;
-filter: brightness(0.7) grayscale(1);
-@media screen and (max-width: $breakpoint-mobile) {
-filter: brightness(0.9) grayscale(0) !important;
-height: 110px;
-}
-}
-body.hasHover &:hover {
-transform: scale(1.1);
-z-index: 10;
-&::after {
-opacity: 1;
-transform: translate(-50%, -50%) scale(1);
-}
-img {
-filter: brightness(1.1) grayscale(0);
-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-}
-}
-}
-.lightbox-trigger.level-1,
-.lightbox-trigger.level-2 {
-display: none;
-}
-.lightbox-trigger.is-visible {
-display: block !important;
-img {
-animation: text-focus-in .5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
-filter: brightness(0.7) grayscale(1) !important;
-border-radius: 8px;
-}
-body.hasHover &:hover {
-img {
-filter: brightness(1.1) grayscale(0) !important;
-}
-}
-}
+  // YLEINEN SÄÄNTÖ KAIKILLE KUVILLE: Työpöydällä aina harmaana, paitsi mobiilissa
+.lightbox-trigger {
+    display: block;
+    overflow: visible;
+    position: relative;
+    transition: transform 0.2s ease-in-out;
+
+    &::after {
+      content: attr(title);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.85);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 20;
+      background: rgba(0, 0, 0, 0.75);
+      padding: 6px 14px;
+      border-radius: 4px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      transition: filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      border-radius: 8px;
+      
+      // MOBIILI / OLETUS: Kuvat ovat aina heti väreissä, ei harmautta laisinkaan!
+      filter: brightness(0.9) grayscale(0);
+
+      @media screen and (max-width: $breakpoint-mobile) {
+        height: 110px;
+      }
+
+      // TYÖPÖYTÄ (min-width): Vain isolla ruudulla kytketään harmaasuodatin päälle kaikille kuville automaattisesti!
+      @media screen and (min-width: $breakpoint-desktop-mini) { // Vaihda tähän sun työpöydän breikkari tarvittaessa
+        filter: brightness(0.7) grayscale(1);
+      }
+    }
+
+    // Hover työpöydällä herättää kuvan väreihin
+    body.hasHover &:hover {
+      transform: scale(1.1);
+      z-index: 10;
+      
+      &::after {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      
+      img {
+        filter: brightness(1.1) grayscale(0);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+
+  // Kun kuva tulee näkyviin, varmistetaan että se näytetään blockina ja saa animaation
+  .lightbox-trigger.is-visible {
+    display: block !important;
+    
+    img {
+      animation: text-focus-in .5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+    }
+  }
 
 
-@for $i from 1 through 16 {
+
+// Ne kuvat, jotka ladataan napin takaa esiin
+  .lightbox-trigger.is-revealed {
+    img {
+      filter: brightness(0.7) grayscale(1);
+
+      @media screen and (max-width: $breakpoint-mobile) {
+        filter: brightness(0.9) grayscale(0) !important;
+      }
+    }
+
+    // 🚀 LISÄTÄÄN TÄMÄ HOVER-SÄÄNTÖ SUORAAN TÄNNE:
+    body.hasHover &:hover {
+      img {
+        filter: brightness(1.1) grayscale(0) !important;
+      }
+    }
+  }
+
+
+  @for $i from 1 through 16 {
     .lightbox-trigger:not(.level-1):not(.level-2):nth-of-type(#{$i}) img,
     .lightbox-trigger.level-1.is-visible:nth-of-type(#{$i}) img,
     .lightbox-trigger.level-2.is-visible:nth-of-type(#{$i}) img {
@@ -649,19 +709,38 @@ filter: brightness(1.1) grayscale(0) !important;
 }
 
 .gallery_actions {
-display: flex;
-justify-content: center;
-align-items: center;
-gap: 15px;
-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
 }
 
 
-/* TÄRKEÄ! : NAPPI PYSYY PIILOLSSA KUNNES EI ENÄÄ PYSY */
+
+
+// Pakotetaan työpöydällä (960px+) myös lisäkuvat harmaaksi, tabletissa ja mobiilissa ne ovat oletuksena väreissä!
+@media screen and (min-width: $breakpoint-desktop-mini) {
+  .gallery-grid .lightbox-trigger.level-1.is-visible.is-revealed,
+  .gallery-grid .lightbox-trigger.level-2.is-visible.is-revealed {
+    img {
+      filter: brightness(0.7) grayscale(1) !important;
+    }
+
+    body.hasHover &:hover {
+      img {
+        filter: brightness(1.1) grayscale(0) !important;
+      }
+    }
+  }
+}
 
 .is-hidden {
   display: none !important;
+
 }
+
+
 
 /* ==========================================================================
 GLOBAL LIGHTBOX ()

@@ -11,6 +11,11 @@
   justify-content: center;
   position: relative;
   z-index: 1;
+
+  @media screen and (max-width: $breakpoint-mobile) {
+    padding-top: 44px; // Korjattu marginista paddingiksi!
+    min-height: 60dvh;
+  }
 }
 
 .hero_info_box {
@@ -48,6 +53,13 @@
     @include respond-to($breakpoint-tablet) {
       font-size: 3.4rem;
     }
+
+       // Kun tulloo mobbeen (480)
+    @include respond-to($breakpoint-tablet) {
+      font-size: 2.7rem;
+    }
+
+
   }
 
 
@@ -77,6 +89,16 @@
           font-size: 1.2rem;
           max-width: 90%;
     }
+        /* Kun tullaan tablet-kokoon (768px) */
+        @include respond-to($breakpoint-mobile) {
+         font-size: 1rem;
+         line-height: normal;
+
+    }
+
+
+
+
   }
 
 
