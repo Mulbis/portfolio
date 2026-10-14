@@ -957,6 +957,8 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
 .full_block#gallery {
   background: #212836;
   background: linear-gradient(180deg, rgb(33, 40, 54) 0%, rgb(255, 255, 255) 100%);
+  background: url(../images/gallery/fractals/47_Blue_rue.webp) no-repeat center center fixed;
+  background-size: cover;
 }
 .full_block#gallery .gallery_categories {
   margin-top: 20px;
@@ -1352,7 +1354,7 @@ ACCORDION READ MORE
 #home.hero_section {
   width: 100%;
   min-height: 46vh;
-  background: url(../images/hero/lappare.jpg) no-repeat center center;
+  background: url(../images/bg_images/hero/lappare.webp) no-repeat center center;
   background-size: cover;
   display: flex;
   align-items: center;
@@ -1458,7 +1460,7 @@ ACCORDION READ MORE
   background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.3) 100%);
 }
 .star:nth-child(1) {
-  left: 36vw;
+  left: 34vw;
   top: -20px;
   animation: shootingstars 14s linear infinite;
   animation-delay: 1.3s;
@@ -1495,7 +1497,7 @@ ACCORDION READ MORE
 #web_section_quote {
   text-align: center;
   width: 100%;
-  background: #000 url(../images/bg_images/web_site_collage_4.jpg) no-repeat center center fixed;
+  background: #000 url(../images/bg_images/web_site_collage_4.webp) no-repeat center center fixed;
   background-size: cover;
   box-shadow: inset 0px 0px 47px 20px rgba(0, 0, 0, 0.2);
   display: flex;

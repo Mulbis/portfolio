@@ -4,7 +4,7 @@
 #home.hero_section {
   width: 100%;
   min-height: $hero_height;
-  background: url(../images/hero/lappare.jpg) no-repeat center center;
+  background: url(../images/bg_images/hero/lappare.webp) no-repeat center center;
   background-size: cover;
   display: flex;
   align-items: center;
@@ -62,8 +62,7 @@
     text-align: center;
     padding: 12px 0 8px;
 
- 
-    /* Kun tullaan alle 1024px (old school) */
+ /* Kun tullaan alle 1024px (old school) */
     @include respond-to($breakpoint-oldschool) {
  
  
@@ -126,7 +125,7 @@
 
   // 🌠 TÄHTI 1: Lähtee heti alussa ja lentää HELKKARIN NOPEASTI (kesto vain 6s!)
   &:nth-child(1) {
-    left: 36vw;   // Aloittaa keskivaiheilta, jotta ehtii lentää komeasti ruudun yli viistoon
+    left: 34vw;   // Aloittaa keskivaiheilta, jotta ehtii lentää komeasti ruudun yli viistoon
     top: -20px;
     animation: shootingstars 14s linear infinite;
     animation-delay: 1.3s; // Pamahtaa matkaan melkein heti kun sivu latautuu!
@@ -174,7 +173,7 @@
    #web_section_quote {
   text-align: center;
   width: 100%;
-  background: #000 url(../images/bg_images/web_site_collage_4.jpg) no-repeat center center fixed;
+  background: #000 url(../images/bg_images/web_site_collage_4.webp) no-repeat center center fixed;
   background-size: cover;
   box-shadow: inset 0px 0px 47px 20px rgba(0, 0, 0, 0.2);
   display: flex;
