@@ -2,15 +2,15 @@
    CONTACT SECTION & FORM FIELDS (Hienosäädetty iMac M4 -näytölle!)
    ========================================================================== */
 #contact {
-  padding-bottom: 100px; 
+  padding-bottom: 100px;
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
-  
+
   // 🚀 TÄMÄ PAKOTTAA LISÄÄ TILAA SIVUN POHJAAN:
   /*min-height: calc(100vh + 60px);*/
   scroll-margin-top: 100px !important; // Varmistaa, että linkki asettuu täydellisesti heti eka klikkauksella
- 
+
 
   .contact_form {
     max-width: 600px;
@@ -49,15 +49,27 @@
         width: 100%;
         transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 
-        &::placeholder { color: #aaa; }
+        &::placeholder {
+          color: #aaa;
+        }
+
         &:focus {
           border-color: var(--theme-color);
-          box-shadow: 0 0 8px rgba(209, 157, 129, 0.3); 
+          box-shadow: 0 0 8px rgba(209, 157, 129, 0.3);
         }
       }
-      textarea { min-height: 150px; resize: vertical; }
+
+      textarea {
+        min-height: 150px;
+        resize: vertical;
+      }
     }
-    .submit_btn { align-self: flex-start; margin-top: 10px; cursor: pointer; }
+
+    .submit_btn {
+      align-self: flex-start;
+      margin-top: 10px;
+      cursor: pointer;
+    }
   }
 }
 
@@ -78,11 +90,12 @@
   font-family: $primary_font_stack;
   font-size: 0.9rem;
 
-  p { 
+  p {
     margin: 0;
-        @include respond-to($breakpoint-vga) {
-            font-size: 1.1rem;
-          }
+
+    @include respond-to($breakpoint-vga) {
+      font-size: 1.1rem;
+    }
   }
 
   // 🚀 Upotettu ja mixinillä optimoitu osio
@@ -93,52 +106,58 @@
       gap: 0px;
       align-items: center;
     }
-  } // <-- TÄMÄ SULKEE VAIN .content_block.flex -osion, kuten pitääkin!
+  }
+
+  // <-- TÄMÄ SULKEE VAIN .content_block.flex -osion, kuten pitääkin!
 
   // 🚀 Nestattu siististi .main_footerin sisään, tuplarivit poistettu
   .footer_links {
-    display: flex; 
-    gap: 20px; 
-    list-style: none; 
-    margin: 0; 
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
     padding: 0;
 
-    
+
     a {
+
       &,
-        &:link,
-        &:visited {
-          color: var(--theme-color);
-          text-transform: uppercase;
-          font-weight: 500;
-          letter-spacing: 1px;
-          position: relative;
-          padding-bottom: 4px;
-          text-shadow: none;
-          text-decoration: none;
-          
-          @include respond-to($breakpoint-vga) {
-            font-size: .8rem;
-          }
+      &:link,
+      &:visited {
+        color: var(--theme-color);
+        text-transform: uppercase;
+        font-weight: 500;
+        letter-spacing: 1px;
+        position: relative;
+        padding-bottom: 4px;
+        text-shadow: none;
+        text-decoration: none;
+
+        @include respond-to($breakpoint-vga) {
+          font-size: .8rem;
+        }
       }
-      
+
       &::after {
-        content: ""; 
-        position: absolute; 
-        bottom: 0; 
-        left: 0; 
-        width: 0; 
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
         height: 2px;
-        background-color: #fff; 
+        background-color: #fff;
         transition: width 0.2s ease;
       }
-      
+
       body.hasHover &:hover {
         color: #fff;
-        &::after { 
-          width: 100%; 
+
+        &::after {
+          width: 100%;
         }
       }
     }
   }
-} // <-- TÄMÄ SULKEE KOKO .main_footerin aivan loppuun!
+}
+
+// <-- TÄMÄ SULKEE KOKO .main_footerin aivan loppuun!

@@ -3,10 +3,13 @@
    ========================================================================== */
 
 .basic_button {
-  &, &:link, &:visited {
+
+  &,
+  &:link,
+  &:visited {
     display: inline-block;
     background-color: $secondary_theme_color;
-    color: #fff !important; 
+    color: #fff !important;
     padding: 6px 12px;
     font-size: 0.85rem;
     font-weight: 500;
@@ -18,7 +21,9 @@
     box-shadow: 0 8px 15px -10px rgba(0, 0, 0, 0.5);
     transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     animation: text-focus-in .5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+    position: relative;
   }
+
 
   @media (hover: hover) {
     &:hover {
@@ -37,14 +42,11 @@
   &.btn_hero {
     font-size: 0.95rem;
     animation: text-focus-in 2s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
-    
-    // Tässä se on ihan oikeassa paikassa: suoraan btn_hero-luokan sisällä media queryssä!
+
     @media screen and (max-width: $breakpoint-mobile) {
-      display: block;
-      width: 40%;
       text-align: center;
       padding: 8px 14px;
-      font-size: 1rem;
+      font-size: .6rem;
       letter-spacing: 3px;
       margin-top: 10px;
     }
@@ -52,6 +54,23 @@
 }
 
 
+#btn-show-level-1,
+#btn-show-level-2 {
+  &::after {
+    content: '\25bc';
+    font-size: 20px;
+    color: $secondary_theme_color;
+    position: absolute;
+    bottom: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-shadow: none;
+  }
+}
+
+/* ==========================================================================
+       NAVIGATION MENU
+   ========================================================================== */
 
 /* ==========================================================================
    NAVIGATION MENU
@@ -70,7 +89,12 @@ nav.sticky {
     left: 0;
     width: 100%;
     z-index: 1000;
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    
+    transition: transform 0.3s ease-in-out;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
 
     &.nav-hidden {
       transform: translateY(-100%);
@@ -80,26 +104,17 @@ nav.sticky {
 
 .navbar {
   width: 100%;
+  max-width: $content_block_max_width;
+  margin: 0 auto;
+  padding: 0 18px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
   height: 44px;
-  max-width: $content_block_max_width;
-  margin: 0 auto;
-  padding: 0 18px;
-  // height: 44px; -> Voidaan poistaa täältä, koska ulompi nav.sticky hoitaa nyt kokonaiskorkeuden!
-  display: flex;
-  align-items: stretch;
-  justify-content: space-between;
-}
 
-
-.navbar {
-  width: 100%;
-  max-width: $content_block_max_width;
-  margin: 0 auto;
-  padding: 0 18px;
-
-  display: flex;
-  align-items: stretch;
-  justify-content: space-between;
+  @media screen and (max-width: $breakpoint-tablet) {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(62, 62, 62, 1) 100%);
+  }
 }
 
 ul.navigation_list {
@@ -127,7 +142,6 @@ ul.navigation_list {
       transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
       font-weight: 500;
 
-
       &:hover {
         color: #fff;
         background-color: rgba(255, 255, 255, 0.05);
@@ -153,16 +167,15 @@ ul.navigation_list {
    SEXY HAMBURGER & MOBILE NAV
    ========================================================================== */
 
-// 1. Hampurilaispainike (Oletuksena piilossa työpöydällä)
 .hamburger_btn {
   display: none;
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 0; // Otetaan ylimääräiset paddingit pois leikkaamasta
+  padding: 0;
   z-index: 1001;
   flex-direction: column;
-  justify-content: center; // Keskitetään viivat suoraan flexillä
+  justify-content: center;
   align-items: center;
   width: 38px;
   height: 30px;
@@ -174,21 +187,21 @@ ul.navigation_list {
     height: 3px;
     background-color: $primary_theme_color;
     border-radius: 4px;
-   margin: 1px 0 3px;
+    margin: 1px 0 3px;
     transition: all 0.35s cubic-bezier(0.68, -0.6, 0.32, 1.6);
   }
 
-  // Animaatio kun valikko on AUKI (.is-active)
   &.is-active {
     .hamburger_line:nth-child(1) {
-      transform: translateY(7px) rotate(45deg); // Puhtaasti simuloitu ja testattu arvo
+      transform: translateY(7px) rotate(45deg);
       background-color: $primary_theme_color;
-      
     }
+
     .hamburger_line:nth-child(2) {
       opacity: 0;
       transform: translateX(-20px);
     }
+
     .hamburger_line:nth-child(3) {
       transform: translateY(-7px) rotate(-45deg);
       background-color: $primary_theme_color;
@@ -200,42 +213,38 @@ ul.navigation_list {
   }
 }
 
-/* 2. Navigaatiolistan mobiilimuunnos */
-
 .navbar {
   @include respond-to($breakpoint-tablet) {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-   .navigation_list {
+    .navigation_list {
       position: fixed;
       top: 0;
-      right: -100%; 
+      right: -100%;
       width: 100vw;
       height: 100vh;
+      height: 100dvh;
       background: rgba(18, 18, 18, 0.92);
       backdrop-filter: blur(15px);
       -webkit-backdrop-filter: blur(15px);
-      
+
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       gap: 2rem;
-      
-      // Lisätään nämä kaksi riviä, jotta se pysyy piilossa eikä vuoda reunasta:
-      visibility: hidden; 
+
+      visibility: hidden;
       transition: right 0.45s cubic-bezier(0.77, 0, 0.175, 1), visibility 0.45s ease;
       z-index: 1000;
 
-      // Kun valikko aukeaa (.is-open)
       &.is-open {
         right: 0;
-        visibility: visible; // Tuodaan näkyväksi vasta kun aukeaa
+        visibility: visible;
       }
 
-      // Iso, selkeä ja tyylikäs typografia mobiililinkeille
       li a {
         font-size: 1.8rem;
         font-weight: 600;
@@ -244,7 +253,8 @@ ul.navigation_list {
         color: #fff;
         transition: color 0.3s ease, transform 0.3s ease;
 
-        &:hover, &.active {
+        &:hover,
+        &.active {
           color: $primary_theme_color;
           transform: scale(1.1);
         }
@@ -252,8 +262,6 @@ ul.navigation_list {
     }
   }
 }
-
-/* DARK MODE JUTTUI (?) */  
 
 .theme_btn {
   align-self: center;
@@ -268,7 +276,6 @@ ul.navigation_list {
   justify-content: center;
   transition: transform 0.2s ease, background-color 0.2s ease;
 
-
   &:hover {
     transform: scale(1.15) rotate(15deg);
     background-color: rgba(255, 255, 255, 0.1);
@@ -279,63 +286,42 @@ ul.navigation_list {
   }
 }
 
-
-
-
 /* ==========================================================================
-   ABOUT-OSIOIDEN RESPONSIVISUUS (Erotettu ja turvattu arkkitehtuuri)
+   ABOUT-OSIOIDEN RESPONSIVISUUS
    ========================================================================== */
-
-
-#about_me, 
+#about_me,
 #about_this_site {
-  
   .flex.between {
-
     @media screen and (max-width: $breakpoint-tablet) {
       flex-direction: column !important;
       align-items: center;
       justify-content: center;
-      gap: 25px; 
+      gap: 25px;
     }
 
-
-
-        /* Pieni sarake (Kuva / Avatar) */
     .half_block.col_small {
       display: flex;
       flex: 0 0 24%;
       flex-direction: column;
       justify-content: center;
-    
-    
     }
 
-    /* Iso sarake (Tekstit ja taidot) */
     .half_block.col_big {
       display: flex;
       flex: 0 0 74%;
       flex-direction: column;
       justify-content: center;
-
-    }
-
-
     }
   }
+}
 
-/* ==========================================================================
-   KUVIEN UNIikit TYYLIT (Nyt ne eivät voi enää ikinä tapella keskenään!)
-   ========================================================================== */
-
-// 1. OSIO: Meitzi-avatar (Palauttaa sen upean 50% pyöristyksen takaisin!)
 .meitzi {
   text-align: center;
   margin: 0 !important;
   padding: 0;
-  
+
   img {
-    border-radius: 50% !important; // 🚀 PAKOTETAAN pyöristys takaisin paikoilleen!
+    border-radius: 50% !important;
     display: block;
     max-width: 240px;
     width: 100%;
@@ -343,60 +329,50 @@ ul.navigation_list {
   }
 }
 
-// 2. OSIO: About site -esikatselukuva (Tämä korjaa sen leikkautumisen oikealta!)
 #about_site_image {
   display: block;
-  margin: 0 !important; // Nollataan selaimen omat oletusmarginaalit
+  margin: 0 !important;
   padding: 0;
   width: 100%;
   max-width: 381px;
 
   img {
     display: block;
-    width: 100% !important; // 🚀 TÄMÄ ON SE SATEENTEKIJÄ: Pakottaa kuvan pysymään sarakkeen sisällä!
+    width: 100% !important;
     height: auto !important;
-    border-radius: 8px !important; // Siisti, loiva kulmapyöristys tälle kuvalle
+    border-radius: 8px !important;
   }
 }
 
-/* ==========================================================================
-   KORTIT / CARDS TWIN CONTAINER (KORJATTU JA RESUKSI OPTIMOITU)
-   ========================================================================== */
 #cards_full_block {
   position: relative;
   background: #000 url(../images/bg_images/cyani_2.jpg) no-repeat center top fixed;
   background-size: cover;
-  
 }
 
 .cards_wrapper {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); // Aina oletuksena 3 täysin tasalevyistä saraketta desktopilla
-  gap: 20px; 
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   width: 100%;
-  
-  /* Kun ruutu kapenee tabletiksi (alle 960px), siirrytään 2 rinnakkain asetteluun */
+
   @media (max-width: $breakpoint-desktop-mini) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  /* Kun mennään puhelimelle (alle 640px), laatikot pamahtavat nätisti 1 per rivi */
   @media (max-width: $breakpoint-vga) {
     grid-template-columns: 1fr;
     gap: 15px;
   }
 }
 
-/* ==========================================================================
-   KORTIT / CARDS TWIN CONTAINER (Kuvat ja Zoom-efekti korjattu!)
-   ========================================================================== */
 a.card_twin_container {
   @include black_box;
   width: 100%;
-  display: flex; 
-  align-items: stretch; // 🚀 Muutetaan stretchiksi, jolloin sarakkeet ovat aina tasan saman korkuisia!
+  display: flex;
+  align-items: stretch;
   box-sizing: border-box;
-  padding: 26px 20px 26px; // Palautetaan normaali pohjapadding
+  padding: 26px 20px 26px;
   position: relative;
   overflow: hidden;
   transition: background 0.3s ease;
@@ -419,7 +395,11 @@ a.card_twin_container {
     padding: 24px 16px 32px;
     -webkit-tap-highlight-color: transparent;
 
-    &, &:link, &:visited, &:hover, &:active {
+    &,
+    &:link,
+    &:visited,
+    &:hover,
+    &:active {
       background: #121314 !important;
     }
   }
@@ -459,28 +439,23 @@ a.card_twin_container {
   }
 }
 
-// 🌠 PALAUTETTU SINUN ALKUPERÄINEN UPEA ZOOM-EFEKTI:
 body.hasHover a.card_twin_container:hover .card_logo {
   transform: scale(2.6);
   opacity: 0;
 }
 
-/* ==========================================================================
-   TEKSTIKONTTI (Linkki ankkuroitu täydellisesti pohjaan ilman bugia)
-   ========================================================================== */
 .card_text_container {
   flex-basis: 64%;
   box-sizing: border-box;
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; // 🚀 Pakottaa tekstin ylös ja linkin aina aivan alas samalle suoralle viivalle!
-  padding-bottom: 25px; // Tehdään siisti tila sille linkille tekstikontin sisään
+  justify-content: space-between;
+  padding-bottom: 25px;
 
   p {
     margin: 0;
-    
-    // 🚀 Siirretty linkki takaisin p-tagiin, jotta hiiri osuu siihen nätisti ilman ghostingia
+
     &::after {
       content: "Visit official site";
       color: $primary_theme_color;
@@ -488,7 +463,7 @@ body.hasHover a.card_twin_container:hover .card_logo {
       font-size: 80%;
       font-weight: 700;
       position: absolute;
-      bottom: 0; // Ankkuroitu täydellisesti tekstikontin alareunaan samalle viivalle!
+      bottom: 0;
       left: 0;
       border-bottom: 1px solid transparent;
       transition: border-color 0.3s ease;
@@ -503,39 +478,32 @@ body.hasHover a.card_twin_container:hover .card_logo {
   @include respond-to($breakpoint-mobile) {
     flex-basis: auto !important;
     width: 100%;
-    
+
     p {
       padding-bottom: 20px;
     }
   }
 }
 
-// Alaviivan ilmestyminen hoverissa toimii taas puhtaasti ilman esteitä
 body.hasHover a.card_twin_container:hover .card_text_container p::after {
   border-bottom: 1px solid $primary_theme_color;
 }
 
-/* ==========================================================================
-   GALLERY (The Optimized "Sexy Grid" Architecture)
-   ========================================================================== */
 .full_block#gallery {
-background: #212836;
-background: linear-gradient(180deg, rgba(33, 40, 54, 1) 0%, rgba(255, 255, 255, 1) 100%);
-background: url(../images/gallery/fractals/47_Blue_rue.webp) no-repeat center center fixed;
-background-size: cover;
-
-
-.gallery_categories{
-  margin-top: 0;
-}
+  background: #212836;
+  background: linear-gradient(180deg, rgba(33, 40, 54, 1) 0%, rgba(255, 255, 255, 1) 100%);
+  background: url(../images/gallery/fractals/47_Blue_rue.webp) no-repeat center center fixed;
+  background-size: cover;
 
   .gallery_categories {
-    & + .gallery_categories {
+    margin-top: 0;
+
+    &+.gallery_categories {
       margin-top: 20px;
 
       @media screen and (max-width: $breakpoint-tablet) {
-        margin-top: 20px; 
-      } 
+        margin-top: 20px;
+      }
     }
 
     h3 {
@@ -572,43 +540,40 @@ background-size: cover;
         background-image: url("../images/icons_sprites_patterns/icons/display.svg");
         margin-bottom: 13px;
       }
-    } 
-  } 
-} 
+    }
+  }
+}
 
-
-/* ==========================================================================
-   THE SEXY GALLERY GRID  =)
-   ========================================================================== */
 .gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); 
-  gap: 2px;
-  margin: 25px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 40px;
 
-  @media screen and (max-width: $breakpoint-tablet) {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
-    gap: 4px;
-  }
-
-  @media screen and (max-width: $breakpoint-mobile) {
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 6px; 
-    margin: 15px 0;
-  }
-
-  // Oletuksena piilotetut tasot
   .lightbox-trigger.level-1,
   .lightbox-trigger.level-2 {
     display: none;
   }
 
-  // YLEINEN SÄÄNTÖ KAIKILLE KUVILLE: Työpöydällä aina harmaana, paitsi mobiilissa
-.lightbox-trigger {
-    display: block;
-    overflow: visible;
-    position: relative;
+  .lightbox-trigger {
+    display: flex;
+    flex: 0 1 calc(25% - 15px);
+    max-height: 140px;
     transition: transform 0.2s ease-in-out;
+    box-sizing: border-box;
+    position: relative;
+
+    @media screen and (max-width: $breakpoint-newschool) {
+      flex: 0 1 calc(33.333% - 14px);
+    }
+
+    @media screen and (max-width: $breakpoint-vga) {
+        flex: 0 1 calc(50% - 14px);
+    }
+
 
     &::after {
       content: attr(title);
@@ -634,34 +599,31 @@ background-size: cover;
     img {
       display: block;
       width: 100%;
-      height: 140px;
+      height: 100%;
       object-fit: cover;
       transition: filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
       border-radius: 8px;
-      
-      // MOBIILI / OLETUS: Kuvat ovat aina heti väreissä, ei harmautta laisinkaan!
+
       filter: brightness(0.9) grayscale(0);
 
       @media screen and (max-width: $breakpoint-mobile) {
         height: 110px;
       }
 
-      // TYÖPÖYTÄ (min-width): Vain isolla ruudulla kytketään harmaasuodatin päälle kaikille kuville automaattisesti!
-      @media screen and (min-width: $breakpoint-desktop-mini) { // Vaihda tähän sun työpöydän breikkari tarvittaessa
+      @media screen and (min-width: $breakpoint-desktop-mini) {
         filter: brightness(0.7) grayscale(1);
       }
     }
 
-    // Hover työpöydällä herättää kuvan väreihin
     body.hasHover &:hover {
       transform: scale(1.1);
       z-index: 10;
-      
+
       &::after {
         opacity: 1;
         transform: translate(-50%, -50%) scale(1);
       }
-      
+
       img {
         filter: brightness(1.1) grayscale(0);
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
@@ -669,18 +631,14 @@ background-size: cover;
     }
   }
 
-  // Kun kuva tulee näkyviin, varmistetaan että se näytetään blockina ja saa animaation
   .lightbox-trigger.is-visible {
-    display: block !important;
-    
+    display: flex !important;
+
     img {
       animation: text-focus-in .5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
     }
   }
 
-
-
-// Ne kuvat, jotka ladataan napin takaa esiin
   .lightbox-trigger.is-revealed {
     img {
       filter: brightness(0.7) grayscale(1);
@@ -690,14 +648,12 @@ background-size: cover;
       }
     }
 
-    // 🚀 LISÄTÄÄN TÄMÄ HOVER-SÄÄNTÖ SUORAAN TÄNNE:
     body.hasHover &:hover {
       img {
         filter: brightness(1.1) grayscale(0) !important;
       }
     }
   }
-
 
   @for $i from 1 through 16 {
     .lightbox-trigger:not(.level-1):not(.level-2):nth-of-type(#{$i}) img,
@@ -716,10 +672,6 @@ background-size: cover;
   width: 100%;
 }
 
-
-
-
-// Pakotetaan työpöydällä (960px+) myös lisäkuvat harmaaksi, tabletissa ja mobiilissa ne ovat oletuksena väreissä!
 @media screen and (min-width: $breakpoint-desktop-mini) {
   .gallery-grid .lightbox-trigger.level-1.is-visible.is-revealed,
   .gallery-grid .lightbox-trigger.level-2.is-visible.is-revealed {
@@ -737,165 +689,185 @@ background-size: cover;
 
 .is-hidden {
   display: none !important;
-
 }
 
-
-
-/* ==========================================================================
-GLOBAL LIGHTBOX ()
-========================================================================== */
 body.lightbox-open {
-overflow: hidden !important;
-touch-action: none;
+  overflow: hidden !important;
+  touch-action: none;
 }
+
 dialog#global-lightbox {
-margin: auto;
-padding: 0;
-border: none;
-background: transparent;
-width: 90vw;
-height: 90vh;
-max-width: 90vw;
-max-height: 90vh;
-overflow: visible !important;
-&[open] {
-display: flex;
-align-items: center;
-justify-content: center;
+  margin: auto;
+  padding: 0;
+  border: none;
+  background: transparent;
+  width: 90vw;
+  height: 90vh;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: visible !important;
+
+  &[open] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.90);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  }
+
+  .lightbox-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+
+    img {
+      display: block;
+      max-width: 80%;
+      max-height: 80%;
+      object-fit: contain;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border: 1px solid #666;
+    }
+
+    #lightbox-caption {
+      color: #efefef;
+      margin-top: 15px;
+      font-family: inherit, sans-serif;
+      font-size: 1.1rem;
+      text-align: center;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+  }
+
+  .lightbox-nav-btn {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: none;
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.2s;
+    z-index: 1000;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: scale(1.05);
+    }
+
+    &.close {
+      top: 10px;
+      right: 10px;
+      font-size: 1.5rem;
+    }
+
+    &.prev {
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+
+      &:hover {
+        transform: translateY(-50%) scale(1.05);
+      }
+    }
+
+    &.next {
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+
+      &:hover {
+        transform: translateY(-50%) scale(1.05);
+      }
+    }
+  }
 }
-&::backdrop {
-background: rgba(0, 0, 0, 0.90);
-backdrop-filter: blur(5px);
--webkit-backdrop-filter: blur(5px);
-}
-.lightbox-content {
-position: relative;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-width: 100%;
-height: 100%;
-img {
-display: block;
-max-width: 80%;
-max-height: 80%;
-object-fit: contain;
-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-border: 1px solid #666;
-}
-#lightbox-caption {
-color: #efefef;
-margin-top: 15px;
-font-family: inherit, sans-serif;
-font-size: 1.1rem;
-text-align: center;
-text-transform: uppercase;
-line-height: 1.1;
-}
-}
-.lightbox-nav-btn {
-position: absolute;
-background: rgba(255, 255, 255, 0.1);
-color: #fff;
-border: none;
-font-size: 2rem;
-width: 50px;
-height: 50px;
-border-radius: 50%;
-cursor: pointer;
-display: flex;
-align-items: center;
-justify-content: center;
-transition: background 0.2s, transform 0.2s;
-z-index: 1000;
-&:hover {
-background: rgba(255, 255, 255, 0.25);
-transform: scale(1.05);
-}
-&.close {
-top: 10px;
-right: 10px;
-font-size: 1.5rem;
-}
-&.prev {
-left: 0;
-top: 50%;
-transform: translateY(-50%);
-&:hover { transform: translateY(-50%) scale(1.05); }
-}
-&.next {
-right: 0;
-top: 50%;
-transform: translateY(-50%);
-&:hover { transform: translateY(-50%) scale(1.05); }
-}
-}
-}
+
 @media (max-width: $breakpoint-tablet) {
-dialog#global-lightbox {
-.lightbox-content {
-max-width: 95vw;
+  dialog#global-lightbox {
+    .lightbox-content {
+      max-width: 95vw;
+    }
+
+    .lightbox-nav-btn {
+      font-size: 1.5rem;
+      width: 40px;
+      height: 40px;
+
+      &.close {
+        top: 10px;
+        right: 10px;
+      }
+
+      &.prev {
+        left: 10px;
+      }
+
+      &.next {
+        right: 10px;
+      }
+    }
+  }
 }
-.lightbox-nav-btn {
-font-size: 1.5rem;
-width: 40px;
-height: 40px;
-&.close {
-top: 10px;
-right: 10px;
-}
-&.prev {
-left: 10px;
-}
-&.next {
-right: 10px;
-}
-}
-}
-}
-/* ==========================================================================
-ACCORDION READ MORE
-========================================================================== */
+
 .hidden_post {
-position: relative;
-margin-bottom: 40px;
-.article-intro {
-position: relative;
-overflow: hidden;
-&::after {
-content: "";
-position: absolute;
-bottom: 0;
-left: 0;
-width: 100%;
-height: 160px;
-background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, var(--bg-color) 100%);
-transition: opacity 0.3s ease-in-out;
-pointer-events: none;
-opacity: 1;
-z-index: 2;
+  position: relative;
+  margin-bottom: 40px;
+
+  .article-intro {
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 160px;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, var(--bg-color) 100%);
+      transition: opacity 0.3s ease-in-out;
+      pointer-events: none;
+      opacity: 1;
+      z-index: 2;
+    }
+  }
+
+  &.has-opened {
+    .article-intro::after {
+      opacity: 0 !important;
+      visibility: hidden;
+    }
+  }
 }
-}
-&.has-opened {
-.article-intro::after {
-opacity: 0 !important;
-visibility: hidden;
-}
-}
-}
+
 .article-body {
-display: grid !important;
-grid-template-rows: 0fr;
-overflow: hidden;
-opacity: 0;
-transition: grid-template-rows 1s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
-& > div {
-min-height: 0;
-}
-&.is-open {
-grid-template-rows: 1fr;
-opacity: 1;
-}
+  display: grid !important;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  opacity: 0;
+  transition: grid-template-rows 1s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
+
+  &>div {
+    min-height: 0;
+  }
+
+  &.is-open {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
 }

@@ -17,7 +17,7 @@
 
 html {
   scrollbar-color: #605f5f #1a1c26;
-  scroll-behavior: smooth;
+
 }
 
 body {
@@ -37,7 +37,8 @@ body {
 #gallery,
 #web,
 #contact {
-  scroll-margin-top: 44px; /* Navbarin korkeus */
+
+  /* Navbarin korkeus */
 }
 
 
@@ -82,12 +83,10 @@ h2 {
   }
 
 
-    @media screen and (max-width: $breakpoint-vga) {
+  @media screen and (max-width: $breakpoint-vga) {
     font-size: 2.8rem;
-   
+
   }
-
-
 
 
 }
@@ -126,12 +125,13 @@ h4 {
    ========================================================================== */
 
 a {
+
   &,
   &:link,
   &:visited {
     display: inline-block; // Antaa elementille vakaan pohjan transform-efektiä varten
     color: $primary_theme_color;
-    text-decoration: none; 
+    text-decoration: none;
     transition: color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease; // Pehmennetään myös skaalaus ja varjo
     -webkit-text-stroke: 1px rgba(0, 0, 0, 0.3);
     will-change: transform; // Kertoo selaimelle etukäteen, että tätä tullaan skaalaamaan (estää blurraantumisen)
@@ -157,7 +157,7 @@ p {
   @media screen and (max-width: $breakpoint-tablet) {
     font-size: 1.1rem; // Pidetään luettavana (n. 15px)
     line-height: 1.5;
-     margin-bottom: .4rem;
+    margin-bottom: .4rem;
   }
 }
 
@@ -204,7 +204,7 @@ p.date {
 
 
 
-        /* UPOTETTU MOBIILI-KYSELY: */
+    /* UPOTETTU MOBIILI-KYSELY: */
     @media screen and (max-width: $breakpoint-desktop-mini) {
       font-size: 3.8rem; // Älyttömän suuri 5.25rem loikkaa muuten ruudulta ulos
     }
@@ -213,14 +213,14 @@ p.date {
 
     /* UPOTETTU MOBIILI-KYSELY: */
     @media screen and (max-width: $breakpoint-tablet) {
-      font-size: 3.4  rem; // Älyttömän suuri 5.25rem loikkaa muuten ruudulta ulos
+      font-size: 3.4 rem; // Älyttömän suuri 5.25rem loikkaa muuten ruudulta ulos
     }
   }
 
   &.text_shadow {
     text-shadow: 0 5px 2px rgb(0, 0, 0);
   }
-  
+
 }
 
 figcaption,
@@ -277,7 +277,7 @@ figcaption,
   text-align: center;
 }
 
-.text_justify{
+.text_justify {
 
   text-align: justify;
 }
@@ -349,8 +349,8 @@ figcaption,
 
   color: $light_color;
   scrollbar-color: #605f5f #1a1c26;
-background: #121212;
-background: radial-gradient(circle, rgba(0, 0, 0, 1) 0%, rgba(36, 33, 33, 1) 100%);
+  background: #121212;
+  background: radial-gradient(circle, rgba(0, 0, 0, 1) 0%, rgba(36, 33, 33, 1) 100%);
 }
 
 hr {

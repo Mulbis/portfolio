@@ -65,7 +65,6 @@
 
 html {
   scrollbar-color: #605f5f #1a1c26;
-  scroll-behavior: smooth;
 }
 
 body {
@@ -84,7 +83,7 @@ body {
 #gallery,
 #web,
 #contact {
-  scroll-margin-top: 44px; /* Navbarin korkeus */
+  /* Navbarin korkeus */
 }
 
 /* ==========================================================================
@@ -541,6 +540,7 @@ hr + * {
   box-shadow: 0 8px 15px -10px rgba(0, 0, 0, 0.5);
   transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   animation: text-focus-in 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  position: relative;
 }
 @media (hover: hover) {
   .basic_button:hover {
@@ -560,16 +560,29 @@ hr + * {
 }
 @media screen and (max-width: 480px) {
   .basic_button.btn_hero {
-    display: block;
-    width: 40%;
     text-align: center;
     padding: 8px 14px;
-    font-size: 1rem;
+    font-size: 0.6rem;
     letter-spacing: 3px;
     margin-top: 10px;
   }
 }
 
+#btn-show-level-1::after,
+#btn-show-level-2::after {
+  content: "▼";
+  font-size: 20px;
+  color: #b88367;
+  position: absolute;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-shadow: none;
+}
+
+/* ==========================================================================
+       NAVIGATION MENU
+   ========================================================================== */
 /* ==========================================================================
    NAVIGATION MENU
    ========================================================================== */
@@ -588,7 +601,11 @@ nav.sticky {
     left: 0;
     width: 100%;
     z-index: 1000;
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: transform 0.3s ease-in-out;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
   }
   nav.sticky.nav-hidden {
     transform: translateY(-100%);
@@ -597,23 +614,18 @@ nav.sticky {
 
 .navbar {
   width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 18px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
   height: 44px;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 18px;
-  display: flex;
-  align-items: stretch;
-  justify-content: space-between;
 }
-
-.navbar {
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 18px;
-  display: flex;
-  align-items: stretch;
-  justify-content: space-between;
+@media screen and (max-width: 768px) {
+  .navbar {
+    background: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgb(62, 62, 62) 100%);
+  }
 }
 
 ul.navigation_list {
@@ -700,7 +712,6 @@ ul.navigation_list li a.active:hover {
   }
 }
 
-/* 2. Navigaatiolistan mobiilimuunnos */
 @media screen and (max-width: 768px) {
   .navbar {
     display: flex;
@@ -713,6 +724,7 @@ ul.navigation_list li a.active:hover {
     right: -100%;
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     background: rgba(18, 18, 18, 0.92);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
@@ -743,7 +755,6 @@ ul.navigation_list li a.active:hover {
   }
 }
 
-/* DARK MODE JUTTUI (?) */
 .theme_btn {
   align-self: center;
   background: transparent;
@@ -766,7 +777,7 @@ ul.navigation_list li a.active:hover {
 }
 
 /* ==========================================================================
-   ABOUT-OSIOIDEN RESPONSIVISUUS (Erotettu ja turvattu arkkitehtuuri)
+   ABOUT-OSIOIDEN RESPONSIVISUUS
    ========================================================================== */
 @media screen and (max-width: 768px) {
   #about_me .flex.between,
@@ -777,20 +788,12 @@ ul.navigation_list li a.active:hover {
     gap: 25px;
   }
 }
-#about_me .flex.between,
-#about_this_site .flex.between {
-  /* Pieni sarake (Kuva / Avatar) */
-}
 #about_me .flex.between .half_block.col_small,
 #about_this_site .flex.between .half_block.col_small {
   display: flex;
   flex: 0 0 24%;
   flex-direction: column;
   justify-content: center;
-}
-#about_me .flex.between,
-#about_this_site .flex.between {
-  /* Iso sarake (Tekstit ja taidot) */
 }
 #about_me .flex.between .half_block.col_big,
 #about_this_site .flex.between .half_block.col_big {
@@ -800,9 +803,6 @@ ul.navigation_list li a.active:hover {
   justify-content: center;
 }
 
-/* ==========================================================================
-   KUVIEN UNIikit TYYLIT (Nyt ne eivät voi enää ikinä tapella keskenään!)
-   ========================================================================== */
 .meitzi {
   text-align: center;
   margin: 0 !important;
@@ -830,9 +830,6 @@ ul.navigation_list li a.active:hover {
   border-radius: 8px !important;
 }
 
-/* ==========================================================================
-   KORTIT / CARDS TWIN CONTAINER (KORJATTU JA RESUKSI OPTIMOITU)
-   ========================================================================== */
 #cards_full_block {
   position: relative;
   background: #000 url(../images/bg_images/cyani_2.jpg) no-repeat center top fixed;
@@ -844,15 +841,11 @@ ul.navigation_list li a.active:hover {
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   width: 100%;
-  /* Kun ruutu kapenee tabletiksi (alle 960px), siirrytään 2 rinnakkain asetteluun */
 }
 @media (max-width: 960px) {
   .cards_wrapper {
     grid-template-columns: repeat(2, 1fr);
   }
-}
-.cards_wrapper {
-  /* Kun mennään puhelimelle (alle 640px), laatikot pamahtavat nätisti 1 per rivi */
 }
 @media (max-width: 640px) {
   .cards_wrapper {
@@ -861,9 +854,6 @@ ul.navigation_list li a.active:hover {
   }
 }
 
-/* ==========================================================================
-   KORTIT / CARDS TWIN CONTAINER (Kuvat ja Zoom-efekti korjattu!)
-   ========================================================================== */
 a.card_twin_container {
   background: #171718;
   border: 1px solid #242424;
@@ -940,9 +930,6 @@ body.hasHover a.card_twin_container:hover .card_logo {
   opacity: 0;
 }
 
-/* ==========================================================================
-   TEKSTIKONTTI (Linkki ankkuroitu täydellisesti pohjaan ilman bugia)
-   ========================================================================== */
 .card_text_container {
   flex-basis: 64%;
   box-sizing: border-box;
@@ -987,9 +974,6 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
   border-bottom: 1px solid #d19d81;
 }
 
-/* ==========================================================================
-   GALLERY (The Optimized "Sexy Grid" Architecture)
-   ========================================================================== */
 .full_block#gallery {
   background: #212836;
   background: linear-gradient(180deg, rgb(33, 40, 54) 0%, rgb(255, 255, 255) 100%);
@@ -1039,37 +1023,36 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
   margin-bottom: 13px;
 }
 
-/* ==========================================================================
-   THE SEXY GALLERY GRID  =)
-   ========================================================================== */
 .gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 2px;
-  margin: 25px 0;
-}
-@media screen and (max-width: 768px) {
-  .gallery-grid {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 4px;
-  }
-}
-@media screen and (max-width: 480px) {
-  .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 6px;
-    margin: 15px 0;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 40px;
 }
 .gallery-grid .lightbox-trigger.level-1,
 .gallery-grid .lightbox-trigger.level-2 {
   display: none;
 }
 .gallery-grid .lightbox-trigger {
-  display: block;
-  overflow: visible;
-  position: relative;
+  display: flex;
+  flex: 0 1 calc(25% - 15px);
+  max-height: 140px;
   transition: transform 0.2s ease-in-out;
+  box-sizing: border-box;
+  position: relative;
+}
+@media screen and (max-width: 1280px) {
+  .gallery-grid .lightbox-trigger {
+    flex: 0 1 calc(33.333% - 14px);
+  }
+}
+@media screen and (max-width: 640px) {
+  .gallery-grid .lightbox-trigger {
+    flex: 0 1 calc(50% - 14px);
+  }
 }
 .gallery-grid .lightbox-trigger::after {
   content: attr(title);
@@ -1094,7 +1077,7 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
 .gallery-grid .lightbox-trigger img {
   display: block;
   width: 100%;
-  height: 140px;
+  height: 100%;
   object-fit: cover;
   transition: filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   border-radius: 8px;
@@ -1123,7 +1106,7 @@ body.hasHover .gallery-grid .lightbox-trigger:hover img {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 }
 .gallery-grid .lightbox-trigger.is-visible {
-  display: block !important;
+  display: flex !important;
 }
 .gallery-grid .lightbox-trigger.is-visible img {
   animation: text-focus-in 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
@@ -1242,9 +1225,6 @@ body.hasHover .gallery-grid .lightbox-trigger.is-revealed:hover img {
   display: none !important;
 }
 
-/* ==========================================================================
-GLOBAL LIGHTBOX ()
-========================================================================== */
 body.lightbox-open {
   overflow: hidden !important;
   touch-action: none;
@@ -1359,9 +1339,6 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
     right: 10px;
   }
 }
-/* ==========================================================================
-ACCORDION READ MORE
-========================================================================== */
 .hidden_post {
   position: relative;
   margin-bottom: 40px;
@@ -1417,10 +1394,10 @@ ACCORDION READ MORE
   position: relative;
   z-index: 1;
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 768px) {
   #home.hero_section {
-    padding-top: 44px;
-    min-height: 60dvh;
+    padding-top: 54px;
+    min-height: 50vh;
   }
 }
 
@@ -1436,13 +1413,19 @@ ACCORDION READ MORE
   overflow: visible;
   text-align: center;
 }
+@media screen and (max-width: 768px) {
+  .hero_info_box {
+    margin-top: 16px;
+    padding-bottom: 40px;
+  }
+}
 .hero_info_box h1 {
   animation: text-focus-in 1.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   font-weight: 700;
   line-height: 1.1;
 }
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1280px) {
   .hero_info_box h1 {
     font-size: 4.9rem;
   }
@@ -1718,11 +1701,11 @@ ACCORDION READ MORE
 }
 .ipad_screen::before,
 .iphone_screen::before {
-  background-image: url(../images/icons_sprites_patterns/web/sprites/ipad_iphone_panorama_3360_x_265.webp);
+  background-image: url(../images/icons_sprites_patterns/web/sprites/ipad_iphone_panorama_945_x_175.webp);
 }
 
 .iphone_screen {
-  top: 8%;
+  top: 7%;
   left: 6%;
   width: 90%;
   height: 76%;

@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-    /* ==========================================================================
+  /* ==========================================================================
      2. GLOBAALI NATIIVI LIGHTBOX-GALLERIA (<dialog>)
      ========================================================================= */
   const lightbox = document.getElementById("global-lightbox");
@@ -39,7 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const currentTitle = trigger.getAttribute("title") || "";
 
       if (groupName) {
-        // 🚀 KORJATTU: Haetaan kaikki ryhmän kuvat, mutta suodatetaan mukaan VAIN ne, jotka ovat okei ja näkyvissä!
         const allInGroup = Array.from(document.querySelectorAll(`.lightbox-trigger[rel="${groupName}"]`));
         
         currentGroupItems = allInGroup.filter(item => {
@@ -47,7 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
           const isLevel2 = item.classList.contains('level-2');
           const isVisible = item.classList.contains('is-visible');
           
-          // Jos kuva ei ole taso 1 tai 2, se on oletuksena näkyvissä. Jos se on taso, sen täytyy olla .is-visible
           return (!isLevel1 && !isLevel2) || isVisible;
         });
 
@@ -55,16 +53,13 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         currentGroupItems = [trigger];
         currentIndex = 0;
-      } // <-- Muista tämä sulku!
+      }
 
-      // 🔽 TÄSTÄ JATKUU SE AVUKSEN LOGIIKKA, JOKA AVAA IKKUNAN RUUDULLE 🔽
       updateLightboxContent(currentSrc, currentTitle);
       
       if (lightbox) {
         lightbox.showModal();
         updateNavButtons();
-        
-        // Lisätään siisti luokka bodille rullauksen estoa varten puhelimella
         document.body.classList.add("lightbox-open");
       }
     });
@@ -104,7 +99,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (nextBtn) nextBtn.addEventListener("click", showNext);
   if (prevBtn) prevBtn.addEventListener("click", showPrev);
   
-  // KORJATTU: Poistetaan luokka kun lightbox suljetaan
   if (closeBtn && lightbox) {
     closeBtn.addEventListener("click", () => {
       lightbox.close();
@@ -135,14 +129,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /* KORJATTU: Käytetään herkkää screenX-perustilaa, joka toimii kaikissa selaimissa */
   if (lightbox) {
     let kosketusAlkuX = 0;
     let kosketusLoppuX = 0;
-    const pyhkaisyRaja = 40; // Täydellinen herkkyys sormelle
+    const pyhkaisyRaja = 40;
 
     lightbox.addEventListener('touchstart', (e) => {
-      kosketusAlkuX = e.changedTouches[0].screenX; // Poimitaan täsmällisesti ensimmäinen sormi
+      kosketusAlkuX = e.changedTouches[0].screenX;
     }, { passive: true });
 
     lightbox.addEventListener('touchend', (e) => {
@@ -192,8 +185,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const navBar = document.querySelector('.sticky');
   const scrollLinks = document.querySelectorAll('a[href^="#"]:not([href="#"])');
   
+  let isClickScrolling = false; 
+
   if (scrollLinks.length > 0) {
-    let isClickScrolling = false;
 
     const updateScrollspy = () => {
       if (isClickScrolling || !navBar) return;
@@ -231,22 +225,19 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     };
 
-        // 🚀 KORJATTU: Luodaan kevyt lukko muistiin, joka estää turhat tuplalaskennat
     let scrollTimeout;
 
     window.addEventListener('scroll', () => {
       if (!scrollTimeout) {
         scrollTimeout = requestAnimationFrame(() => {
-          updateScrollspy(); // Ajetaan raskas laskenta vain kerran ruudunpäivityksen aikana
-          scrollTimeout = null; // Vapautetaan lukko seuraavaa ruutua varten
+          updateScrollspy();
+          scrollTimeout = null;
         });
       }
     }, { passive: true });
 
-    updateScrollspy(); // Ajetaan kerran heti latauksessa, jotta oikea linkki aktivoituu heti
+    updateScrollspy();
 
-
-    // Reittiä korjaava opastaja kaikille ankkurilinkeille (mukaan lukien Hero)
     scrollLinks.forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault(); 
@@ -277,7 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
           isClickScrolling = false;
           updateScrollspy(); 
-        }, 850);
+        }, 1100);
       });
     });
   }
@@ -287,16 +278,13 @@ document.addEventListener("DOMContentLoaded", () => {
      5. DARK MODE / LIGHT MODE TOGGLE
      ========================================================================== */
   const toggleButton = document.getElementById('theme-toggle');
-  
   const currentTheme = localStorage.getItem('theme');
   if (currentTheme) {
     document.documentElement.setAttribute('data-theme', currentTheme);
   }
-
   if (toggleButton) {
     toggleButton.addEventListener('click', () => {
       let theme = document.documentElement.getAttribute('data-theme');
-      
       if (theme === 'dark') {
         document.documentElement.removeAttribute('data-theme');
         localStorage.setItem('theme', 'light');
@@ -311,71 +299,66 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ==========================================================================
      6. MONITASOINEN GALLERIAN "SHOW MORE"
      ========================================================================== */
-const btn1 = document.getElementById('btn-show-level-1');
-const btn2 = document.getElementById('btn-show-level-2');
-const level1Items = document.querySelectorAll('.lightbox-trigger.level-1');
-const level2Items = document.querySelectorAll('.lightbox-trigger.level-2');
+  const btn1 = document.getElementById('btn-show-level-1');
+  const btn2 = document.getElementById('btn-show-level-2');
+  const level1Items = document.querySelectorAll('.lightbox-trigger.level-1');
+  const level2Items = document.querySelectorAll('.lightbox-trigger.level-2');
+  
+  if (btn1) {
+    btn1.addEventListener('click', () => {
+      level1Items.forEach(item => item.classList.add('is-visible', 'is-revealed'));
+      btn1.classList.add('is-hidden');
+      if (btn2) {
+        btn2.classList.remove('is-hidden');
+      }
+    });
+  }
+  if (btn2) {
+    btn2.addEventListener('click', () => {
+      level2Items.forEach(item => item.classList.add('is-visible', 'is-revealed'));
+      btn2.classList.add('is-hidden');
+    });
+  }
 
-if (btn1) {
-  btn1.addEventListener('click', () => {
-    level1Items.forEach(item => item.classList.add('is-visible', 'is-revealed')); // <-- Tänne
-    btn1.classList.add('is-hidden');
-    if (btn2) {
-      btn2.classList.remove('is-hidden');
-    }
-  });
-}
-if (btn2) {
-  btn2.addEventListener('click', () => {
-    level2Items.forEach(item => item.classList.add('is-visible', 'is-revealed')); // <-- Ja tänne
-    btn2.classList.add('is-hidden');
-  });
-}
+
   /* ==========================================================================
-     7. ARTIKKELIN "READ MORE" FUNKTIO (Synkronoidun pehmeä 0.5s haitari)
+     7. ARTIKKELIN "READ MORE" FUNKTIO
      ========================================================================== */
   const articleButtons = document.querySelectorAll('.toggle-article-btn');
-  
   articleButtons.forEach(btn => {
     btn.addEventListener("click", () => {
       const content = btn.previousElementSibling;
       const postParent = btn.closest(".hidden_post");
-      
-     if (content && content.classList.contains("article-body")) {
+      if (content && content.classList.contains("article-body")) {
         content.classList.toggle("is-open");
-        
         if (content.classList.contains("is-open")) {
           btn.textContent = "Read Less";
           if (postParent) postParent.classList.add("has-opened");
         } else {
-          // 🚀 KORJATTU: Viivästetään tekstin vaihtumista takaisin, kunnes haitari on rullannut melkein kiinni!
           setTimeout(() => {
             btn.textContent = "Read More";
-          }, 550); // 350ms on täydellinen ajoitus 0.5s animaation kanssa
-          
+          }, 550);
           if (postParent) postParent.classList.remove("has-opened");
         }
       }
     });
   });
 
-  /* =========================================
-     8. THE ATTACK OF THE SEXY HAMBURGER MENU
-     ========================================= */
 
+  /* =========================================
+     8. HAMBURGER MENU
+     ========================================= */
   const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
   const mobileNavList = document.getElementById('main-nav-list');
   const mobileNavLinks = document.querySelectorAll('.navigation_list a');
 
   if (mobileMenuToggle && mobileNavList) {
-    // Avaa / sulje valikko napista
     mobileMenuToggle.addEventListener('click', () => {
       const isOpen = mobileNavList.classList.toggle('is-open');
       mobileMenuToggle.classList.toggle('is-active');
       mobileMenuToggle.setAttribute('aria-expanded', isOpen);
     });
 
-    // Sulje valikko automaattisesti kun mitä tahansa linkkiä klikataan
     mobileNavLinks.forEach(link => {
       link.addEventListener('click', () => {
         mobileNavList.classList.remove('is-open');
@@ -385,4 +368,48 @@ if (btn2) {
     });
   }
 
-});
+
+  /* ==========================================================================
+     9. SMART STICKY NAVIGATION CONTROLLER (Optimoitu rAF + Delta)
+     ========================================================================== */
+  if (navBar) {
+    let smartLastScrollY = window.scrollY || document.documentElement.scrollTop;
+    let navTicking = false;
+
+    window.addEventListener('scroll', () => {
+      if (navTicking) return;
+
+      navTicking = requestAnimationFrame(() => {
+        const currentScrollY = window.scrollY || document.documentElement.scrollTop;
+
+        // Jos ollaan aivan sivun yläreunassa tai klikataan ankkuria, näytä navi aina
+        if (isClickScrolling || currentScrollY <= 0) {
+          navBar.classList.remove('nav-hidden');
+          smartLastScrollY = currentScrollY;
+          navTicking = false;
+          return;
+        }
+
+        // Kynnysarvo (delta = 10px), joka estää sormen tärinäpomppimisen
+        const delta = 10;
+        if (Math.abs(currentScrollY - smartLastScrollY) < delta) {
+          navTicking = false;
+          return;
+        }
+
+        // Jos skrollataan ALASPÄIN ja ollaan menty yli 60px yläreunasta -> piilota navi
+        if (currentScrollY > smartLastScrollY && currentScrollY > 60) {
+          navBar.classList.add('nav-hidden');
+        } 
+        // Jos skrollataan YLÖSPÄIN -> tuo navi takaisin näkyviin
+        else if (currentScrollY < smartLastScrollY) {
+          navBar.classList.remove('nav-hidden');
+        }
+
+        smartLastScrollY = currentScrollY;
+        navTicking = false;
+      });
+    }, { passive: true });
+  }
+
+  });

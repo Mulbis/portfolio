@@ -12,9 +12,9 @@
   position: relative;
   z-index: 1;
 
-  @media screen and (max-width: $breakpoint-mobile) {
-    padding-top: 44px; // Korjattu marginista paddingiksi!
-    min-height: 60dvh;
+  @media screen and (max-width: $breakpoint-tablet) {
+    padding-top: 54px; // Korjattu marginista paddingiksi!
+    min-height: 50vh;
   }
 }
 
@@ -30,6 +30,15 @@
   overflow: visible;
   text-align: center;
 
+  @include respond-to($breakpoint-tablet) {
+
+    margin-top: 16px;
+    padding-bottom: 40px;
+
+  }
+
+
+
   h1 {
     animation: text-focus-in 1.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
@@ -38,9 +47,9 @@
 
 
 
-   // Kun tullaan alle 1200px (new school, jossa otsikko alkaa breikata)
+    // Kun tullaan alle 1200px (new school, jossa otsikko alkaa breikata)
     @include respond-to($breakpoint-newschool) {
-   font-size: 4.9rem;
+      font-size: 4.9rem;
     }
 
 
@@ -54,7 +63,7 @@
       font-size: 3.4rem;
     }
 
-       // Kun tulloo mobbeen (480)
+    // Kun tulloo mobbeen (480)
     @include respond-to($breakpoint-tablet) {
       font-size: 2.7rem;
     }
@@ -74,25 +83,26 @@
     text-align: center;
     padding: 12px 0 8px;
 
- /* Kun tullaan alle 1024px (old school) */
+    /* Kun tullaan alle 1024px (old school) */
     @include respond-to($breakpoint-oldschool) {
- 
- 
+
+
       letter-spacing: normal;
       max-width: 80%;
     }
 
 
-        /* Kun tullaan tablet-kokoon (768px) */
-        @include respond-to($breakpoint-tablet) {
-          line-height: normal;
-          font-size: 1.2rem;
-          max-width: 90%;
+    /* Kun tullaan tablet-kokoon (768px) */
+    @include respond-to($breakpoint-tablet) {
+      line-height: normal;
+      font-size: 1.2rem;
+      max-width: 90%;
     }
-        /* Kun tullaan tablet-kokoon (768px) */
-        @include respond-to($breakpoint-mobile) {
-         font-size: 1rem;
-         line-height: normal;
+
+    /* Kun tullaan tablet-kokoon (768px) */
+    @include respond-to($breakpoint-mobile) {
+      font-size: 1rem;
+      line-height: normal;
 
     }
 
@@ -102,7 +112,9 @@
   }
 
 
-} /* HERO INFO BOX */
+}
+
+/* HERO INFO BOX */
 
 
 /* ==========================================================================
@@ -113,13 +125,13 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%; 
-  
+  height: 100%;
+
   // TÄMÄ TAPPAA SEN ÄRSYTTÄVÄN HORISONTAALISEN SCROLLBARIN POMMINVARMANTI!
-  overflow: hidden !important; 
-  
-  z-index: 10;   
-  pointer-events: none; 
+  overflow: hidden !important;
+
+  z-index: 10;
+  pointer-events: none;
 }
 
 .star {
@@ -128,9 +140,9 @@
   height: 4px;
   background: #fff;
   border-radius: 50%;
-  box-shadow: 
-    0 0 0 4px rgba(255, 255, 255, 0.05), 
-    0 0 0 8px rgba(255, 255, 255, 0.05), 
+  box-shadow:
+    0 0 0 4px rgba(255, 255, 255, 0.05),
+    0 0 0 8px rgba(255, 255, 255, 0.05),
     0 0 20px rgba(255, 255, 255, 0.1);
   transform: rotate(45deg) translate3d(0, 0, 0);
 
@@ -147,7 +159,7 @@
 
   // 🌠 TÄHTI 1: Lähtee heti alussa ja lentää HELKKARIN NOPEASTI (kesto vain 6s!)
   &:nth-child(1) {
-    left: 34vw;   // Aloittaa keskivaiheilta, jotta ehtii lentää komeasti ruudun yli viistoon
+    left: 34vw; // Aloittaa keskivaiheilta, jotta ehtii lentää komeasti ruudun yli viistoon
     top: -20px;
     animation: shootingstars 14s linear infinite;
     animation-delay: 1.3s; // Pamahtaa matkaan melkein heti kun sivu latautuu!
@@ -155,7 +167,7 @@
 
   // 🌠 TÄHTI 2: Lähtee 3-4s myöhemmin, ruudun VASURISTA ja liikkuu TOSI HITAASTI (kesto 18s!)
   &:nth-child(2) {
-    left: 10vw;   // Ruudun vasen reuna
+    left: 10vw; // Ruudun vasen reuna
     top: -30px;
     animation: shootingstars 32s linear infinite;
     animation-delay: 4s; // Odottaa sen toivomasi 4 sekuntia ennen kuin lipuu matkaan
@@ -163,26 +175,26 @@
 
   // 🌠 TÄHTI 3: Lähtee myös hitaasti (kesto 15s) ruudun OIKEASTA laidasta!
   &:nth-child(3) {
-    left: 68vw;   // Ruudun oikea reuna
+    left: 68vw; // Ruudun oikea reuna
     top: -340px;
     animation: shootingstars 32s linear infinite;
     animation-delay: 7s; // Lähtee omalla vuorollaan taivaalle
   }
 
-&:nth-child(4) {
-    left: 50vw;   // Ruudun oikea reuna
+  &:nth-child(4) {
+    left: 50vw; // Ruudun oikea reuna
     top: -340px;
     animation: shootingstars 42s linear infinite;
     animation-delay: 14s; // Lähtee omalla vuorollaan taivaalle
-}
+  }
 
 
-&:nth-child(5) {
-    left: 2vw;   // Ruudun oikea reuna
+  &:nth-child(5) {
+    left: 2vw; // Ruudun oikea reuna
     top: -10px;
     animation: shootingstars 60s linear infinite;
     animation-delay: 11s; // Lähtee omalla vuorollaan taivaalle
-}
+  }
 
 }
 
@@ -192,7 +204,7 @@
 
 
 /* QUOTE SECTION BEFORE ACTUAL WEBBIE */
-   #web_section_quote {
+#web_section_quote {
   text-align: center;
   width: 100%;
   background: #000 url(../images/bg_images/web_site_collage_4.webp) no-repeat center center fixed;
@@ -233,13 +245,11 @@
 
 }
 
-/* NICE EXTRA FULL WIDTH WRAPPERSON AROUND HARDARE */ 
-#hardware_full.full_block{
+/* NICE EXTRA FULL WIDTH WRAPPERSON AROUND HARDARE */
+#hardware_full.full_block {
   padding: 0;
-  
 
 }
-
 
 .hardware-showcase-container {
   display: flex;
@@ -249,10 +259,6 @@
   padding: 20px 0 10px;
   color: #fff;
 
-
-
-
-  
   /*
   box-shadow: -1px -9px 115px 0px rgba(0,0,0,0.58) inset;
 -webkit-box-shadow: -1px -9px 115px 0px rgba(0,0,0,0.58) inset;
@@ -358,12 +364,12 @@ padding: 40px 0 20px;
   height: 80%;
 
   &::before {
-    background-image: url(../images/icons_sprites_patterns/web/sprites/ipad_iphone_panorama_3360_x_265.webp);
+    background-image: url(../images/icons_sprites_patterns/web/sprites/ipad_iphone_panorama_945_x_175.webp);
   }
 }
 
 .iphone_screen {
-  top: 8%;
+  top: 7%;
   left: 6%;
   width: 90%;
   height: 76%;
@@ -378,7 +384,7 @@ padding: 40px 0 20px;
     // Aloitetaan lennon alku nollasta
     transform: rotate(45deg) translate3d(0, 0, 0);
   }
-  
+
   // 15% - 20% kohdalla tähti on lentänyt pitkälle ja katoaa
   20% {
     opacity: 0;
