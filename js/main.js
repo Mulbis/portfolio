@@ -253,7 +253,8 @@ document.addEventListener("DOMContentLoaded", () => {
           const navHeight = navBar ? navBar.offsetHeight : 0;
 
           const performScroll = () => {
-            const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - navHeight;
+   // Lisätään navin korkeuden lisäksi esim. 15 pikseliä ilmaa väliin
+    const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - navHeight + 20;
             window.scrollTo({
               top: targetPosition,
               behavior: 'smooth'
@@ -274,27 +275,31 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* ==========================================================================
-     5. DARK MODE / LIGHT MODE TOGGLE
-     ========================================================================== */
-  const toggleButton = document.getElementById('theme-toggle');
-  const currentTheme = localStorage.getItem('theme');
-  if (currentTheme) {
-    document.documentElement.setAttribute('data-theme', currentTheme);
-  }
-  if (toggleButton) {
-    toggleButton.addEventListener('click', () => {
-      let theme = document.documentElement.getAttribute('data-theme');
-      if (theme === 'dark') {
-        document.documentElement.removeAttribute('data-theme');
-        localStorage.setItem('theme', 'light');
-      } else {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-      }
-    });
-  }
+ /* ==========================================================================
+   TEEMAN VAIHTO (DARK / LIGHT MODE)
+   ========================================================================== */
+const themeBtn = document.getElementById('theme-toggle');
 
+if (themeBtn) {
+  themeBtn.addEventListener('click', () => {
+    // 1. Luetaan nykyinen teema
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    
+    // 2. Määritetään uusi teema
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    // 3. Asetetaan uusi teema html-elementille
+    document.documentElement.setAttribute('data-theme', newTheme);
+    
+    // 4. Vaihdetaan ikoni sen mukaan, mikä teema aktivoitui:
+    //    Jos on tumma teema (dark) -> näytetään Kuu 🌙
+    //    Jos on vaalea teema (light) -> näytetään Aurinko ☀️
+    themeBtn.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+
+    // (Valinnainen) Tallennetaan valinta localStorageen
+    localStorage.setItem('theme', newTheme);
+  });
+}
 
   /* ==========================================================================
      6. MONITASOINEN GALLERIAN "SHOW MORE"
@@ -321,20 +326,35 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* ==========================================================================
+ /* ==========================================================================
      7. ARTIKKELIN "READ MORE" FUNKTIO
-     ========================================================================== */
+     ========================================================================= */
   const articleButtons = document.querySelectorAll('.toggle-article-btn');
   articleButtons.forEach(btn => {
     btn.addEventListener("click", () => {
       const content = btn.previousElementSibling;
       const postParent = btn.closest(".hidden_post");
+      
       if (content && content.classList.contains("article-body")) {
         content.classList.toggle("is-open");
+        
         if (content.classList.contains("is-open")) {
           btn.textContent = "Read Less";
           if (postParent) postParent.classList.add("has-opened");
         } else {
+          // Kun artikkeli suljetaan, katsotaan missä sen yläreuna menee 
+          // ja rullataan silkinsulavasti takaisin näkyviin!
+          if (postParent) {
+            const navBar = document.querySelector('.sticky');
+            const navHeight = navBar ? navBar.offsetHeight : 0;
+            const targetPos = postParent.getBoundingClientRect().top + window.pageYOffset - navHeight - 25;
+
+            window.scrollTo({
+              top: targetPos,
+              behavior: 'smooth'
+            });
+          }
+
           setTimeout(() => {
             btn.textContent = "Read More";
           }, 550);

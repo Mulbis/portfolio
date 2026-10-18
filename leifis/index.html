@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ääninapit</title>
+    <style>
+        h1,
+        h3 {
+            padding: 0;
+            margin: 0
+        }
+
+        h3 {
+
+            padding-bottom: 20px;
+        }
+
+        /* Simple, clean grid layout so your soundboard looks organized */
+        body {
+            font-family: sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .soundboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        /* Nice, clicky button styling */
+        button {
+            padding: 20px 10px;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #1e1e1e;
+            color: #fff;
+            border: 2px solid #333;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.1s ease;
+        }
+
+        button:hover {
+            background-color: #333;
+            border-color: #555;
+        }
+
+        button:active {
+            transform: scale(0.95);
+            background-color: #007acc;
+            border-color: #007acc;
+        }
+
+        h1 {
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Leifis Karaoke</h1>
+    <h3>Nya tider - Klassisk Leifi</h3>
+
+    <!-- 1. Just add your new buttons inside this div container -->
+    <div class="soundboard">
+        <button data-sound="audio/Halo_2.m4a">Halo 1</button>
+        <button data-sound="audio/Halo.m4a">Halo 2</button>
+        <button data-sound="audio/lebe.mp3">Tjena mitt namn..</button>
+             <button data-sound="audio/Sa.m4a">Så</button>
+        <button data-sound="audio/Men_Saatana.m4a">Men Satan</button>
+        <button data-sound="audio/Karaoke.m4a">Karaoke</button>
+        <button data-sound="audio/Till_Leifi.m4a">Till Leifi</button>
+            <button data-sound="audio/Lessen_Farmor.m4a">Lessen Farmor</button>
+                      <button data-sound="audio/Tarja_Resa.m4a">Tarja resa</button>
+<button data-sound="audio/Sa_Dugillar_sig_ta.m4a">Gillar sig ta</button>
+<button data-sound="audio/Vi_e_zigenare.m4a">Vi e zigenare</button>
+<button data-sound="audio/Komma_hem_middag.m4a">Komma hem middag</button>
+<button data-sound="audio/Din_namn.m4a">Din namn</button>
+<button data-sound="audio/Pappa_ska.m4a">Pappa ska</button>
+<button data-sound="audio/Holka_sig.m4a">Holka sig</button>
+<button data-sound="">Holka sig</button>
+<button data-sound="audio/Inga_problem.m4a">Holka sig</button>
+
+
+
+        <!-- Drop new buttons right here! Example: -->
+        <!-- <button data-sound="audio/uusi_aani.m4a">Uusi Ääni</button> -->
+    </div>
+
+    <script>
+        // Holds active audio instances so the browser cannot delete them mid-play
+        const aktiivisetAanet = new Set();
+
+        document.body.addEventListener('click', function (event) {
+            const soundFile = event.target.getAttribute('data-sound');
+
+            if (soundFile) {
+                let audio = new Audio(soundFile);
+
+                // 1. Add it to our active collection to shield it from garbage collection
+                aktiivisetAanet.add(audio);
+
+                audio.play();
+
+                // 2. Once it safely finishes, remove it so memory stays clean
+                audio.addEventListener('ended', function () {
+                    aktiivisetAanet.delete(audio);
+                });
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>

@@ -3,21 +3,26 @@
    GLOBAL VARIABLES & CONFIGURATION
    ========================================================================== */
 /* Calle is great and you know it! */
-/* ==========================================================================
-   DYNAMIC THEME VARIABLES (Light & Dark Mode)
-   ========================================================================== */
 :root {
   --bg-color: #ffffff;
   --text-color: #121212;
   --nav-bg: rgba(255, 255, 255, 0.95);
-  --theme-color: #d19d81;
+  --theme-color: var(--theme-primary);
+  --theme-primary: #d19d81;
+  --theme-secondary: #b88367;
+  --theme-accent-1: #81b5d1;
+  --theme-accent-2: #679bb8;
 }
 
 [data-theme=dark] {
-  --bg-color: rgb(18, 18, 18);
+  --bg-color: #121212;
   --text-color: #ededed;
   --nav-bg: rgba(18, 18, 18, 0.95);
-  --theme-color: #b88367;
+  --theme-color: var(--theme-primary);
+  --theme-primary: #b88367;
+  --theme-secondary: #d19d81;
+  --theme-accent-1: #679bb8;
+  --theme-accent-2: #81b5d1;
 }
 
 /* ==========================================================================
@@ -221,13 +226,11 @@ p.date {
 p.date::before {
   content: "Edited ";
 }
-p.date {
-  /* UPOTETTU MOBIILI-KYSELY: */
-}
 @media screen and (max-width: 480px) {
   p.date {
     line-height: 1;
     padding-bottom: 0.5rem;
+    margin-top: -10px;
   }
 }
 
@@ -251,11 +254,11 @@ p.date {
 }
 @media screen and (max-width: 768px) {
   .quote.mega {
-    font-size: 3.4 rem;
+    font-size: 3.2rem;
   }
 }
 .quote.text_shadow {
-  text-shadow: 0 5px 2px rgb(0, 0, 0);
+  text-shadow: 0 5px 1px rgb(0, 0, 0);
 }
 
 figcaption,
@@ -339,7 +342,7 @@ figcaption,
 }
 
 .darker_color {
-  color: rgb(18, 18, 18) !important;
+  color: #121212 !important;
 }
 
 .primary_color {
@@ -367,7 +370,7 @@ figcaption,
 }
 
 .bg_white {
-  background-color: var(--bg-color) !important;
+  background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -458,7 +461,6 @@ hr + * {
   padding: 66px 0;
   position: relative;
   box-sizing: border-box;
-  /* UPOTETTU MOBIILI-KYSELY: */
 }
 @media screen and (max-width: 768px) {
   .full_block {
@@ -482,10 +484,9 @@ hr + * {
 }
 
 .page {
-  padding: 60px 2.5%;
+  padding: 60px 2%;
   box-sizing: border-box;
-  border-radius: 8px;
-  /* UPOTETTU MOBIILI-KYSELY: */
+  border-radius: 8px 8px 0 0;
 }
 @media screen and (max-width: 768px) {
   .page {
@@ -555,34 +556,35 @@ hr + * {
   color: #fff !important;
 }
 .basic_button.btn_hero {
-  font-size: 0.95rem;
   animation: text-focus-in 2s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
 }
 @media screen and (max-width: 480px) {
   .basic_button.btn_hero {
     text-align: center;
     padding: 8px 14px;
-    font-size: 0.6rem;
     letter-spacing: 3px;
     margin-top: 10px;
   }
 }
 
-#btn-show-level-1::after,
-#btn-show-level-2::after {
-  content: "▼";
-  font-size: 20px;
-  color: #b88367;
-  position: absolute;
-  bottom: -14px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-shadow: none;
+/*#
+
+btn-show-level-1,
+#btn-show-level-2 {
+  &::after {
+    content: '\25bc';
+    font-size: 20px;
+    color: $secondary_theme_color;
+    position: absolute;
+    bottom: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-shadow: none;
+  }
+
 }
 
-/* ==========================================================================
-       NAVIGATION MENU
-   ========================================================================== */
+*/
 /* ==========================================================================
    NAVIGATION MENU
    ========================================================================== */
@@ -591,7 +593,7 @@ nav.sticky {
   top: 0;
   z-index: 100;
   background: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgb(62, 62, 62) 100%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(184, 131, 103, 0.2);
   box-shadow: 1px 7px 21px 2px rgba(0, 0, 0, 0.75);
 }
 @media screen and (max-width: 768px) {
@@ -618,16 +620,8 @@ nav.sticky {
   margin: 0 auto;
   padding: 0 18px;
   display: flex;
-  align-items: stretch;
-  justify-content: space-between;
-  height: 44px;
+  align-items: end;
 }
-@media screen and (max-width: 768px) {
-  .navbar {
-    background: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgb(62, 62, 62) 100%);
-  }
-}
-
 ul.navigation_list {
   display: flex;
   justify-content: center;
@@ -977,24 +971,51 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
 .full_block#gallery {
   background: #212836;
   background: linear-gradient(180deg, rgb(33, 40, 54) 0%, rgb(255, 255, 255) 100%);
-  background: url(../images/gallery/fractals/47_Blue_rue.webp) no-repeat center center fixed;
-  background-size: cover;
-}
-.full_block#gallery .gallery_categories {
-  margin-top: 0;
-}
-.full_block#gallery .gallery_categories + .gallery_categories {
-  margin-top: 20px;
+  background-image: url(../images/bg_images/skulls_invert.webp);
 }
 @media screen and (max-width: 768px) {
-  .full_block#gallery .gallery_categories + .gallery_categories {
-    margin-top: 20px;
+  .full_block#gallery {
+    padding-bottom: 0;
   }
 }
-.full_block#gallery .gallery_categories h3 {
+[data-theme=dark] .full_block#gallery {
+  background: #000000;
+  background-image: none;
+}
+.full_block#gallery #categories_wrap {
+  padding: 0;
+  /* THE "PAGES" BLOCKS */
+}
+.full_block#gallery #categories_wrap .gallery_categories {
+  position: relative;
+}
+.full_block#gallery #categories_wrap .gallery_categories::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 6px 6px 0 6px;
+  background: linear-gradient(to right, var(--theme-primary), var(--theme-secondary));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+@media (max-width: 480px) {
+  .full_block#gallery #categories_wrap .gallery_categories::before {
+    padding: 2px 2px 0 2px;
+  }
+}
+.full_block#gallery #categories_wrap .gallery_categories + .gallery_categories {
+  margin-top: 20px;
+}
+[data-theme=dark] .full_block#gallery #categories_wrap .gallery_categories {
+  background-image: url(../images/bg_images/skulls_invert.webp);
+}
+.full_block#gallery #categories_wrap .gallery_categories h3 {
   display: inline-block;
 }
-.full_block#gallery .gallery_categories h3::after {
+.full_block#gallery #categories_wrap .gallery_categories h3::after {
   content: "";
   display: inline-block;
   width: 50px;
@@ -1006,19 +1027,18 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
   margin-left: 12px;
   transition: filter 0.3s ease;
 }
-[data-theme=dark] .full_block#gallery .gallery_categories h3::after {
+[data-theme=dark] .full_block#gallery #categories_wrap .gallery_categories h3::after {
   filter: invert(1) opacity(1);
 }
-
-.full_block#gallery .gallery_categories h3.fractal_title::after {
+.full_block#gallery #categories_wrap .gallery_categories h3.fractal_title::after {
   background-image: url("../images/icons_sprites_patterns/icons/mandelbrot_set.svg");
   margin-top: -3px;
 }
-.full_block#gallery .gallery_categories h3.photography_title::after {
+.full_block#gallery #categories_wrap .gallery_categories h3.photography_title::after {
   background-image: url("../images/icons_sprites_patterns/icons/camera_filled.svg");
   margin-bottom: 2px;
 }
-.full_block#gallery .gallery_categories h3.landfill_title::after {
+.full_block#gallery #categories_wrap .gallery_categories h3.landfill_title::after {
   background-image: url("../images/icons_sprites_patterns/icons/display.svg");
   margin-bottom: 13px;
 }
@@ -1027,7 +1047,7 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 4px;
+  gap: 10px;
   width: 100%;
   box-sizing: border-box;
   margin-bottom: 40px;
@@ -1038,20 +1058,21 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
 }
 .gallery-grid .lightbox-trigger {
   display: flex;
-  flex: 0 1 calc(25% - 15px);
-  max-height: 140px;
+  flex: 0 1 calc(25% - 8px);
+  max-height: 160px;
   transition: transform 0.2s ease-in-out;
   box-sizing: border-box;
   position: relative;
 }
 @media screen and (max-width: 1280px) {
   .gallery-grid .lightbox-trigger {
-    flex: 0 1 calc(33.333% - 14px);
+    flex: 0 1 calc(33.333% - 7px);
   }
 }
 @media screen and (max-width: 640px) {
   .gallery-grid .lightbox-trigger {
-    flex: 0 1 calc(50% - 14px);
+    flex: 0 1 calc(50% - 5px);
+    max-height: 140px;
   }
 }
 .gallery-grid .lightbox-trigger::after {
@@ -1235,10 +1256,10 @@ dialog#global-lightbox {
   padding: 0;
   border: none;
   background: transparent;
-  width: 90vw;
-  height: 90vh;
-  max-width: 90vw;
-  max-height: 90vh;
+  width: 100dvw;
+  height: 100dvh;
+  max-width: 100vw;
+  max-height: 100dvh;
   overflow: visible !important;
 }
 dialog#global-lightbox[open] {
@@ -1248,8 +1269,8 @@ dialog#global-lightbox[open] {
 }
 dialog#global-lightbox::backdrop {
   background: rgba(0, 0, 0, 0.9);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
 }
 dialog#global-lightbox .lightbox-content {
   position: relative;
@@ -1257,13 +1278,13 @@ dialog#global-lightbox .lightbox-content {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
+  width: 100dvw;
+  height: 100dvh;
 }
 dialog#global-lightbox .lightbox-content img {
   display: block;
-  max-width: 80%;
-  max-height: 80%;
+  max-width: 90dvw;
+  max-height: 85dvh;
   object-fit: contain;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   border: 1px solid #666;
@@ -1298,8 +1319,8 @@ dialog#global-lightbox .lightbox-nav-btn:hover {
   transform: scale(1.05);
 }
 dialog#global-lightbox .lightbox-nav-btn.close {
-  top: 10px;
-  right: 10px;
+  top: max(15px, 5dvh + env(safe-area-inset-top));
+  right: max(15px, env(safe-area-inset-right));
   font-size: 1.5rem;
 }
 dialog#global-lightbox .lightbox-nav-btn.prev {
@@ -1320,16 +1341,13 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 }
 
 @media (max-width: 768px) {
-  dialog#global-lightbox .lightbox-content {
-    max-width: 95vw;
-  }
   dialog#global-lightbox .lightbox-nav-btn {
     font-size: 1.5rem;
     width: 40px;
     height: 40px;
   }
   dialog#global-lightbox .lightbox-nav-btn.close {
-    top: 10px;
+    top: 10dvh;
     right: 10px;
   }
   dialog#global-lightbox .lightbox-nav-btn.prev {
@@ -1347,22 +1365,14 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   position: relative;
   overflow: hidden;
 }
-.hidden_post .article-intro::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 160px;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, var(--bg-color) 100%);
-  transition: opacity 0.3s ease-in-out;
-  pointer-events: none;
-  opacity: 1;
-  z-index: 2;
+.hidden_post .article-intro p {
+  --fade-start: 50%;
+  -webkit-mask-image: linear-gradient(to bottom, var(--text-color) var(--fade-start), transparent);
+  mask-image: linear-gradient(to bottom, var(--text-color) var(--fade-start), transparent);
 }
-.hidden_post.has-opened .article-intro::after {
-  opacity: 0 !important;
-  visibility: hidden;
+.hidden_post.has-opened .article-intro p {
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
 }
 
 .article-body {
@@ -1557,7 +1567,7 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   width: 100%;
   background: #000 url(../images/bg_images/web_site_collage_4.webp) no-repeat center center fixed;
   background-size: cover;
-  box-shadow: inset 0px 0px 47px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0px 0px 47px 200px rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1565,7 +1575,7 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 
 .quote_block {
   background: rgba(0, 0, 0, 0.2);
-  padding: 76px 4%;
+  padding: 40px 4%;
   text-align: center;
 }
 
@@ -1574,6 +1584,11 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   background: #000 url(../images/bg_images/web_site_collage_4.jpg) no-repeat center center fixed;
   background-size: cover;
   color: #fff;
+}
+@media screen and (max-width: 480px) {
+  .full_block#web {
+    padding-bottom: 0;
+  }
 }
 .full_block#web.full_block#web::before {
   position: absolute;
@@ -1598,12 +1613,6 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   color: var(--text-color);
   padding: 20px 0 10px;
   color: #fff;
-  /*
-    box-shadow: -1px -9px 115px 0px rgba(0,0,0,0.58) inset;
-  -webkit-box-shadow: -1px -9px 115px 0px rgba(0,0,0,0.58) inset;
-  -moz-box-shadow: -1px -9px 115px 0px rgba(0,0,0,0.58) inset;
-  padding: 40px 0 20px;
-  */
 }
 @media screen and (max-width: 480px) {
   .hardware-showcase-container {
@@ -1850,12 +1859,34 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
    CONTACT SECTION & FORM FIELDS (Hienosäädetty iMac M4 -näytölle!)
    ========================================================================== */
 #contact {
-  padding-bottom: 100px;
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
-  /*min-height: calc(100vh + 60px);*/
-  scroll-margin-top: 100px !important;
+}
+#contact .page {
+  position: relative;
+}
+#contact .page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 6px;
+  background: linear-gradient(to right, var(--theme-primary), var(--theme-secondary));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+@media (max-width: 480px) {
+  #contact .page::before {
+    padding: 2px;
+  }
+}
+@media screen and (max-width: 768px) {
+  #contact .page {
+    width: 96%;
+  }
 }
 #contact .contact_form {
   max-width: 600px;
@@ -1917,12 +1948,9 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 /* ==========================================================================
    MAIN FOOTERZ 
    ========================================================================== */
-/* ==========================================================================
-   MAIN FOOTERZ 
-   ========================================================================== */
 .main_footer {
   width: 100%;
-  padding: 50px 0;
+  padding: 20px 0;
   background: linear-gradient(180deg, rgba(20, 20, 20, 0.8) 0%, rgba(0, 0, 0, 0.95) 100%);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -1931,12 +1959,22 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   font-family: "Poppins", sans-serif;
   font-size: 0.9rem;
 }
+@media screen and (max-width: 480px) {
+  .main_footer {
+    padding: 12px 0;
+  }
+}
 .main_footer p {
   margin: 0;
 }
 @media screen and (max-width: 640px) {
   .main_footer p {
     font-size: 1.1rem;
+  }
+}
+@media screen and (max-width: 480px) {
+  .main_footer p {
+    font-size: 0.9rem;
   }
 }
 @media screen and (max-width: 960px) {
@@ -1954,6 +1992,13 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   margin: 0;
   padding: 0;
 }
+@media screen and (max-width: 480px) {
+  .main_footer .footer_links {
+    flex-direction: column;
+    gap: 0;
+    padding-top: 4px;
+  }
+}
 .main_footer .footer_links a, .main_footer .footer_links a:link, .main_footer .footer_links a:visited {
   color: var(--theme-color);
   text-transform: uppercase;
@@ -1964,9 +2009,11 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   text-shadow: none;
   text-decoration: none;
 }
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 480px) {
   .main_footer .footer_links a, .main_footer .footer_links a:link, .main_footer .footer_links a:visited {
     font-size: 0.8rem;
+    font-weight: 400;
+    line-height: 0.6rem;
   }
 }
 .main_footer .footer_links a::after {

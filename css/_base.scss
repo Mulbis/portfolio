@@ -186,10 +186,10 @@ p.date {
     content: "Edited ";
   }
 
-  /* UPOTETTU MOBIILI-KYSELY: */
   @media screen and (max-width: $breakpoint-mobile) {
     line-height: 1; // Safarille ja Chromelle vakaampi line-height mobiilissa
     padding-bottom: 0.5rem;
+    margin-top: -10px;
   }
 }
 
@@ -213,12 +213,12 @@ p.date {
 
     /* UPOTETTU MOBIILI-KYSELY: */
     @media screen and (max-width: $breakpoint-tablet) {
-      font-size: 3.4 rem; // Älyttömän suuri 5.25rem loikkaa muuten ruudulta ulos
+      font-size: 3.2rem; // Älyttömän suuri 5.25rem loikkaa muuten ruudulta ulos
     }
   }
 
   &.text_shadow {
-    text-shadow: 0 5px 2px rgb(0, 0, 0);
+    text-shadow: 0 5px 1px rgb(0, 0, 0);
   }
 
 }
@@ -340,7 +340,7 @@ figcaption,
 }
 
 .bg_white {
-  background-color: var(--bg-color) !important;
+  background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
 }

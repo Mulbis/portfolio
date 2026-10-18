@@ -28,9 +28,10 @@
   position: relative;
   box-sizing: border-box;
 
-  /* UPOTETTU MOBIILI-KYSELY: */
+
   @media screen and (max-width:$breakpoint-tablet) {
-    padding: 20px 0; // Tiivistetään osioiden välit puhelimella, säästää peukaloa rullaamiselta!
+    padding: 20px 0;
+    // Tiivistetään osioiden välit puhelimella, säästää peukaloa rullaamiselta!
 
   }
 }
@@ -52,11 +53,11 @@
 }
 
 .page {
-  padding: 60px 2.5%;
+  padding: 60px 2%;
   box-sizing: border-box;
-  @include rounded;
+  @include semi_rounded;
 
-  /* UPOTETTU MOBIILI-KYSELY: */
+
   @media screen and (max-width: $breakpoint-tablet) {
     padding:30px 2%;
   }

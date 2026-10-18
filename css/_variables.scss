@@ -19,7 +19,7 @@ $secondary_theme2_color: #679bb8;
 
 // Perusvärit leipätekstille ja taustoille
 $dark_color: #121212;
-$darker_color: rgb(18, 18, 18);
+$darker_color: #121212;
 $light_color: #ededed;
 
 // Mitat
@@ -27,21 +27,31 @@ $hero_height: 46vh;
 $content_block_width: 96%;
 $content_block_max_width: 1280px;
 
-/* ==========================================================================
-   DYNAMIC THEME VARIABLES (Light & Dark Mode)
-   ========================================================================== */
 :root {
   --bg-color: #ffffff;
   --text-color: #{$dark_color};
   --nav-bg: rgba(255, 255, 255, 0.95);
-  --theme-color: #{$primary_theme_color};
+  
+  // Vanha muuttuja takaisin viittaamaan ensisijaiseen teemaväriin!
+  --theme-color: var(--theme-primary);
+  
+  --theme-primary: #{$primary_theme_color};
+  --theme-secondary: #{$secondary_theme_color};
+  --theme-accent-1: #{$primary_theme2_color};
+  --theme-accent-2: #{$secondary_theme2_color};
 }
 
 [data-theme="dark"] {
   --bg-color: #{$darker_color};
   --text-color: #{$light_color};
   --nav-bg: rgba(18, 18, 18, 0.95);
-  --theme-color: #{$secondary_theme_color};
+  
+  --theme-color: var(--theme-primary);
+  
+  --theme-primary: #{$secondary_theme_color};
+  --theme-secondary: #{$primary_theme_color};
+  --theme-accent-1: #{$secondary_theme2_color};
+  --theme-accent-2: #{$primary_theme2_color};
 }
 
 /* ==========================================================================
@@ -82,6 +92,10 @@ $content_block_max_width: 1280px;
   border-radius: 8px;
 }
 
+@mixin semi_rounded {
+  border-radius: 8px 8px 0 0;
+}
+
 
 
 
@@ -103,5 +117,9 @@ $content_block_max_width: 1280px;
 
 @mixin rounded {
   border-radius: 8px;
+}
+
+@mixin semi_rounded {
+  border-radius: 8px 8px 0 0;
 }
 
