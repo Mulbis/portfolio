@@ -169,7 +169,7 @@
 
 					<div class="half_block col_small">
 						<figure id="about_site_image">
-							<img src="images/updated.png" alt="Esikatselukuva">
+							<img src="images/pagely.webp" alt="Greeeat">
 						</figure>
 					</div>
 				</div>
@@ -187,19 +187,17 @@
 
 
 					<!-- 1. HTML5 -->
-					<a class="card_twin_container flex evenly reveal_me_1" href="http://sass-lang.com" target="_blank"
+					<a class="card_twin_container flex evenly reveal_me_1" href="https://html.spec.whatwg.org/multipage/" target="_blank"
 						rel="noopener">
 						<div class="card_image_container"
 							style="background-image: url('images/icons_sprites_patterns/icons/icon_html_5.png');">
 							<img src="images/icons_sprites_patterns/icons/icon_html_5.png" alt="HTML5"
 								class="card_logo">
 						</div>
+
+
 						<div class="card_text_container">
-							<p class="small_text white">Styles on steroids. This CSS preprocessor is the bomb! SASS
-								really makes styling
-								more
-								efficient and fun. Sass reduces repetition of CSS and therefore saves
-								time. Now I just have to master it and become a sassy guru.</p>
+							<p class="small_text white">HTML5 is the latest version of HTML and XHTML. The HTML Standard defines a single language that can be written in HTML and XML. It attempts to solve issues found in previous iterations of HTML and addresses the needs of Web Applications, an area previously not adequately covered by HTML.</p>
 						</div>
 					</a>
 
@@ -223,7 +221,7 @@
 
 
 <!-- 3. JS -->
-					<a class="card_twin_container flex evenly reveal_me_6" href="https://jquery.com" target="_blank"
+					<a class="card_twin_container flex evenly reveal_me_3" href="https://jquery.com" target="_blank"
 						rel="noopener">
 						<div class="card_image_container"
 							style="background-image: url('images/icons_sprites_patterns/icons/icon_js.png');">
@@ -273,7 +271,7 @@
 
 
 										<!-- 6. SASS -->
-					<a class="card_twin_container flex evenly reveal_me_3" href="http://sass-lang.com" target="_blank"
+					<a class="card_twin_container flex evenly reveal_me_6" href="http://sass-lang.com" target="_blank"
 						rel="noopener">
 						<div class="card_image_container"
 							style="background-image: url('images/icons_sprites_patterns/icons/icon_sass_2.png');">
@@ -395,7 +393,8 @@
 							</div>
 						</div>
 
-						<button class="basic_button toggle-article-btn">Read More</button>
+						<button class="basic_button toggle-article-btn">
+							Read More</button>
 					</article>
 					
 
@@ -922,16 +921,30 @@
 	<script src="js/scrollreveal.js"></script>
 
 	<!-- 2. Ajetaan omat paljastukset heti perään -->
-	<script>
-		window.sr = ScrollReveal();
-		sr.reveal('.reveal_me');
-		sr.reveal('.reveal_me_1', { delay: 100 });
-		sr.reveal('.reveal_me_2', { delay: 200 });
-		sr.reveal('.reveal_me_3', { delay: 300 });
-		sr.reveal('.reveal_me_4', { delay: 400 });
-		sr.reveal('.reveal_me_5', { delay: 500 });
-		sr.reveal('.reveal_me_6', { delay: 600 });
-	</script>
+<script>
+	// Tarkistetaan onko mobiili
+	const isMobile = window.innerWidth <= 768;
+
+	window.sr = ScrollReveal({
+		// Mobiilissa herkempi triggeri (0.1 = laukeaa heti kun pilkistää ruudulle)
+		viewFactor: isMobile ? 0.1 : 0.45,
+		// Hieman napakampi kesto mobiilissa
+		duration: isMobile ? 400 : 600,
+		distance: '20px',
+		scale: 0.9,
+		reset: false
+	});
+
+	const delayMultiplier = isMobile ? 0.3 : 1;
+
+	sr.reveal('.reveal_me');
+	sr.reveal('.reveal_me_1', { delay: Math.round(100 * delayMultiplier) });
+	sr.reveal('.reveal_me_2', { delay: Math.round(200 * delayMultiplier) });
+	sr.reveal('.reveal_me_3', { delay: Math.round(300 * delayMultiplier) });
+	sr.reveal('.reveal_me_4', { delay: Math.round(400 * delayMultiplier) });
+	sr.reveal('.reveal_me_5', { delay: Math.round(500 * delayMultiplier) });
+	sr.reveal('.reveal_me_6', { delay: Math.round(600 * delayMultiplier) });
+</script>
 
 
 	<!-- remove hover on touch devices -->

@@ -330,39 +330,45 @@ if (themeBtn) {
      7. ARTIKKELIN "READ MORE" FUNKTIO
      ========================================================================= */
   const articleButtons = document.querySelectorAll('.toggle-article-btn');
-  articleButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const content = btn.previousElementSibling;
-      const postParent = btn.closest(".hidden_post");
+
+articleButtons.forEach(btn => {
+  // Tallennetaan muuttuja, johon otetaan talteen scrollin sijainti avaamishetkellä
+  let scrollPositionBeforeOpen = 0;
+
+  btn.addEventListener("click", () => {
+    const content = btn.previousElementSibling;
+    const postParent = btn.closest(".hidden_post");
+    
+    if (content && content.classList.contains("article-body")) {
+      const isOpen = content.classList.contains("is-open");
       
-      if (content && content.classList.contains("article-body")) {
-        content.classList.toggle("is-open");
-        
-        if (content.classList.contains("is-open")) {
-          btn.textContent = "Read Less";
-          if (postParent) postParent.classList.add("has-opened");
-        } else {
-          // Kun artikkeli suljetaan, katsotaan missä sen yläreuna menee 
-          // ja rullataan silkinsulavasti takaisin näkyviin!
-          if (postParent) {
-            const navBar = document.querySelector('.sticky');
-            const navHeight = navBar ? navBar.offsetHeight : 0;
-            const targetPos = postParent.getBoundingClientRect().top + window.pageYOffset - navHeight - 25;
+      if (!isOpen) {
+        // 1. KUN AVATAAN ("Read More"): Otetaan talteen missä kohtaa sivua ollaan NYT
+        scrollPositionBeforeOpen = window.pageYOffset;
 
-            window.scrollTo({
-              top: targetPos,
-              behavior: 'smooth'
-            });
-          }
+        content.classList.add("is-open");
+        btn.textContent = "Read Less";
+        if (postParent) postParent.classList.add("has-opened");
 
-          setTimeout(() => {
-            btn.textContent = "Read More";
-          }, 550);
-          if (postParent) postParent.classList.remove("has-opened");
-        }
+      } else {
+        // 2. KUN SULETAAN ("Read Less"): Suljetaan artikkeli
+        content.classList.remove("is-open");
+        if (postParent) postParent.classList.remove("has-opened");
+
+        // Palautetaan sivu smoothisti tasan siihen kohtaan, mistä käyttäjä avasi jutun
+        window.scrollTo({
+          top: scrollPositionBeforeOpen,
+          behavior: 'smooth'
+        });
+
+        // Vaihdetaan napin teksti takaisin pienellä viiveellä animaation mukana
+        setTimeout(() => {
+          btn.textContent = "Read More";
+        }, 550);
       }
-    });
+    }
   });
+});
 
 
   /* =========================================

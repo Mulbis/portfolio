@@ -288,8 +288,9 @@ ul.navigation_list {
 /* ==========================================================================
    ABOUT-OSIOIDEN RESPONSIVISUUS
    ========================================================================== */
-#about_me,
-#about_this_site {
+
+// 1. ABOUT ME (24% / 74%)
+#about_me {
   .flex.between {
     @media screen and (max-width: $breakpoint-tablet) {
       flex-direction: column !important;
@@ -303,6 +304,20 @@ ul.navigation_list {
       flex: 0 0 24%;
       flex-direction: column;
       justify-content: center;
+
+      .meitzi {
+        text-align: center;
+        margin: 0 !important;
+        padding: 0;
+
+        img {
+          border-radius: 50% !important;
+          display: block;
+          max-width: 240px;
+          width: 100%;
+          margin: 12px auto;
+        }
+      }
     }
 
     .half_block.col_big {
@@ -314,17 +329,44 @@ ul.navigation_list {
   }
 }
 
-.meitzi {
-  text-align: center;
-  margin: 0 !important;
-  padding: 0;
 
-  img {
-    border-radius: 50% !important;
-    display: block;
-    max-width: 240px;
-    width: 100%;
-    margin: 12px auto;
+/* ============== */
+
+// 2. ABOUT THIS SITE (34% / 64%)
+#about_this_site {
+  .flex.between {
+    gap: 3rem;
+
+    @media screen and (max-width: $breakpoint-tablet) {
+      flex-direction: column !important;
+      align-items: center;
+      justify-content: center;
+      gap: 25px;
+
+      // Jos haluat rajoittaa kuvien leveyttä tabletilla tässä osiossa:
+      img {
+        max-width: 80%;
+      }
+    }
+
+    .half_block.col_small {
+      display: flex;
+      flex: 0 0 34%;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .half_block.col_big {
+      display: flex;
+      flex: 0 0 64%;
+      flex-direction: column;
+      justify-content: center;
+
+      p {
+        text-align: justify;
+      }
+    }
   }
 }
 
@@ -333,21 +375,24 @@ ul.navigation_list {
   margin: 0 !important;
   padding: 0;
   width: 100%;
-  max-width: 381px;
 
   img {
     display: block;
     width: 100% !important;
     height: auto !important;
-    border-radius: 8px !important;
+    margin: 0 auto;
   }
 }
+ 
+/* ========================= CARDS, MAN. CARDS!  ========================= */
+
 
 #cards_full_block {
   position: relative;
   background: #000 url(../images/bg_images/cyani_2.jpg) no-repeat center top fixed;
   background-size: cover;
 }
+
 
 .cards_wrapper {
   display: grid;
@@ -375,6 +420,8 @@ a.card_twin_container {
   position: relative;
   overflow: hidden;
   transition: background 0.3s ease;
+
+
 
   @media (hover: hover) {
     &:hover {
@@ -405,7 +452,7 @@ a.card_twin_container {
 }
 
 .card_image_container {
-  flex-basis: 22%;
+  flex-basis: 25%;
   box-sizing: border-box;
   position: relative;
   display: flex;
@@ -428,6 +475,7 @@ a.card_twin_container {
     -webkit-backface-visibility: hidden;
     will-change: transform, opacity;
     transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.45s ease;
+
   }
 
   @include respond-to($breakpoint-mobile) {
@@ -444,16 +492,16 @@ body.hasHover a.card_twin_container:hover .card_logo {
 }
 
 .card_text_container {
-  flex-basis: 64%;
+  flex-basis: 65%;
   box-sizing: border-box;
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   padding-bottom: 25px;
 
   p {
     margin: 0;
+   
 
     &::after {
       content: "Visit official site";
@@ -488,11 +536,19 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
   border-bottom: 1px solid $primary_theme_color;
 }
 
+
+/* ========================= GALLERY ========================= */
+
+
+
 .full_block#gallery {
   // Oletustausta (vaalea tila)
   background: #212836;
   background: linear-gradient(180deg, rgba(33, 40, 54, 1) 0%, rgba(255, 255, 255, 1) 100%);
   background-image: url(../images/bg_images/skulls_invert.webp);
+    background-image: url(../images/icons_sprites_patterns/patterns/carbon_fibre_big.png);
+
+
 
   @include respond-to($breakpoint-tablet) {
     padding-bottom: 0;
@@ -526,7 +582,7 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
         mask-composite: exclude;
 
 @media (max-width: $breakpoint-mobile) {
-      padding: 2px 2px 0 2px; 
+      padding: 1px 1px 0 1px; 
     }
 
       }
@@ -701,11 +757,10 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
     }
   }
 
-  @for $i from 1 through 16 {
-    .lightbox-trigger:not(.level-1):not(.level-2):nth-of-type(#{$i}) img,
-    .lightbox-trigger.level-1.is-visible:nth-of-type(#{$i}) img,
-    .lightbox-trigger.level-2.is-visible:nth-of-type(#{$i}) img {
-      animation-delay: #{($i - 1) * 0.06}s;
+@for $i from 1 through 48 {
+    .lightbox-trigger.is-visible:nth-of-type(#{$i}) img {
+      /* Laskee indeksin aina 0–15 välille per setti */
+      animation-delay: #{ (($i - 1) % 16) * 0.05 }s;
     }
   }
 }
@@ -911,3 +966,5 @@ dialog#global-lightbox {
     opacity: 1;
   }
 }
+
+
