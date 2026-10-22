@@ -178,7 +178,7 @@ ul.navigation_list {
   align-items: center;
   width: 38px;
   height: 30px;
-  margin-top: 4px;
+
 
   .hamburger_line {
     display: block;
@@ -545,8 +545,7 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
   // Oletustausta (vaalea tila)
   background: #212836;
   background: linear-gradient(180deg, rgba(33, 40, 54, 1) 0%, rgba(255, 255, 255, 1) 100%);
-  background-image: url(../images/bg_images/skulls_invert.webp);
-    background-image: url(../images/icons_sprites_patterns/patterns/carbon_fibre_big.png);
+  background-image: url(../images/icons_sprites_patterns/patterns/skulls_invert.webp);
 
 
 

@@ -677,7 +677,6 @@ ul.navigation_list li a.active:hover {
   align-items: center;
   width: 38px;
   height: 30px;
-  margin-top: 4px;
 }
 .hamburger_btn .hamburger_line {
   display: block;
@@ -999,8 +998,7 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
 .full_block#gallery {
   background: #212836;
   background: linear-gradient(180deg, rgb(33, 40, 54) 0%, rgb(255, 255, 255) 100%);
-  background-image: url(../images/bg_images/skulls_invert.webp);
-  background-image: url(../images/icons_sprites_patterns/patterns/carbon_fibre_big.png);
+  background-image: url(../images/icons_sprites_patterns/patterns/skulls_invert.webp);
 }
 @media screen and (max-width: 768px) {
   .full_block#gallery {
@@ -1999,7 +1997,7 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 /* ==========================================================================
    CONTACT SECTION & FORM FIELDS (Hienosäädetty iMac M4 -näytölle!)
    ========================================================================== */
-#contact {
+#contact.full_block {
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -2007,47 +2005,50 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   background: #ffffff;
   background: radial-gradient(circle, rgb(255, 255, 255) 0%, rgb(242, 242, 242) 27%, rgb(222, 222, 222) 47%, rgb(250, 250, 250) 78%, rgb(247, 247, 247) 100%);
 }
-#contact .page {
+@media screen and (max-width: 640px) {
+  #contact.full_block {
+    padding: 20px 0;
+  }
+}
+#contact.full_block .page {
   position: relative;
   /*
-
-      &::before {
-        content: "";
-        position: absolute;
-        inset: 0; // Sama kuin top:0; right:0; bottom:0; left:0;
-        border-radius: inherit; // Perii nätisti saman border-radiuksen!
-        padding: 6px 6px 0 6px;
-        background: linear-gradient(to right, var(--theme-primary), var(--theme-secondary));
-        // Leikataan sisus pois, jotta vain reunus jää näkyviin
-        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        @media (max-width: $breakpoint-mobile) {
-          padding: 2px
-        }
-      }
-
-      */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0; // Sama kuin top:0; right:0; bottom:0; left:0;
+    border-radius: inherit; // Perii nätisti saman border-radiuksen!
+    padding: 6px 6px 0 6px;
+    background: linear-gradient(to right, var(--theme-primary), var(--theme-secondary));
+    // Leikataan sisus pois, jotta vain reunus jää näkyviin
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    @media (max-width: $breakpoint-mobile) {
+      padding: 2px
+    }
+  }
+  */
 }
 @media screen and (max-width: 768px) {
-  #contact .page {
+  #contact.full_block .page {
     width: 96%;
   }
 }
-#contact .contact_form {
+#contact.full_block .contact_form {
   max-width: 600px;
   margin: 40px auto 0;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-#contact .contact_form .form_group {
+#contact.full_block .contact_form .form_group {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
-#contact .contact_form .form_group label {
+#contact.full_block .contact_form .form_group label {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   font-size: 1.1rem;
@@ -2056,9 +2057,9 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   letter-spacing: 0.5px;
   transition: color 0.3s ease;
 }
-#contact .contact_form .form_group input[type=text],
-#contact .contact_form .form_group input[type=email],
-#contact .contact_form .form_group textarea {
+#contact.full_block .contact_form .form_group input[type=text],
+#contact.full_block .contact_form .form_group input[type=email],
+#contact.full_block .contact_form .form_group textarea {
   font-family: "Poppins", sans-serif;
   font-size: 1.1rem;
   padding: 14px;
@@ -2071,22 +2072,22 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   width: 100%;
   transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
-#contact .contact_form .form_group input[type=text]::placeholder,
-#contact .contact_form .form_group input[type=email]::placeholder,
-#contact .contact_form .form_group textarea::placeholder {
+#contact.full_block .contact_form .form_group input[type=text]::placeholder,
+#contact.full_block .contact_form .form_group input[type=email]::placeholder,
+#contact.full_block .contact_form .form_group textarea::placeholder {
   color: #aaa;
 }
-#contact .contact_form .form_group input[type=text]:focus,
-#contact .contact_form .form_group input[type=email]:focus,
-#contact .contact_form .form_group textarea:focus {
+#contact.full_block .contact_form .form_group input[type=text]:focus,
+#contact.full_block .contact_form .form_group input[type=email]:focus,
+#contact.full_block .contact_form .form_group textarea:focus {
   border-color: var(--theme-color);
   box-shadow: 0 0 8px rgba(209, 157, 129, 0.3);
 }
-#contact .contact_form .form_group textarea {
+#contact.full_block .contact_form .form_group textarea {
   min-height: 150px;
   resize: vertical;
 }
-#contact .contact_form .submit_btn {
+#contact.full_block .contact_form .submit_btn {
   align-self: flex-start;
   margin-top: 10px;
   cursor: pointer;

@@ -1,14 +1,22 @@
 /* ==========================================================================
    CONTACT SECTION & FORM FIELDS (Hienosäädetty iMac M4 -näytölle!)
    ========================================================================== */
-#contact {
+#contact.full_block {
 
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
   padding: 66px 0 0 0;
-background: #ffffff;
-background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(242, 242, 242, 1) 27%, rgba(222, 222, 222, 1) 47%, rgba(250, 250, 250, 1) 78%, rgba(247, 247, 247, 1) 100%);
+  background: #ffffff;
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(242, 242, 242, 1) 27%, rgba(222, 222, 222, 1) 47%, rgba(250, 250, 250, 1) 78%, rgba(247, 247, 247, 1) 100%);
+
+
+  @media screen and (max-width: $breakpoint-vga) {
+    padding: 20px 0;
+
+  }
+
+
 
 
 
@@ -17,10 +25,7 @@ background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(242, 242, 24
   .page {
     position: relative;
 
-
-
-/*
-  
+    /*
     &::before {
       content: "";
       position: absolute;
@@ -37,14 +42,14 @@ background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(242, 242, 24
         padding: 2px
       }
     }
-
     */
 
-      @media screen and (max-width: $breakpoint-tablet) {
-        width: 96%;
-  
-      }  
+    @media screen and (max-width: $breakpoint-tablet) {
+      width: 96%;
+
     }
+
+  }
 
 
   .contact_form {
