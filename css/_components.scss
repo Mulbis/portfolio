@@ -87,9 +87,19 @@ nav.sticky {
   max-width: $content_block_max_width;
   margin: 0 auto;
   padding: 0 18px;
-  height: 44px; // Annetaan navbarille kiinteä korkeus, esim 64px (muokkaa tarvittaessa)
   display: flex;
-  align-items: center; // Koko roska keskelle, linkit hyllyttää itse itsensä katosta pohjaan
+  align-items: center;
+
+  /* Vain desktopilla (isommat ruudut) on tämä kiinteä korkeus */
+  @media screen and (min-width: ($breakpoint-tablet + 1px)) {
+    height: 44px; // Pidä tää tai 64px, kummalta tuntuu hyvältä!
+  }
+
+  /* Mobiilissa/tabletissa nollataan kiinteät korkeudet pois edestä */
+  @media screen and (max-width: $breakpoint-tablet) {
+    justify-content: space-between;
+    height: 60px; // Esim. perus mobiilipalkin korkeus ennenkuin valikko aukeaa
+  }
 }
 
 ul.navigation_list {
@@ -97,60 +107,46 @@ ul.navigation_list {
   justify-content: center;
   flex-grow: 1;
   list-style: none;
-  height: 100%; // Ottaa täyden korkeuden navbarista
 
-  li {
-    // Ei tarvita display: flex eikä align-items: stretch tänne, tavallinen li riittää!
+  /* Desktopilla otetaan navbarin korkeus haltuun */
+  @media screen and (min-width: ($breakpoint-tablet + 1px)) {
     height: 100%;
 
-    a {
-      display: flex;
-      align-items: flex-end; // Vetää tekstin suoraan pohjalle
-      padding: 0 20px 4px; // Säädetää tuota viimeistä (12px) arvoa, niin saammepa tekstin halutulle etäisyydelle bottomista sitte juu!
-      height: 100%; // Venyttää linkin (ja siten myös hover/active-taustan) täyteen korkeuteen katosta pohjaan
-      color: var(--theme-color);
-      text-transform: uppercase;
-      text-decoration: none;
-      font-size: .9rem;
-      box-shadow: inset 0 -2px 0 transparent; // Siistimpi tapa hoitaa alareunan korostus ilman että layout pomppii
-      transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-      font-weight: 500;
+    li {
+      height: 100%;
 
-      &:hover {
-        color: #fff;
-        background-color: rgba(255, 255, 255, 0.05);
-        // Poistettu turha translateY(-2px) jos se hytkyttää koko palkkia, mutta voi pitää jos tykkäät!
-      }
-
-      &.active {
-        color: #fff;
-        background-color: rgba(255, 255, 255, 0.08); // Venyy nyt ylös asti!
-        font-weight: 600;
-        box-shadow: inset 0 -2px 0 var(--theme-color); // Piirtää viivan sisäpuolelle, ei työnnä mitään
+      a {
+        display: flex;
+        align-items: flex-end;
+        padding: 0 20px 4px;
+        height: 100%;
+        color: var(--theme-color);
+        text-transform: uppercase;
+        text-decoration: none;
+        font-size: .9rem;
+        box-shadow: inset 0 -2px 0 transparent;
+        transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        font-weight: 500;
 
         &:hover {
-          transform: translateY(0);
+          color: #fff;
+          background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        &.active {
+          color: #fff;
+          background-color: rgba(255, 255, 255, 0.08);
+          font-weight: 600;
+          box-shadow: inset 0 -2px 0 var(--theme-color);
+
+          &:hover {
+            transform: translateY(0);
+          }
         }
       }
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* ==========================================================================
    SEXY HAMBURGER & MOBILE NAV
@@ -221,8 +217,8 @@ ul.navigation_list {
 
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      justify-content:center
+;      align-items: center;
       gap: 2rem;
 
       visibility: hidden;

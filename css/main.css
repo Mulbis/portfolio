@@ -630,9 +630,23 @@ nav.sticky {
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 18px;
-  height: 44px;
   display: flex;
   align-items: center;
+  /* Vain desktopilla (isommat ruudut) on tämä kiinteä korkeus */
+}
+@media screen and (min-width: 769px) {
+  .navbar {
+    height: 44px;
+  }
+}
+.navbar {
+  /* Mobiilissa/tabletissa nollataan kiinteät korkeudet pois edestä */
+}
+@media screen and (max-width: 768px) {
+  .navbar {
+    justify-content: space-between;
+    height: 60px;
+  }
 }
 
 ul.navigation_list {
@@ -640,36 +654,41 @@ ul.navigation_list {
   justify-content: center;
   flex-grow: 1;
   list-style: none;
-  height: 100%;
+  /* Desktopilla otetaan navbarin korkeus haltuun */
 }
-ul.navigation_list li {
-  height: 100%;
-}
-ul.navigation_list li a {
-  display: flex;
-  align-items: flex-end;
-  padding: 0 20px 4px;
-  height: 100%;
-  color: var(--theme-color);
-  text-transform: uppercase;
-  text-decoration: none;
-  font-size: 0.9rem;
-  box-shadow: inset 0 -2px 0 transparent;
-  transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-  font-weight: 500;
-}
-ul.navigation_list li a:hover {
-  color: #fff;
-  background-color: rgba(255, 255, 255, 0.05);
-}
-ul.navigation_list li a.active {
-  color: #fff;
-  background-color: rgba(255, 255, 255, 0.08);
-  font-weight: 600;
-  box-shadow: inset 0 -2px 0 var(--theme-color);
-}
-ul.navigation_list li a.active:hover {
-  transform: translateY(0);
+@media screen and (min-width: 769px) {
+  ul.navigation_list {
+    height: 100%;
+  }
+  ul.navigation_list li {
+    height: 100%;
+  }
+  ul.navigation_list li a {
+    display: flex;
+    align-items: flex-end;
+    padding: 0 20px 4px;
+    height: 100%;
+    color: var(--theme-color);
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 0.9rem;
+    box-shadow: inset 0 -2px 0 transparent;
+    transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    font-weight: 500;
+  }
+  ul.navigation_list li a:hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  ul.navigation_list li a.active {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.08);
+    font-weight: 600;
+    box-shadow: inset 0 -2px 0 var(--theme-color);
+  }
+  ul.navigation_list li a.active:hover {
+    transform: translateY(0);
+  }
 }
 
 /* ==========================================================================
