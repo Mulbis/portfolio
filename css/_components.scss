@@ -321,15 +321,16 @@ ul.navigation_list {
 // 2. ABOUT THIS SITE (34% / 64%)
 #about_this_site {
   .flex.between {
+    display: flex; // Varmistetaan että display flex on tässä
+    justify-content: space-between;
     gap: 3rem;
 
-    @media screen and (max-width: $breakpoint-tablet) {
+    @media screen and (max-width: $breakpoint-desktop-mini) {
       flex-direction: column !important;
       align-items: center;
       justify-content: center;
       gap: 25px;
 
-      // Jos haluat rajoittaa kuvien leveyttä tabletilla tässä osiossa:
       img {
         max-width: 80%;
       }
@@ -337,7 +338,8 @@ ul.navigation_list {
 
     .half_block.col_small {
       display: flex;
-      flex: 0 0 34%;
+      // Vähennetään gap puoliksi (1.5rem) kummaltakin puolelta, jotta mahtuvat tasan riville
+      flex: 0 0 calc(34% - 1.5rem); 
       flex-direction: column;
       justify-content: center;
       align-items: center;
@@ -345,7 +347,7 @@ ul.navigation_list {
 
     .half_block.col_big {
       display: flex;
-      flex: 0 0 64%;
+      flex: 0 0 calc(66% - 1.5rem); // Nostetaan 64 -> 66 jotta tekee tasan 100% yhdessä col_smallin kanssa
       flex-direction: column;
       justify-content: center;
 
@@ -361,12 +363,14 @@ ul.navigation_list {
   margin: 0 !important;
   padding: 0;
   width: 100%;
+  max-width: 100%; // Estetään ylivuoto
 
   img {
     display: block;
     width: 100% !important;
     height: auto !important;
     margin: 0 auto;
+    object-fit: contain; // Varmistaa ettei kuva veny tai leikkaudu oudosti
   }
 }
  

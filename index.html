@@ -15,6 +15,10 @@
 	<meta name="theme-color" content="#ffffff">
 	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 
+
+<link rel="preload" as="image" href="images/bg_images/hero/lappare_mobile.webp" media="(max-width: 480px)">
+
+
 	<!-- Kuvakkeet ja Manifesti -->
 	<link rel="manifest" href="manifest.webmanifest">
 	<link rel="card" href="favcard.ico">
@@ -168,9 +172,15 @@
 					</div>
 
 					<div class="half_block col_small">
-						<figure id="about_site_image">
-							<img src="images/pagely.webp" alt="Greeeat">
-						</figure>
+<figure id="about_site_image">
+    <img srcset="images/pagely_413.webp 413w, 
+                 images/pagely_825.webp 825w" 
+         sizes="(max-width: 960px) 100vw, 
+                30vw" 
+         src="images/pagely_825.webp" 
+         alt="Nice sites or just pages" />
+</figure>
+
 					</div>
 				</div>
 

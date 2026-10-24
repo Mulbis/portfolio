@@ -836,9 +836,11 @@ ul.navigation_list {
 
 /* ============== */
 #about_this_site .flex.between {
+  display: flex;
+  justify-content: space-between;
   gap: 3rem;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 960px) {
   #about_this_site .flex.between {
     flex-direction: column !important;
     align-items: center;
@@ -851,14 +853,14 @@ ul.navigation_list {
 }
 #about_this_site .flex.between .half_block.col_small {
   display: flex;
-  flex: 0 0 34%;
+  flex: 0 0 calc(34% - 1.5rem);
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 #about_this_site .flex.between .half_block.col_big {
   display: flex;
-  flex: 0 0 64%;
+  flex: 0 0 calc(66% - 1.5rem);
   flex-direction: column;
   justify-content: center;
 }
@@ -871,12 +873,14 @@ ul.navigation_list {
   margin: 0 !important;
   padding: 0;
   width: 100%;
+  max-width: 100%;
 }
 #about_site_image img {
   display: block;
   width: 100% !important;
   height: auto !important;
   margin: 0 auto;
+  object-fit: contain;
 }
 
 /* ========================= CARDS, MAN. CARDS!  ========================= */
