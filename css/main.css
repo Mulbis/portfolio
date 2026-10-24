@@ -1757,6 +1757,18 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   justify-content: center;
   align-items: center;
 }
+@media screen and (max-width: 1280px) {
+  #web_section_quote {
+    background: #000 url(../images/bg_images/web_site_collage_4_1280.webp) no-repeat center center fixed;
+    background-size: cover;
+  }
+}
+@media screen and (max-width: 768px) {
+  #web_section_quote {
+    background: #000 url(../images/bg_images/web_site_collage_4_768.webp) no-repeat center center fixed;
+    background-size: cover;
+  }
+}
 
 .quote_block {
   background: rgba(0, 0, 0, 0.2);
@@ -1770,9 +1782,21 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   background-size: cover;
   color: #fff;
 }
+@media screen and (max-width: 1280px) {
+  .full_block#web {
+    background: #000 url(../images/bg_images/web_site_collage_4_1280.webp) no-repeat center center fixed;
+    background-size: cover;
+  }
+}
+@media screen and (max-width: 768px) {
+  .full_block#web {
+    background: #000 url(../images/bg_images/web_site_collage_4_768.webp) no-repeat center center fixed;
+    background-size: cover;
+  }
+}
 @media screen and (max-width: 480px) {
   .full_block#web {
-    padding-bottom: 0;
+    padding: 0;
   }
 }
 .full_block#web.full_block#web::before {

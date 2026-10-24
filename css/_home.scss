@@ -201,7 +201,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: $breakpoint-newschool) {
+    background: #000 url(../images/bg_images/web_site_collage_4_1280.webp) no-repeat center center fixed;
+    background-size: cover;
+  }
+
+  @media screen and (max-width: $breakpoint-tablet) {
+    background: #000 url(../images/bg_images/web_site_collage_4_768.webp) no-repeat center center fixed;
+    background-size: cover;
+  }
+
+
+
 }
+
+
 
 .quote_block {
   background: rgba(0, 0, 0, 0.2);
@@ -218,9 +233,26 @@
   background-size: cover;
   color: #fff;
 
-  @media screen and (max-width: $breakpoint-mobile) {
-    padding-bottom: 0;
+
+  @media screen and (max-width: $breakpoint-newschool) {
+    background: #000 url(../images/bg_images/web_site_collage_4_1280.webp) no-repeat center center fixed;
+    background-size: cover;
   }
+  
+
+  @media screen and (max-width: $breakpoint-tablet) {
+    background: #000 url(../images/bg_images/web_site_collage_4_768.webp) no-repeat center center fixed;
+    background-size: cover;
+  }
+  
+
+    @media screen and (max-width: $breakpoint-mobile){
+    
+    padding: 0;
+    }
+
+
+
 
 
   &.full_block#web::before {
