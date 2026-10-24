@@ -13,100 +13,94 @@
   z-index: 1;
 
   @media screen and (max-width: $breakpoint-tablet) {
-    padding-top: 54px; // Korjattu marginista paddingiksi!
+    background: url(../images/bg_images/hero/lappare_tablet.webp) no-repeat center center;
+    background-size: cover;
+    padding-top: 44px;
     min-height: 50vh;
   }
-}
 
-.hero_info_box {
-  width: $content_block_width;
-  max-width: $content_block_max_width;
-  background: transparent;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: 100;
-  justify-content: space-evenly;
-  overflow: visible;
-  text-align: center;
-
-  @include respond-to($breakpoint-tablet) {
-
-    margin-top: 16px;
-    padding-bottom: 40px;
-
+  @media screen and (max-width: $breakpoint-mobile) {
+    padding-top: 54px; // Korjattu marginista paddingiksi!
+    background: url(../images/bg_images/hero/lappare_mobile.webp) no-repeat center center;
+    background-size: cover;
   }
 
-
-
-  h1 {
-    animation: text-focus-in 1.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-    font-weight: 700;
-    line-height: 1.1;
-
-
-
-    // Kun tullaan alle 1200px (new school, jossa otsikko alkaa breikata)
-    @include respond-to($breakpoint-newschool) {
-      font-size: 4.9rem;
-    }
-
-
-    // Kun tullaan alle 1024px (old school, jossa otsikko alkaa breikata)
-    @include respond-to($breakpoint-oldschool) {
-      font-size: 4rem;
-    }
-
-    // Kun tullaan tablet-kokoon (768px)
-    @include respond-to($breakpoint-tablet) {
-      font-size: 3.4rem;
-    }
-
-    // Kun tulloo mobbeen (480)
-    @include respond-to($breakpoint-tablet) {
-      font-size: 2.7rem;
-    }
-
-  }
-
-  p {
-    color: #fff;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    animation: text-focus-in 1.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-    max-width: 70%;
+  .hero_info_box {
+    width: $content_block_width;
+    max-width: $content_block_max_width;
     background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 100;
+    justify-content: space-evenly;
+    overflow: visible;
     text-align: center;
-    padding: 12px 0 8px;
 
-    /* Kun tullaan alle 1024px (old school) */
-    @include respond-to($breakpoint-oldschool) {
-
-
-      letter-spacing: normal;
-      max-width: 80%;
-    }
-
-
-    /* Kun tullaan tablet-kokoon (768px) */
     @include respond-to($breakpoint-tablet) {
-      line-height: normal;
-      font-size: 1.2rem;
-      max-width: 90%;
+      margin-top: 16px;
+      padding-bottom: 40px;
     }
 
-    /* Kun tullaan tablet-kokoon (768px) */
-    @include respond-to($breakpoint-mobile) {
-      font-size: 1rem;
-      line-height: normal;
+    h1 {
+      animation: text-focus-in 1.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+      text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+      font-weight: 700;
+      line-height: 1.1;
 
+      // Kun tullaan alle 1200px
+      @include respond-to($breakpoint-newschool) {
+        font-size: 4.9rem;
+      }
+
+      // Kun tullaan alle 1024px
+      @include respond-to($breakpoint-oldschool) {
+        font-size: 4rem;
+      }
+
+      // Kun tullaan tablet-kokoon (768px)
+      @include respond-to($breakpoint-tablet) {
+        font-size: 3.4rem;
+      }
+
+      // Kun tulloo mobbeen (480)
+      @include respond-to($breakpoint-mobile) {
+        font-size: 2.7rem;
+      }
+    }
+
+    p {
+      color: #fff;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      animation: text-focus-in 1.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+      text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+      max-width: 70%;
+      background: transparent;
+      text-align: center;
+      padding: 12px 0 8px;
+
+      /* Kun tullaan alle 1024px (old school) */
+      @include respond-to($breakpoint-oldschool) {
+        letter-spacing: normal;
+        max-width: 80%;
+      }
+
+      /* Kun tullaan tablet-kokoon (768px) */
+      @include respond-to($breakpoint-tablet) {
+        line-height: normal;
+        font-size: 1.2rem;
+        max-width: 90%;
+      }
+
+      /* Kun tullaan mobiilikokoon */
+      @include respond-to($breakpoint-mobile) {
+        font-size: 1rem;
+        line-height: normal;
+      }
     }
   }
 }
-
-/* HERO INFO BOX */
 
 
 /* ==========================================================================
@@ -155,6 +149,8 @@
     top: -20px;
     animation: shootingstars 14s linear infinite;
     animation-delay: 1.3s; // Pamahtaa matkaan melkein heti kun sivu latautuu!
+
+
   }
 
   // 🌠 TÄHTI 2: Lähtee 3-4s myöhemmin, ruudun VASURISTA ja liikkuu TOSI HITAASTI (kesto 18s!)
@@ -218,15 +214,12 @@
 
 .full_block#web {
 
-  background: #000 url(../images/bg_images/web_site_collage_4.jpg) no-repeat center center fixed;
+  background: #000 url(../images/bg_images/web_site_collage_4.webp) no-repeat center center fixed;
   background-size: cover;
   color: #fff;
 
-
-
   @media screen and (max-width: $breakpoint-mobile) {
     padding-bottom: 0;
-    
   }
 
 

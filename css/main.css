@@ -55,11 +55,9 @@
 /* ==========================================================================
    GLOBAL RESET & BASE STYLES
    ========================================================================== */
-* {
-  margin: 0;
-  padding: 0;
-  outline: none;
-  border: 0;
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -70,10 +68,18 @@
 
 html {
   scrollbar-color: #605f5f #1a1c26;
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+body,
+h1, h2, h3, h4, h5, h6,
+p, figure, blockquote, dl, dd {
+  margin: 0;
 }
 
 body {
-  height: 100%;
+  min-height: 100vh;
   font-family: "Poppins", sans-serif;
   font-size: 1.2rem;
   font-weight: 400;
@@ -84,11 +90,32 @@ body {
   overflow-x: hidden;
 }
 
+ul, ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
 #about,
 #gallery,
 #web,
 #contact {
-  /* Navbarin korkeus */
+  scroll-margin-top: 44px;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
 }
 
 /* ==========================================================================
@@ -131,7 +158,7 @@ h2 {
 @media screen and (max-width: 768px) {
   h2 {
     font-size: 3.2rem;
-    margin-top: 0;
+    margin-top: 0.8rem;
   }
 }
 @media screen and (max-width: 640px) {
@@ -150,8 +177,13 @@ h3 {
 }
 @media screen and (max-width: 768px) {
   h3 {
-    font-size: 2.4rem;
+    font-size: 2.1rem;
     margin: 0 0 1.2rem 0;
+  }
+}
+@media screen and (max-width: 480px) {
+  h3 {
+    margin: 0 0 0.8rem 0;
   }
 }
 
@@ -178,7 +210,6 @@ a, a:link, a:visited {
   color: #d19d81;
   text-decoration: none;
   transition: color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.3);
   will-change: transform;
 }
 a:hover, a:active {
@@ -231,6 +262,7 @@ p.date::before {
     line-height: 1;
     padding-bottom: 0.5rem;
     margin-top: -10px;
+    padding-bottom: 0.8rem;
   }
 }
 
@@ -423,9 +455,6 @@ hr + * {
 /* ==========================================================================
    LAYOUT CONTAINERS & FLEXBOX UTILITIES (With Inline Mobile Optimization)
    ========================================================================== */
-/* ==========================================================================
-   LAYOUT CONTAINERS & FLEXBOX UTILITIES (KORJATTU GLOBAALI APU)
-   ========================================================================== */
 .flex {
   display: flex;
 }
@@ -479,18 +508,18 @@ hr + * {
 @media screen and (max-width: 768px) {
   .content_block {
     width: 100%;
-    padding: 20px 2%;
+    padding: 20px 3%;
   }
 }
 
 .page {
-  padding: 60px 2%;
+  padding: 40px 2% 20px;
   box-sizing: border-box;
   border-radius: 8px 8px 0 0;
 }
 @media screen and (max-width: 768px) {
   .page {
-    padding: 30px 2%;
+    padding: 30px 3%;
   }
 }
 
@@ -567,24 +596,6 @@ hr + * {
   }
 }
 
-/*#
-
-btn-show-level-1,
-#btn-show-level-2 {
-  &::after {
-    content: '\25bc';
-    font-size: 20px;
-    color: $secondary_theme_color;
-    position: absolute;
-    bottom: -14px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-shadow: none;
-  }
-
-}
-
-*/
 /* ==========================================================================
    NAVIGATION MENU
    ========================================================================== */
@@ -619,9 +630,11 @@ nav.sticky {
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 18px;
+  height: 44px;
   display: flex;
-  align-items: end;
+  align-items: center;
 }
+
 ul.navigation_list {
   display: flex;
   justify-content: center;
@@ -630,33 +643,30 @@ ul.navigation_list {
   height: 100%;
 }
 ul.navigation_list li {
-  display: flex;
-  align-items: stretch;
+  height: 100%;
 }
 ul.navigation_list li a {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  align-items: flex-end;
   padding: 0 20px 4px;
   height: 100%;
   color: var(--theme-color);
   text-transform: uppercase;
   text-decoration: none;
   font-size: 0.9rem;
-  box-shadow: 0 0px 0 var(--theme-color);
+  box-shadow: inset 0 -2px 0 transparent;
   transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
   font-weight: 500;
 }
 ul.navigation_list li a:hover {
   color: #fff;
   background-color: rgba(255, 255, 255, 0.05);
-  transform: translateY(-2px);
 }
 ul.navigation_list li a.active {
   color: #fff;
   background-color: rgba(255, 255, 255, 0.08);
   font-weight: 600;
-  box-shadow: 0 2px 0 var(--theme-color);
+  box-shadow: inset 0 -2px 0 var(--theme-color);
 }
 ul.navigation_list li a.active:hover {
   transform: translateY(0);
@@ -1011,6 +1021,7 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
 }
 .full_block#gallery #categories_wrap {
   padding: 0;
+  margin-top: 20px;
   /* THE "PAGES" BLOCKS */
 }
 .full_block#gallery #categories_wrap .gallery_categories {
@@ -1041,25 +1052,30 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
 }
 .full_block#gallery #categories_wrap .gallery_categories h3 {
   display: inline-block;
+  position: relative;
 }
 .full_block#gallery #categories_wrap .gallery_categories h3::after {
   content: "";
-  display: inline-block;
-  width: 50px;
-  height: 40px;
-  vertical-align: middle;
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-42%);
+  left: 100%;
+  margin-left: 16px;
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: center;
-  margin-left: 12px;
-  transition: filter 0.3s ease;
+}
+.full_block#gallery #categories_wrap .gallery_categories h3.landfill_title::after {
+  background-image: url("../images/icons_sprites_patterns/icons/display.svg");
+  transform: translateY(-51%);
+  height: 45px;
 }
 [data-theme=dark] .full_block#gallery #categories_wrap .gallery_categories h3::after {
   filter: invert(1) opacity(1);
 }
 .full_block#gallery #categories_wrap .gallery_categories h3.fractal_title::after {
   background-image: url("../images/icons_sprites_patterns/icons/mandelbrot_set.svg");
-  margin-top: -3px;
 }
 .full_block#gallery #categories_wrap .gallery_categories h3.photography_title::after {
   background-image: url("../images/icons_sprites_patterns/icons/camera_filled.svg");
@@ -1545,12 +1561,20 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 }
 @media screen and (max-width: 768px) {
   #home.hero_section {
-    padding-top: 54px;
+    background: url(../images/bg_images/hero/lappare_tablet.webp) no-repeat center center;
+    background-size: cover;
+    padding-top: 44px;
     min-height: 50vh;
   }
 }
-
-.hero_info_box {
+@media screen and (max-width: 480px) {
+  #home.hero_section {
+    padding-top: 54px;
+    background: url(../images/bg_images/hero/lappare_mobile.webp) no-repeat center center;
+    background-size: cover;
+  }
+}
+#home.hero_section .hero_info_box {
   width: 96%;
   max-width: 1280px;
   background: transparent;
@@ -1563,38 +1587,38 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   text-align: center;
 }
 @media screen and (max-width: 768px) {
-  .hero_info_box {
+  #home.hero_section .hero_info_box {
     margin-top: 16px;
     padding-bottom: 40px;
   }
 }
-.hero_info_box h1 {
+#home.hero_section .hero_info_box h1 {
   animation: text-focus-in 1.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   font-weight: 700;
   line-height: 1.1;
 }
 @media screen and (max-width: 1280px) {
-  .hero_info_box h1 {
+  #home.hero_section .hero_info_box h1 {
     font-size: 4.9rem;
   }
 }
 @media screen and (max-width: 1024px) {
-  .hero_info_box h1 {
+  #home.hero_section .hero_info_box h1 {
     font-size: 4rem;
   }
 }
 @media screen and (max-width: 768px) {
-  .hero_info_box h1 {
+  #home.hero_section .hero_info_box h1 {
     font-size: 3.4rem;
   }
 }
-@media screen and (max-width: 768px) {
-  .hero_info_box h1 {
+@media screen and (max-width: 480px) {
+  #home.hero_section .hero_info_box h1 {
     font-size: 2.7rem;
   }
 }
-.hero_info_box p {
+#home.hero_section .hero_info_box p {
   color: #fff;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -1607,32 +1631,31 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   /* Kun tullaan alle 1024px (old school) */
 }
 @media screen and (max-width: 1024px) {
-  .hero_info_box p {
+  #home.hero_section .hero_info_box p {
     letter-spacing: normal;
     max-width: 80%;
   }
 }
-.hero_info_box p {
+#home.hero_section .hero_info_box p {
   /* Kun tullaan tablet-kokoon (768px) */
 }
 @media screen and (max-width: 768px) {
-  .hero_info_box p {
+  #home.hero_section .hero_info_box p {
     line-height: normal;
     font-size: 1.2rem;
     max-width: 90%;
   }
 }
-.hero_info_box p {
-  /* Kun tullaan tablet-kokoon (768px) */
+#home.hero_section .hero_info_box p {
+  /* Kun tullaan mobiilikokoon */
 }
 @media screen and (max-width: 480px) {
-  .hero_info_box p {
+  #home.hero_section .hero_info_box p {
     font-size: 1rem;
     line-height: normal;
   }
 }
 
-/* HERO INFO BOX */
 /* ==========================================================================
    SHOOTING STARS (Täydellisesti rytmitetty ja suojattu)
    ========================================================================== */
@@ -1720,7 +1743,7 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 
 /* STARTING ACTUAL WEBBIE */
 .full_block#web {
-  background: #000 url(../images/bg_images/web_site_collage_4.jpg) no-repeat center center fixed;
+  background: #000 url(../images/bg_images/web_site_collage_4.webp) no-repeat center center fixed;
   background-size: cover;
   color: #fff;
 }
@@ -2012,24 +2035,6 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 }
 #contact.full_block .page {
   position: relative;
-  /*
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0; // Sama kuin top:0; right:0; bottom:0; left:0;
-    border-radius: inherit; // Perii nätisti saman border-radiuksen!
-    padding: 6px 6px 0 6px;
-    background: linear-gradient(to right, var(--theme-primary), var(--theme-secondary));
-    // Leikataan sisus pois, jotta vain reunus jää näkyviin
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    @media (max-width: $breakpoint-mobile) {
-      padding: 2px
-    }
-  }
-  */
 }
 @media screen and (max-width: 768px) {
   #contact.full_block .page {

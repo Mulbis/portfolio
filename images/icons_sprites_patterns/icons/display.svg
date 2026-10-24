@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
    width="16"
-   height="16"
+   height="13"
    fill="currentColor"
    class="bi bi-display"
-   viewBox="0 0 16 16"
+   viewBox="0 0 16 13"
    version="1.1"
    id="svg1"
-   sodipodi:docname="display_burger.svg"
+   sodipodi:docname="display.svg"
    inkscape:version="1.4.2 (ebf0e940, 2025-05-08)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -25,8 +25,8 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="52"
-     inkscape:cx="7.9903846"
-     inkscape:cy="8.0096154"
+     inkscape:cx="7.9807692"
+     inkscape:cy="5.0096154"
      inkscape:window-width="2240"
      inkscape:window-height="1186"
      inkscape:window-x="0"
@@ -36,5 +36,5 @@
   <path
      id="path1"
      style="fill:#121212;fill-opacity:1"
-     d="M 1 3 C 0 3 0 4 0 4 L 0 12 C 0 13 1 13 1 13 L 4.7304688 13 L 7 13 L 6.5 15 L 5 15 A 0.5 0.5 0 0 0 5 16 L 11 16 A 0.5 0.5 0 0 0 11 15 L 9.5 15 L 9 13 L 11.576172 13 L 15 13 C 16 13 16 12 16 12 L 16 4 C 16 3 15 3 15 3 L 1 3 z M 1.4335938 4.4042969 L 14.566406 4.4042969 L 14.566406 11.615234 L 1.4335938 11.615234 L 1.4335938 4.4042969 z " />
+     d="M 1,0 C 0,0 0,1 0,1 v 8 c 0,1 1,1 1,1 H 4.7304688 7 L 6.5,12 H 5 a 0.5,0.5 0 0 0 0,1 h 6 a 0.5,0.5 0 0 0 0,-1 H 9.5 L 9,10 H 11.576172 15 c 1,0 1,-1 1,-1 V 1 C 16,0 15,0 15,0 Z M 1.4335938,1.4042969 H 14.566406 V 8.615234 H 1.4335938 Z" />
 </svg>

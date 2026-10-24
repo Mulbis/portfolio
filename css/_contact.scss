@@ -25,25 +25,6 @@
   .page {
     position: relative;
 
-    /*
-    &::before {
-      content: "";
-      position: absolute;
-      inset: 0; // Sama kuin top:0; right:0; bottom:0; left:0;
-      border-radius: inherit; // Perii nätisti saman border-radiuksen!
-      padding: 6px 6px 0 6px;
-      background: linear-gradient(to right, var(--theme-primary), var(--theme-secondary));
-      // Leikataan sisus pois, jotta vain reunus jää näkyviin
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      @media (max-width: $breakpoint-mobile) {
-        padding: 2px
-      }
-    }
-    */
-
     @media screen and (max-width: $breakpoint-tablet) {
       width: 96%;
 

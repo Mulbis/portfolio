@@ -13,28 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-
-
-/* ==========================================================================
-     1.5 AUTOMAATTISET MITTASUHTEET GALLERIAKUVILLE (Layout Shift -korjaus)
-     ========================================================================= */
-  const galleryImages = document.querySelectorAll('.gallery-grid img');
-
-  galleryImages.forEach(img => {
-    const tempImg = new Image();
-    tempImg.src = img.src;
-
-    tempImg.onload = () => {
-      if (!img.hasAttribute('width')) {
-        img.setAttribute('width', tempImg.naturalWidth);
-      }
-      if (!img.hasAttribute('height')) {
-        img.setAttribute('height', tempImg.naturalHeight);
-      }
-    };
-  });
-
-
   /* ==========================================================================
      2. GLOBAALI NATIIVI LIGHTBOX-GALLERIA (<dialog>)
      ========================================================================= */

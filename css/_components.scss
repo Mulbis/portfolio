@@ -53,26 +53,6 @@
 }
 
 
-/*#
-
-btn-show-level-1,
-#btn-show-level-2 {
-  &::after {
-    content: '\25bc';
-    font-size: 20px;
-    color: $secondary_theme_color;
-    position: absolute;
-    bottom: -14px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-shadow: none;
-  }
-    
-}
-
-*/
-
-
 /* ==========================================================================
    NAVIGATION MENU
    ========================================================================== */
@@ -90,7 +70,6 @@ nav.sticky {
     left: 0;
     width: 100%;
     z-index: 1000;
-    
     transition: transform 0.3s ease-in-out;
     will-change: transform;
     transform: translateZ(0);
@@ -108,12 +87,9 @@ nav.sticky {
   max-width: $content_block_max_width;
   margin: 0 auto;
   padding: 0 18px;
+  height: 44px; // Annetaan navbarille kiinteä korkeus, esim 64px (muokkaa tarvittaessa)
   display: flex;
-  align-items: end;
-
-  @media screen and (max-width: $breakpoint-tablet) {
-
-  }
+  align-items: center; // Koko roska keskelle, linkit hyllyttää itse itsensä katosta pohjaan
 }
 
 ul.navigation_list {
@@ -121,37 +97,36 @@ ul.navigation_list {
   justify-content: center;
   flex-grow: 1;
   list-style: none;
-  height: 100%;
+  height: 100%; // Ottaa täyden korkeuden navbarista
 
   li {
-    display: flex;
-    align-items: stretch;
+    // Ei tarvita display: flex eikä align-items: stretch tänne, tavallinen li riittää!
+    height: 100%;
 
     a {
       display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 0 20px 4px;
-      height: 100%;
+      align-items: flex-end; // Vetää tekstin suoraan pohjalle
+      padding: 0 20px 4px; // Säädetää tuota viimeistä (12px) arvoa, niin saammepa tekstin halutulle etäisyydelle bottomista sitte juu!
+      height: 100%; // Venyttää linkin (ja siten myös hover/active-taustan) täyteen korkeuteen katosta pohjaan
       color: var(--theme-color);
       text-transform: uppercase;
       text-decoration: none;
       font-size: .9rem;
-      box-shadow: 0 0px 0 var(--theme-color);
+      box-shadow: inset 0 -2px 0 transparent; // Siistimpi tapa hoitaa alareunan korostus ilman että layout pomppii
       transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
       font-weight: 500;
 
       &:hover {
         color: #fff;
         background-color: rgba(255, 255, 255, 0.05);
-        transform: translateY(-2px);
+        // Poistettu turha translateY(-2px) jos se hytkyttää koko palkkia, mutta voi pitää jos tykkäät!
       }
 
       &.active {
         color: #fff;
-        background-color: rgba(255, 255, 255, 0.08);
+        background-color: rgba(255, 255, 255, 0.08); // Venyy nyt ylös asti!
         font-weight: 600;
-        box-shadow: 0 2px 0 var(--theme-color);
+        box-shadow: inset 0 -2px 0 var(--theme-color); // Piirtää viivan sisäpuolelle, ei työnnä mitään
 
         &:hover {
           transform: translateY(0);
@@ -160,6 +135,21 @@ ul.navigation_list {
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* ==========================================================================
@@ -536,9 +526,7 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
   border-bottom: 1px solid $primary_theme_color;
 }
 
-
 /* ========================= GALLERY ========================= */
-
 
 
 .full_block#gallery {
@@ -562,6 +550,7 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
 
   #categories_wrap {
     padding: 0;
+    margin-top: 20px;
 
     /* THE "PAGES" BLOCKS */
     .gallery_categories {
@@ -573,16 +562,16 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
         position: absolute;
         inset: 0; // Sama kuin top:0; right:0; bottom:0; left:0;
         border-radius: inherit; // Perii nätisti saman border-radiuksen!
-        padding: 6px 6px 0 6px; 
+        padding: 6px 6px 0 6px;
         background: linear-gradient(to right, var(--theme-primary), var(--theme-secondary));
         mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
         -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
         -webkit-mask-composite: xor;
         mask-composite: exclude;
 
-@media (max-width: $breakpoint-mobile) {
-      padding: 1px 1px 0 1px; 
-    }
+        @media (max-width: $breakpoint-mobile) {
+          padding: 1px 1px 0 1px;
+        }
 
       }
 
@@ -596,19 +585,28 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
 
       h3 {
         display: inline-block;
+        position: relative;
 
         &::after {
           content: "";
-          display: inline-block;
-          width: 50px;
-          height: 40px;
-          vertical-align: middle;
+          width: 48px; // Säädä uusi koko tähän
+          height: 48px;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-42%);
+          left: 100%;
+          margin-left: 16px;
           background-repeat: no-repeat;
           background-size: contain;
-          background-position: center;
-          margin-left: 12px;
-          transition: filter 0.3s ease;
         }
+
+
+        &.landfill_title::after {
+          background-image: url("../images/icons_sprites_patterns/icons/display.svg");
+          transform: translateY(-51%); // Esim. reilummin miinukselle, niin siirtyy ylöspäin
+          height: 45px;
+        }
+
 
         [data-theme="dark"] &::after {
           filter: invert(1) opacity(1);
@@ -616,7 +614,7 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
 
         &.fractal_title::after {
           background-image: url("../images/icons_sprites_patterns/icons/mandelbrot_set.svg");
-          margin-top: -3px;
+
         }
 
         &.photography_title::after {
@@ -628,19 +626,15 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
           background-image: url("../images/icons_sprites_patterns/icons/display.svg");
           margin-bottom: 13px;
         }
-      }
+      } // Sulkee h3:n
 
-      // Sulkee h3:n
-    }
 
-    // Sulkee .gallery_categories:n
-  }
+    } // Sulkee .gallery_categories:n
 
-  // Sulkee #categories_wrap:in
+
+  } // Sulkee #categories_wrap:in
+
 }
-
-// <--- TÄMÄ PUUTTUI! Sulkee koko .full_block#gallery -lohkon
-
 
 
 .gallery-grid {
@@ -900,9 +894,7 @@ dialog#global-lightbox {
 
 @media (max-width: $breakpoint-tablet) {
   dialog#global-lightbox {
-    .lightbox-content {
-  
-    }
+
 
     .lightbox-nav-btn {
       font-size: 1.5rem;
