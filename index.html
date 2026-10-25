@@ -35,7 +35,26 @@
 
 	<!--********************* HOME (TOP) *********************-->
 
-	
+	<section id="home" class="hero_section">
+		<div class="star_wrapper">
+			<div class="star"></div>
+			<div class="star"></div>
+			<div class="star"></div>
+			<div class="star"></div>
+			<div class="star"></div>
+		</div>
+
+		<div class="hero_info_box">
+			<h1>i am <span class="boldest">nothing special</span></h1>
+
+			<p>..And I am also a front-end developer/ digital artist who loves
+				Nina, html, sass, wordpress, and a touch of Vanilla JS..
+			</p>
+
+			<!-- Lisätty selkeämpi kuvaus ruudunlukijoille (aria-label) -->
+			<a href="#about_me" class="basic_button btn_hero" aria-label="Read more about Carl">read more</a>
+		</div>
+	</section>
 	<!-- CLOSING HOME SECTION -->
 
 	<!--********************* NAVIGATION STUFF *********************-->
@@ -901,6 +920,34 @@
 	
 
 	<!-- REVEAL ELEMENTS -->
+
+	<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const revealElements = document.querySelectorAll('.reveal_me, [class*="reveal_me_"]');
+        console.log("Löytyikö elementtejä:", revealElements.length); // Näkyykö konsolissa 6?
+
+        if (revealElements.length === 0) return;
+
+        const isMobile = window.innerWidth <= 768;
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: isMobile ? 0.05 : 0.1 // Laitetaan hieman herkemmälle
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    console.log("Näkökentässä:", entry.target);
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        revealElements.forEach(el => observer.observe(el));
+    });
+</script>
 
 
 
