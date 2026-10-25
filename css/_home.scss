@@ -152,6 +152,7 @@
       // Mobiilissa eka tähti pyörähtajää vain kerran
       @media (max-width: $breakpoint-tablet) {
         animation-iteration-count: 1;
+        left: 10dvw;
       }
     }
 

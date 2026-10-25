@@ -1720,6 +1720,7 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 @media (max-width: 768px) {
   .star_wrapper .star:nth-child(1) {
     animation-iteration-count: 1;
+    left: 10dvw;
   }
 }
 .star_wrapper .star:nth-child(2) {
