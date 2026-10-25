@@ -35,26 +35,7 @@
 
 	<!--********************* HOME (TOP) *********************-->
 
-	<section id="home" class="hero_section">
-		<div class="star_wrapper">
-			<div class="star"></div>
-			<div class="star"></div>
-			<div class="star"></div>
-			<div class="star"></div>
-			<div class="star"></div>
-		</div>
-
-		<div class="hero_info_box">
-			<h1>i am <span class="boldest">nothing special</span></h1>
-
-			<p>..And I am also a front-end developer/ digital artist who loves
-				Nina, html, sass, wordpress, and a touch of Vanilla JS..
-			</p>
-
-			<!-- Lisätty selkeämpi kuvaus ruudunlukijoille (aria-label) -->
-			<a href="#about_me" class="basic_button btn_hero" aria-label="Read more about Carl">read more</a>
-		</div>
-	</section>
+	
 	<!-- CLOSING HOME SECTION -->
 
 	<!--********************* NAVIGATION STUFF *********************-->
@@ -915,7 +896,45 @@
 	</dialog>
 
 
+	<!-- SCRIPTS -->
+	<script src="js/main.js" defer></script>
 	
+
+	<!-- REVEAL ELEMENTS -->
+
+
+
+	<!-- remove hover on touch devices -->
+	<script>function watchForHover() {
+			// lastTouchTime is used for ignoring emulated mousemove events
+			// that are fired after touchstart events. Since they're
+			// indistinguishable from real events, we use the fact that they're
+			// fired a few milliseconds after touchstart to filter them.
+			let lastTouchTime = 0
+
+			function enableHover() {
+				if (new Date() - lastTouchTime < 500) return
+				document.body.classList.add('hasHover')
+			}
+
+			function disableHover() {
+				document.body.classList.remove('hasHover')
+			}
+
+			function updateLastTouchTime() {
+				lastTouchTime = new Date()
+			}
+
+			document.addEventListener('touchstart', updateLastTouchTime, true)
+			document.addEventListener('touchstart', disableHover, true)
+			document.addEventListener('mousemove', enableHover, true)
+
+			enableHover()
+		}
+		watchForHover()
+	</script>
+
+
 
 	
 
