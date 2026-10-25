@@ -1789,23 +1789,6 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
    WEB & HARDWARE SHOWCASE STYLES
    ========================================================================== */
 /* QUOTE SECTION BEFORE ACTUAL WEBBIE */
-#web_section_quote {
-  text-align: center;
-  width: 100%;
-  background: #000 url(../images/bg_images/web_site_collage_4.webp) no-repeat center center fixed;
-  background-size: cover;
-  box-shadow: inset 0px 0px 47px 200px rgba(0, 0, 0, 0.2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-@media screen and (max-width: 1280px) {
-  #web_section_quote {
-    background: #000 url(../images/bg_images/web_site_collage_4_1280.webp) no-repeat center center fixed;
-    background-size: cover;
-  }
-}
-
 .quote_block {
   background: rgba(0, 0, 0, 0.2);
   padding: 40px 4%;
