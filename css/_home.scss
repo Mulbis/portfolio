@@ -203,6 +203,29 @@
 
 
 /* QUOTE SECTION BEFORE ACTUAL WEBBIE */
+#web_section_quote {
+  text-align: center;
+  width: 100%;
+  background: #000 url(../images/bg_images/web_site_collage.webp) no-repeat center center fixed;
+  background-size: cover;
+  box-shadow: inset 0px 0px 47px 200px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width: $breakpoint-newschool) {
+    background: #000 url(../images/bg_images/web_site_collage_4_1280.webp) no-repeat center center fixed;
+    background-size: cover;
+  }
+
+  @media screen and (max-width: $breakpoint-tablet) {
+    background: #000 url(../images/bg_images/web_site_collage_4_768.webp) no-repeat center center fixed;
+    background-size: cover;
+  }
+
+
+
+}
 
 
 
