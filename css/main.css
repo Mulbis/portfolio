@@ -920,38 +920,25 @@ a.card_twin_container {
   position: relative;
   overflow: hidden;
   transition: background 0.3s ease;
-}
-a.card_twin_container.reveal_me, a.card_twin_container[class*=reveal_me_] {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-  will-change: opacity, transform;
-  /* 2. Kun IntersectionObserver lätkäisee luokan, elementti liukuu näkyviin */
-}
-a.card_twin_container.reveal_me.is-visible, a.card_twin_container[class*=reveal_me_].is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-a.card_twin_container {
-  /* 3. Porrastetut viiveet korteille */
-}
-a.card_twin_container.reveal_me_1 {
-  transition-delay: 0.1s;
+  /* Porrastetut viiveet korteille */
 }
 a.card_twin_container.reveal_me_2 {
-  transition-delay: 0.2s;
+  transition-delay: 0.1s !important;
 }
 a.card_twin_container.reveal_me_3 {
-  transition-delay: 0.3s;
+  transition-delay: 0.2s !important;
 }
 a.card_twin_container.reveal_me_4 {
-  transition-delay: 0.4s;
+  transition-delay: 0.3s !important;
 }
 a.card_twin_container.reveal_me_5 {
-  transition-delay: 0.5s;
+  transition-delay: 0.4s !important;
 }
 a.card_twin_container.reveal_me_6 {
-  transition-delay: 0.6s;
+  transition-delay: 0.5s !important;
+}
+a.card_twin_container.reveal_me_7 {
+  transition-delay: 0.6s !important;
 }
 @media (hover: hover) {
   a.card_twin_container:hover {
@@ -1606,7 +1593,7 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 #home.hero_section {
   width: 100%;
   min-height: 46vh;
-  background: url(../images/bg_images/hero/lappare_1200.webp) no-repeat center center;
+  background: url(../images/bg_images/hero/lappare_1600.webp) no-repeat center center;
   background-size: cover;
   display: flex;
   align-items: center;
@@ -1907,6 +1894,36 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   max-width: 100%;
   height: auto;
   pointer-events: none;
+}
+.macbook_wrapper,
+.imac_wrapper,
+.ipad_wrapper,
+.iphone_wrapper {
+  /* Porrastetut viiveet korteille */
+}
+.macbook_wrapper.reveal_me_8,
+.imac_wrapper.reveal_me_8,
+.ipad_wrapper.reveal_me_8,
+.iphone_wrapper.reveal_me_8 {
+  transition-delay: 0.1s !important;
+}
+.macbook_wrapper.reveal_me_9,
+.imac_wrapper.reveal_me_9,
+.ipad_wrapper.reveal_me_9,
+.iphone_wrapper.reveal_me_9 {
+  transition-delay: 0.2s !important;
+}
+.macbook_wrapper.reveal_me_10,
+.imac_wrapper.reveal_me_10,
+.ipad_wrapper.reveal_me_10,
+.iphone_wrapper.reveal_me_10 {
+  transition-delay: 0.3s !important;
+}
+.macbook_wrapper.reveal_me_11,
+.imac_wrapper.reveal_me_11,
+.ipad_wrapper.reveal_me_11,
+.iphone_wrapper.reveal_me_11 {
+  transition-delay: 0.4s !important;
 }
 
 .macbook_screen,

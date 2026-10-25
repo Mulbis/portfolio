@@ -4,7 +4,7 @@
 #home.hero_section {
   width: 100%;
   min-height: $hero_height;
-    background: url(../images/bg_images/hero/lappare_1200.webp) no-repeat center center;
+    background: url(../images/bg_images/hero/lappare_1600.webp) no-repeat center center;
   background-size: cover;
   display: flex;
   align-items: center;
@@ -309,9 +309,7 @@
     width: 100%;
   }
 
-  @media screen and (max-width: $breakpoint-tablet) {
 
-  }
 
   .hardware_info_wrapper {
     width: 100%;
@@ -344,6 +342,12 @@
     height: auto;
     pointer-events: none;
   }
+
+  /* Porrastetut viiveet korteille */
+  &.reveal_me_8 { transition-delay: 0.1s !important;}
+  &.reveal_me_9 { transition-delay: 0.2s !important;}
+  &.reveal_me_10 { transition-delay: 0.3s !important;}
+  &.reveal_me_11 { transition-delay: 0.4s !important;}
 }
 
 .macbook_screen,
