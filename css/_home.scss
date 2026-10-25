@@ -118,73 +118,83 @@
 
   z-index: 10;
   pointer-events: none;
-}
-
-.star {
-  position: absolute;
-  width: 4px; // Tehdään tähdistä hieman siistimpiä ja pistemäisempiä
-  height: 4px;
-  background: #fff;
-  border-radius: 50%;
-  box-shadow:
-    0 0 0 4px rgba(255, 255, 255, 0.05),
-    0 0 0 8px rgba(255, 255, 255, 0.05),
-    0 0 20px rgba(255, 255, 255, 0.1);
-  transform: rotate(45deg) translate3d(0, 0, 0);
-
-  &::before {
-    content: "";
+  
+  .star {
     position: absolute;
-    top: 2px;
-    left: -200px; // Lyhennetään häntää hieman mobiiliystävällisemmäksi
-    width: 200px;
-    height: 1px;
-    display: block;
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .3) 100%);
+    width: 4px; // Tehdään tähdistä hieman siistimpiä ja pistemäisempiä
+    height: 4px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow:
+      0 0 0 4px rgba(255, 255, 255, 0.05),
+      0 0 0 8px rgba(255, 255, 255, 0.05),
+      0 0 20px rgba(255, 255, 255, 0.1);
+    transform: rotate(45deg) translate3d(0, 0, 0);
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: -200px; // Lyhennetään häntää hieman mobiiliystävällisemmäksi
+      width: 200px;
+      height: 1px;
+      display: block;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .3) 100%);
+    }
+
+    // 🌠 TÄHTI 1: Lähtee heti alussa ja lentää HELKKARIN NOPEASTI (kesto vain 6s!)
+    &:nth-child(1) {
+      left: 34vw; // Aloittaa keskivaiheilta, jotta ehtii lentää komeasti ruudun yli viistoon
+      top: -20px;
+      animation: shootingstars 14s linear infinite;
+      animation-delay: 1.3s; // Pamahtaa matkaan melkein heti kun sivu latautuu!
+
+      // Mobiilissa eka tähti pyörähtajää vain kerran
+      @media (max-width: $breakpoint-tablet) {
+        animation-iteration-count: 1;
+      }
+    }
+
+    // 🌠 TÄHTI 2: Lähtee 3-4s myöhemmin, ruudun VASURISTA ja liikkuu TOSI HITAASTI (kesto 18s!)
+    &:nth-child(2) {
+      left: 10vw; // Ruudun vasen reuna
+      top: -30px;
+      animation: shootingstars 32s linear infinite;
+      animation-delay: 4s; // Odottaa sen toivomasi 4 sekuntia ennen kuin lipuu matkaan
+    }
+
+    // 🌠 TÄHTI 3: Lähtee myös hitaasti (kesto 15s) ruudun OIKEASTA laidasta!
+    &:nth-child(3) {
+      left: 68vw; // Ruudun oikea reuna
+      top: -340px;
+      animation: shootingstars 32s linear infinite;
+      animation-delay: 7s; // Lähtee omalla vuorollaan taivaalle
+    }
+
+    &:nth-child(4) {
+      left: 50vw; // Ruudun oikea reuna
+      top: -340px;
+      animation: shootingstars 42s linear infinite;
+      animation-delay: 14s; // Lähtee omalla vuorollaan taivaalle
+    }
+
+    &:nth-child(5) {
+      left: 2vw; // Ruudun oikea reuna
+      top: -10px;
+      animation: shootingstars 60s linear infinite;
+      animation-delay: 11s; // Lähtee omalla vuorollaan taivaalle
+    }
+
+    // Piilotetaan tähdet 2-5 mobiilissa kerralla
+    @media (max-width: $breakpoint-tablet) {
+      &:nth-child(n+2) {
+        display: none;
+      }
+    }
   }
-
-  // 🌠 TÄHTI 1: Lähtee heti alussa ja lentää HELKKARIN NOPEASTI (kesto vain 6s!)
-  &:nth-child(1) {
-    left: 34vw; // Aloittaa keskivaiheilta, jotta ehtii lentää komeasti ruudun yli viistoon
-    top: -20px;
-    animation: shootingstars 14s linear infinite;
-    animation-delay: 1.3s; // Pamahtaa matkaan melkein heti kun sivu latautuu!
-
-
-  }
-
-  // 🌠 TÄHTI 2: Lähtee 3-4s myöhemmin, ruudun VASURISTA ja liikkuu TOSI HITAASTI (kesto 18s!)
-  &:nth-child(2) {
-    left: 10vw; // Ruudun vasen reuna
-    top: -30px;
-    animation: shootingstars 32s linear infinite;
-    animation-delay: 4s; // Odottaa sen toivomasi 4 sekuntia ennen kuin lipuu matkaan
-  }
-
-  // 🌠 TÄHTI 3: Lähtee myös hitaasti (kesto 15s) ruudun OIKEASTA laidasta!
-  &:nth-child(3) {
-    left: 68vw; // Ruudun oikea reuna
-    top: -340px;
-    animation: shootingstars 32s linear infinite;
-    animation-delay: 7s; // Lähtee omalla vuorollaan taivaalle
-  }
-
-  &:nth-child(4) {
-    left: 50vw; // Ruudun oikea reuna
-    top: -340px;
-    animation: shootingstars 42s linear infinite;
-    animation-delay: 14s; // Lähtee omalla vuorollaan taivaalle
-  }
-
-
-  &:nth-child(5) {
-    left: 2vw; // Ruudun oikea reuna
-    top: -10px;
-    animation: shootingstars 60s linear infinite;
-    animation-delay: 11s; // Lähtee omalla vuorollaan taivaalle
-  }
-
 }
+
+
 
 /* ==========================================================================
    WEB & HARDWARE SHOWCASE STYLES
