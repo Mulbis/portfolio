@@ -921,31 +921,7 @@
 
 	<!-- REVEAL ELEMENTS -->
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const isMobile = window.innerWidth <= 768;
-        const thresholdValue = isMobile ? 0.1 : 0.25;
 
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: thresholdValue
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target); // Animoidaan vain kerran
-                }
-            });
-        }, observerOptions);
-
-        // Otetaan seurantaan kaikki elementit, joissa on reveal-luokka
-        const revealElements = document.querySelectorAll('.reveal_me, [class*="reveal_me_"]');
-        revealElements.forEach(el => observer.observe(el));
-    });
-</script>
 
 	<!-- remove hover on touch devices -->
 	<script>function watchForHover() {
