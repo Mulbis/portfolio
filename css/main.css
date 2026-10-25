@@ -1574,7 +1574,6 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 #home.hero_section {
   width: 100%;
   min-height: 46vh;
-  background: url(../images/bg_images/hero/lappare.webp) no-repeat center center;
   background-size: cover;
   display: flex;
   align-items: center;
