@@ -1805,12 +1805,6 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
     background-size: cover;
   }
 }
-@media screen and (max-width: 768px) {
-  #web_section_quote {
-    background: #000 url(../images/bg_images/web_site_collage_4_768.webp) no-repeat center center fixed;
-    background-size: cover;
-  }
-}
 
 .quote_block {
   background: rgba(0, 0, 0, 0.2);
