@@ -1794,8 +1794,13 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 }
 @media screen and (max-width: 768px) {
   #web_section_quote {
-    background: #000 url(../images/bg_images/web_site_collage_4_768.webp) no-repeat center center fixed;
+    background: #000 url(../images/bg_images/web_site_collage_768.webp) no-repeat center center fixed;
     background-size: cover;
+  }
+}
+@media screen and (max-width: 640px) {
+  #web_section_quote {
+    background: #000;
   }
 }
 
@@ -1819,7 +1824,7 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 }
 @media screen and (max-width: 768px) {
   .full_block#web {
-    background: #000 url(../images/bg_images/web_site_collage_4_768.webp) no-repeat center center fixed;
+    background: #000 url(../images/bg_images/web_site_collage768.webp) no-repeat center center fixed;
     background-size: cover;
   }
 }
