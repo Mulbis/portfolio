@@ -1108,24 +1108,20 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
   background-repeat: no-repeat;
   background-size: contain;
 }
-.full_block#gallery #categories_wrap .gallery_categories h3.landfill_title::after {
-  background-image: url("../images/icons_sprites_patterns/icons/display.svg");
-  transform: translateY(-51%);
-  height: 45px;
-}
 [data-theme=dark] .full_block#gallery #categories_wrap .gallery_categories h3::after {
   filter: invert(1) opacity(1);
 }
 .full_block#gallery #categories_wrap .gallery_categories h3.fractal_title::after {
   background-image: url("../images/icons_sprites_patterns/icons/mandelbrot_set.svg");
+  height: 65px;
+  width: 60px;
 }
 .full_block#gallery #categories_wrap .gallery_categories h3.photography_title::after {
   background-image: url("../images/icons_sprites_patterns/icons/camera_filled.svg");
-  margin-bottom: 2px;
 }
 .full_block#gallery #categories_wrap .gallery_categories h3.landfill_title::after {
   background-image: url("../images/icons_sprites_patterns/icons/display.svg");
-  margin-bottom: 13px;
+  transform: translateY(-46%);
 }
 
 .gallery-grid {

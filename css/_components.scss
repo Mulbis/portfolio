@@ -611,11 +611,7 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
         }
 
 
-        &.landfill_title::after {
-          background-image: url("../images/icons_sprites_patterns/icons/display.svg");
-          transform: translateY(-51%); // Esim. reilummin miinukselle, niin siirtyy ylöspäin
-          height: 45px;
-        }
+
 
 
         [data-theme="dark"] &::after {
@@ -624,17 +620,19 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
 
         &.fractal_title::after {
           background-image: url("../images/icons_sprites_patterns/icons/mandelbrot_set.svg");
+          height: 65px;
+          width: 60px;
 
         }
 
         &.photography_title::after {
           background-image: url("../images/icons_sprites_patterns/icons/camera_filled.svg");
-          margin-bottom: 2px;
+
         }
 
         &.landfill_title::after {
           background-image: url("../images/icons_sprites_patterns/icons/display.svg");
-          margin-bottom: 13px;
+       transform: translateY(-46%);
         }
       } // Sulkee h3:n
 
