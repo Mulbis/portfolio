@@ -158,7 +158,7 @@
 
     // 🌠 TÄHTI 2: Lähtee 3-4s myöhemmin, ruudun VASURISTA ja liikkuu TOSI HITAASTI (kesto 18s!)
     &:nth-child(2) {
-      left: 10vw; // Ruudun vasen reuna
+      left: 4vw; // Ruudun vasen reuna
       top: -30px;
       animation: shootingstars 32s linear infinite;
       animation-delay: 4s; // Odottaa sen toivomasi 4 sekuntia ennen kuin lipuu matkaan

@@ -1724,7 +1724,7 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   }
 }
 .star_wrapper .star:nth-child(2) {
-  left: 10vw;
+  left: 4vw;
   top: -30px;
   animation: shootingstars 32s linear infinite;
   animation-delay: 4s;
