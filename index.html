@@ -917,35 +917,39 @@
 
 	<!-- SCRIPTS -->
 	<script src="js/main.js" defer></script>
+	
 
 	<!-- REVEAL ELEMENTS -->
 
-	<script src="js/scrollreveal.js"></script>
-
-	<!-- 2. Ajetaan omat paljastukset heti perään -->
+	<!-- REVEAL ELEMENTS -->
+<script src="js/scrollreveal.js" defer></script>
 <script>
-	// Tarkistetaan onko mobiili
-	const isMobile = window.innerWidth <= 768;
+    window.addEventListener('DOMContentLoaded', () => {
+        // Odotetaan, että ScrollReveal-kirjasto on varmasti latautunut deferin jäljiltä
+        const checkScrollReveal = setInterval(() => {
+            if (typeof ScrollReveal !== 'undefined') {
+                clearInterval(checkScrollReveal);
+                
+                const isMobile = window.innerWidth <= 768;
+                const sr = ScrollReveal({
+                    viewFactor: isMobile ? 0.1 : 0.45,
+                    duration: isMobile ? 400 : 600,
+                    distance: '20px',
+                    scale: 0.9,
+                    reset: false
+                });
 
-	window.sr = ScrollReveal({
-		// Mobiilissa herkempi triggeri (0.1 = laukeaa heti kun pilkistää ruudulle)
-		viewFactor: isMobile ? 0.1 : 0.45,
-		// Hieman napakampi kesto mobiilissa
-		duration: isMobile ? 400 : 600,
-		distance: '20px',
-		scale: 0.9,
-		reset: false
-	});
-
-	const delayMultiplier = isMobile ? 0.3 : 1;
-
-	sr.reveal('.reveal_me');
-	sr.reveal('.reveal_me_1', { delay: Math.round(100 * delayMultiplier) });
-	sr.reveal('.reveal_me_2', { delay: Math.round(200 * delayMultiplier) });
-	sr.reveal('.reveal_me_3', { delay: Math.round(300 * delayMultiplier) });
-	sr.reveal('.reveal_me_4', { delay: Math.round(400 * delayMultiplier) });
-	sr.reveal('.reveal_me_5', { delay: Math.round(500 * delayMultiplier) });
-	sr.reveal('.reveal_me_6', { delay: Math.round(600 * delayMultiplier) });
+                const delayMultiplier = isMobile ? 0.3 : 1;
+                sr.reveal('.reveal_me');
+                sr.reveal('.reveal_me_1', { delay: Math.round(100 * delayMultiplier) });
+                sr.reveal('.reveal_me_2', { delay: Math.round(200 * delayMultiplier) });
+                sr.reveal('.reveal_me_3', { delay: Math.round(300 * delayMultiplier) });
+                sr.reveal('.reveal_me_4', { delay: Math.round(400 * delayMultiplier) });
+                sr.reveal('.reveal_me_5', { delay: Math.round(500 * delayMultiplier) });
+                sr.reveal('.reveal_me_6', { delay: Math.round(600 * delayMultiplier) });
+            }
+        }, 50);
+    });
 </script>
 
 
