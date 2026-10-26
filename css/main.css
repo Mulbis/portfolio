@@ -1801,7 +1801,6 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 }
 
 .quote_block {
-  background: rgba(0, 0, 0, 0.2);
   padding: 40px 4%;
   text-align: center;
 }
@@ -1822,11 +1821,6 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   .full_block#web {
     background: #000 url(../images/bg_images/web_site_collage768.webp) no-repeat center center fixed;
     background-size: cover;
-  }
-}
-@media screen and (max-width: 480px) {
-  .full_block#web {
-    padding: 0;
   }
 }
 .full_block#web.full_block#web::before {

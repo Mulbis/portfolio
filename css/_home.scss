@@ -229,10 +229,7 @@
   }
 
 }
-
-
 .quote_block {
-  background: rgba(0, 0, 0, 0.2);
   padding: 40px 4%;
   text-align: center;
 }
@@ -258,11 +255,6 @@
     background-size: cover;
   }
   
-
-    @media screen and (max-width: $breakpoint-mobile){
-    
-    padding: 0;
-    }
 
 
 

@@ -179,24 +179,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* ==========================================================================
-     4. NAVIGAATION SCROLLSPY JA ANKKURILINKIT
+     4. NAVIGAATION SCROLLSPY (Vain aktiivisen tilan seuranta)
      ========================================================================= */
   const navBar = document.querySelector('.sticky');
   const scrollLinks = document.querySelectorAll('a[href^="#"]:not([href="#"])');
-  
-  let isClickScrolling = false; 
 
-  if (scrollLinks.length > 0) {
+  if (scrollLinks.length > 0 && navBar) {
 
     const updateScrollspy = () => {
-      if (isClickScrolling || !navBar) return;
+      // REMOVED THE LOCKOUT LINE HERE so it updates on click-scrolls!
 
       const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
       const windowHeight = window.innerHeight;
       const totalDocHeight = document.documentElement.scrollHeight;
-      const navHeight = navBar.offsetHeight;
       
-      const isAtBottom = (window.pageYOffset || document.documentElement.scrollTop) + windowHeight >= totalDocHeight - 60;
+      const isAtBottom = currentScroll + windowHeight >= totalDocHeight - 60;
 
       let activeSectionId = 'home';
 
@@ -208,7 +205,8 @@ document.addEventListener("DOMContentLoaded", () => {
           if (id && id.startsWith('#')) {
             const section = document.querySelector(id);
             if (section) {
-              const sectionTop = section.offsetTop - (navHeight + 15);
+              // Using your fixed 44px navbar height with a small 5px buffer zone
+              const sectionTop = section.offsetTop - (44 + 5);
               if (currentScroll >= sectionTop) {
                 activeSectionId = id.substring(1);
               }
@@ -236,41 +234,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { passive: true });
 
     updateScrollspy();
-
-    scrollLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault(); 
-        isClickScrolling = true;
-        
-        const navMenuLinks = document.querySelectorAll('.navigation_list a[href^="#"]');
-        navMenuLinks.forEach(l => l.classList.remove('active'));
-
-        const targetId = link.getAttribute('href');
-        const targetSection = targetId ? document.querySelector(targetId) : null;
-        
-        if (targetSection) {
-          const navHeight = navBar ? navBar.offsetHeight : 0;
-
-          const performScroll = () => {
-            const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - navHeight + 20;
-            window.scrollTo({
-              top: targetPosition,
-              behavior: 'smooth'
-            });
-          };
-
-          performScroll();
-          setTimeout(performScroll, 250);
-          setTimeout(performScroll, 500);
-        }
-
-        setTimeout(() => {
-          isClickScrolling = false;
-          updateScrollspy(); 
-        }, 1100);
-      });
-    });
   }
+
 
 
  /* ==========================================================================
@@ -377,7 +342,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* ==========================================================================
-   9. SMART STICKY NAVIGATION CONTROLLER (Puhdas ja stabiili)
+   9. SMART STICKY NAVIGATION CONTROLLER (Fixed for Momentum Engine)
    ========================================================================== */
 (function() {
   const navBar = document.querySelector('.sticky');
@@ -386,19 +351,12 @@ document.addEventListener("DOMContentLoaded", () => {
     let smartLastScrollY = window.scrollY || document.documentElement.scrollTop;
     let navTicking = false;
 
-    window.addEventListener('scroll', () => {
-      // Jos inertia-moottori tai ankkurihyppy pyörii, Smart Sticky ei koske naviin
-      if (window.isScrolling || window.isClickScrolling) {
-        smartLastScrollY = window.scrollY || document.documentElement.scrollTop;
-        return;
-      }
-
+    // We track directions globally so the loop can react smoothly
+    window.updateMobileNav = (currentScrollY) => {
       if (navTicking) return;
 
       navTicking = requestAnimationFrame(() => {
-        const currentScrollY = window.scrollY || document.documentElement.scrollTop;
-
-        // Jos ollaan aivan ylhäällä, navi on aina näkyvissä ilman gäppejä
+        // If user scrolls to the absolute top, keep it visible
         if (currentScrollY <= 60) {
           navBar.classList.remove('nav-hidden');
           smartLastScrollY = currentScrollY;
@@ -406,12 +364,14 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
 
-        const delta = 15;
+        // Slight buffer so minor adjustments don't trigger the hide/show transition
+        const delta = 8;
         if (Math.abs(currentScrollY - smartLastScrollY) < delta) {
           navTicking = false;
           return;
         }
 
+        // If scrolling down, hide navigation. If scrolling up, show it.
         if (currentScrollY > smartLastScrollY && currentScrollY > 60) {
           navBar.classList.add('nav-hidden');
         } else if (currentScrollY < smartLastScrollY) {
@@ -421,13 +381,19 @@ document.addEventListener("DOMContentLoaded", () => {
         smartLastScrollY = currentScrollY;
         navTicking = false;
       });
+    };
+
+    // Standard listener remains in place for native fallbacks
+    window.addEventListener('scroll', () => {
+      if (!window.isScrolling && !window.isClickScrolling) {
+        window.updateMobileNav(window.scrollY || document.documentElement.scrollTop);
+      }
     }, { passive: true });
   }
 })();
 
-
 /* ==========================================================================
-   10. BUTTERY VANILLA SCROLL + ANCHORS (IIFE-suojaus)
+   10. BUTTERY VANILLA SCROLL + ANCHORS (Fixed Interlocking Listeners)
    ========================================================================== */
 (function() {
   if (typeof window.currentScroll === 'undefined') {
@@ -455,16 +421,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function updateScroll() {
     window.currentScroll += (window.targetScroll - window.currentScroll) * ease;
-    window.scrollTo(0, window.currentScroll);
     
-    if (Math.abs(window.targetScroll - window.currentScroll) > 0.5) {
-      requestAnimationFrame(updateScroll);
-    } else {
+    if (Math.abs(window.targetScroll - window.currentScroll) <= 0.6) {
+      window.currentScroll = window.targetScroll; 
+      window.scrollTo(0, window.currentScroll);
+      
+      if (window.updateMobileNav && !window.isClickScrolling) {
+        window.updateMobileNav(window.currentScroll);
+      }
+      
       window.isScrolling = false;
       setTimeout(() => {
         window.isClickScrolling = false;
       }, 100);
+      return; 
     }
+
+    window.scrollTo(0, window.currentScroll);
+    
+    if (window.updateMobileNav && !window.isClickScrolling) {
+      window.updateMobileNav(window.currentScroll);
+    }
+    
+    requestAnimationFrame(updateScroll);
   }
 
   window.addEventListener('scroll', () => {
@@ -473,8 +452,6 @@ document.addEventListener("DOMContentLoaded", () => {
       window.targetScroll = window.scrollY;
     }
   });
-
-  const navBar = document.querySelector('.sticky');
 
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
@@ -486,13 +463,12 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
         window.isClickScrolling = true; 
         
-        const isMobile = window.innerWidth <= 768;
-        const navHeight = isMobile ? 44 : (navBar ? navBar.offsetHeight : 0);
         const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
         
+        // Exact fixed 44px offset
         let elementPosition = 0;
         if (targetId !== '#home') {
-          elementPosition = targetEl.offsetTop - navHeight;
+          elementPosition = targetEl.offsetTop - 44;
         }
         
         window.targetScroll = Math.max(0, Math.min(elementPosition, maxScroll));
