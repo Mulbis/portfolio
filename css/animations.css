@@ -1,7 +1,6 @@
 
 /* =================== LET'S REVEAL, BABY!! =================== */
 
-/* =================== LET'S REVEAL, BABY!! =================== */
 
 .reveal_me, 
 [class*="reveal_me_"] {
@@ -15,3 +14,181 @@
     transform: translateY(0) scale(1) !important;
   }
 }
+
+
+
+/* ==========================================================================
+   ANIMATION KEYFRAMES
+   ========================================================================== */
+
+@keyframes shootingstars {
+  0% {
+    opacity: 1;
+    /* Aloitetaan lennon alku nollasta */
+    transform: rotate(45deg) translate3d(0, 0, 0);
+  }
+
+  /* 20% ja 100% kohdissa tähti on piilossa ja valmiina uudelle kierrokselle */
+  20%, 
+  100% {
+    opacity: 0;
+    transform: rotate(45deg) translate3d(1800px, 0, 0);
+  }
+}
+
+
+@-webkit-keyframes text-focus-in {
+  0% {
+    -webkit-filter: blur(12px);
+    filter: blur(12px);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes text-focus-in {
+  0% {
+    -webkit-filter: blur(12px);
+    filter: blur(12px);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes slide-out-fwd-center {
+  0% {
+    -webkit-transform: translateZ(1);
+    transform: translateZ(1);
+    opacity: 0;
+    width: 0;
+  }
+
+  50% {
+    -webkit-transform: translateZ(500px);
+    transform: translateZ(500px);
+    opacity: 1;
+  }
+
+  99% {
+    -webkit-transform: translateZ(1000px);
+    transform: translateZ(1000px);
+    opacity: 0;
+    width: 400px;
+  }
+
+  100% {
+    display: none;
+  }
+}
+
+@keyframes slide-out-fwd-center {
+  0% {
+    -webkit-transform: translateZ(1);
+    transform: translateZ(1);
+    opacity: 0;
+    width: 0;
+  }
+
+  50% {
+    -webkit-transform: translateZ(500px);
+    transform: translateZ(500px);
+    opacity: 1;
+  }
+
+  99% {
+    -webkit-transform: translateZ(1000px);
+    transform: translateZ(1000px);
+    opacity: 0;
+    width: 400px;
+  }
+
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes slideAndHoldMacbook {
+  0%,
+  12% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  14.28%,
+  26.28% {
+    transform: translate3d(-14.2857%, 0, 0);
+  }
+
+  28.57%,
+  40.57% {
+    transform: translate3d(-28.5714%, 0, 0);
+  }
+
+  42.85%,
+  54.85% {
+    transform: translate3d(-42.8571%, 0, 0);
+  }
+
+  57.14%,
+  69.14% {
+    transform: translate3d(-57.1428%, 0, 0);
+  }
+
+  71.42%,
+  83.42% {
+    transform: translate3d(-71.4285%, 0, 0);
+  }
+
+  85.71%,
+  99.99% {
+    transform: translate3d(-85.7142%, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(-85.7142%, 0, 0);
+  }
+}
+
+@keyframes scrollImac {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(-2160px, 0, 0);
+  }
+}
+
+@keyframes scrollIpad {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(-732px, 0, 0);
+  }
+}
+
+@keyframes scrollIphone {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(-402px, 0, 0);
+  }
+}
+
+
+
+
+
