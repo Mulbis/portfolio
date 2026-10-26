@@ -403,8 +403,8 @@ document.addEventListener("DOMContentLoaded", () => {
     window.isClickScrolling = false;
   }
 
-  const ease = 0.05;
-  const scrollSpeed = 0.85;
+  const ease = 0.07;
+  const scrollSpeed = 0.95;
 
   window.addEventListener('wheel', (e) => {
     e.preventDefault(); 

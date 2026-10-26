@@ -20,9 +20,11 @@
   }
 
   @media screen and (max-width: $breakpoint-mobile) {
-    padding-top: 54px; // Korjattu marginista paddingiksi!
+    padding-top: 54px;
+    min-height: clamp(480px, 65vh, 75vh); // Pienin 480px, tavoite 65vh, katto 75vh
     background: url(../images/bg_images/hero/lappare_mobile.webp) no-repeat center center;
     background-size: cover;
+  
   }
 
   .hero_info_box {

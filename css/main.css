@@ -1608,6 +1608,7 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 @media screen and (max-width: 480px) {
   #home.hero_section {
     padding-top: 54px;
+    min-height: clamp(480px, 65vh, 75vh);
     background: url(../images/bg_images/hero/lappare_mobile.webp) no-repeat center center;
     background-size: cover;
   }

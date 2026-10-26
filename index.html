@@ -19,10 +19,22 @@
 <link rel="preload" as="image" href="images/bg_images/hero/lappare_1600.webp" media="(min-width: 481px)" fetchpriority="high">
 
     <!-- Kuvakkeet ja Manifesti -->
-    <link rel="manifest" href="manifest.webmanifest">
-    <link rel="icon" href="favcard.ico">
-    <link rel="icon" href="card.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="apple-touch-card.png">
+<!-- 1. Nykyaikaiset selaimet (vektori, mukautuu myös tummaan tilaan) -->
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+<!-- 2. Vanhemmat selaimet ja fallback (16x16 / 32x32 .ico) -->
+<link rel="icon" href="favicon.ico" sizes="any">
+
+<!-- 3. Apple-laitteet (iOS home screen, 180x180 PNG) -->
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<!-- 4. PWA / Android / Windows-asennukset -->
+<link rel="manifest" href="site.webmanifest">
+
+
+
+
+
 
     <!-- ============ FONTS ============ -->
     <link rel="preload" href="fonts/poppins/Poppins-Regular.woff2" as="font" type="font/woff2" crossorigin>
