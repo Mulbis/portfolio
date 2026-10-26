@@ -252,8 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const navHeight = navBar ? navBar.offsetHeight : 0;
 
           const performScroll = () => {
-   // Lisätään navin korkeuden lisäksi esim. 15 pikseliä ilmaa väliin
-    const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - navHeight + 20;
+            const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - navHeight + 20;
             window.scrollTo({
               top: targetPosition,
               behavior: 'smooth'
@@ -275,30 +274,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
  /* ==========================================================================
-   TEEMAN VAIHTO (DARK / LIGHT MODE)
+   5. TEEMAN VAIHTO (DARK / LIGHT MODE)
    ========================================================================== */
-const themeBtn = document.getElementById('theme-toggle');
+  const themeBtn = document.getElementById('theme-toggle');
 
-if (themeBtn) {
-  themeBtn.addEventListener('click', () => {
-    // 1. Luetaan nykyinen teema
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    
-    // 2. Määritetään uusi teema
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
-    // 3. Asetetaan uusi teema html-elementille
-    document.documentElement.setAttribute('data-theme', newTheme);
-    
-    // 4. Vaihdetaan ikoni sen mukaan, mikä teema aktivoitui:
-    //    Jos on tumma teema (dark) -> näytetään Kuu 🌙
-    //    Jos on vaalea teema (light) -> näytetään Aurinko ☀️
-    themeBtn.textContent = newTheme === 'dark' ? '🌙' : '☀️';
-
-    // (Valinnainen) Tallennetaan valinta localStorageen
-    localStorage.setItem('theme', newTheme);
-  });
-}
+  if (themeBtn) {
+    themeBtn.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      themeBtn.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+      localStorage.setItem('theme', newTheme);
+    });
+  }
 
   /* ==========================================================================
      6. MONITASOINEN GALLERIAN "SHOW MORE"
@@ -330,45 +319,37 @@ if (themeBtn) {
      ========================================================================= */
   const articleButtons = document.querySelectorAll('.toggle-article-btn');
 
-articleButtons.forEach(btn => {
-  // Tallennetaan muuttuja, johon otetaan talteen scrollin sijainti avaamishetkellä
-  let scrollPositionBeforeOpen = 0;
+  articleButtons.forEach(btn => {
+    let scrollPositionBeforeOpen = 0;
 
-  btn.addEventListener("click", () => {
-    const content = btn.previousElementSibling;
-    const postParent = btn.closest(".hidden_post");
-    
-    if (content && content.classList.contains("article-body")) {
-      const isOpen = content.classList.contains("is-open");
+    btn.addEventListener("click", () => {
+      const content = btn.previousElementSibling;
+      const postParent = btn.closest(".hidden_post");
       
-      if (!isOpen) {
-        // 1. KUN AVATAAN ("Read More"): Otetaan talteen missä kohtaa sivua ollaan NYT
-        scrollPositionBeforeOpen = window.pageYOffset;
+      if (content && content.classList.contains("article-body")) {
+        const isOpen = content.classList.contains("is-open");
+        
+        if (!isOpen) {
+          scrollPositionBeforeOpen = window.pageYOffset;
+          content.classList.add("is-open");
+          btn.textContent = "Read Less";
+          if (postParent) postParent.classList.add("has-opened");
+        } else {
+          content.classList.remove("is-open");
+          if (postParent) postParent.classList.remove("has-opened");
 
-        content.classList.add("is-open");
-        btn.textContent = "Read Less";
-        if (postParent) postParent.classList.add("has-opened");
+          window.scrollTo({
+            top: scrollPositionBeforeOpen,
+            behavior: 'smooth'
+          });
 
-      } else {
-        // 2. KUN SULETAAN ("Read Less"): Suljetaan artikkeli
-        content.classList.remove("is-open");
-        if (postParent) postParent.classList.remove("has-opened");
-
-        // Palautetaan sivu smoothisti tasan siihen kohtaan, mistä käyttäjä avasi jutun
-        window.scrollTo({
-          top: scrollPositionBeforeOpen,
-          behavior: 'smooth'
-        });
-
-        // Vaihdetaan napin teksti takaisin pienellä viiveellä animaation mukana
-        setTimeout(() => {
-          btn.textContent = "Read More";
-        }, 550);
+          setTimeout(() => {
+            btn.textContent = "Read More";
+          }, 550);
+        }
       }
-    }
+    });
   });
-});
-
 
   /* =========================================
      8. HAMBURGER MENU
@@ -392,42 +373,46 @@ articleButtons.forEach(btn => {
       });
     });
   }
+});
 
 
-  /* ==========================================================================
-     9. SMART STICKY NAVIGATION CONTROLLER (Optimoitu rAF + Delta)
-     ========================================================================== */
+/* ==========================================================================
+   9. SMART STICKY NAVIGATION CONTROLLER (IIFE-suojaus)
+   ========================================================================== */
+(function() {
+  const navBar = document.querySelector('.sticky');
+
   if (navBar) {
     let smartLastScrollY = window.scrollY || document.documentElement.scrollTop;
     let navTicking = false;
 
     window.addEventListener('scroll', () => {
+      if (window.isScrolling || window.isClickScrolling) {
+        smartLastScrollY = window.scrollY || document.documentElement.scrollTop;
+        return;
+      }
+
       if (navTicking) return;
 
       navTicking = requestAnimationFrame(() => {
         const currentScrollY = window.scrollY || document.documentElement.scrollTop;
 
-        // Jos ollaan aivan sivun yläreunassa tai klikataan ankkuria, näytä navi aina
-        if (isClickScrolling || currentScrollY <= 0) {
+        if (currentScrollY <= 60) {
           navBar.classList.remove('nav-hidden');
           smartLastScrollY = currentScrollY;
           navTicking = false;
           return;
         }
 
-        // Kynnysarvo (delta = 10px), joka estää sormen tärinäpomppimisen
         const delta = 10;
         if (Math.abs(currentScrollY - smartLastScrollY) < delta) {
           navTicking = false;
           return;
         }
 
-        // Jos skrollataan ALASPÄIN ja ollaan menty yli 60px yläreunasta -> piilota navi
         if (currentScrollY > smartLastScrollY && currentScrollY > 60) {
           navBar.classList.add('nav-hidden');
-        } 
-        // Jos skrollataan YLÖSPÄIN -> tuo navi takaisin näkyviin
-        else if (currentScrollY < smartLastScrollY) {
+        } else if (currentScrollY < smartLastScrollY) {
           navBar.classList.remove('nav-hidden');
         }
 
@@ -436,5 +421,85 @@ articleButtons.forEach(btn => {
       });
     }, { passive: true });
   }
+})();
 
+
+/* ==========================================================================
+   10. BUTTERY VANILLA SCROLL + ANCHORS (IIFE-suojaus)
+   ========================================================================== */
+(function() {
+  if (typeof window.currentScroll === 'undefined') {
+    window.currentScroll = window.scrollY;
+    window.targetScroll = window.scrollY;
+    window.isScrolling = false;
+    window.isClickScrolling = false;
+  }
+
+  const ease = 0.05;
+  const scrollSpeed = 0.85;
+
+  window.addEventListener('wheel', (e) => {
+    e.preventDefault(); 
+    
+    window.targetScroll += e.deltaY * scrollSpeed;
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    window.targetScroll = Math.max(0, Math.min(window.targetScroll, maxScroll));
+    
+    if (!window.isScrolling) {
+      window.isScrolling = true;
+      requestAnimationFrame(updateScroll);
+    }
+  }, { passive: false });
+
+  function updateScroll() {
+    window.currentScroll += (window.targetScroll - window.currentScroll) * ease;
+    window.scrollTo(0, window.currentScroll);
+    
+    if (Math.abs(window.targetScroll - window.currentScroll) > 0.5) {
+      requestAnimationFrame(updateScroll);
+    } else {
+      window.isScrolling = false;
+      setTimeout(() => {
+        window.isClickScrolling = false;
+      }, 100);
+    }
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!window.isScrolling) {
+      window.currentScroll = window.scrollY;
+      window.targetScroll = window.scrollY;
+    }
   });
+
+  const navBar = document.querySelector('.sticky');
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      
+      const targetEl = document.querySelector(targetId);
+      if (targetEl) {
+        e.preventDefault();
+        window.isClickScrolling = true; 
+        
+        const isMobile = window.innerWidth <= 768;
+        const navHeight = isMobile ? 44 : (navBar ? navBar.offsetHeight : 0);
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        
+        let elementPosition = 0;
+        if (targetId !== '#home') {
+          elementPosition = targetEl.offsetTop - navHeight;
+        }
+        
+        window.targetScroll = Math.max(0, Math.min(elementPosition, maxScroll));
+        
+        if (!window.isScrolling) {
+          window.isScrolling = true;
+          requestAnimationFrame(updateScroll);
+        }
+      }
+    });
+  });
+})();
