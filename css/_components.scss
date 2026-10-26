@@ -276,6 +276,9 @@ ul.navigation_list {
    ========================================================================== */
 
 // 1. ABOUT ME (24% / 74%)
+
+
+
 #about_me {
   .flex.between {
     @media screen and (max-width: $breakpoint-tablet) {
@@ -283,6 +286,7 @@ ul.navigation_list {
       align-items: center;
       justify-content: center;
       gap: 25px;
+      
     }
 
     .half_block.col_small {

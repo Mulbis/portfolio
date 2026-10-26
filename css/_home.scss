@@ -223,19 +223,27 @@
   @media screen and (max-width: $breakpoint-tablet) {
     background: #000 url(../images/bg_images/web_site_collage_768.webp) no-repeat center center fixed;
     background-size: cover;
+
+    .quote {
+      padding: 3%;
+    }
+
+    br:nth-child(2) {
+      display: none;
+    }
   }
 
+  @media screen and (max-width: $breakpoint-mobile) {
 
-    @media screen and (max-width: $breakpoint-vga) {
-    background: #000;
+    .mega {
+      font-size: 2.1rem;
+    }
+
+    br:nth-child(1) {
+      display: none;
+    }
   }
-
 }
-.quote_block {
-  padding: 40px 4%;
-  text-align: center;
-}
-
 
 /* STARTING ACTUAL WEBBIE */
 
@@ -246,6 +254,7 @@
   color: #fff;
 
 
+
   @media screen and (max-width: $breakpoint-newschool) {
     background: #000 url(../images/bg_images/web_site_collage_4_1280.webp) no-repeat center center fixed;
     background-size: cover;
@@ -253,14 +262,10 @@
   
 
   @media screen and (max-width: $breakpoint-tablet) {
-    background: #000 url(../images/bg_images/web_site_collage768.webp) no-repeat center center fixed;
+    background: #000 url(../images/bg_images/web_site_collage_768.webp) no-repeat center center fixed;
     background-size: cover;
   }
   
-
-
-
-
 
   &.full_block#web::before {
 

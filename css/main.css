@@ -1794,16 +1794,20 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
     background: #000 url(../images/bg_images/web_site_collage_768.webp) no-repeat center center fixed;
     background-size: cover;
   }
-}
-@media screen and (max-width: 640px) {
-  #web_section_quote {
-    background: #000;
+  #web_section_quote .quote {
+    padding: 3%;
+  }
+  #web_section_quote br:nth-child(2) {
+    display: none;
   }
 }
-
-.quote_block {
-  padding: 40px 4%;
-  text-align: center;
+@media screen and (max-width: 480px) {
+  #web_section_quote .mega {
+    font-size: 2.1rem;
+  }
+  #web_section_quote br:nth-child(1) {
+    display: none;
+  }
 }
 
 /* STARTING ACTUAL WEBBIE */
@@ -1820,7 +1824,7 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 }
 @media screen and (max-width: 768px) {
   .full_block#web {
-    background: #000 url(../images/bg_images/web_site_collage768.webp) no-repeat center center fixed;
+    background: #000 url(../images/bg_images/web_site_collage_768.webp) no-repeat center center fixed;
     background-size: cover;
   }
 }
