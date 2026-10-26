@@ -377,7 +377,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* ==========================================================================
-   9. SMART STICKY NAVIGATION CONTROLLER (IIFE-suojaus)
+   9. SMART STICKY NAVIGATION CONTROLLER (Puhdas ja stabiili)
    ========================================================================== */
 (function() {
   const navBar = document.querySelector('.sticky');
@@ -387,6 +387,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let navTicking = false;
 
     window.addEventListener('scroll', () => {
+      // Jos inertia-moottori tai ankkurihyppy pyörii, Smart Sticky ei koske naviin
       if (window.isScrolling || window.isClickScrolling) {
         smartLastScrollY = window.scrollY || document.documentElement.scrollTop;
         return;
@@ -397,6 +398,7 @@ document.addEventListener("DOMContentLoaded", () => {
       navTicking = requestAnimationFrame(() => {
         const currentScrollY = window.scrollY || document.documentElement.scrollTop;
 
+        // Jos ollaan aivan ylhäällä, navi on aina näkyvissä ilman gäppejä
         if (currentScrollY <= 60) {
           navBar.classList.remove('nav-hidden');
           smartLastScrollY = currentScrollY;
@@ -404,7 +406,7 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
 
-        const delta = 10;
+        const delta = 15;
         if (Math.abs(currentScrollY - smartLastScrollY) < delta) {
           navTicking = false;
           return;
