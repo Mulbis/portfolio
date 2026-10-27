@@ -806,7 +806,6 @@ ul.navigation_list {
     flex-direction: column !important;
     align-items: center;
     justify-content: center;
-    gap: 25px;
   }
 }
 #about_me .flex.between .half_block.col_small {
@@ -817,20 +816,19 @@ ul.navigation_list {
 }
 #about_me .flex.between .half_block.col_small .meitzi {
   text-align: center;
-  margin: 0 !important;
-  padding: 0;
+  padding: 6px 0;
 }
 #about_me .flex.between .half_block.col_small .meitzi img {
   border-radius: 50% !important;
   display: block;
   max-width: 240px;
   width: 100%;
-  margin: 12px auto;
+  height: auto;
+  margin: 0 auto;
 }
 #about_me .flex.between .half_block.col_big {
   display: flex;
   flex: 0 0 74%;
-  flex-direction: column;
   justify-content: center;
 }
 
@@ -846,9 +844,6 @@ ul.navigation_list {
     align-items: center;
     justify-content: center;
     gap: 25px;
-  }
-  #about_this_site .flex.between img {
-    max-width: 80%;
   }
 }
 #about_this_site .flex.between .half_block.col_small {
@@ -1074,7 +1069,7 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  padding: 3px;
+  padding: 6px 6px 0 6px;
   background: linear-gradient(to right, var(--theme-primary), var(--theme-secondary));
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -1790,15 +1785,14 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 }
 @media screen and (max-width: 1280px) {
   #web_section_quote {
-    background: url(../images/bg_images/web_site_collage_4_1280.webp) no-repeat center center scroll;
+    background: url(../images/bg_images/web_site_collage_4_1280.webp) no-repeat center center fixed;
     background-size: cover;
   }
 }
 @media screen and (max-width: 768px) {
   #web_section_quote {
-    background: url(../images/bg_images/web_site_collage_768.webp) no-repeat center center scroll;
+    background: url(../images/bg_images/web_site_collage_768.webp) no-repeat center center fixed;
     background-size: cover;
-    padding: 40px 3%;
   }
 }
 @media screen and (max-width: 480px) {
@@ -1819,13 +1813,13 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 }
 @media screen and (max-width: 1280px) {
   .full_block#web {
-    background: url(../images/bg_images/web_site_collage_4_1280.webp) no-repeat center center scroll;
+    background: url(../images/bg_images/web_site_collage_4_1280.webp) no-repeat center center fixed;
     background-size: cover;
   }
 }
 @media screen and (max-width: 768px) {
   .full_block#web {
-    background: url(../images/bg_images/web_site_collage_768.webp) no-repeat center center scroll;
+    background: url(../images/bg_images/web_site_collage_768.webp) no-repeat center center fixed;
     background-size: cover;
   }
 }

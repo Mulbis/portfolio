@@ -221,14 +221,14 @@
   align-items: center;
 
   @media screen and (max-width: $breakpoint-newschool) {
-    background: url(../images/bg_images/web_site_collage_4_1280.webp) no-repeat center center scroll;
+    background: url(../images/bg_images/web_site_collage_4_1280.webp) no-repeat center center fixed;
     background-size: cover;
   }
 
   @media screen and (max-width: $breakpoint-tablet) {
-    background: url(../images/bg_images/web_site_collage_768.webp) no-repeat center center scroll;
+    background: url(../images/bg_images/web_site_collage_768.webp) no-repeat center center fixed;
     background-size: cover;
-    padding: 40px 3%;
+  
   }
 
   @media screen and (max-width: $breakpoint-mobile) {
@@ -250,12 +250,12 @@
     position: relative;
 
     @media screen and (max-width: $breakpoint-newschool) {
-      background: url(../images/bg_images/web_site_collage_4_1280.webp) no-repeat center center scroll;
+      background: url(../images/bg_images/web_site_collage_4_1280.webp) no-repeat center center fixed;
       background-size: cover;
     }
     
     @media screen and (max-width: $breakpoint-tablet) {
-      background: url(../images/bg_images/web_site_collage_768.webp) no-repeat center center scroll;
+      background: url(../images/bg_images/web_site_collage_768.webp) no-repeat center center fixed;
       background-size: cover;
 
     }

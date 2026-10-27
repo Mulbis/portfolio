@@ -281,11 +281,14 @@ ul.navigation_list {
 
 #about_me {
   .flex.between {
+    
+    
+    
+    
     @media screen and (max-width: $breakpoint-tablet) {
       flex-direction: column !important;
       align-items: center;
       justify-content: center;
-      gap: 25px;
       
     }
 
@@ -297,15 +300,24 @@ ul.navigation_list {
 
       .meitzi {
         text-align: center;
-        margin: 0 !important;
-        padding: 0;
+        padding: 6px 0;
+
 
         img {
           border-radius: 50% !important;
           display: block;
           max-width: 240px;
           width: 100%;
-          margin: 12px auto;
+          height: auto;
+          margin: 0 auto;
+       
+
+@media screen and (max-width: $breakpoint-oldschool){
+
+
+}
+
+
         }
       }
     }
@@ -313,7 +325,7 @@ ul.navigation_list {
     .half_block.col_big {
       display: flex;
       flex: 0 0 74%;
-      flex-direction: column;
+
       justify-content: center;
     }
   }
@@ -335,9 +347,7 @@ ul.navigation_list {
       justify-content: center;
       gap: 25px;
 
-      img {
-      max-width: 80%;
-      }
+  
     }
 
     .half_block.col_small {
@@ -576,7 +586,7 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
         position: absolute;
         inset: 0; // Sama kuin top:0; right:0; bottom:0; left:0;
         border-radius: inherit; // Perii nätisti saman border-radiuksen!
-        padding: 3px;
+        padding: 6px 6px 0 6px;
         background: linear-gradient(to right, var(--theme-primary), var(--theme-secondary));
         mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
         -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
