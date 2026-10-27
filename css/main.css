@@ -1776,7 +1776,7 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 #web_section_quote {
   text-align: center;
   width: 100%;
-  background: #000 url(../images/bg_images/web_site_collage.webp) no-repeat center center fixed;
+  background: url(../images/bg_images/web_site_collage.webp) no-repeat center center fixed;
   background-size: cover;
   box-shadow: inset 0px 0px 47px 200px rgba(0, 0, 0, 0.2);
   display: flex;
@@ -1785,13 +1785,13 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 }
 @media screen and (max-width: 1280px) {
   #web_section_quote {
-    background: #000 url(../images/bg_images/web_site_collage_4_1280.webp) no-repeat center center fixed;
+    background: url(../images/bg_images/web_site_collage_4_1280.webp) no-repeat center center fixed;
     background-size: cover;
   }
 }
 @media screen and (max-width: 768px) {
   #web_section_quote {
-    background: #000 url(../images/bg_images/web_site_collage_768.webp) no-repeat center center fixed;
+    background: url(../images/bg_images/web_site_collage_768.webp) no-repeat center center fixed;
     background-size: cover;
   }
   #web_section_quote .quote {
@@ -1803,7 +1803,7 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 }
 @media screen and (max-width: 480px) {
   #web_section_quote {
-    background: #000 url(../images/bg_images/web_site_collage_768.webp) no-repeat center center fixed;
+    background: url(../images/bg_images/web_site_collage_768.webp) no-repeat center center fixed;
     background-size: cover;
   }
   #web_section_quote .mega {
