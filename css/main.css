@@ -1802,9 +1802,6 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   }
 }
 @media screen and (max-width: 480px) {
-  #web_section_quote {
-    background: lightgreen;
-  }
   #web_section_quote .mega {
     font-size: 2.1rem;
   }
