@@ -235,6 +235,10 @@
 
   @media screen and (max-width: $breakpoint-mobile) {
 
+
+    background: #000 url(../images/bg_images/web_site_collage_768.webp) no-repeat center center fixed;
+    background-size: cover;
+
     .mega {
       font-size: 2.1rem;
     }
