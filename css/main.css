@@ -1074,7 +1074,7 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  padding: 6px 6px 0 6px;
+  padding: 3px;
   background: linear-gradient(to right, var(--theme-primary), var(--theme-secondary));
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -1601,8 +1601,8 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   #home.hero_section {
     background: url(../images/bg_images/hero/lappare_tablet.webp) no-repeat center center;
     background-size: cover;
-    padding-top: 44px;
-    min-height: 50vh;
+    padding-top: 64px;
+    min-height: 65vh;
   }
 }
 @media screen and (max-width: 480px) {
@@ -1739,6 +1739,11 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
     left: 1dvw;
   }
 }
+@media screen and (max-width: 480px) {
+  .star_wrapper .star:nth-child(1) {
+    animation-name: shootingstars-mobile;
+  }
+}
 .star_wrapper .star:nth-child(2) {
   left: 4vw;
   top: -30px;
@@ -1785,61 +1790,60 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 }
 @media screen and (max-width: 1280px) {
   #web_section_quote {
-    background: url(../images/bg_images/web_site_collage_4_1280.webp) no-repeat center center fixed;
+    background: url(../images/bg_images/web_site_collage_4_1280.webp) no-repeat center center scroll;
     background-size: cover;
   }
 }
 @media screen and (max-width: 768px) {
   #web_section_quote {
-    background: url(../images/bg_images/web_site_collage_768.webp) no-repeat center center fixed;
+    background: url(../images/bg_images/web_site_collage_768.webp) no-repeat center center scroll;
     background-size: cover;
-  }
-  #web_section_quote .quote {
-    padding: 3%;
-  }
-  #web_section_quote br:nth-child(2) {
-    display: none;
+    padding: 40px 3%;
   }
 }
 @media screen and (max-width: 480px) {
-  #web_section_quote .mega {
-    font-size: 2.1rem;
+  #web_section_quote {
+    background-attachment: scroll;
   }
-  #web_section_quote br:nth-child(1) {
-    display: none;
+  #web_section_quote .quote {
+    padding: 20px;
   }
 }
 
 /* STARTING ACTUAL WEBBIE */
 .full_block#web {
-  background: #000 url(../images/bg_images/web_site_collage_4.webp) no-repeat center center fixed;
+  background: url(../images/bg_images/web_site_collage.webp) no-repeat center center fixed;
   background-size: cover;
   color: #fff;
+  position: relative;
 }
 @media screen and (max-width: 1280px) {
   .full_block#web {
-    background: #000 url(../images/bg_images/web_site_collage_4_1280.webp) no-repeat center center fixed;
+    background: url(../images/bg_images/web_site_collage_4_1280.webp) no-repeat center center scroll;
     background-size: cover;
   }
 }
 @media screen and (max-width: 768px) {
   .full_block#web {
-    background: #000 url(../images/bg_images/web_site_collage_768.webp) no-repeat center center fixed;
+    background: url(../images/bg_images/web_site_collage_768.webp) no-repeat center center scroll;
     background-size: cover;
   }
 }
-.full_block#web.full_block#web::before {
+@media screen and (max-width: 480px) {
+  .full_block#web {
+    background-attachment: scroll;
+  }
+}
+.full_block#web::before {
   position: absolute;
-  content: "";
+  inset: 0;
   width: 100%;
   height: 100%;
-  left: 0;
-  top: 0;
-  background-color: rgba(0, 0, 0, 0.9);
-  filter: contrast(2);
+  content: "";
+  background: rgba(0, 0, 0, 0.8);
 }
 
-/* NICE EXTRA FULL WIDTH WRAPPERSON AROUND HARDARE */
+/* NICE EXTRA FULL WIDTH WRAPPERSON AROUND HARDWARE */
 #hardware_full.full_block {
   padding: 0;
 }
@@ -2001,7 +2005,7 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 }
 @media screen and (max-width: 640px) {
   #contact.full_block {
-    padding: 20px 0;
+    padding: 20px 0 0;
   }
 }
 #contact.full_block .page {
@@ -2018,6 +2022,7 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  padding-bottom: 40px;
 }
 #contact.full_block .contact_form .form_group {
   display: flex;
@@ -2085,7 +2090,7 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 }
 @media screen and (max-width: 480px) {
   .main_footer {
-    padding: 12px 0;
+    padding: 16px 0;
   }
 }
 .main_footer p {

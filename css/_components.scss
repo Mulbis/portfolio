@@ -576,7 +576,7 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
         position: absolute;
         inset: 0; // Sama kuin top:0; right:0; bottom:0; left:0;
         border-radius: inherit; // Perii nätisti saman border-radiuksen!
-        padding: 6px 6px 0 6px;
+        padding: 3px;
         background: linear-gradient(to right, var(--theme-primary), var(--theme-secondary));
         mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
         -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);

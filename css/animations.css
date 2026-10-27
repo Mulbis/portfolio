@@ -21,20 +21,23 @@
    ANIMATION KEYFRAMES
    ========================================================================== */
 
-@keyframes shootingstars {
+/* Mobiiliversio: jyrkkä pystysuora kulma ja lyhyempi matka */
+@keyframes shootingstars-mobile {
   0% {
     opacity: 1;
-    /* Aloitetaan lennon alku nollasta */
-    transform: rotate(45deg) translate3d(0, 0, 0);
+    transform: rotate(60deg) translate3d(0, 0, 0);
   }
 
-  /* 20% ja 100% kohdissa tähti on piilossa ja valmiina uudelle kierrokselle */
   20%, 
   100% {
     opacity: 0;
-    transform: rotate(45deg) translate3d(1800px, 0, 0);
+    transform: rotate(60deg) translate3d(1800px, 0, 0);
   }
 }
+
+
+
+
 
 
 @-webkit-keyframes text-focus-in {
