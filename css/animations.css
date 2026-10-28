@@ -25,19 +25,15 @@
 @keyframes shootingstars-mobile {
   0% {
     opacity: 1;
-    transform: rotate(60deg) translate3d(0, 0, 0);
+    transform: rotate(50deg) translate3d(0, 0, 0);
   }
 
   20%, 
   100% {
     opacity: 0;
-    transform: rotate(60deg) translate3d(1800px, 0, 0);
+    transform: rotate(50deg) translate3d(1800px, 0, 0);
   }
 }
-
-
-
-
 
 
 @-webkit-keyframes text-focus-in {

@@ -465,10 +465,10 @@ document.addEventListener("DOMContentLoaded", () => {
         
         const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
         
-        // Exact fixed 44px offset
         let elementPosition = 0;
         if (targetId !== '#home') {
-          elementPosition = targetEl.offsetTop - 44;
+          const rect = targetEl.getBoundingClientRect();
+          elementPosition = (rect.top + window.pageYOffset) - 44;
         }
         
         window.targetScroll = Math.max(0, Math.min(elementPosition, maxScroll));

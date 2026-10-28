@@ -149,12 +149,12 @@
       left: 34vw; // Aloittaa keskivaiheilta, jotta ehtii lentää komeasti ruudun yli viistoon
       top: -20px;
       animation: shootingstars 14s linear infinite;
-      animation-delay: 1.3s; // Pamahtaa matkaan melkein heti kun sivu latautuu!
+      animation-delay: 1.4s; // Pamahtaa matkaan melkein heti kun sivu latautuu!
 
       // Mobiilissa eka tähti pyörähtajää vain kerran
       @media (max-width: $breakpoint-tablet) {
         animation-iteration-count: 1;
-        left: 1dvw;
+        left: -10dvw; 
       }
 
 
@@ -206,96 +206,79 @@
 
 
 /* ==========================================================================
-   WEB & HARDWARE SHOWCASE STYLES
+   YHTENÄINEN TAUSTA & TUMMENNUS QUOTELLE JA WEBBISIOILLE
    ========================================================================== */
+.shared_web_bg {
+  position: relative;
+  overflow: hidden;
+  clip-path: inset(-1px -1px -1px -1px);
+  color: #FFF;
+  z-index: 1;
+  
+  /* 1. TAUSTAKUVA: Fixed + GPU-raudoitus (Pysyy paikallaan ja jatkuu saumattomasti osiosta toiseen) */
+  &::before {
+    content: "";
+    position: fixed;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    width: calc(100vw + 12px);
+    height: calc(100vh + 12px);
+    
+    z-index: -10;
+    pointer-events: none;
 
-/* QUOTE SECTION BEFORE ACTUAL WEBBIE */
+    background: url(../images/bg_images/web_site_collage_1200.webp) no-repeat center center;
+    background-size: cover;
+    
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform;
+  }
+
+
+}
+
+
+#web::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+/* Quote-kohtaiset säädöt */
 #web_section_quote {
   text-align: center;
   width: 100%;
-  background: url(../images/bg_images/web_site_collage.webp) no-repeat center center fixed;
-  background-size: cover;
   box-shadow: inset 0px 0px 47px 200px rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
-
-  @media screen and (max-width: $breakpoint-newschool) {
-    background: url(../images/bg_images/web_site_collage_4_1280.webp) no-repeat center center fixed;
-    background-size: cover;
-  }
-
-  @media screen and (max-width: $breakpoint-tablet) {
-    background: url(../images/bg_images/web_site_collage_768.webp) no-repeat center center fixed;
-    background-size: cover;
-  
-  }
-
-  @media screen and (max-width: $breakpoint-mobile) {
-    // Varmistetaan vielä erikseen, että attachment on varmasti scroll
-    background-attachment: scroll; 
-
-    .quote {
-      padding: 20px;
-    }
-  }
 }
 
-/* STARTING ACTUAL WEBBIE */
 
-  .full_block#web {
-    background: url(../images/bg_images/web_site_collage.webp) no-repeat center center fixed;
-    background-size: cover;
-    color: #fff;
-    position: relative;
-
-    @media screen and (max-width: $breakpoint-newschool) {
-      background: url(../images/bg_images/web_site_collage_4_1280.webp) no-repeat center center fixed;
-      background-size: cover;
-    }
-    
-    @media screen and (max-width: $breakpoint-tablet) {
-      background: url(../images/bg_images/web_site_collage_768.webp) no-repeat center center fixed;
-      background-size: cover;
-
-    }
-
-    @media screen and (max-width: $breakpoint-mobile) {
-      background-attachment: scroll;
-    }
-
-
-  &::before{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  content: "";
-  background: rgba(0, 0, 0, 0.8);
-
-  }
-
-  }
-
-
-
-/* NICE EXTRA FULL WIDTH WRAPPERSON AROUND HARDWARE */
+/* ==========================================
+   HARDWARE FULL & SHOWCASE (Säilytetty ennallaan)
+   ========================================== */
 #hardware_full.full_block {
   padding: 0;
-
+  position: relative;
+  z-index: 1;
 }
 
 .hardware-showcase-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: var(--text-color);
-  padding: 20px 0 10px;
   color: #fff;
-
+  padding: 20px 0 10px;
 
   @include respond-to($breakpoint-mobile) {
-    padding: 15px; // Puolitetaan sisäreunuksen tila, jolloin laitteille jää enemmän tilaa loistaa puhelimessa!
+    padding: 15px;
     margin: 15px 0;
   }
 
@@ -308,15 +291,12 @@
     width: 100%;
   }
 
-
-
   .hardware_info_wrapper {
     width: 100%;
     text-align: center;
   }
 
   &.is-visible {
-
     .macbook_screen::before,
     .imac_screen::before,
     .ipad_screen::before,
@@ -342,7 +322,6 @@
     pointer-events: none;
   }
 
-  /* Porrastetut viiveet korteille */
   &.reveal_me_8 { transition-delay: 0.1s !important;}
   &.reveal_me_9 { transition-delay: 0.2s !important;}
   &.reveal_me_10 { transition-delay: 0.3s !important;}
@@ -408,4 +387,3 @@
   width: 90%;
   height: 76%;
 }
-

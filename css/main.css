@@ -878,11 +878,41 @@ ul.navigation_list {
   object-fit: contain;
 }
 
-/* ========================= CARDS, MAN. CARDS!  ========================= */
+/*=========================CARDS, MAN. CARDS !=========================*/
 #cards_full_block {
   position: relative;
-  background: #000 url(../images/bg_images/sky_purple.webp) no-repeat center top fixed;
+  overflow: hidden;
+  /* Laitetaan tännekin sama miinusmerkkinen insetti, 
+     joka laajentaa leikkausaluetta hieman ulospäin */
+  clip-path: inset(-1px -1px -1px -1px);
+  /* THE BACKGROUND IMAGE */
+}
+#cards_full_block::after {
+  content: "";
+  position: fixed;
+  /* Reilu ylivuoto, jotta reuna piiloutuu varmasti selaimen pyöristyksiltä */
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  width: calc(100vw + 12px);
+  height: calc(100vh + 12px);
+  background: url(../images/bg_images/sky_purple.webp) no-repeat center center;
   background-size: cover;
+  z-index: -1;
+  pointer-events: none;
+  /* GPU-kiihdytys päälle */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform;
+}
+#cards_full_block {
+  /* THE OTHER CHILD ELEMENT */
+}
+#cards_full_block .your-other-contained-element {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .cards_wrapper {
@@ -890,6 +920,7 @@ ul.navigation_list {
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   width: 100%;
+  position: relative;
 }
 @media (max-width: 960px) {
   .cards_wrapper {
@@ -1726,12 +1757,12 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   left: 34vw;
   top: -20px;
   animation: shootingstars 14s linear infinite;
-  animation-delay: 1.3s;
+  animation-delay: 1.4s;
 }
 @media (max-width: 768px) {
   .star_wrapper .star:nth-child(1) {
     animation-iteration-count: 1;
-    left: 1dvw;
+    left: -10dvw;
   }
 }
 @media screen and (max-width: 480px) {
@@ -1770,85 +1801,68 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 }
 
 /* ==========================================================================
-   WEB & HARDWARE SHOWCASE STYLES
+   YHTENÄINEN TAUSTA & TUMMENNUS QUOTELLE JA WEBBISIOILLE
    ========================================================================== */
-/* QUOTE SECTION BEFORE ACTUAL WEBBIE */
+.shared_web_bg {
+  position: relative;
+  overflow: hidden;
+  clip-path: inset(-1px -1px -1px -1px);
+  color: #FFF;
+  z-index: 1;
+  /* 1. TAUSTAKUVA: Fixed + GPU-raudoitus (Pysyy paikallaan ja jatkuu saumattomasti osiosta toiseen) */
+}
+.shared_web_bg::before {
+  content: "";
+  position: fixed;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  width: calc(100vw + 12px);
+  height: calc(100vh + 12px);
+  z-index: -10;
+  pointer-events: none;
+  background: url(../images/bg_images/web_site_collage_1200.webp) no-repeat center center;
+  background-size: cover;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform;
+}
+
+#web::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Quote-kohtaiset säädöt */
 #web_section_quote {
   text-align: center;
   width: 100%;
-  background: url(../images/bg_images/web_site_collage.webp) no-repeat center center fixed;
-  background-size: cover;
   box-shadow: inset 0px 0px 47px 200px rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
 }
-@media screen and (max-width: 1280px) {
-  #web_section_quote {
-    background: url(../images/bg_images/web_site_collage_4_1280.webp) no-repeat center center fixed;
-    background-size: cover;
-  }
-}
-@media screen and (max-width: 768px) {
-  #web_section_quote {
-    background: url(../images/bg_images/web_site_collage_768.webp) no-repeat center center fixed;
-    background-size: cover;
-  }
-}
-@media screen and (max-width: 480px) {
-  #web_section_quote {
-    background-attachment: scroll;
-  }
-  #web_section_quote .quote {
-    padding: 20px;
-  }
-}
 
-/* STARTING ACTUAL WEBBIE */
-.full_block#web {
-  background: url(../images/bg_images/web_site_collage.webp) no-repeat center center fixed;
-  background-size: cover;
-  color: #fff;
-  position: relative;
-}
-@media screen and (max-width: 1280px) {
-  .full_block#web {
-    background: url(../images/bg_images/web_site_collage_4_1280.webp) no-repeat center center fixed;
-    background-size: cover;
-  }
-}
-@media screen and (max-width: 768px) {
-  .full_block#web {
-    background: url(../images/bg_images/web_site_collage_768.webp) no-repeat center center fixed;
-    background-size: cover;
-  }
-}
-@media screen and (max-width: 480px) {
-  .full_block#web {
-    background-attachment: scroll;
-  }
-}
-.full_block#web::before {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  content: "";
-  background: rgba(0, 0, 0, 0.8);
-}
-
-/* NICE EXTRA FULL WIDTH WRAPPERSON AROUND HARDWARE */
+/* ==========================================
+   HARDWARE FULL & SHOWCASE (Säilytetty ennallaan)
+   ========================================== */
 #hardware_full.full_block {
   padding: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .hardware-showcase-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: var(--text-color);
-  padding: 20px 0 10px;
   color: #fff;
+  padding: 20px 0 10px;
 }
 @media screen and (max-width: 480px) {
   .hardware-showcase-container {
@@ -1892,12 +1906,6 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   max-width: 100%;
   height: auto;
   pointer-events: none;
-}
-.macbook_wrapper,
-.imac_wrapper,
-.ipad_wrapper,
-.iphone_wrapper {
-  /* Porrastetut viiveet korteille */
 }
 .macbook_wrapper.reveal_me_8,
 .imac_wrapper.reveal_me_8,
