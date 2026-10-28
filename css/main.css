@@ -1090,6 +1090,7 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
 .full_block#gallery #categories_wrap {
   padding: 0;
   margin-top: 20px;
+  border: 2px solid lime;
   /* THE "PAGES" BLOCKS */
 }
 .full_block#gallery #categories_wrap .gallery_categories {
@@ -1146,6 +1147,7 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
   .full_block#gallery #categories_wrap .gallery_categories h3.fractal_title::after {
     width: 50px;
     height: 50px;
+    left: 96%;
   }
 }
 .full_block#gallery #categories_wrap .gallery_categories h3.photography_title::after {
@@ -1172,13 +1174,11 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
   /* SULKEE H3 */
 }
 .full_block#gallery #categories_wrap {
-  /* SULKEE CATEGORIES WRAPIN */
+  /* SULKEE CATEGORIES CONTAINERIT OSION ELI PAGES MÄÄRITTELYT */
 }
 .full_block#gallery {
-  /* SULKKE */
-}
-
-/* SULKEE GALLERY FULL BLOCKIN */
+  /* SULKEE CATEGORIES EXRTRA WRAPIN */
+} /* SULKEE GALLERY FULL BLOCKIN */
 .gallery-grid {
   display: flex;
   flex-wrap: wrap;
@@ -1884,6 +1884,8 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   padding: 0;
   position: relative;
   z-index: 1;
+  background: #fff;
+  padding: 30px 0;
 }
 
 .hardware-showcase-container {

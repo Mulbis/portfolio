@@ -629,6 +629,7 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
   #categories_wrap {
     padding: 0;
     margin-top: 20px;
+    border:2px solid lime;
 
     /* THE "PAGES" BLOCKS */
     .gallery_categories {
@@ -692,6 +693,7 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
 
             width: 50px;
             height: 50px;
+            left: 96%;
           }
 
         }
@@ -720,18 +722,13 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
         }
 
 
-      }
+      }    /* SULKEE H3 */
 
-      /* SULKEE H3 */
-    }
+    }    /* SULKEE CATEGORIES CONTAINERIT OSION ELI PAGES MÄÄRITTELYT */
 
-    /* SULKEE CATEGORIES WRAPIN */
-  }
+  }  /* SULKEE CATEGORIES EXRTRA WRAPIN */
 
-  /* SULKKE */
-}
-
-/* SULKEE GALLERY FULL BLOCKIN */
+}/* SULKEE GALLERY FULL BLOCKIN */
 
 
 .gallery-grid {
