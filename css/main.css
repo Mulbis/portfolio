@@ -1139,17 +1139,46 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
 }
 .full_block#gallery #categories_wrap .gallery_categories h3.fractal_title::after {
   background-image: url("../images/icons_sprites_patterns/icons/mandelbrot_set.svg");
-  height: 65px;
+  height: 60px;
   width: 60px;
+}
+@media screen and (max-width: 480px) {
+  .full_block#gallery #categories_wrap .gallery_categories h3.fractal_title::after {
+    width: 50px;
+    height: 50px;
+  }
 }
 .full_block#gallery #categories_wrap .gallery_categories h3.photography_title::after {
   background-image: url("../images/icons_sprites_patterns/icons/camera_filled.svg");
+}
+@media screen and (max-width: 480px) {
+  .full_block#gallery #categories_wrap .gallery_categories h3.photography_title::after {
+    width: 40px;
+    height: 40px;
+  }
 }
 .full_block#gallery #categories_wrap .gallery_categories h3.landfill_title::after {
   background-image: url("../images/icons_sprites_patterns/icons/display.svg");
   transform: translateY(-46%);
 }
+@media screen and (max-width: 480px) {
+  .full_block#gallery #categories_wrap .gallery_categories h3.landfill_title::after {
+    width: 40px;
+    height: 40px;
+    transform: translateY(-48%);
+  }
+}
+.full_block#gallery #categories_wrap .gallery_categories {
+  /* SULKEE H3 */
+}
+.full_block#gallery #categories_wrap {
+  /* SULKEE CATEGORIES WRAPIN */
+}
+.full_block#gallery {
+  /* SULKKE */
+}
 
+/* SULKEE GALLERY FULL BLOCKIN */
 .gallery-grid {
   display: flex;
   flex-wrap: wrap;

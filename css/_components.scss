@@ -394,7 +394,7 @@ ul.navigation_list {
 #cards_full_block {
   position: relative;
   overflow: hidden;
-  
+
   /* Laitetaan tännekin sama miinusmerkkinen insetti, 
      joka laajentaa leikkausaluetta hieman ulospäin */
   clip-path: inset(-1px -1px -1px -1px);
@@ -402,8 +402,8 @@ ul.navigation_list {
   /* THE BACKGROUND IMAGE */
   &::after {
     content: "";
-    position: fixed; 
-    
+    position: fixed;
+
     /* Reilu ylivuoto, jotta reuna piiloutuu varmasti selaimen pyöristyksiltä */
     top: -6px;
     left: -6px;
@@ -427,9 +427,9 @@ ul.navigation_list {
 
   /* THE OTHER CHILD ELEMENT */
   .your-other-contained-element {
-    position: absolute; 
-    top: 0; 
-    left: 0; 
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 }
 
@@ -679,44 +679,59 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
         }
 
 
-
-
-
         [data-theme="dark"] &::after {
           filter: invert(1) opacity(1);
         }
 
         &.fractal_title::after {
           background-image: url("../images/icons_sprites_patterns/icons/mandelbrot_set.svg");
-          height: 65px;
+          height: 60px;
           width: 60px;
+
+          @media screen and (max-width:$breakpoint-mobile) {
+
+            width: 50px;
+            height: 50px;
+          }
 
         }
 
         &.photography_title::after {
           background-image: url("../images/icons_sprites_patterns/icons/camera_filled.svg");
 
+          @media screen and (max-width:$breakpoint-mobile) {
+
+            width: 40px;
+            height: 40px;
+          }
+
         }
 
         &.landfill_title::after {
           background-image: url("../images/icons_sprites_patterns/icons/display.svg");
           transform: translateY(-46%);
+
+          @media screen and (max-width:$breakpoint-mobile) {
+
+            width: 40px;
+            height: 40px;
+            transform: translateY(-48%);
+          }
         }
+
+
       }
 
-      // Sulkee h3:n
-
-
+      /* SULKEE H3 */
     }
 
-    // Sulkee .gallery_categories:n
-
-
+    /* SULKEE CATEGORIES WRAPIN */
   }
 
-  // Sulkee #categories_wrap:in
-
+  /* SULKKE */
 }
+
+/* SULKEE GALLERY FULL BLOCKIN */
 
 
 .gallery-grid {
