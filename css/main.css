@@ -1878,6 +1878,12 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
     will-change: transform;
   }
 }
+@media (max-width: 1023px) and (max-width: 767px) {
+  .shared_web_bg::before {
+    background: url(../images/bg_images/web_site_collage_768.webp) no-repeat center center;
+    background-size: cover;
+  }
+}
 
 /* Seamless inner section containers */
 #web > div,

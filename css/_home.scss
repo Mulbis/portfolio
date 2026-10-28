@@ -252,8 +252,20 @@
       
       transform: translateZ(0);
       will-change: transform;
-    }
+
+
+ @media (max-width: ($breakpoint-tablet - 1px)){
+
+      background: url(../images/bg_images/web_site_collage_768.webp) no-repeat center center;
+      background-size: cover;
+
+ }
+
+
+    } 
   }
+
+
 }
 
 /* Seamless inner section containers */
