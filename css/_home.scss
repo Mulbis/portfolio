@@ -208,40 +208,67 @@
 /* ==========================================================================
    YHTENÄINEN TAUSTA & TUMMENNUS QUOTELLE JA WEBBISIOILLE
    ========================================================================== */
+
+
 .shared_web_bg {
   position: relative;
   overflow: hidden;
-  clip-path: inset(-1px -1px -1px -1px);
   color: #FFF;
   z-index: 1;
-  
-  /* 1. TAUSTAKUVA: Fixed + GPU-raudoitus (Pysyy paikallaan ja jatkuu saumattomasti osiosta toiseen) */
-  &::before {
-    content: "";
-    position: fixed;
-    top: -6px;
-    left: -6px;
-    right: -6px;
-    bottom: -6px;
-    width: calc(100vw + 12px);
-    height: calc(100vh + 12px);
-    
-    z-index: -10;
-    pointer-events: none;
 
-    background: url(../images/bg_images/web_site_collage_1200.webp) no-repeat center center;
+  /* --- 1. DESKTOP ENGINE --- */
+  @media (min-width: $breakpoint-oldschool) {
+    background-image: url(../images/bg_images/web_site_collage_1200.webp);
+    background-repeat: no-repeat;
+    background-position: center center;
     background-size: cover;
-    
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
-    will-change: transform;
+    background-attachment: fixed; 
   }
 
+  /* --- 2. MOBILE & TABLET ENGINE --- */
+  @media (max-width: ($breakpoint-oldschool - 1px)) {
+    /* WE DROPPED CLIP-PATH! This native mask forces the GPU to box the fixed layer */
+    /* without creating layout subpixel rounding conflicts while scrolling. */
+    mask-image: linear-gradient(#000, #000);
+    -webkit-mask-image: linear-gradient(#000, #000);
 
+    &::before {
+      content: "";
+      position: fixed;
+      
+      /* Bleed out by 2px beyond the viewport to eliminate edge lines completely */
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      width: calc(100vw + 4px);
+      height: calc(100vh + 4px);
+      
+      z-index: -10;
+      pointer-events: none;
+
+      background: url(../images/bg_images/web_site_collage_1200.webp) no-repeat center center;
+      background-size: cover;
+      
+      transform: translateZ(0);
+      will-change: transform;
+    }
+  }
 }
 
+/* Seamless inner section containers */
+#web {
+  > div, 
+  > section {
+    position: relative;
+    z-index: 2; 
+    
+    /* Bridges any physical browser rendering panel gap down to the pixel */
+    margin-bottom: -1px; 
+  }
 
-#web::after {
+  /* UNIVERSAL BLACK OVERLAY */
+  &::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -249,6 +276,10 @@
     z-index: -1;
     pointer-events: none;
   }
+}
+
+
+
 
 /* Quote-kohtaiset säädöt */
 #web_section_quote {
