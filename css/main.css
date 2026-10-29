@@ -1834,78 +1834,6 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 /* ==========================================================================
    YHTENÄINEN TAUSTA & TUMMENNUS QUOTELLE JA WEBBISIOILLE
    ========================================================================== */
-.shared_web_bg {
-  position: relative;
-  overflow: hidden;
-  color: #FFF;
-  z-index: 1;
-  /* --- 1. DESKTOP ENGINE --- */
-}
-@media (min-width: 1024px) {
-  .shared_web_bg {
-    background-image: url(../images/bg_images/web_site_collage_1200.webp);
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    background-attachment: fixed;
-  }
-}
-.shared_web_bg {
-  /* --- 2. MOBILE & TABLET ENGINE --- */
-}
-@media (max-width: 1023px) {
-  .shared_web_bg {
-    /* WE DROPPED CLIP-PATH! This native mask forces the GPU to box the fixed layer */
-    /* without creating layout subpixel rounding conflicts while scrolling. */
-    mask-image: linear-gradient(#000, #000);
-    -webkit-mask-image: linear-gradient(#000, #000);
-  }
-  .shared_web_bg::before {
-    content: "";
-    position: fixed;
-    /* Bleed out by 2px beyond the viewport to eliminate edge lines completely */
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    width: calc(100vw + 4px);
-    height: calc(100vh + 4px);
-    z-index: -10;
-    pointer-events: none;
-    background: url(../images/bg_images/web_site_collage_1200.webp) no-repeat center center;
-    background-size: cover;
-    transform: translateZ(0);
-    will-change: transform;
-  }
-}
-@media (max-width: 1023px) and (max-width: 767px) {
-  .shared_web_bg::before {
-    background: url(../images/bg_images/web_site_collage_768.webp) no-repeat center center;
-    background-size: cover;
-  }
-}
-
-/* Seamless inner section containers */
-#web > div,
-#web > section {
-  position: relative;
-  z-index: 2;
-  /* Bridges any physical browser rendering panel gap down to the pixel */
-  margin-bottom: -1px;
-}
-#web {
-  /* UNIVERSAL BLACK OVERLAY */
-}
-#web::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* Quote-kohtaiset säädöt */
 #web_section_quote {
   text-align: center;
   width: 100%;
@@ -1913,6 +1841,8 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  background: url(../images/bg_images/web_site_collage_1200.webp) no-repeat center center fixed;
+  background-size: cover;
 }
 
 /* ==========================================
