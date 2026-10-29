@@ -1854,6 +1854,8 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  background: none !important;
+  background-color: transparent !important;
 }
 
 /* ==========================================
