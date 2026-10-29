@@ -206,7 +206,7 @@
 
 
 /* ==========================================================================
-   YHTENÄINEN TAUSTA & TUMMENNUS QUOTELLE JA WEBBISIOILLE
+    STARTING WEB
    ========================================================================== */
 
 #web_section_quote {
@@ -216,8 +216,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: none !important;
-  background-color: transparent !important;
+  background: none; /* NEED TO KILL THIS BECAUSE FULL BLOCKS HAVE WHITE BG COLOR */
 
 }
 

@@ -1845,7 +1845,7 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 }
 
 /* ==========================================================================
-   YHTENÄINEN TAUSTA & TUMMENNUS QUOTELLE JA WEBBISIOILLE
+    STARTING WEB
    ========================================================================== */
 #web_section_quote {
   text-align: center;
@@ -1854,8 +1854,7 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: none !important;
-  background-color: transparent !important;
+  background: none; /* NEED TO KILL THIS BECAUSE FULL BLOCKS HAVE WHITE BG COLOR */
 }
 
 /* ==========================================
