@@ -28,6 +28,20 @@ p, figure, blockquote, dl, dd {
 }
 
 
+body::before{
+
+ content: "";
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background: url(../images/bg_images/web_site_collage_1200.webp) no-repeat center center fixed;
+ background-size: cover;
+ z-index: -1; 
+}
+
+
 body {
   min-height: 100vh;
   font-family: $primary_font_stack;
