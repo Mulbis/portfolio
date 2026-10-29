@@ -1854,8 +1854,6 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url(../images/bg_images/web_site_collage_1200.webp) no-repeat center center fixed;
-  background-size: cover;
 }
 
 /* ==========================================
