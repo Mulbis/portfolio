@@ -210,7 +210,6 @@ ul.navigation_list {
       top: 0;
       right: -100%;
       width: 100vw;
-      height: 100vh;
       height: 100dvh;
       background: rgba(18, 18, 18, 0.92);
       backdrop-filter: blur(15px);
@@ -620,11 +619,6 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
     padding-bottom: 0;
   }
 
-  // --- TUMMA TILA ([data-theme="dark"]) ---
-  [data-theme="dark"] & {
-    background: #000000; // Koko section muuttuu mustaksi!
-    background-image: none; // Poistetaan mahdolliset sectionin omat taustakuvat täältä
-  }
 
 
   #categories_wrap {

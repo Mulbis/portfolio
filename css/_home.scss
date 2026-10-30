@@ -216,9 +216,53 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: none; /* NEED TO KILL THIS BECAUSE FULL BLOCKS HAVE WHITE BG COLOR */
+  position: relative;
+  overflow: hidden;
+    clip-path: inset(-1px -1px -1px -1px);
+
+
+&::after {
+    content: "";
+    position: fixed;
+
+    /* Reilu ylivuoto, jotta reuna piiloutuu varmasti selaimen pyöristyksiltä */
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    width: calc(100vw + 12px);
+    height: calc(100vh + 12px);
+
+    background: url(../images/bg_images/web_site_collage_1200.avif) no-repeat center center;
+    background-size: cover;
+    z-index: -1;
+    pointer-events: none;
+
+    /* GPU-kiihdytys päälle */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform;
+
+@media screen and (max-width: $breakpoint-tablet) {
+    background: url(../images/bg_images/web_site_collage_768.avif) no-repeat center center;
+    background-size: cover;
+  
+}
+
 
 }
+
+}
+
+
+#web{
+
+
+
+
+}
+
+
 
 
 /* ==========================================

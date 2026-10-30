@@ -9,7 +9,7 @@ $breakpoint-vga: 640px;
 $breakpoint-mobile: 480px;
 
 $primary_font_stack: 'Poppins', sans-serif;
-$quote_font: "Times New Roman", Times, Baskerville, Georgia, serif;
+$quote_font: "Times New Roman", Times, Baskerville, Georgia, serif; 
 
 // Brändivärit (The "Yeah Buddy" -osasto)
 $primary_theme_color: #d19d81;
@@ -18,8 +18,8 @@ $primary_theme2_color: #81b5d1;
 $secondary_theme2_color: #679bb8;
 
 // Perusvärit leipätekstille ja taustoille
-$dark_color: #121212;
-$darker_color: #121212;
+$dark_color: #1a1a1a;   // Vähän pehmeämpi / nostetumpi tausta korteille tai elementeille
+$darker_color: #111111; // Syvä, täysin tumma tausta bodylle / rootille
 $light_color: #ededed;
 
 // Mitat

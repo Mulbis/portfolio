@@ -241,19 +241,23 @@ document.addEventListener("DOMContentLoaded", () => {
  /* ==========================================================================
    5. TEEMAN VAIHTO (DARK / LIGHT MODE)
    ========================================================================== */
-  const themeBtn = document.getElementById('theme-toggle');
+ const themeBtn = document.getElementById('theme-toggle');
 
-  if (themeBtn) {
-    themeBtn.addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      
-      document.documentElement.setAttribute('data-theme', newTheme);
-      themeBtn.textContent = newTheme === 'dark' ? '🌙' : '☀️';
-      localStorage.setItem('theme', newTheme);
-    });
-  }
+if (themeBtn) {
+  // 1. Aseta oikea ikoni heti sivun latautuessa sen mukaan mikä teema on päällä
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  themeBtn.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
 
+  // 2. Vaihda ikoni ja teema klikatessa
+  themeBtn.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    themeBtn.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('theme', newTheme);
+  });
+}
   /* ==========================================================================
      6. MONITASOINEN GALLERIAN "SHOW MORE"
      ========================================================================== */

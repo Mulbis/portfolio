@@ -767,6 +767,12 @@
 
 <!--======= 1. QUOTE-INTRO (Ei omaa navi-linkkiä, toimii visuaalisena introna) =======-->
 <div id="web_section_quote" class="full_block">
+    <!-- Separate background canvas completely isolated from text -->
+    <div class="fixed-viewport-canvas">
+        <!-- The actual image layer that was missing -->
+        <div class="fixed-image-render"></div>
+    </div>
+
     <p class="quote mega text_shadow white">
         “A user interface is like a joke.<br>
         If you have to explain it,<br>
@@ -774,8 +780,10 @@
     </p>
 </div>
 
+
 <!--======= 2. VARSINAINEN WEB-OSIO & HARDWARET (Tänne navi hyppää!) =======-->
 <section id="web" class="full_block">
+
 
 	<!-- Web-tekstiosio -->
 
@@ -821,8 +829,7 @@
 				</div>
 			</div>
 		</div>
-
-
+	
 </section>
 <!-- ENDING WEB SECTION -->
 
