@@ -1853,7 +1853,7 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 }
 @media screen and (max-width: 768px) {
   #web_section_quote::after {
-    background: url(../images/bg_images/quote/web_site_collage_768_2.avif) no-repeat center center;
+    background: none;
     background-size: cover;
   }
 }
