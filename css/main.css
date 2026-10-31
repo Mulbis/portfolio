@@ -1183,6 +1183,8 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
   width: 100%;
   box-sizing: border-box;
   margin-bottom: 40px;
+  background: #000;
+  border-radius: 8px;
 }
 .gallery-grid .lightbox-trigger.level-1,
 .gallery-grid .lightbox-trigger.level-2 {
@@ -2148,6 +2150,9 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
     flex-direction: column;
     gap: 0;
     padding-top: 4px;
+  }
+  .main_footer .footer_links li:nth-child(1) {
+    padding-bottom: 4px;
   }
 }
 .main_footer .footer_links a, .main_footer .footer_links a:link, .main_footer .footer_links a:visited {
