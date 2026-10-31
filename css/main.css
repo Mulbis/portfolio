@@ -854,6 +854,13 @@ ul.navigation_list {
   justify-content: center;
   align-items: center;
 }
+@media screen and (max-width: 480px) {
+  #about_this_site .flex.between .half_block.col_small img {
+    max-width: 80%;
+    height: auto;
+    margin-top: 20px;
+  }
+}
 #about_this_site .flex.between .half_block.col_big {
   display: flex;
   flex: 0 0 calc(66% - 1.5rem);
@@ -862,21 +869,6 @@ ul.navigation_list {
 }
 #about_this_site .flex.between .half_block.col_big p {
   text-align: justify;
-}
-
-#about_site_image {
-  display: block;
-  margin: 0 !important;
-  padding: 0;
-  width: 100%;
-  max-width: 100%;
-}
-#about_site_image img {
-  display: block;
-  width: 100% !important;
-  height: auto !important;
-  margin: 0 auto;
-  object-fit: contain;
 }
 
 /*=========================CARDS, MAN. CARDS !=========================*/
@@ -1183,7 +1175,6 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
   width: 100%;
   box-sizing: border-box;
   margin-bottom: 40px;
-  background: #000;
   border-radius: 8px;
 }
 .gallery-grid .lightbox-trigger.level-1,
@@ -1862,7 +1853,7 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 }
 @media screen and (max-width: 768px) {
   #web_section_quote::after {
-    background: url(../images/bg_images/web_site_collage_768.avif) no-repeat center center;
+    background: url(../images/bg_images/web_site_collage_768_2.avif) no-repeat center center;
     background-size: cover;
   }
 }

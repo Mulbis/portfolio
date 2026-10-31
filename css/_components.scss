@@ -354,6 +354,17 @@ ul.navigation_list {
       flex-direction: column;
       justify-content: center;
       align-items: center;
+
+
+        img {
+            @media screen and (max-width: $breakpoint-mobile) {
+              max-width: 80%;
+              height: auto;
+              margin-top: 20px;
+            }
+          }
+
+
     }
 
     .half_block.col_big {
@@ -369,24 +380,7 @@ ul.navigation_list {
   }
 }
 
-#about_site_image {
-  display: block;
-  margin: 0 !important;
-  padding: 0;
-  width: 100%;
-  max-width: 100%; // Estetään ylivuoto
 
-
-  img {
-    display: block;
-    width: 100% !important;
-    height: auto !important;
-    margin: 0 auto;
-    object-fit: contain; // Varmistaa ettei kuva veny tai leikkaudu oudosti
-
-
-  }
-}
 
 /*=========================CARDS, MAN. CARDS !=========================*/
 
@@ -733,7 +727,6 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
   width: 100%;
   box-sizing: border-box;
   margin-bottom: 40px;
-  background: #000;
 border-radius: 8px;
 
   .lightbox-trigger.level-1,
