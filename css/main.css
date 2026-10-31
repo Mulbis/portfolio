@@ -890,7 +890,7 @@ ul.navigation_list {
   bottom: -6px;
   width: calc(100vw + 12px);
   height: calc(100vh + 12px);
-  background: url(../images/bg_images/sky_purple.webp) no-repeat center center;
+  background: url(../images/bg_images/tools/sky_purple.webp) no-repeat center center;
   background-size: cover;
   z-index: -1;
   pointer-events: none;
@@ -1842,7 +1842,7 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   bottom: -6px;
   width: calc(100vw + 12px);
   height: calc(100vh + 12px);
-  background: url(../images/bg_images/web_site_collage_1200.avif) no-repeat center center;
+  background: url(../images/bg_images/quote/web_site_collage_1200.avif) no-repeat center center;
   background-size: cover;
   z-index: -1;
   pointer-events: none;
@@ -1853,7 +1853,7 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 }
 @media screen and (max-width: 768px) {
   #web_section_quote::after {
-    background: url(../images/bg_images/web_site_collage_768_2.avif) no-repeat center center;
+    background: url(../images/bg_images/quote/web_site_collage_768_2.avif) no-repeat center center;
     background-size: cover;
   }
 }
