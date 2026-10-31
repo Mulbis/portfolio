@@ -729,7 +729,7 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  gap: 2px;
   width: 100%;
   box-sizing: border-box;
   margin-bottom: 40px;
@@ -741,14 +741,14 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
 
   .lightbox-trigger {
     display: flex;
-    flex: 0 1 calc(25% - 8px);
+    flex: 0 1 calc(25% - 2px);
     max-height: 160px;
     transition: transform 0.2s ease-in-out;
     box-sizing: border-box;
     position: relative;
 
-    @media screen and (max-width: $breakpoint-newschool) {
-      flex: 0 1 calc(33.333% - 7px);
+    @media screen and (max-width: $breakpoint-oldschool) {
+      flex: 0 1 calc(33.333% - 2px);
     }
 
     @media screen and (max-width: $breakpoint-vga) {

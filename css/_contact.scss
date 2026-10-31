@@ -6,7 +6,6 @@
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
   padding: 66px 0 0 0;
-  border-top: 2px solid lime;
 
   @media screen and (max-width: $breakpoint-vga) {
     padding: 20px 0 0;

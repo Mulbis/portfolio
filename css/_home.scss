@@ -4,7 +4,7 @@
 #home.hero_section {
   width: 100%;
   min-height: $hero_height;
-  background: url(../images/bg_images/hero/lappare_1600.webp) no-repeat center center;
+  background: url(../images/bg_images/hero/lappare_1600_2.webp) no-repeat center center;
   background-size: cover;
   display: flex;
   align-items: center;
@@ -355,7 +355,7 @@
     left: 0;
     height: 100%;
     width: calc(100% * 7);
-    background-image: url(../images/icons_sprites_patterns/web/sprites/test.webp);
+    background-image: url(../images/icons_sprites_patterns/web/sprites/imac_macbook_panorama_1800_142.webp);
     background-size: 100% 100%;
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
@@ -383,7 +383,7 @@
   height: 80%;
 
   &::before {
-    background-image: url(../images/icons_sprites_patterns/web/sprites/ipad_iphone_panorama_945_x_175.webp);
+    background-image: url(../images/icons_sprites_patterns/web/sprites/ipad_iphone_panorama_945_x_175_2.webp);
   }
 }
 

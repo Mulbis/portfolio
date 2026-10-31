@@ -1179,7 +1179,7 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  gap: 2px;
   width: 100%;
   box-sizing: border-box;
   margin-bottom: 40px;
@@ -1190,15 +1190,15 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
 }
 .gallery-grid .lightbox-trigger {
   display: flex;
-  flex: 0 1 calc(25% - 8px);
+  flex: 0 1 calc(25% - 2px);
   max-height: 160px;
   transition: transform 0.2s ease-in-out;
   box-sizing: border-box;
   position: relative;
 }
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1024px) {
   .gallery-grid .lightbox-trigger {
-    flex: 0 1 calc(33.333% - 7px);
+    flex: 0 1 calc(33.333% - 2px);
   }
 }
 @media screen and (max-width: 640px) {
@@ -1640,7 +1640,7 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 #home.hero_section {
   width: 100%;
   min-height: 46vh;
-  background: url(../images/bg_images/hero/lappare_1600.webp) no-repeat center center;
+  background: url(../images/bg_images/hero/lappare_1600_2.webp) no-repeat center center;
   background-size: cover;
   display: flex;
   align-items: center;
@@ -1975,7 +1975,7 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   left: 0;
   height: 100%;
   width: 700%;
-  background-image: url(../images/icons_sprites_patterns/web/sprites/test.webp);
+  background-image: url(../images/icons_sprites_patterns/web/sprites/imac_macbook_panorama_1800_142.webp);
   background-size: 100% 100%;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
@@ -2003,7 +2003,7 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 }
 .ipad_screen::before,
 .iphone_screen::before {
-  background-image: url(../images/icons_sprites_patterns/web/sprites/ipad_iphone_panorama_945_x_175.webp);
+  background-image: url(../images/icons_sprites_patterns/web/sprites/ipad_iphone_panorama_945_x_175_2.webp);
 }
 
 .iphone_screen {
@@ -2021,7 +2021,6 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
   padding: 66px 0 0 0;
-  border-top: 2px solid lime;
 }
 @media screen and (max-width: 640px) {
   #contact.full_block {
