@@ -854,10 +854,13 @@ ul.navigation_list {
   justify-content: center;
   align-items: center;
 }
+#about_this_site .flex.between .half_block.col_small img {
+  width: 100%;
+  height: auto;
+}
 @media screen and (max-width: 480px) {
   #about_this_site .flex.between .half_block.col_small img {
     max-width: 80%;
-    height: auto;
     margin-top: 20px;
   }
 }
@@ -871,7 +874,7 @@ ul.navigation_list {
   text-align: justify;
 }
 
-/*=========================CARDS, MAN. CARDS !=========================*/
+/*========================= CARDS, MAN. CARDS !=========================*/
 #cards_full_block {
   position: relative;
   overflow: hidden;
@@ -890,7 +893,7 @@ ul.navigation_list {
   bottom: -6px;
   width: calc(100vw + 12px);
   height: calc(100vh + 12px);
-  background: url(../images/bg_images/tools/sky_purple.webp) no-repeat center center;
+  background: url(../images/bg_images/tools/grayer_sky.avif) no-repeat center center;
   background-size: cover;
   z-index: -1;
   pointer-events: none;
@@ -898,6 +901,7 @@ ul.navigation_list {
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
   will-change: transform;
+  box-shadow: 1px 1px 188px 57px rgba(0, 0, 0, 0.84) inset;
 }
 #cards_full_block {
   /* THE OTHER CHILD ELEMENT */
@@ -933,12 +937,14 @@ a.card_twin_container {
   border-radius: 8px;
   width: 100%;
   display: flex;
-  align-items: stretch;
+  align-items: center;
   box-sizing: border-box;
   padding: 26px 20px 26px;
   position: relative;
   overflow: hidden;
   transition: background 0.3s ease;
+  background: #1A1A1A;
+  background: linear-gradient(315deg, rgb(26, 26, 26) 0%, rgb(26, 26, 26) 50%, rgb(23, 23, 24) 50%, rgb(23, 23, 24) 100%);
   /* Porrastetut viiveet korteille */
 }
 a.card_twin_container.reveal_me_2 {
@@ -1853,7 +1859,7 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 }
 @media screen and (max-width: 768px) {
   #web_section_quote::after {
-    background: none;
+    background: url(../images/bg_images/quote/web_site_collage_768.avif) no-repeat center center;
     background-size: cover;
   }
 }
@@ -1865,17 +1871,9 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
   padding: 0;
   position: relative;
   z-index: 1;
-  background: #fff;
   padding: 30px 0;
 }
 
-.hardware-showcase-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  color: #fff;
-  padding: 20px 0 10px;
-}
 @media screen and (max-width: 480px) {
   .hardware-showcase-container {
     padding: 15px;
@@ -1884,10 +1882,9 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 }
 .hardware-showcase-container .hardware-device-row {
   display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
   justify-content: center;
-  gap: 25px;
+  align-items: flex-end;
+  position: relative;
   width: 100%;
 }
 .hardware-showcase-container .hardware_info_wrapper {
@@ -1906,7 +1903,6 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 .ipad_wrapper,
 .iphone_wrapper {
   position: relative;
-  display: inline-block;
 }
 .macbook_wrapper img,
 .imac_wrapper img,
@@ -1942,6 +1938,36 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 .ipad_wrapper.reveal_me_11,
 .iphone_wrapper.reveal_me_11 {
   transition-delay: 0.4s !important;
+}
+
+.imac_wrapper {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+}
+
+.macbook_wrapper {
+  position: absolute;
+  left: 16%;
+  transform: translateX(-110%);
+  bottom: 0;
+  z-index: 2;
+}
+
+.ipad_wrapper {
+  position: absolute;
+  right: 27%;
+  transform: translateX(65%);
+  bottom: 0;
+  z-index: 3;
+}
+
+.iphone_wrapper {
+  position: absolute;
+  right: 24%;
+  transform: translateX(170%);
+  bottom: 0;
+  z-index: 4;
 }
 
 .macbook_screen,
@@ -1990,8 +2016,8 @@ dialog#global-lightbox .lightbox-nav-btn.next:hover {
 .ipad_screen,
 .iphone_screen {
   top: 1%;
-  left: 12%;
-  width: 78%;
+  left: 9%;
+  width: 82%;
   height: 80%;
 }
 .ipad_screen::before,

@@ -357,9 +357,11 @@ ul.navigation_list {
 
 
         img {
+
+          width: 100%;
+          height: auto;
             @media screen and (max-width: $breakpoint-mobile) {
               max-width: 80%;
-              height: auto;
               margin-top: 20px;
             }
           }
@@ -381,8 +383,7 @@ ul.navigation_list {
 }
 
 
-
-/*=========================CARDS, MAN. CARDS !=========================*/
+/*========================= CARDS, MAN. CARDS !=========================*/
 
 
 #cards_full_block {
@@ -406,7 +407,7 @@ ul.navigation_list {
     width: calc(100vw + 12px);
     height: calc(100vh + 12px);
 
-    background: url(../images/bg_images/tools/sky_purple.webp) no-repeat center center;
+    background: url(../images/bg_images/tools/grayer_sky.avif) no-repeat center center;
     background-size: cover;
     z-index: -1;
     pointer-events: none;
@@ -415,6 +416,9 @@ ul.navigation_list {
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
     will-change: transform;
+
+
+      box-shadow: 1px 1px 188px 57px rgba(0,0,0,0.84) inset;
   }
 
 
@@ -451,12 +455,14 @@ a.card_twin_container {
   @include black_box;
   width: 100%;
   display: flex;
-  align-items: stretch;
+  align-items: center;
   box-sizing: border-box;
   padding: 26px 20px 26px;
   position: relative;
   overflow: hidden;
   transition: background 0.3s ease;
+background: #1A1A1A;
+background: linear-gradient(315deg, rgba(26, 26, 26, 1) 0%, rgba(26, 26, 26, 1) 50%, rgba(23, 23, 24, 1) 50%, rgba(23, 23, 24, 1) 100%);
 
 
   /* Porrastetut viiveet korteille */
@@ -606,6 +612,7 @@ body.hasHover a.card_twin_container:hover .card_text_container p::after {
   background: #212836;
   background: linear-gradient(180deg, rgba(33, 40, 54, 1) 0%, rgba(255, 255, 255, 1) 100%);
   background-image: url(../images/icons_sprites_patterns/patterns/skulls_invert.webp);
+  
 
 
 

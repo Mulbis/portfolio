@@ -218,7 +218,7 @@
   align-items: center;
   position: relative;
   overflow: hidden;
-    clip-path: inset(-1px -1px -1px -1px);
+  clip-path: inset(-1px -1px -1px -1px);
 
 
 &::after {
@@ -244,23 +244,17 @@
     will-change: transform;
 
 @media screen and (max-width: $breakpoint-tablet) {
-    background: none;
+    background: url(../images/bg_images/quote/web_site_collage_768.avif) no-repeat center center;
     background-size: cover;
   
 }
-
-
 }
-
 }
-
 
 #web{
 
+
 }
-
-
-
 
 /* ==========================================
    HARDWARE FULL & SHOWCASE (Säilytetty ennallaan)
@@ -269,30 +263,25 @@
   padding: 0;
   position: relative;
   z-index: 1;
-  background: #fff;
   padding: 30px 0;
+
 }
 
 .hardware-showcase-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  color: #fff;
-  padding: 20px 0 10px;
 
   @include respond-to($breakpoint-mobile) {
     padding: 15px;
     margin: 15px 0;
   }
 
-  .hardware-device-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    justify-content: center;
-    gap: 25px;
-    width: 100%;
-  }
+.hardware-device-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: relative;
+  width: 100%;
+
+}
 
   .hardware_info_wrapper {
     width: 100%;
@@ -314,7 +303,7 @@
 .ipad_wrapper,
 .iphone_wrapper {
   position: relative;
-  display: inline-block;
+
 
   img {
     position: relative;
@@ -329,6 +318,43 @@
   &.reveal_me_9 { transition-delay: 0.2s !important;}
   &.reveal_me_10 { transition-delay: 0.3s !important;}
   &.reveal_me_11 { transition-delay: 0.4s !important;}
+}
+
+
+.imac_wrapper {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+}
+
+// 2. MacBook kiinnitetään absoluuttisesti iMacin vasemmalle puolelle
+.macbook_wrapper {
+  position: absolute;
+  left: 16%;
+  // Siirretään MacBookia vasemmalle suhteessa keskipisteeseen.
+  // Säädä tätä pikseliä (-350px / -400px jne.) sen mukaan kuinka paljon se tulee iMacin päälle:
+  transform: translateX(-110%); 
+  bottom: 0;
+  z-index: 2;
+}
+
+// 3. iPad ja iPhone ankkuroidaan oikealle puolelle
+.ipad_wrapper {
+  position: absolute;
+  right: 27%;
+  // Siirretään oikealle keskipisteestä:
+  transform: translateX(65%);
+  bottom: 0;
+  z-index: 3;
+}
+
+.iphone_wrapper {
+  position: absolute;
+  right: 24%;
+  // Siirretään iPadin rinnalle/päälle hieman enemmän oikealle:
+  transform: translateX(170%);
+  bottom: 0;
+  z-index: 4;
 }
 
 .macbook_screen,
@@ -375,8 +401,8 @@
 .ipad_screen,
 .iphone_screen {
   top: 1%;
-  left: 12%;
-  width: 78%;
+  left: 9%;
+  width: 82%;
   height: 80%;
 
   &::before {
